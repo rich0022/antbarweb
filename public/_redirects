@@ -1,0 +1,2 @@
+# Redirects for URL normalization (trailing slash handled by Astro config)
+# /old-url /new-url 301
