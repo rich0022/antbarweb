@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+import PostsWidget from '../../components/archive/PostsWidget.astro';
 import ContentBody from '../../components/ContentBody.astro';
 import ProductLayout from '../../layouts/ProductLayout.astro';
+import { extractArchiveWidget } from '../../lib/archive-widget';
 import { readContentBody } from '../../lib/content-body';
 import { contentEntryFileName } from '../../lib/content-entry';
 import { resolveMirrorRoute } from '../../lib/mirror-assets';
@@ -16,6 +18,7 @@ const bodyHtml = podCategory
 const mirrorRoute = podCategory
   ? resolveMirrorRoute('products', contentEntryFileName(podCategory.id, 'products'))
   : 'pod-sys';
+const postsWidget = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
 ---
 
 <ProductLayout
@@ -23,5 +26,15 @@ const mirrorRoute = podCategory
   description={podCategory?.data.description}
   mirrorRoute={mirrorRoute}
 >
-  <ContentBody html={bodyHtml} />
+  {
+    postsWidget ? (
+      <>
+        <ContentBody html={postsWidget.beforeHtml} />
+        <PostsWidget widget={postsWidget.widget} />
+        <ContentBody html={postsWidget.afterHtml} />
+      </>
+    ) : (
+      <ContentBody html={bodyHtml} />
+    )
+  }
 </ProductLayout>

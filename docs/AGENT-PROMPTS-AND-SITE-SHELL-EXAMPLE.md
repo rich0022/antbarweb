@@ -199,7 +199,8 @@ export const FOOTER_CONTACT = {
 1. 一个 agent 只做 header / mega menu
 2. 一个 agent 只做 footer / mobile accordion / social
 3. 一个 agent 只做 blog/review 列表页数据与卡片
-4. 一个 agent 只做产品详情 section schema
+4. 一个 agent 只做产品列表页数据与卡片
+5. 一个 agent 只做产品详情 section schema
 
 不要让一个 agent 同时负责：
 
@@ -219,4 +220,10 @@ export const FOOTER_CONTACT = {
 - [src/data/site-navigation.ts](/Users/smoant/github/antbarweb/src/data/site-navigation.ts)
 - [src/components/site/SiteHeader.astro](/Users/smoant/github/antbarweb/src/components/site/SiteHeader.astro)
 - [src/components/site/SiteFooter.astro](/Users/smoant/github/antbarweb/src/components/site/SiteFooter.astro)
+- [src/components/archive/PostsWidget.astro](/Users/smoant/github/antbarweb/src/components/archive/PostsWidget.astro)
+- [src/lib/archive-widget.ts](/Users/smoant/github/antbarweb/src/lib/archive-widget.ts)
+- [src/pages/blog/index.astro](/Users/smoant/github/antbarweb/src/pages/blog/index.astro)
+- [src/pages/disposable/index.astro](/Users/smoant/github/antbarweb/src/pages/disposable/index.astro)
+- [src/pages/pod-sys/index.astro](/Users/smoant/github/antbarweb/src/pages/pod-sys/index.astro)
+- [src/pages/[page].astro](/Users/smoant/github/antbarweb/src/pages/%5Bpage%5D.astro)
 - [docs/AGENT-STRUCTURING-RULES.md](/Users/smoant/github/antbarweb/docs/AGENT-STRUCTURING-RULES.md)

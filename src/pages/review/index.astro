@@ -1,10 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
+import PostsWidget from '../../components/archive/PostsWidget.astro';
 import ContentBody from '../../components/ContentBody.astro';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import { readContentBody } from '../../lib/content-body';
 import { contentEntryFileName } from '../../lib/content-entry';
 import { resolveMirrorRoute } from '../../lib/mirror-assets';
+import { extractArchiveWidget } from '../../lib/archive-widget';
 
 const reviews = await getCollection('review');
 const indexEntry = reviews.find((entry) => entry.id === 'index' || entry.data.slug === 'review');
@@ -12,6 +14,7 @@ const bodyHtml = indexEntry ? await readContentBody('review', contentEntryFileNa
 const mirrorRoute = indexEntry
   ? resolveMirrorRoute('review', contentEntryFileName(indexEntry.id, 'review'))
   : 'review';
+const archive = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
 ---
 
 <ArticleLayout
@@ -19,5 +22,15 @@ const mirrorRoute = indexEntry
   description={indexEntry?.data.description}
   mirrorRoute={mirrorRoute}
 >
-  <ContentBody html={bodyHtml} />
+  {
+    archive ? (
+      <>
+        <ContentBody html={archive.beforeHtml} />
+        <PostsWidget widget={archive.widget} />
+        <ContentBody html={archive.afterHtml} />
+      </>
+    ) : (
+      <ContentBody html={bodyHtml} />
+    )
+  }
 </ArticleLayout>

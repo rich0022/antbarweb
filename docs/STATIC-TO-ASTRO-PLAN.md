@@ -208,6 +208,7 @@ Keep:
 - Keep changes scoped by page family or shared system ownership.
 - If a rebuilt page family is complete, remove only that family's mirrored fallback pathing in a controlled change.
 - Before starting implementation, read:
+  - [DE-MIRROR-INVENTORY.md](/Users/smoant/github/antbarweb/docs/DE-MIRROR-INVENTORY.md)
   - [AGENT-STRUCTURING-RULES.md](/Users/smoant/github/antbarweb/docs/AGENT-STRUCTURING-RULES.md)
   - [AGENT-PROMPTS-AND-SITE-SHELL-EXAMPLE.md](/Users/smoant/github/antbarweb/docs/AGENT-PROMPTS-AND-SITE-SHELL-EXAMPLE.md)
   - [ELEMENTOR-MIRROR-LOCAL.md](/Users/smoant/github/antbarweb/docs/ELEMENTOR-MIRROR-LOCAL.md)
@@ -215,7 +216,7 @@ Keep:
 ## Immediate Next Tasks
 
 1. Offload oversized videos from `public/`
-2. Create first real Astro shared shell
-3. Convert `/blog/` and blog detail pages
-4. Convert `/disposable/` and priority product detail pages
+2. Convert product detail pages one by one, because their layouts are not interchangeable
+3. Convert static page bodies by section family where real repetition exists
+4. Convert blog/review detail bodies after the list-page baseline
 5. Reintroduce form/API behavior only after the static conversion is stable

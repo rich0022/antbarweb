@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import ContentBody from '../components/ContentBody.astro';
+import HomePage from '../components/home/HomePage.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { readContentBody } from '../lib/content-body';
 import { contentEntryFileName } from '../lib/content-entry';
@@ -17,5 +17,5 @@ const mirrorRoute = homeEntry ? resolveMirrorRoute('pages', contentEntryFileName
   description={homeEntry?.data.description}
   mirrorRoute={mirrorRoute}
 >
-  <ContentBody html={bodyHtml} />
+  <HomePage html={bodyHtml} />
 </BaseLayout>

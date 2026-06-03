@@ -1,0 +1,36 @@
+---
+import { extractHomePageSections, HOME_PAGE_WRAPPER } from '../../lib/homepage-sections';
+
+interface Props {
+  html: string;
+}
+
+const { html } = Astro.props;
+const sections = extractHomePageSections(html);
+
+const sectionOrder = [
+  { key: 'heroCarousel', label: 'hero-carousel' },
+  { key: 'auxiliaryHtml', label: 'auxiliary-html' },
+  { key: 'productHero', label: 'product-hero' },
+  { key: 'productIntro', label: 'product-intro' },
+  { key: 'productGrid', label: 'product-grid' },
+  { key: 'productVideo', label: 'product-video' },
+  { key: 'remainder', label: 'remainder' },
+] as const;
+---
+
+<Fragment set:html={HOME_PAGE_WRAPPER.mainOpen} />
+<Fragment set:html={HOME_PAGE_WRAPPER.pageWrapperOpen} />
+<Fragment set:html={HOME_PAGE_WRAPPER.elementorOpen} />
+{
+  sectionOrder.map((section) =>
+    sections[section.key] ? (
+      <div data-home-section={section.label}>
+        <Fragment set:html={sections[section.key]} />
+      </div>
+    ) : null,
+  )
+}
+</div>
+</div>
+</main>

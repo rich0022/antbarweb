@@ -37,6 +37,7 @@ npm run build:cf
 Before assigning more agents, point them to these docs first:
 
 - [docs/STATIC-TO-ASTRO-PLAN.md](/Users/smoant/github/antbarweb/docs/STATIC-TO-ASTRO-PLAN.md)
+- [docs/DE-MIRROR-INVENTORY.md](/Users/smoant/github/antbarweb/docs/DE-MIRROR-INVENTORY.md)
 - [docs/AGENT-STRUCTURING-RULES.md](/Users/smoant/github/antbarweb/docs/AGENT-STRUCTURING-RULES.md)
 - [docs/AGENT-PROMPTS-AND-SITE-SHELL-EXAMPLE.md](/Users/smoant/github/antbarweb/docs/AGENT-PROMPTS-AND-SITE-SHELL-EXAMPLE.md)
 - [docs/ELEMENTOR-MIRROR-LOCAL.md](/Users/smoant/github/antbarweb/docs/ELEMENTOR-MIRROR-LOCAL.md)
