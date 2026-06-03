@@ -1,0 +1,287 @@
+<script is:inline>
+  (() => {
+    if (window.__antbarHomeInitialized) return;
+    window.__antbarHomeInitialized = true;
+
+    const dialogMap = {
+      menu: document.querySelector('[data-home-dialog="menu"]'),
+      search: document.querySelector('[data-home-dialog="search"]'),
+      age: document.querySelector('[data-home-dialog="age"]'),
+    };
+
+    const body = document.body;
+
+    function setDialogState(dialog, isOpen) {
+      if (!dialog) return;
+      dialog.hidden = !isOpen;
+      dialog.setAttribute('aria-hidden', String(!isOpen));
+      dialog.classList.toggle('is-open', isOpen);
+      body.classList.toggle('home-dialog-open', Object.values(dialogMap).some((item) => item && !item.hidden));
+    }
+
+    function openDialog(name) {
+      const dialog = dialogMap[name];
+      if (!dialog) return;
+      setDialogState(dialog, true);
+      const input = dialog.querySelector('input[type="search"]');
+      if (input) window.setTimeout(() => input.focus(), 60);
+    }
+
+    function closeDialog(dialog) {
+      setDialogState(dialog, false);
+    }
+
+    document.getElementById('hMenu')?.addEventListener('click', (event) => {
+      event.preventDefault();
+      openDialog('menu');
+      event.currentTarget?.classList.add('active');
+    });
+
+    document.getElementById('hSearchTrigger')?.addEventListener('click', (event) => {
+      event.preventDefault();
+      openDialog('search');
+    });
+
+    document.querySelectorAll('[data-close-dialog]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const dialog = button.closest('[data-home-dialog]');
+        if (!dialog) return;
+        closeDialog(dialog);
+        document.getElementById('hMenu')?.classList.remove('active');
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      Object.values(dialogMap).forEach((dialog) => {
+        if (dialog && !dialog.hidden && dialog.dataset.homeDialog !== 'age') {
+          closeDialog(dialog);
+        }
+      });
+      document.getElementById('hMenu')?.classList.remove('active');
+    });
+
+    const ageAcceptedKey = 'antbar-age-verified';
+    const ageDialog = dialogMap.age;
+    if (ageDialog && !window.localStorage.getItem(ageAcceptedKey)) {
+      window.setTimeout(() => openDialog('age'), 120);
+    }
+    document.querySelector('[data-age-accept]')?.addEventListener('click', () => {
+      window.localStorage.setItem(ageAcceptedKey, 'yes');
+      closeDialog(ageDialog);
+    });
+
+    document.querySelectorAll('.home-mobile-menu__section').forEach((section) => {
+      section.addEventListener('toggle', () => {
+        if (!section.open) return;
+        document.querySelectorAll('.home-mobile-menu__section').forEach((other) => {
+          if (other !== section) other.open = false;
+        });
+      });
+    });
+
+    document.querySelector('[data-home-search-form]')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const input = form.querySelector('input[type="search"]');
+      const query = input?.value?.trim().toLowerCase();
+      if (!query) return;
+
+      const candidates = [...document.querySelectorAll('a[href^="/"]')]
+        .map((anchor) => ({
+          href: anchor.getAttribute('href') || '/',
+          text: (anchor.textContent || '').trim().toLowerCase(),
+        }))
+        .filter((item) => item.text && item.href && !item.href.startsWith('#'));
+
+      const match = candidates.find((item) => item.text.includes(query));
+      window.location.assign(match?.href || '/blog/');
+    });
+
+    function animationNameFor(element) {
+      const raw = element.getAttribute('data-settings') || '';
+      const match = raw.match(/"animation":"([^"]+)"/);
+      return match?.[1] || 'fadeInUp';
+    }
+
+    function revealElement(element) {
+      element.classList.remove('elementor-invisible');
+      element.classList.add('elementor-animated', animationNameFor(element));
+    }
+
+    function revealSlideContent(slide) {
+      slide?.querySelectorAll('.elementor-invisible[data-settings]').forEach(revealElement);
+    }
+
+    const revealItems = document.querySelectorAll('.elementor-invisible[data-settings]');
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          revealElement(entry.target);
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.2 },
+    );
+    revealItems.forEach((item) => {
+      if (item.closest('[data-carousel-mode="single"]')) return;
+      revealObserver.observe(item);
+    });
+
+    const menuItems = [...document.querySelectorAll('#mainNav .e-n-menu-item')];
+    function closeMenuItem(item) {
+      item.classList.remove('is-open');
+      item.querySelector('.e-n-menu-dropdown-icon')?.setAttribute('aria-expanded', 'false');
+    }
+    function openMenuItem(item) {
+      menuItems.forEach((entry) => {
+        if (entry !== item) closeMenuItem(entry);
+      });
+      item.classList.add('is-open');
+      item.querySelector('.e-n-menu-dropdown-icon')?.setAttribute('aria-expanded', 'true');
+    }
+    menuItems.forEach((item) => {
+      if (!item.querySelector('.e-n-menu-content')) return;
+      item.addEventListener('mouseenter', () => openMenuItem(item));
+      item.addEventListener('mouseleave', () => closeMenuItem(item));
+      item.addEventListener('focusin', () => openMenuItem(item));
+      item.addEventListener('focusout', (event) => {
+        if (item.contains(event.relatedTarget)) return;
+        closeMenuItem(item);
+      });
+      item.querySelector('.e-n-menu-dropdown-icon')?.addEventListener('click', (event) => {
+        event.preventDefault();
+        item.classList.contains('is-open') ? closeMenuItem(item) : openMenuItem(item);
+      });
+    });
+    document.addEventListener('click', (event) => {
+      if (event.target.closest('#mainNav')) return;
+      menuItems.forEach((item) => closeMenuItem(item));
+    });
+
+    function slidesPerView(root) {
+      const mobile = Number(root.dataset.slidesMobile || 1);
+      const tablet = Number(root.dataset.slidesTablet || mobile);
+      const desktop = Number(root.dataset.slidesDesktop || tablet);
+      if (window.innerWidth <= 767) return mobile;
+      if (window.innerWidth <= 1024) return tablet;
+      return desktop;
+    }
+
+    function carouselMode(root) {
+      if (root.dataset.carouselMode) return root.dataset.carouselMode;
+      const mobile = Number(root.dataset.slidesMobile || 1);
+      const tablet = Number(root.dataset.slidesTablet || mobile);
+      const desktop = Number(root.dataset.slidesDesktop || tablet);
+      if (desktop === 1 && tablet === 1 && mobile === 1) return 'single';
+      return 'multi';
+    }
+
+    function initCarousel(root) {
+      const mode = carouselMode(root);
+      const viewport = root.querySelector('.swiper');
+      const wrapper = root.querySelector('.swiper-wrapper');
+      const slides = [...root.querySelectorAll('.swiper-slide')];
+      const prev = root.querySelector('.elementor-swiper-button-prev');
+      const next = root.querySelector('.elementor-swiper-button-next');
+      const pagination = root.querySelector('.swiper-pagination');
+      const delay = Number(root.dataset.autoplayDelay || 5000);
+      let index = 0;
+      let autoplayId = null;
+
+      viewport?.classList.add('swiper-initialized');
+
+      function maxIndex() {
+        return Math.max(slides.length - slidesPerView(root), 0);
+      }
+
+      function updatePagination() {
+        if (!pagination) return;
+        pagination.innerHTML = '';
+        const bulletCount = root.dataset.pagination === 'true' ? slides.length : 0;
+        for (let bulletIndex = 0; bulletIndex < bulletCount; bulletIndex += 1) {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'swiper-pagination-bullet';
+          if (bulletIndex === index) button.classList.add('swiper-pagination-bullet-active');
+          button.setAttribute('aria-label', `Go to slide ${bulletIndex + 1}`);
+          button.addEventListener('click', () => {
+            index = bulletIndex;
+            render();
+            restartAutoplay();
+          });
+          pagination.append(button);
+        }
+      }
+
+      function renderSingle() {
+        slides.forEach((slide, slideIndex) => {
+          const active = slideIndex === index;
+          slide.hidden = !active;
+          slide.classList.toggle('is-active', active);
+          slide.setAttribute('aria-hidden', String(!active));
+          if (active) revealSlideContent(slide);
+        });
+        wrapper.style.transform = '';
+        updatePagination();
+      }
+
+      function renderMulti() {
+        const visible = slidesPerView(root);
+        const containerWidth = viewport?.clientWidth || root.clientWidth;
+        const slideWidth = containerWidth / visible;
+        slides.forEach((slide) => {
+          slide.hidden = false;
+          slide.style.flex = `0 0 ${100 / visible}%`;
+          slide.style.maxWidth = `${100 / visible}%`;
+        });
+        if (index > maxIndex()) index = 0;
+        wrapper.style.transform = `translate3d(-${index * slideWidth}px, 0, 0)`;
+        updatePagination();
+      }
+
+      function render() {
+        if (mode === 'single') renderSingle();
+        else renderMulti();
+      }
+
+      function go(step) {
+        const last = maxIndex();
+        index += step;
+        if (index < 0) index = last;
+        if (index > last) index = 0;
+        render();
+        restartAutoplay();
+      }
+
+      function stopAutoplay() {
+        if (autoplayId) {
+          window.clearInterval(autoplayId);
+          autoplayId = null;
+        }
+      }
+
+      function startAutoplay() {
+        stopAutoplay();
+        if (slides.length <= 1) return;
+        autoplayId = window.setInterval(() => go(1), delay);
+      }
+
+      function restartAutoplay() {
+        startAutoplay();
+      }
+
+      prev?.addEventListener('click', () => go(-1));
+      next?.addEventListener('click', () => go(1));
+      root.addEventListener('mouseenter', stopAutoplay);
+      root.addEventListener('mouseleave', startAutoplay);
+      window.addEventListener('resize', render);
+
+      render();
+      startAutoplay();
+    }
+
+    document.querySelectorAll('[data-local-carousel]').forEach((root) => initCarousel(root));
+  })();
+</script>

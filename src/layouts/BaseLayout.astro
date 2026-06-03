@@ -1,17 +1,22 @@
 ---
 import SiteFooter from '../components/site/SiteFooter.astro';
 import SiteHeader from '../components/site/SiteHeader.astro';
-import { mergeMirrorHeadAssets } from '../lib/mirror-assets';
+import { getPopupTemplates, mergeMirrorHeadAssets } from '../lib/mirror-assets';
 import { ANIMATION_INLINE_CSS, ELEMENTOR_LAZY_CSS } from '../data/site-assets';
+import '../styles/home-bundle.css';
 
 interface Props {
   title?: string;
   description?: string;
   mirrorRoute?: string;
+  /** Use bundled CSS (still loads JS from mirror for guaranteed functionality) */
+  standalone?: boolean;
 }
 
-const { title = 'ANTBAR', description = '', mirrorRoute = '' } = Astro.props;
+const { title = 'ANTBAR', description = '', mirrorRoute = '', standalone = false } = Astro.props;
 const assets = await mergeMirrorHeadAssets(mirrorRoute);
+const popupTemplates = standalone ? await getPopupTemplates() : '';
+const stylesheets = standalone ? [] : assets.stylesheets;
 ---
 
 <!doctype html>
@@ -22,7 +27,7 @@ const assets = await mergeMirrorHeadAssets(mirrorRoute);
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     {assets.inlineStyles.map((css) => <style set:html={css} />)}
-    {assets.stylesheets.map((href) => <link rel="stylesheet" href={href} />)}
+    {stylesheets.map((href) => <link rel="stylesheet" href={href} />)}
     {assets.headScripts.map((script) =>
       script.src ? <script src={script.src} is:inline></script>
       : script.inline ? <script set:html={script.inline} is:inline></script>
@@ -33,19 +38,15 @@ const assets = await mergeMirrorHeadAssets(mirrorRoute);
   </head>
   <body class={assets.bodyClass}>
     <script is:inline>
-      document.addEventListener(
-        'click',
-        (event) => {
-          const anchor = event.target.closest('a[href]');
-          if (!anchor) return;
-          const href = anchor.getAttribute('href');
-          if (!href || !/^https?:\/\/(?:www\.)?antbar\.com/i.test(href)) return;
-          event.preventDefault();
-          const localPath = href.replace(/^https?:\/\/(?:www\.)?antbar\.com/i, '') || '/';
-          window.location.assign(localPath);
-        },
-        true,
-      );
+      document.addEventListener('click', (event) => {
+        const anchor = event.target.closest('a[href]');
+        if (!anchor) return;
+        const href = anchor.getAttribute('href');
+        if (!href || !/^https?:\/\/(?:www\.)?antbar\.com/i.test(href)) return;
+        event.preventDefault();
+        const localPath = href.replace(/^https?:\/\/(?:www\.)?antbar\.com/i, '') || '/';
+        window.location.assign(localPath);
+      }, true);
     </script>
     <SiteHeader />
     <slot />
@@ -55,5 +56,6 @@ const assets = await mergeMirrorHeadAssets(mirrorRoute);
       : script.inline ? <script set:html={script.inline} is:inline></script>
       : null,
     )}
+    {standalone && <Fragment set:html={popupTemplates} />}
   </body>
 </html>

@@ -256,6 +256,19 @@ export function resolveMirrorRoute(collection: string, entryId: string): string 
   return base;
 }
 
+/** Extract popup templates (everything after </footer> until </body>) from mirror HTML. */
+export async function getPopupTemplates(): Promise<string> {
+  const html = await readFile(mirrorHtmlPath(''), 'utf8');
+  const bodyInner = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? html;
+  const footerIndex = bodyInner.lastIndexOf('</footer>');
+  if (footerIndex === -1) return '';
+  let templates = bodyInner.slice(footerIndex + '</footer>'.length).trim();
+  // Remove unwanted external scripts from popup area (keep inline scripts for Elementor)
+  templates = templates.replace(/<script\b[^>]*src=["'][^"']*(?:hello-frontend|cloudflare|cdn-cgi|\.cloud|angie-mcp)[^"']*["'][^>]*>[\s\S]*?<\/script>/gi, '');
+  templates = templates.replace(/<script\b[^>]*src=["'][^"']*["'][^>]*>[\s\S]*?<\/script>/gi, '');
+  return templates;
+}
+
 export async function readMirrorBodyHtml(mirrorRoute: string): Promise<string> {
   const html = await readFile(mirrorHtmlPath(mirrorRoute), 'utf8');
   const bodyInner = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? html;

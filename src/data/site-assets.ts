@@ -1,5 +1,3 @@
-/** Shared inline CSS snippets. External CSS/JS is still loaded via mirror-assets.ts for 1:1 fidelity. */
-
 /** Animation keyframes — inlined to remove 6 HTTP requests (~834 bytes) */
 export const ANIMATION_INLINE_CSS = `@keyframes fadeIn{from{opacity:0}to{opacity:1}}.fadeIn{animation-name:fadeIn}@keyframes fadeInLeft{from{opacity:0;transform:translate3d(-100%,0,0)}to{opacity:1;transform:none}}.fadeInLeft{animation-name:fadeInLeft}@keyframes fadeInRight{from{opacity:0;transform:translate3d(100%,0,0)}to{opacity:1;transform:none}}.fadeInRight{animation-name:fadeInRight}@keyframes fadeInUp{from{opacity:0;transform:translate3d(0,100%,0)}to{opacity:1;transform:none}}.fadeInUp{animation-name:fadeInUp}.elementor-animation-grow{transition-duration:.3s;transition-property:transform}.elementor-animation-grow:active,.elementor-animation-grow:focus,.elementor-animation-grow:hover{transform:scale(1.1)}@keyframes slideInDown{from{transform:translate3d(0,-100%,0);visibility:visible}to{transform:translate3d(0,0,0)}}.slideInDown{animation-name:slideInDown}`;
 

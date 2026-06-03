@@ -1,19 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 import HomePage from '../components/home/HomePage.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { contentEntryFileName } from '../lib/content-entry';
-import { resolveMirrorRoute } from '../lib/mirror-assets';
+import HomeLayout from '../layouts/HomeLayout.astro';
 
 const pages = await getCollection('pages');
 const homeEntry = pages.find((entry) => entry.id === 'home');
-const mirrorRoute = homeEntry ? resolveMirrorRoute('pages', contentEntryFileName(homeEntry.id, 'pages')) : '';
 ---
 
-<BaseLayout
+<HomeLayout
   title={homeEntry?.data.title ?? 'ANTBAR'}
   description={homeEntry?.data.description}
-  mirrorRoute={mirrorRoute}
 >
   <HomePage />
-</BaseLayout>
+</HomeLayout>
