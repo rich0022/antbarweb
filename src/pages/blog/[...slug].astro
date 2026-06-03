@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import ContentBody from '../../components/ContentBody.astro';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { contentEntryFileName, contentEntrySlug } from '../../lib/content-entry';
+import { readContentBody } from '../../lib/content-body';
+import {
+  collectBlogMirrorSlugs,
+  readMirrorBodyHtml,
+  resolveMirrorRoute,
+} from '../../lib/mirror-assets';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
+
+export async function getStaticPaths() {
+  const contentPosts = await getCollection('blog');
+  const mirrorSlugs = await collectBlogMirrorSlugs();
+  const paths = new Map();
+
+  for (const entry of contentPosts) {
+    if (entry.id === 'index' || entry.data.slug === 'blog') continue;
+    const slug = contentEntrySlug(entry.id, 'blog');
+    paths.set(slug, { mode: 'content' as const, entry });
+  }
+
+  for (const slug of mirrorSlugs) {
+    if (!paths.has(slug)) {
+      paths.set(slug, { mode: 'mirror' as const, slug });
+    }
+  }
+
+  return [...paths.entries()].map(([slug, props]) => ({
+    params: { slug },
+    props: { slug, ...props },
+  }));
+}
+
+const props = Astro.props as {
+  slug: string;
+  mode: 'content' | 'mirror';
+  entry?: { id: string; data: { title: string; description?: string } };
+};
+
+let title = 'ANTBAR Blog';
+let description = '';
+let bodyHtml = '';
+const mirrorRoute = `blog/${props.slug}`;
+
+if (props.mode === 'content' && props.entry) {
+  title = props.entry.data.title;
+  description = props.entry.data.description ?? '';
+  bodyHtml = await readContentBody('blog', contentEntryFileName(props.entry.id, 'blog'));
+} else {
+  const htmlPath = path.join(process.cwd(), 'mirror', 'blog', props.slug, 'index.html');
+  const raw = await readFile(htmlPath, 'utf8');
+  title = raw.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.trim() ?? title;
+  description =
+    raw.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i)?.[1] ?? '';
+  bodyHtml = await readMirrorBodyHtml(mirrorRoute);
+}
+---
+
+<ArticleLayout title={title} description={description} mirrorRoute={mirrorRoute}>
+  <ContentBody html={bodyHtml} />
+</ArticleLayout>

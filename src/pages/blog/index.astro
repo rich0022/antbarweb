@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import ContentBody from '../../components/ContentBody.astro';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { readContentBody } from '../../lib/content-body';
+import { contentEntryFileName } from '../../lib/content-entry';
+import { resolveMirrorRoute } from '../../lib/mirror-assets';
+
+const allBlog = await getCollection('blog');
+const blogIndex = allBlog.find((entry) => entry.id === 'index' || entry.data.slug === 'blog');
+const bodyHtml = blogIndex ? await readContentBody('blog', contentEntryFileName(blogIndex.id, 'blog')) : '';
+const mirrorRoute = blogIndex ? resolveMirrorRoute('blog', contentEntryFileName(blogIndex.id, 'blog')) : 'blog';
+---
+
+<ArticleLayout
+  title={blogIndex?.data.title ?? 'ANTBAR Blog'}
+  description={blogIndex?.data.description ?? ''}
+  mirrorRoute={mirrorRoute}
+>
+  <ContentBody html={bodyHtml} />
+</ArticleLayout>

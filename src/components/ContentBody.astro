@@ -1,0 +1,12 @@
+---
+import { normalizeMirrorHtml } from '../lib/mirror-urls';
+
+interface Props {
+  html: string;
+}
+
+const { html } = Astro.props;
+const safeHtml = normalizeMirrorHtml(html);
+---
+
+<Fragment set:html={safeHtml} />

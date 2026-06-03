@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import ContentBody from '../components/ContentBody.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { readContentBody } from '../lib/content-body';
+import { contentEntryFileName, contentEntrySlug } from '../lib/content-entry';
+import { resolveMirrorRoute } from '../lib/mirror-assets';
+
+export async function getStaticPaths() {
+  const staticPages = await getCollection('pages');
+  return staticPages
+    .filter((entry) => entry.id !== 'home' && entry.id !== 'pod-sys')
+    .map((entry) => ({
+      params: { page: contentEntrySlug(entry.id, 'pages') },
+      props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const bodyHtml = await readContentBody('pages', contentEntryFileName(entry.id, 'pages'));
+const mirrorRoute = resolveMirrorRoute('pages', contentEntryFileName(entry.id, 'pages'));
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description} mirrorRoute={mirrorRoute}>
+  <ContentBody html={bodyHtml} />
+</BaseLayout>

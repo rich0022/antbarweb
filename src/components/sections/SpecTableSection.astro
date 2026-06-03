@@ -1,0 +1,29 @@
+---
+interface Row {
+  key: string;
+  value: string;
+}
+
+interface Props {
+  title?: string;
+  rows?: Row[];
+}
+
+const { title, rows = [] } = Astro.props;
+---
+
+{rows.length > 0 && (
+  <section>
+    {title && <h2>{title}</h2>}
+    <table>
+      <tbody>
+        {rows.map((row) => (
+          <tr>
+            <th>{row.key}</th>
+            <td>{row.value}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+)}

@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import ContentBody from '../../components/ContentBody.astro';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { readContentBody } from '../../lib/content-body';
+import { contentEntryFileName } from '../../lib/content-entry';
+import { resolveMirrorRoute } from '../../lib/mirror-assets';
+
+const reviews = await getCollection('review');
+const indexEntry = reviews.find((entry) => entry.id === 'index' || entry.data.slug === 'review');
+const bodyHtml = indexEntry ? await readContentBody('review', contentEntryFileName(indexEntry.id, 'review')) : '';
+const mirrorRoute = indexEntry
+  ? resolveMirrorRoute('review', contentEntryFileName(indexEntry.id, 'review'))
+  : 'review';
+---
+
+<ArticleLayout
+  title={indexEntry?.data.title ?? 'ANTBAR Review'}
+  description={indexEntry?.data.description}
+  mirrorRoute={mirrorRoute}
+>
+  <ContentBody html={bodyHtml} />
+</ArticleLayout>

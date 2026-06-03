@@ -1,0 +1,15 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  mirrorRoute?: string;
+}
+
+const { title, description, mirrorRoute } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} mirrorRoute={mirrorRoute}>
+  <slot />
+</BaseLayout>

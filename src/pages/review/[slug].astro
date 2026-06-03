@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+import ContentBody from '../../components/ContentBody.astro';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { contentEntryFileName, contentEntrySlug } from '../../lib/content-entry';
+import { readContentBody } from '../../lib/content-body';
+import {
+  collectReviewMirrorRoutes,
+  readMirrorBodyHtml,
+  resolveMirrorRoute,
+} from '../../lib/mirror-assets';
+import { resolveReviewUrlSlug, REVIEW_URL_ALIASES } from '../../lib/route-aliases';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
+
+export async function getStaticPaths() {
+  const contentPosts = await getCollection('review');
+  const mirrorRoutes = await collectReviewMirrorRoutes();
+  const paths = new Map<string, Record<string, unknown>>();
+
+  for (const entry of contentPosts) {
+    if (entry.id === 'index' || entry.id === 'review' || entry.data.slug === 'review') continue;
+    const slug = contentEntrySlug(entry.id, 'review');
+    paths.set(slug, { mode: 'content' as const, entry });
+  }
+
+  for (const [slug, mirrorRoute] of mirrorRoutes) {
+    if (slug === 'index') continue;
+    if (!paths.has(slug)) {
+      paths.set(slug, { mode: 'mirror' as const, slug, mirrorRoute });
+    }
+  }
+
+  for (const [alias, target] of Object.entries(REVIEW_URL_ALIASES)) {
+    const targetProps = paths.get(target);
+    if (targetProps) paths.set(alias, targetProps);
+  }
+
+  return [...paths.entries()].map(([slug, props]) => ({
+    params: { slug },
+    props: { slug, ...props },
+  }));
+}
+
+const props = Astro.props as {
+  slug: string;
+  mode: 'content' | 'mirror';
+  mirrorRoute?: string;
+  entry?: { id: string; data: { title: string; description?: string } };
+};
+
+const canonicalSlug = resolveReviewUrlSlug(props.slug);
+let title = 'ANTBAR Review';
+let description = '';
+let bodyHtml = '';
+let mirrorRoute = props.mirrorRoute ?? `review/${canonicalSlug}`;
+
+if (props.mode === 'content' && props.entry) {
+  title = props.entry.data.title;
+  description = props.entry.data.description ?? '';
+  bodyHtml = await readContentBody('review', contentEntryFileName(props.entry.id, 'review'));
+  mirrorRoute = resolveMirrorRoute('review', contentEntryFileName(props.entry.id, 'review'));
+} else {
+  const route = props.mirrorRoute ?? `review/${canonicalSlug}`;
+  const htmlPath = path.join(process.cwd(), 'mirror', route, 'index.html');
+  const raw = await readFile(htmlPath, 'utf8');
+  title = raw.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.trim() ?? title;
+  description =
+    raw.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i)?.[1] ?? '';
+  bodyHtml = await readMirrorBodyHtml(route);
+  mirrorRoute = route;
+}
+---
+
+<ArticleLayout title={title} description={description} mirrorRoute={mirrorRoute}>
+  <ContentBody html={bodyHtml} />
+</ArticleLayout>

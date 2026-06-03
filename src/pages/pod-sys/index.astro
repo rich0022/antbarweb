@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import ContentBody from '../../components/ContentBody.astro';
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import { readContentBody } from '../../lib/content-body';
+import { contentEntryFileName } from '../../lib/content-entry';
+import { resolveMirrorRoute } from '../../lib/mirror-assets';
+
+const products = await getCollection('products');
+const podCategory = products.find(
+  (entry) => entry.id === 'pod-sys/index' || entry.id === 'pod-sys' || entry.data.slug === 'pod-sys',
+);
+const bodyHtml = podCategory
+  ? await readContentBody('products', contentEntryFileName(podCategory.id, 'products'))
+  : '';
+const mirrorRoute = podCategory
+  ? resolveMirrorRoute('products', contentEntryFileName(podCategory.id, 'products'))
+  : 'pod-sys';
+---
+
+<ProductLayout
+  title={podCategory?.data.title ?? 'Pod System'}
+  description={podCategory?.data.description}
+  mirrorRoute={mirrorRoute}
+>
+  <ContentBody html={bodyHtml} />
+</ProductLayout>
