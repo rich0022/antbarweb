@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { stripScriptsFromHtml } from './mirror-assets';
 import { normalizeMirrorHtml } from './mirror-urls';
+import { stripSiteShellFromHtml } from './site-shell';
 
 const CONTENT_DIR = path.join(process.cwd(), 'src', 'content');
 
@@ -14,5 +15,5 @@ export async function readContentBody(collection: string, entryId: string): Prom
   const raw = await readFile(filePath, 'utf8');
   const match = raw.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n([\s\S]*)$/);
   const body = match?.[1]?.trim() ?? '';
-  return normalizeMirrorHtml(stripScriptsFromHtml(body));
+  return stripSiteShellFromHtml(stripScriptsFromHtml(body));
 }

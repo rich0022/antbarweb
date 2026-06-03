@@ -13,6 +13,7 @@
     "fetch:missing-review": "node scripts/fetch-missing-review.mjs",
     "sync:mirror-assets": "node scripts/sync-mirror-assets.mjs",
     "normalize:mirror-html": "node scripts/normalize-public-html.mjs",
+    "generate:site-shell": "node scripts/generate-site-shell-data.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

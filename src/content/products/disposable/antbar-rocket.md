@@ -6,6 +6,17 @@ excerpt: "WARNING: This product contains nicotine. Nicotine is an addictive chem
 heroImage: "/wp-content/uploads/2024/05/LOGO.png"
 family: "disposable"
 kind: "detail"
+productName: "ROCKET"
+puffCount: "600"
+features:
+  - "Small and lightweight design"
+  - "Mesh coil"
+  - "Compact portable form factor"
+flavors:
+  - "Blueberry Ice"
+  - "Strawberry Watermelon"
+  - "Mint"
+  - "Grape"
 ---
 
 <div class="mirror-html-content">

@@ -5,6 +5,7 @@ import {
   normalizeMirrorUrl,
   shouldSkipMirrorScript,
 } from './mirror-urls';
+import { stripSiteShellFromHtml } from './site-shell';
 
 export type MirrorScript = {
   src?: string;
@@ -161,6 +162,42 @@ export async function getSharedMirrorStylesheets(): Promise<string[]> {
   return sharedStylesheets;
 }
 
+function dedupeScripts(scripts: MirrorScript[]): MirrorScript[] {
+  const seen = new Set<string>();
+  const unique: MirrorScript[] = [];
+  for (const script of scripts) {
+    const key = script.src ?? `inline:${script.inline?.length ?? 0}:${script.inline?.slice(0, 64)}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    unique.push(script);
+  }
+  return unique;
+}
+
+/** Home mirror head assets (header/footer Elementor templates + global chrome). */
+export async function getShellMirrorHeadAssets(): Promise<MirrorHeadAssets> {
+  return getMirrorHeadAssets('');
+}
+
+export async function mergeMirrorHeadAssets(
+  pageRoute: string,
+): Promise<MirrorHeadAssets> {
+  const [shell, page] = await Promise.all([
+    getShellMirrorHeadAssets(),
+    getMirrorHeadAssets(pageRoute),
+  ]);
+
+  return {
+    stylesheets: [...new Set([...shell.stylesheets, ...page.stylesheets])],
+    inlineStyles: [...new Set([...shell.inlineStyles, ...page.inlineStyles])],
+    bodyClass: page.bodyClass || shell.bodyClass,
+    headScripts: dedupeScripts([...shell.headScripts, ...page.headScripts]),
+    footerScripts: orderFooterScripts(
+      dedupeScripts([...shell.footerScripts, ...page.footerScripts]),
+    ),
+  };
+}
+
 export async function getMirrorHeadAssets(mirrorRoute: string): Promise<MirrorHeadAssets> {
   const filePath = mirrorHtmlPath(mirrorRoute);
   let html: string;
@@ -219,7 +256,7 @@ export function resolveMirrorRoute(collection: string, entryId: string): string 
 export async function readMirrorBodyHtml(mirrorRoute: string): Promise<string> {
   const html = await readFile(mirrorHtmlPath(mirrorRoute), 'utf8');
   const bodyInner = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? html;
-  return normalizeMirrorHtml(stripScriptsFromHtml(bodyInner));
+  return stripSiteShellFromHtml(stripScriptsFromHtml(bodyInner));
 }
 
 export function stripScriptsFromHtml(html: string): string {

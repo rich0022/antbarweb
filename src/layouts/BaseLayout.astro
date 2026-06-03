@@ -1,5 +1,7 @@
 ---
-import { getMirrorHeadAssets } from '../lib/mirror-assets';
+import SiteFooter from '../components/site/SiteFooter.astro';
+import SiteHeader from '../components/site/SiteHeader.astro';
+import { mergeMirrorHeadAssets } from '../lib/mirror-assets';
 
 interface Props {
   title?: string;
@@ -8,7 +10,7 @@ interface Props {
 }
 
 const { title = 'ANTBAR', description = '', mirrorRoute = '' } = Astro.props;
-const assets = await getMirrorHeadAssets(mirrorRoute);
+const assets = await mergeMirrorHeadAssets(mirrorRoute);
 ---
 
 <!doctype html>
@@ -48,7 +50,9 @@ const assets = await getMirrorHeadAssets(mirrorRoute);
         true,
       );
     </script>
+    <SiteHeader />
     <slot />
+    <SiteFooter />
     {assets.footerScripts.map((script) =>
       script.src ? (
         <script src={script.src} is:inline></script>

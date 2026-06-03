@@ -6,6 +6,17 @@ excerpt: "WARNING: This product contains nicotine. Nicotine is an addictive chem
 heroImage: "/wp-content/uploads/2024/05/LOGO.png"
 family: "disposable"
 kind: "detail"
+productName: "ATB600"
+puffCount: "600"
+features:
+  - "Compact disposable design"
+  - "Pre-filled e-liquid"
+  - "Draw-activated"
+flavors:
+  - "Blueberry"
+  - "Watermelon"
+  - "Mint"
+  - "Grape"
 ---
 
 <div class="mirror-html-content">

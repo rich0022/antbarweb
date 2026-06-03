@@ -32,6 +32,21 @@ npm run build:cf
 2. Adjust templates/components under `src/layouts` and `src/components`.
 3. Run `npm run build` to verify static output.
 
+## Agent Coordination
+
+Before assigning more agents, point them to these docs first:
+
+- [docs/STATIC-TO-ASTRO-PLAN.md](/Users/smoant/github/antbarweb/docs/STATIC-TO-ASTRO-PLAN.md)
+- [docs/AGENT-STRUCTURING-RULES.md](/Users/smoant/github/antbarweb/docs/AGENT-STRUCTURING-RULES.md)
+- [docs/AGENT-PROMPTS-AND-SITE-SHELL-EXAMPLE.md](/Users/smoant/github/antbarweb/docs/AGENT-PROMPTS-AND-SITE-SHELL-EXAMPLE.md)
+- [docs/ELEMENTOR-MIRROR-LOCAL.md](/Users/smoant/github/antbarweb/docs/ELEMENTOR-MIRROR-LOCAL.md)
+
+For header/footer and site shell work, the current structured reference lives here:
+
+- [src/data/site-navigation.ts](/Users/smoant/github/antbarweb/src/data/site-navigation.ts)
+- [src/components/site/SiteHeader.astro](/Users/smoant/github/antbarweb/src/components/site/SiteHeader.astro)
+- [src/components/site/SiteFooter.astro](/Users/smoant/github/antbarweb/src/components/site/SiteFooter.astro)
+
 Mirrored page HTML lives in `mirror/` (not `public/`) so Astro routes are not shadowed. Static assets stay in `public/wp-content/`.
 
 If blog sidebar links 404, run `npm run fetch:missing-blog`. For review pages, run `npm run fetch:missing-review`.

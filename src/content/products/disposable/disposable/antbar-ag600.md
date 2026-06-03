@@ -6,6 +6,20 @@ excerpt: "WARNING: This product contains nicotine. Nicotine is an addictive chem
 heroImage: "/wp-content/uploads/2024/05/LOGO.png"
 family: "disposable"
 kind: "detail"
+productName: "AG600"
+puffCount: "600"
+nicotineStrength: "20mg"
+features:
+  - "Only 31g ultra-lightweight"
+  - "Mesh coil technology"
+  - "3.6V constant voltage output"
+  - "Pre-filled disposable"
+flavors:
+  - "Blueberry"
+  - "Watermelon Ice"
+  - "Strawberry"
+  - "Cool Mint"
+  - "Grape"
 ---
 
 <div class="mirror-html-content">

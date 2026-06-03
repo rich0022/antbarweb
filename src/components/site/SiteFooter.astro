@@ -1,0 +1,419 @@
+---
+import { FOOTER_CONTACT } from '../../data/footer-contact';
+import {
+  FOOTER_COPYRIGHT,
+  FOOTER_DESKTOP_COLUMNS,
+  FOOTER_MOBILE_ACCORDION,
+  FOOTER_SOCIAL,
+  SITE_LOGO,
+} from '../../data/site-navigation';
+
+const desktopColumnMeta = [
+  { containerDataId: '8d70399', headingDataId: 'f61b89e', listDataId: '7b5f4e0' },
+  { containerDataId: '4980818', headingDataId: '4915b8f', listDataId: 'ab57295' },
+  { containerDataId: 'c73127d', headingDataId: 'eac719e', listDataId: '235fa61' },
+] as const;
+
+const socialIconPaths: Record<string, { viewBox: string; path: string }> = {
+  'e-fab-facebook-f': {
+    viewBox: '0 0 320 512',
+    path: 'M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z',
+  },
+  'e-fab-vk': {
+    viewBox: '0 0 576 512',
+    path: 'M545 117.7c3.7-12.5 0-21.7-17.8-21.7h-58.9c-15 0-21.9 7.9-25.6 16.7 0 0-30 73.1-72.4 120.5-13.7 13.7-20 18.1-27.5 18.1-3.7 0-9.4-4.4-9.4-16.9V117.7c0-15-4.2-21.7-16.6-21.7h-92.6c-9.4 0-15 7-15 13.5 0 14.2 21.2 17.5 23.4 57.5v86.8c0 19-3.4 22.5-10.9 22.5-20 0-68.6-73.4-97.4-157.4-5.8-16.3-11.5-22.9-26.6-22.9H38.8c-16.8 0-20.2 7.9-20.2 16.7 0 15.6 20 93.1 93.1 195.5C160.4 378.1 229 416 291.4 416c37.5 0 42.1-8.4 42.1-22.9 0-66.8-3.4-73.1 15.4-73.1 8.7 0 23.7 4.4 58.7 38.1 40 40 46.6 57.9 69 57.9h58.9c16.8 0 25.3-8.4 20.4-25-11.2-34.9-86.9-106.7-90.3-111.5-8.7-11.2-6.2-16.2 0-26.2.1-.1 72-101.3 79.4-135.6z',
+  },
+  'e-fas-play': {
+    viewBox: '0 0 448 512',
+    path: 'M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z',
+  },
+  'e-fab-instagram': {
+    viewBox: '0 0 448 512',
+    path: 'M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z',
+  },
+};
+
+const socialSlug: Record<string, string> = {
+  'e-fab-facebook-f': 'facebook-f',
+  'e-fab-vk': 'vk',
+  'e-fas-play': 'play',
+  'e-fab-instagram': 'instagram',
+};
+---
+
+<footer
+  data-elementor-type="footer"
+  data-elementor-id="68"
+  class="elementor elementor-68 elementor-location-footer"
+  data-elementor-post-type="elementor_library"
+>
+  <div
+    class="elementor-element elementor-element-8ffa285 e-flex e-con-boxed e-con e-parent"
+    data-id="8ffa285"
+    data-element_type="container"
+    data-settings='{"background_background":"classic"}'
+  >
+    <div class="e-con-inner">
+      <div
+        class="elementor-element elementor-element-05e0ccf e-con-full e-flex e-con e-child"
+        data-id="05e0ccf"
+        data-element_type="container"
+      >
+        <div
+          class="elementor-element elementor-element-c8b1a48 elementor-widget elementor-widget-image"
+          data-id="c8b1a48"
+          data-element_type="widget"
+          data-widget_type="image.default"
+        >
+          <a href="/">
+            <img
+              width={SITE_LOGO.width}
+              height={SITE_LOGO.height}
+              src={SITE_LOGO.src}
+              class={SITE_LOGO.imageClass}
+              alt={SITE_LOGO.alt}
+              srcset={SITE_LOGO.srcset}
+              sizes={SITE_LOGO.sizes}
+            />
+          </a>
+        </div>
+        <div
+          class="elementor-element elementor-element-8f520e8 e-con-full e-flex e-con e-child"
+          data-id="8f520e8"
+          data-element_type="container"
+        >
+          <div
+            class="elementor-element elementor-element-025674e e-con-full elementor-hidden-desktop elementor-hidden-tablet e-flex e-con e-child"
+            data-id="025674e"
+            data-element_type="container"
+          >
+            <div
+              class="elementor-element elementor-element-b5d5d81 e-flex e-con-boxed e-con e-child"
+              data-id="b5d5d81"
+              data-element_type="container"
+            >
+              <div class="e-con-inner">
+                <div
+                  class="elementor-element elementor-element-527d324 elementor-widget elementor-widget-heading"
+                  data-id="527d324"
+                  data-element_type="widget"
+                  data-widget_type="heading.default"
+                >
+                  <h4 class="elementor-heading-title elementor-size-default">
+                    <a href="/all-products/">Product</a>
+                  </h4>
+                </div>
+                <div
+                  class="elementor-element elementor-element-9fa6642 elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
+                  data-id="9fa6642"
+                  data-element_type="widget"
+                  data-widget_type="divider.default"
+                >
+                  <div class="elementor-divider">
+                    <span class="elementor-divider-separator" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="elementor-element elementor-element-3009aaa foo elementor-widget elementor-widget-n-accordion"
+              data-id="3009aaa"
+              data-element_type="widget"
+              data-settings='{"default_state":"all_collapsed","max_items_expended":"one","n_accordion_animation_duration":{"unit":"ms","size":400,"sizes":[]}}'
+              data-widget_type="nested-accordion.default"
+            >
+              <div
+                class="e-n-accordion"
+                aria-label="Accordion. Open links with Enter or Space, close with Escape, and navigate with Arrow Keys"
+              >
+                {
+                  FOOTER_MOBILE_ACCORDION.map((section) => (
+                    <details id={section.detailsId} class="e-n-accordion-item">
+                      <summary
+                        class="e-n-accordion-item-title"
+                        data-accordion-index={section.accordionIndex}
+                        tabindex={section.accordionIndex === 1 ? 0 : -1}
+                        aria-expanded="false"
+                        aria-controls={section.detailsId}
+                      >
+                        <span class="e-n-accordion-item-title-header">
+                          <div class="e-n-accordion-item-title-text">{section.title}</div>
+                        </span>
+                        <span class="e-n-accordion-item-title-icon">
+                          <span class="e-opened">
+                            <svg
+                              aria-hidden="true"
+                              class="e-font-icon-svg e-fas-minus"
+                              viewBox="0 0 448 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                            </svg>
+                          </span>
+                          <span class="e-closed">
+                            <svg
+                              aria-hidden="true"
+                              class="e-font-icon-svg e-fas-plus"
+                              viewBox="0 0 448 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                            </svg>
+                          </span>
+                        </span>
+                      </summary>
+                      <div
+                        role="region"
+                        aria-labelledby={section.detailsId}
+                        class="elementor-element elementor-element-f5e8447 e-con-full e-flex e-con e-child"
+                        data-id="f5e8447"
+                        data-element_type="container"
+                      >
+                        <div
+                          role="region"
+                          aria-labelledby={section.detailsId}
+                          class="elementor-element elementor-element-8b2a7a7 e-flex e-con-boxed e-con e-child"
+                          data-id="8b2a7a7"
+                          data-element_type="container"
+                        >
+                          <div class="e-con-inner">
+                            {section.rows.map((row) => (
+                              <div
+                                role="region"
+                                aria-labelledby={section.detailsId}
+                                class="elementor-element elementor-element-b441cf7 e-flex e-con-boxed e-con e-child"
+                                data-id="b441cf7"
+                                data-element_type="container"
+                              >
+                                <div class="e-con-inner">
+                                  <div
+                                    class="elementor-element elementor-element-86d3cd2 elementor-widget elementor-widget-heading"
+                                    data-id="86d3cd2"
+                                    data-element_type="widget"
+                                    data-widget_type="heading.default"
+                                  >
+                                    <h2 class="elementor-heading-title elementor-size-default">
+                                      <a href={row.href}>{row.label}</a>
+                                    </h2>
+                                  </div>
+                                  <div
+                                    class="elementor-element elementor-element-a8d8eeb elementor-view-default elementor-widget elementor-widget-icon"
+                                    data-id="a8d8eeb"
+                                    data-element_type="widget"
+                                    data-widget_type="icon.default"
+                                  >
+                                    <div class="elementor-icon-wrapper">
+                                      <a class="elementor-icon" href={row.href}>
+                                        <svg
+                                          aria-hidden="true"
+                                          class="e-font-icon-svg e-fas-angle-right"
+                                          viewBox="0 0 256 512"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z" />
+                                        </svg>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </details>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+          {
+            FOOTER_DESKTOP_COLUMNS.map((column, index) => (
+              <div
+                class={`elementor-element elementor-element-${desktopColumnMeta[index].containerDataId} e-con-full elementor-hidden-mobile e-flex e-con e-child`}
+                data-id={desktopColumnMeta[index].containerDataId}
+                data-element_type="container"
+              >
+                <div
+                  class={`elementor-element elementor-element-${desktopColumnMeta[index].headingDataId} elementor-widget elementor-widget-heading`}
+                  data-id={desktopColumnMeta[index].headingDataId}
+                  data-element_type="widget"
+                  data-widget_type="heading.default"
+                >
+                  <h4 class="elementor-heading-title elementor-size-default">{column.title}</h4>
+                </div>
+                <div
+                  class={`elementor-element elementor-element-${desktopColumnMeta[index].listDataId} elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list`}
+                  data-id={desktopColumnMeta[index].listDataId}
+                  data-element_type="widget"
+                  data-widget_type="icon-list.default"
+                >
+                  <ul class="elementor-icon-list-items">
+                    {column.links.map((link) => (
+                      <li class="elementor-icon-list-item">
+                        <a href={link.href}>
+                          <span class="elementor-icon-list-text">{link.label}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))
+          }
+          <div
+            class="elementor-element elementor-element-6d13d11 e-con-full e-flex e-con e-child"
+            data-id="6d13d11"
+            data-element_type="container"
+          >
+            <div
+              class="elementor-element elementor-element-8873dc9 elementor-widget elementor-widget-heading"
+              data-id="8873dc9"
+              data-element_type="widget"
+              data-widget_type="heading.default"
+            >
+              <h4 class="elementor-heading-title elementor-size-default">Contact</h4>
+            </div>
+            <div
+              class="elementor-element elementor-element-958876e elementor-widget elementor-widget-text-editor"
+              data-id="958876e"
+              data-element_type="widget"
+              data-widget_type="text-editor.default"
+            >
+              <p>
+                E-mail: <a href={`mailto:${FOOTER_CONTACT.email}`}>{FOOTER_CONTACT.email}</a>
+              </p>
+              <p>TEL: {FOOTER_CONTACT.phone}</p>
+              <p>Add: {FOOTER_CONTACT.address}</p>
+            </div>
+          </div>
+          <div
+            class="elementor-element elementor-element-8e048d2 e-con-full e-flex e-con e-child"
+            data-id="8e048d2"
+            data-element_type="container"
+          >
+            <div
+              class="elementor-element elementor-element-9b70cf0 elementor-widget elementor-widget-heading"
+              data-id="9b70cf0"
+              data-element_type="widget"
+              data-widget_type="heading.default"
+            >
+              <h4 class="elementor-heading-title elementor-size-default">Follow us</h4>
+            </div>
+            <div
+              class="elementor-element elementor-element-b7b36f4 elementor-widget elementor-widget-text-editor"
+              data-id="b7b36f4"
+              data-element_type="widget"
+              data-widget_type="text-editor.default"
+            >
+              <p>Have Fun With ANTBAR on social medias: </p>
+            </div>
+            <div
+              class="elementor-element elementor-element-ba29c72 e-grid-align-left elementor-shape-rounded elementor-grid-0 elementor-widget elementor-widget-social-icons"
+              data-id="ba29c72"
+              data-element_type="widget"
+              data-widget_type="social-icons.default"
+            >
+              <div
+                class="elementor-social-icons-wrapper elementor-grid site-footer-social-icons"
+                role="list"
+                style="display:flex;flex-wrap:wrap;align-items:center;gap:13px;"
+              >
+                {
+                  FOOTER_SOCIAL.map((item) => {
+                    const icon = socialIconPaths[item.iconClass];
+
+                    return (
+                      <span class="elementor-grid-item" role="listitem">
+                        <a
+                          class={`elementor-icon elementor-social-icon elementor-social-icon-${socialSlug[item.iconClass]} ${item.repeaterClass}`}
+                          href={item.href}
+                          target="_blank"
+                          rel="nofollow"
+                        >
+                          <span class="elementor-screen-only">{item.label}</span>
+                          <svg
+                            aria-hidden="true"
+                            class={`e-font-icon-svg ${item.iconClass}`}
+                            viewBox={icon.viewBox}
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d={icon.path} />
+                          </svg>
+                        </a>
+                      </span>
+                    );
+                  })
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="elementor-element elementor-element-4aee822 e-flex e-con-boxed e-con e-parent"
+    data-id="4aee822"
+    data-element_type="container"
+    data-settings='{"background_background":"classic"}'
+  >
+    <div class="e-con-inner">
+      <div
+        class="elementor-element elementor-element-dbf9384 elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
+        data-id="dbf9384"
+        data-element_type="widget"
+        data-widget_type="divider.default"
+      >
+        <div class="elementor-divider">
+          <span class="elementor-divider-separator" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="elementor-element elementor-element-a7ae6f3 e-flex e-con-boxed e-con e-parent"
+    data-id="a7ae6f3"
+    data-element_type="container"
+    data-settings='{"background_background":"classic"}'
+  >
+    <div class="e-con-inner">
+      <div
+        class="elementor-element elementor-element-ce95dc9 elementor-widget elementor-widget-text-editor"
+        data-id="ce95dc9"
+        data-element_type="widget"
+        data-widget_type="text-editor.default"
+      >
+        {FOOTER_COPYRIGHT}
+      </div>
+      <div
+        class="elementor-element elementor-element-01c3ccf elementor-widget elementor-widget-text-editor"
+        data-id="01c3ccf"
+        data-element_type="widget"
+        data-widget_type="text-editor.default"
+      >
+        <p>Privacy Policy</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .elementor-68 .elementor-element.elementor-element-ba29c72 .site-footer-social-icons {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 13px !important;
+  }
+
+  .elementor-68 .elementor-element.elementor-element-ba29c72 .site-footer-social-icons .elementor-grid-item {
+    display: inline-flex !important;
+    margin: 0 !important;
+  }
+
+  @media (max-width: 767px) {
+    .elementor-68 .elementor-element.elementor-element-ba29c72 .site-footer-social-icons {
+      gap: 2px !important;
+    }
+  }
+</style>

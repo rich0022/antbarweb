@@ -22,38 +22,92 @@ const sectionSchema = z
   })
   .optional();
 
-const articleSchema = z.object({
-  title: z.string(),
-  slug: z.string().optional().default(''),
-  description: z.string().optional(),
-  excerpt: z.string().optional(),
-  publishedAt: z.string().optional(),
-  updatedAt: z.string().optional(),
-  order: z.number().optional(),
-  heroImage: z.string().optional(),
-  tags: z.array(z.string()).default([]),
-  seo: seoSchema,
-  sections: z.array(sectionSchema).optional(),
-});
-
+// ── Blog ──────────────────────────────────────────────────────────────────────
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
-  schema: articleSchema,
-});
-
-const review = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/review' }),
-  schema: articleSchema,
-});
-
-const products = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/products' }),
-  schema: articleSchema.extend({
-    family: z.enum(['disposable', 'pod-sys']),
-    kind: z.enum(['category', 'detail']).default('detail'),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string().optional().default(''),
+    description: z.string().optional(),
+    excerpt: z.string().optional(),
+    publishedAt: z.string().optional(),
+    updatedAt: z.string().optional(),
+    order: z.number().optional(),
+    author: z.string().optional(),
+    featuredImage: z.string().optional(),
+    heroImage: z.string().optional(),
+    category: z.string().optional(),
+    readTime: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    seo: seoSchema,
+    sections: z.array(sectionSchema).optional(),
+    /** Raw mirrored HTML body — fallback during transition. */
+    body: z.string().optional(),
   }),
 });
 
+// ── Review ────────────────────────────────────────────────────────────────────
+const review = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/review' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string().optional().default(''),
+    description: z.string().optional(),
+    excerpt: z.string().optional(),
+    publishedAt: z.string().optional(),
+    updatedAt: z.string().optional(),
+    order: z.number().optional(),
+    heroImage: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    seo: seoSchema,
+    sections: z.array(sectionSchema).optional(),
+    /** Review-specific fields */
+    productName: z.string().optional(),
+    rating: z.number().min(0).max(5).optional(),
+    pros: z.array(z.string()).optional(),
+    cons: z.array(z.string()).optional(),
+    verdict: z.string().optional(),
+    /** Raw mirrored HTML body — fallback during transition. */
+    body: z.string().optional(),
+  }),
+});
+
+// ── Products ──────────────────────────────────────────────────────────────────
+const products = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/products' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string().optional().default(''),
+    description: z.string().optional(),
+    excerpt: z.string().optional(),
+    publishedAt: z.string().optional(),
+    updatedAt: z.string().optional(),
+    order: z.number().optional(),
+    heroImage: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    seo: seoSchema,
+    sections: z.array(sectionSchema).optional(),
+    /** Product family — which top-level category. */
+    family: z.enum(['disposable', 'pod-sys']),
+    /** kind: 'category' for index pages, 'detail' for individual products. */
+    kind: z.enum(['category', 'detail']).default('detail'),
+    /** Product-specific structured fields */
+    productName: z.string(),
+    puffCount: z.string().optional(),
+    nicotineStrength: z.string().optional(),
+    flavors: z.array(z.string()).optional(),
+    batteryCapacity: z.string().optional(),
+    features: z.array(z.string()).optional(),
+    gallery: z.array(z.string()).optional(),
+    specsTable: z
+      .array(z.object({ key: z.string(), value: z.string() }))
+      .optional(),
+    /** Raw mirrored HTML body — fallback during transition. */
+    body: z.string().optional(),
+  }),
+});
+
+// ── Pages ─────────────────────────────────────────────────────────────────────
 const pages = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/pages' }),
   schema: z.object({
@@ -63,6 +117,16 @@ const pages = defineCollection({
     order: z.number().optional(),
     seo: seoSchema,
     sections: z.array(sectionSchema).optional(),
+    /** Page-specific structured fields */
+    template: z
+      .enum(['default', 'hero', 'contact', 'full-width'])
+      .optional()
+      .default('default'),
+    heroTitle: z.string().optional(),
+    heroSubtitle: z.string().optional(),
+    heroImage: z.string().optional(),
+    /** Raw mirrored HTML body — fallback during transition. */
+    body: z.string().optional(),
   }),
 });
 

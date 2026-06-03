@@ -1,0 +1,377 @@
+---
+import {
+  ELEMENTOR_POPUP_MOBILE_MENU,
+  HEADER_SEARCH_ICON,
+  HEADER_WARNING_TEXT,
+  MEGA_MENU_WIDGET_NUMBER,
+  MEGA_MENU_WIDGET_SETTINGS,
+  PRIMARY_NAV,
+  PRODUCT_MEGA_TILES,
+  SITE_LOGO,
+} from '../../data/site-navigation';
+import { isNavItemActive } from '../../lib/nav-active';
+
+const pathname = Astro.url.pathname;
+const widgetNumber = MEGA_MENU_WIDGET_NUMBER;
+
+function panelContainerId(tabIndex: number): string {
+  if (tabIndex === 3) return '68b8162';
+  if (tabIndex === 4) return '2ea661d';
+  return '212d112';
+}
+
+function panelInnerContainerId(tabIndex: number): string {
+  if (tabIndex === 3) return 'dd4638f';
+  if (tabIndex === 4) return 'fb2ee93';
+  return '66fb631';
+}
+
+function panelWidgetId(tabIndex: number): string {
+  if (tabIndex === 3) return '69cf062';
+  if (tabIndex === 4) return 'b6cdab6';
+  return '7ea0562';
+}
+---
+
+<header
+  data-elementor-type="header"
+  data-elementor-id="49"
+  class="elementor elementor-49 elementor-location-header"
+  data-elementor-post-type="elementor_library"
+>
+  <div
+    class="elementor-element elementor-element-a41a9a9 e-con-full e-flex e-con e-parent"
+    data-id="a41a9a9"
+    data-element_type="container"
+    id="hTop"
+  >
+    <div
+      class="elementor-element elementor-element-320250b elementor-widget elementor-widget-text-editor"
+      data-id="320250b"
+      data-element_type="widget"
+      data-widget_type="text-editor.default"
+    >
+      <p>{HEADER_WARNING_TEXT}</p>
+    </div>
+  </div>
+  <div
+    class="elementor-element elementor-element-d6209d6 e-flex e-con-boxed e-con e-parent"
+    data-id="d6209d6"
+    data-element_type="container"
+    id="hNav"
+    data-settings='{"background_background":"classic","sticky":"top","sticky_on":["desktop","tablet","mobile"],"sticky_offset":0,"sticky_effects_offset":0,"sticky_anchor_link_offset":0}'
+  >
+    <div class="e-con-inner">
+      <div
+        class="elementor-element elementor-element-1bc3252 e-con-full e-flex e-con e-child"
+        data-id="1bc3252"
+        data-element_type="container"
+      >
+        <div
+          class="elementor-element elementor-element-1b2d79c elementor-widget-mobile__width-initial elementor-widget elementor-widget-theme-site-logo elementor-widget-image"
+          data-id="1b2d79c"
+          data-element_type="widget"
+          data-widget_type="theme-site-logo.default"
+        >
+          <a href={SITE_LOGO.href}>
+            <img
+              width={SITE_LOGO.width}
+              height={SITE_LOGO.height}
+              src={SITE_LOGO.src}
+              class={SITE_LOGO.imageClass}
+              alt={SITE_LOGO.alt}
+              srcset={SITE_LOGO.srcset}
+              sizes={SITE_LOGO.sizes}
+            />
+          </a>
+        </div>
+      </div>
+      <div
+        class="elementor-element elementor-element-36ad1eb elementor-hidden-desktop elementor-hidden-tablet daohang elementor-widget elementor-widget-button"
+        data-id="36ad1eb"
+        data-element_type="widget"
+        data-widget_type="button.default"
+        >
+          <a
+            class="elementor-button elementor-button-link elementor-size-sm"
+            href={ELEMENTOR_POPUP_MOBILE_MENU}
+            id="hMenu"
+          >
+            <span class="elementor-button-content-wrapper">
+              <span class="elementor-button-icon">
+                <svg
+                  aria-hidden="true"
+                  class="e-font-icon-svg e-fas-bars"
+                  viewBox="0 0 448 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
+                </svg>
+              </span>
+            </span>
+          </a>
+      </div>
+      <div
+        class="elementor-element elementor-element-7871fb6 e-con-full e-flex e-con e-child"
+        data-id="7871fb6"
+        data-element_type="container"
+      >
+        <div
+          class="elementor-element elementor-element-8490b2f elementor-widget-mobile__width-auto elementor-widget__width-initial elementor-hidden-mobile e-full_width e-n-menu-layout-horizontal e-n-menu-tablet elementor-widget elementor-widget-n-menu"
+          data-id="8490b2f"
+          data-element_type="widget"
+          id="mainNav"
+          data-settings={MEGA_MENU_WIDGET_SETTINGS}
+          data-widget_type="mega-menu.default"
+        >
+          <nav class="e-n-menu" data-widget-number={widgetNumber} aria-label="Menu">
+            <button
+              class="e-n-menu-toggle elementor-animation-grow"
+              id={`menu-toggle-${widgetNumber}`}
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls={`menubar-${widgetNumber}`}
+              aria-label="Menu Toggle"
+            >
+              <span class="e-n-menu-toggle-icon e-open">
+                <svg
+                  class="e-font-icon-svg e-eicon-menu-bar"
+                  viewBox="0 0 1000 1000"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M104 333H896C929 333 958 304 958 271S929 208 896 208H104C71 208 42 237 42 271S71 333 104 333ZM104 583H896C929 583 958 554 958 521S929 458 896 458H104C71 458 42 487 42 521S71 583 104 583ZM104 833H896C929 833 958 804 958 771S929 708 896 708H104C71 708 42 737 42 771S71 833 104 833Z" />
+                </svg>
+              </span>
+              <span class="e-n-menu-toggle-icon e-close">
+                <svg
+                  class="e-font-icon-svg e-eicon-close"
+                  viewBox="0 0 1000 1000"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M742 167L500 408 258 167C246 154 233 150 217 150 196 150 179 158 167 167 154 179 150 196 150 212 150 229 154 242 171 254L408 500 167 742C138 771 138 800 167 829 196 858 225 858 254 829L496 587 738 829C750 842 767 846 783 846 800 846 817 842 829 829 842 817 846 804 846 783 846 767 842 750 829 737L588 500 833 258C863 229 863 200 833 171 804 137 775 137 742 167Z" />
+                </svg>
+              </span>
+            </button>
+            <div
+              class="e-n-menu-wrapper"
+              id={`menubar-${widgetNumber}`}
+              aria-labelledby={`menu-toggle-${widgetNumber}`}
+            >
+              <ul class="e-n-menu-heading">
+                {
+                  PRIMARY_NAV.map((item) => {
+                    const active = isNavItemActive(item.href, pathname);
+                    const titleId = `e-n-menu-title-${item.menuItemId}`;
+                    const iconId = `e-n-menu-dropdown-icon-${item.menuItemId}`;
+                    const contentId = `e-n-menu-content-${item.menuItemId}`;
+
+                    return (
+                      <li class="e-n-menu-item">
+                        <div id={titleId} class:list={['e-n-menu-title', active && 'e-current']}>
+                          <a
+                            class="e-n-menu-title-container e-focus e-link"
+                            href={item.href}
+                            aria-current={active ? 'page' : undefined}
+                          >
+                            <span class="e-n-menu-title-text">{item.label}</span>
+                          </a>
+                          {item.dropdown && (
+                            <button
+                              id={iconId}
+                              class="e-n-menu-dropdown-icon e-focus"
+                              data-tab-index={item.tabIndex}
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                              aria-controls={contentId}
+                            >
+                              <span class="e-n-menu-dropdown-icon-opened">
+                                <span class="elementor-screen-only">Close {item.label}</span>
+                              </span>
+                              <span class="e-n-menu-dropdown-icon-closed">
+                                <span class="elementor-screen-only">Open {item.label}</span>
+                              </span>
+                            </button>
+                          )}
+                        </div>
+                        {item.panel === 'products' && (
+                          <div class="e-n-menu-content">
+                            <div
+                              id={contentId}
+                              data-tab-index={item.tabIndex}
+                              aria-labelledby={iconId}
+                              class="elementor-element elementor-element-73ab30e e-con-full e-flex e-con e-child"
+                              data-id="73ab30e"
+                              data-element_type="container"
+                            >
+                              <div
+                                class="elementor-element elementor-element-14cc13b e-flex e-con-boxed e-con e-child"
+                                data-id="14cc13b"
+                                data-element_type="container"
+                              >
+                                <div class="e-con-inner">
+                                  {
+                                    PRODUCT_MEGA_TILES.map((tile, index) => (
+                                      <div
+                                        class={`elementor-element elementor-element-${tile.containerId} e-con-full sub-item e-flex e-con e-child`}
+                                        data-id={tile.containerId}
+                                        data-element_type="container"
+                                        data-settings='{"background_background":"classic"}'
+                                      >
+                                        <div
+                                          class={`elementor-element elementor-element-${tile.imageWidgetId}${index === 0 ? ' my-hover-title' : ''} elementor-widget elementor-widget-image`}
+                                          data-id={tile.imageWidgetId}
+                                          data-element_type="widget"
+                                          data-widget_type="image.default"
+                                        >
+                                          <figure class="wp-caption">
+                                            <a href={tile.href}>
+                                              <img
+                                                width={tile.width}
+                                                height={tile.height}
+                                                src={tile.src}
+                                                class={tile.imageClass}
+                                                alt=""
+                                              />
+                                            </a>
+                                            <figcaption class="widget-image-caption wp-caption-text">
+                                              {tile.caption}
+                                            </figcaption>
+                                          </figure>
+                                        </div>
+                                      </div>
+                                    ))
+                                  }
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        {item.panel === 'links' && item.links && (
+                          <div class="e-n-menu-content">
+                            <div
+                              id={contentId}
+                              data-tab-index={item.tabIndex}
+                              aria-labelledby={iconId}
+                              class={`elementor-element elementor-element-${panelContainerId(item.tabIndex)} e-flex e-con-boxed e-con e-child`}
+                              data-id={panelContainerId(item.tabIndex)}
+                              data-element_type="container"
+                            >
+                              <div class="e-con-inner">
+                                <div
+                                  class={`elementor-element elementor-element-${panelInnerContainerId(item.tabIndex)} e-con-full e-flex e-con e-child`}
+                                  data-id={panelInnerContainerId(item.tabIndex)}
+                                  data-element_type="container"
+                                >
+                                  <div
+                                    class={`elementor-element elementor-element-${panelWidgetId(item.tabIndex)} elementor-icon-list--layout-inline elementor-list-item-link-inline menu33 elementor-widget elementor-widget-icon-list`}
+                                    data-id={panelWidgetId(item.tabIndex)}
+                                    data-element_type="widget"
+                                    data-widget_type="icon-list.default"
+                                  >
+                                    <ul class="elementor-icon-list-items elementor-inline-items">
+                                      {item.links.map((link) => (
+                                        <li class="elementor-icon-list-item elementor-inline-item">
+                                          <a href={link.href}>
+                                            <span class="elementor-icon-list-text">{link.label}</span>
+                                          </a>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </li>
+                    );
+                  })
+                }
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div
+        class="elementor-element elementor-element-e511ca0 e-con-full e-flex e-con e-child"
+        data-id="e511ca0"
+        data-element_type="container"
+        id="hSearch"
+      >
+        <div
+          class="elementor-element elementor-element-ec29704 elementor-widget-tablet__width-inherit elementor-widget elementor-widget-image"
+          data-id="ec29704"
+          data-element_type="widget"
+          data-widget_type="image.default"
+        >
+          <a href={HEADER_SEARCH_ICON.href}>
+            <img
+              loading="lazy"
+              width={HEADER_SEARCH_ICON.width}
+              height={HEADER_SEARCH_ICON.height}
+              src={HEADER_SEARCH_ICON.src}
+              class={HEADER_SEARCH_ICON.imageClass}
+              alt=""
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="elementor-element elementor-element-f6a51c8 e-con-full e-flex e-con e-parent"
+    data-id="f6a51c8"
+    data-element_type="container"
+  >
+    <div
+      class="elementor-element elementor-element-a36975a elementor-widget elementor-widget-html"
+      data-id="a36975a"
+      data-element_type="widget"
+      data-widget_type="html.default"
+    >
+      <script is:inline>
+        jQuery(function () {
+          var $ = jQuery;
+
+          var curMenu = {};
+          $('#mainNav .e-n-menu-title').on('mouseenter', function () {
+            curMenu = $('#mainNav .e-n-menu-title.e-current');
+            curMenu.removeClass('e-current');
+          });
+          $('#mainNav .e-n-menu-title').on('mouseleave', function () {
+            curMenu.addClass('e-current');
+          });
+
+          $('#hMenu').click(function () {
+            if ($(this).hasClass('active')) {
+              $(this).removeClass('active');
+            } else {
+              $(this).addClass('active');
+            }
+            setPop();
+          });
+          $(window).resize(function () {
+            setPop();
+          });
+          function setPop() {
+            var h = $('header').outerHeight();
+            var ht = parseInt($('html').css('marginTop'));
+            if ($('#hNav').css('position') == 'fixed') {
+              h = $('#hNav').outerHeight();
+              ht = 0;
+            }
+            var css = { marginTop: h, height: $(window).height() - h - ht };
+            var pop = $('#elementor-popup-modal-2978');
+            if (pop.length) {
+              pop.css(css);
+            } else {
+              setTimeout(function () {
+                $('#elementor-popup-modal-2978').css(css);
+              }, 100);
+            }
+          }
+        });
+      </script>
+    </div>
+  </div>
+</header>

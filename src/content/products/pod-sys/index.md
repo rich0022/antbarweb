@@ -6,6 +6,7 @@ excerpt: "WARNING: This product contains nicotine. Nicotine is an addictive chem
 heroImage: "/wp-content/uploads/2024/05/LOGO.png"
 family: "pod-sys"
 kind: "category"
+productName: "Closed Pod System"
 ---
 
 <div class="mirror-html-content">

@@ -6,6 +6,20 @@ excerpt: "WARNING: This product contains nicotine. Nicotine is an addictive chem
 heroImage: "/wp-content/uploads/2024/05/LOGO.png"
 family: "disposable"
 kind: "detail"
+productName: "AGP12000"
+puffCount: "12000"
+features:
+  - "14ML e-liquid capacity"
+  - "Smart large display screen"
+  - "Battery & e-liquid level indicator"
+  - "Rechargeable Type-C"
+nicotineStrength: "5% (50mg)"
+flavors:
+  - "Blue Razz Ice"
+  - "Strawberry Kiwi"
+  - "Cool Mint"
+  - "Peach Mango"
+  - "Watermelon Ice"
 ---
 
 <div class="mirror-html-content">

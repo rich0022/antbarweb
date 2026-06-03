@@ -6,6 +6,18 @@ excerpt: "WARNING: This product contains nicotine. Nicotine is an addictive chem
 heroImage: "/wp-content/uploads/2024/05/LOGO.png"
 family: "disposable"
 kind: "detail"
+productName: "KT800"
+puffCount: "800"
+features:
+  - "Large port design"
+  - "Large e-liquid capacity"
+  - "Type-C rechargeable"
+  - "Refillable oil system"
+flavors:
+  - "Blueberry"
+  - "Watermelon"
+  - "Mint"
+  - "Grape"
 ---
 
 <div class="mirror-html-content">

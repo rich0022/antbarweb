@@ -6,6 +6,20 @@ excerpt: "WARNING: This product contains nicotine. Nicotine is an addictive chem
 heroImage: "/wp-content/uploads/2024/05/LOGO.png"
 family: "disposable"
 kind: "detail"
+productName: "SA8000"
+puffCount: "8000"
+features:
+  - "12ml e-liquid capacity"
+  - "Rechargeable via Type-C"
+  - "Mesh coil technology"
+  - "Adjustable airflow"
+flavors:
+  - "Blueberry Sour Raspberry"
+  - "Watermelon Ice"
+  - "Strawberry Kiwi"
+  - "Cool Mint"
+  - "Mango Peach"
+  - "Grape Ice"
 ---
 
 <div class="mirror-html-content">

@@ -207,6 +207,10 @@ Keep:
 - Use the live mirror output as the comparison target, not the deleted prototype.
 - Keep changes scoped by page family or shared system ownership.
 - If a rebuilt page family is complete, remove only that family's mirrored fallback pathing in a controlled change.
+- Before starting implementation, read:
+  - [AGENT-STRUCTURING-RULES.md](/Users/smoant/github/antbarweb/docs/AGENT-STRUCTURING-RULES.md)
+  - [AGENT-PROMPTS-AND-SITE-SHELL-EXAMPLE.md](/Users/smoant/github/antbarweb/docs/AGENT-PROMPTS-AND-SITE-SHELL-EXAMPLE.md)
+  - [ELEMENTOR-MIRROR-LOCAL.md](/Users/smoant/github/antbarweb/docs/ELEMENTOR-MIRROR-LOCAL.md)
 
 ## Immediate Next Tasks
 

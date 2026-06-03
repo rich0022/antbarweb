@@ -6,6 +6,20 @@ excerpt: "WARNING: This product contains nicotine. Nicotine is an addictive chem
 heroImage: "/wp-content/uploads/2024/05/LOGO.png"
 family: "disposable"
 kind: "detail"
+productName: "AHP10000"
+puffCount: "10000"
+features:
+  - "12ml e-liquid capacity"
+  - "Powerful battery"
+  - "High-tech vaping device"
+  - "Large e-juice capacity"
+nicotineStrength: "5% (50mg)"
+flavors:
+  - "Blue Razz Ice"
+  - "Strawberry Kiwi"
+  - "Cool Mint"
+  - "Watermelon Ice"
+  - "Peach Mango"
 ---
 
 <div class="mirror-html-content">

@@ -6,6 +6,19 @@ excerpt: "WARNING: This product contains nicotine. Nicotine is an addictive chem
 heroImage: "/wp-content/uploads/2024/05/LOGO.png"
 family: "disposable"
 kind: "detail"
+productName: "AT800"
+puffCount: "800"
+features:
+  - "2ml e-liquid capacity"
+  - "Child protection button"
+  - "Compact and portable"
+  - "Mesh coil"
+nicotineStrength: "20mg"
+flavors:
+  - "Blueberry"
+  - "Watermelon"
+  - "Mint"
+  - "Grape"
 ---
 
 <div class="mirror-html-content">
