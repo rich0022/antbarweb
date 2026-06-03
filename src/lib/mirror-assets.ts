@@ -109,7 +109,8 @@ function parseHeadAssets(html: string): MirrorHeadAssets {
       : allScripts.filter((_, i) => i >= headScripts.length);
 
   return {
-    stylesheets: [...new Set(stylesheets.map(normalizeMirrorUrl))],
+    stylesheets: [...new Set(stylesheets.map(normalizeMirrorUrl))]
+      .filter((href) => !href.includes('block-library')),
     inlineStyles: [...new Set(inlineStyles.map(normalizeMirrorHtml))],
     bodyClass,
     headScripts: headScripts
@@ -158,7 +159,9 @@ export async function getSharedMirrorStylesheets(): Promise<string[]> {
     hrefs.add(normalizeMirrorUrl(match[1]));
   }
 
-  sharedStylesheets = await filterExistingAssetPaths([...hrefs]);
+  sharedStylesheets = await filterExistingAssetPaths(
+    [...hrefs].filter((href) => !href.includes('block-library')),
+  );
   return sharedStylesheets;
 }
 

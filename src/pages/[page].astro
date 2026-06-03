@@ -11,7 +11,7 @@ import { resolveMirrorRoute } from '../lib/mirror-assets';
 export async function getStaticPaths() {
   const staticPages = await getCollection('pages');
   return staticPages
-    .filter((entry) => entry.id !== 'home' && entry.id !== 'pod-sys')
+    .filter((entry) => !['home', 'pod-sys', 'about-us', 'brand-story', 'rd-center', 'antbar-lab', 'intelligent-manufacturing'].includes(entry.id))
     .map((entry) => ({
       params: { page: contentEntrySlug(entry.id, 'pages') },
       props: { entry },

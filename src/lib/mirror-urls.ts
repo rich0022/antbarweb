@@ -23,5 +23,6 @@ export function shouldSkipMirrorScript(script: MirrorScript): boolean {
   if (src.includes('/.cloud/')) return true;
   if (src.includes('cloudflare-static/email-decode')) return true;
   if (src.includes('cdn-cgi/scripts')) return true;
+  if (src.includes('hello-frontend')) return true;
   return false;
 }

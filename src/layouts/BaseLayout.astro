@@ -2,6 +2,7 @@
 import SiteFooter from '../components/site/SiteFooter.astro';
 import SiteHeader from '../components/site/SiteHeader.astro';
 import { mergeMirrorHeadAssets } from '../lib/mirror-assets';
+import { ANIMATION_INLINE_CSS, ELEMENTOR_LAZY_CSS } from '../data/site-assets';
 
 interface Props {
   title?: string;
@@ -20,19 +21,15 @@ const assets = await mergeMirrorHeadAssets(mirrorRoute);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    {assets.inlineStyles.map((css) => (
-      <style set:html={css} />
-    ))}
-    {assets.stylesheets.map((href) => (
-      <link rel="stylesheet" href={href} />
-    ))}
+    {assets.inlineStyles.map((css) => <style set:html={css} />)}
+    {assets.stylesheets.map((href) => <link rel="stylesheet" href={href} />)}
     {assets.headScripts.map((script) =>
-      script.src ? (
-        <script src={script.src} is:inline></script>
-      ) : script.inline ? (
-        <script set:html={script.inline} is:inline></script>
-      ) : null,
+      script.src ? <script src={script.src} is:inline></script>
+      : script.inline ? <script set:html={script.inline} is:inline></script>
+      : null,
     )}
+    <style set:html={ANIMATION_INLINE_CSS} />
+    <style set:html={ELEMENTOR_LAZY_CSS} />
   </head>
   <body class={assets.bodyClass}>
     <script is:inline>
@@ -54,11 +51,9 @@ const assets = await mergeMirrorHeadAssets(mirrorRoute);
     <slot />
     <SiteFooter />
     {assets.footerScripts.map((script) =>
-      script.src ? (
-        <script src={script.src} is:inline></script>
-      ) : script.inline ? (
-        <script set:html={script.inline} is:inline></script>
-      ) : null,
+      script.src ? <script src={script.src} is:inline></script>
+      : script.inline ? <script set:html={script.inline} is:inline></script>
+      : null,
     )}
   </body>
 </html>

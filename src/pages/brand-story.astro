@@ -1,0 +1,116 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { contentEntryFileName } from '../lib/content-entry';
+import { resolveMirrorRoute } from '../lib/mirror-assets';
+import {
+  BRAND_STORY_HERO, BRAND_STORY_HERO_SECTION_WIDGETS,
+  BRAND_STORY_GALLERY_IMAGES, BRAND_STORY_FINAL,
+} from '../data/about-subpages';
+
+const pages = await getCollection('pages');
+const entry = pages.find((p) => p.id === 'brand-story');
+const mirrorRoute = entry ? resolveMirrorRoute('pages', contentEntryFileName(entry.id, 'pages')) : '';
+const h = BRAND_STORY_HERO;
+---
+
+<BaseLayout title={entry?.data.title ?? 'Brand Story'} description={entry?.data.description ?? ''} mirrorRoute={mirrorRoute}>
+  <main id="content" class="site-main post-41 page type-page status-publish hentry">
+    <div class="page-content">
+      <div data-elementor-type="wp-page" data-elementor-id="41" class="elementor elementor-41" data-elementor-post-type="page">
+
+        <div class={`elementor-element elementor-element-${h.containerDataId} e-con-full ${h.heroClass} e-flex e-con e-parent`} data-id={h.containerDataId} data-element_type="container">
+          <div class={`elementor-element elementor-element-${h.imageContainerId} e-con-full e-flex e-con e-child`} data-id={h.imageContainerId} data-element_type="container">
+            <div class={`elementor-element elementor-element-${h.desktopWidgetId} elementor-hidden-mobile elementor-widget elementor-widget-image`} data-id={h.desktopWidgetId} data-element_type="widget" data-widget_type="image.default">
+              <img loading="lazy" decoding="async" width={h.desktopImage.width} height={h.desktopImage.height} src={h.desktopImage.src} class={`attachment-full size-full wp-image-${h.desktopImage.wpImageId}`} alt="" srcset={h.desktopImage.srcset} sizes={h.desktopImage.sizes} />
+            </div>
+            <div class={`elementor-element elementor-element-${h.mobileWidgetId} elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-image`} data-id={h.mobileWidgetId} data-element_type="widget" data-widget_type="image.default">
+              <img loading="lazy" decoding="async" width={h.mobileImage.width} height={h.mobileImage.height} src={h.mobileImage.src} class={`attachment-full size-full wp-image-${h.mobileImage.wpImageId}`} alt="" srcset={h.mobileImage.srcset} sizes={h.mobileImage.sizes} />
+            </div>
+          </div>
+          {h.overlay && (
+            <div class={`elementor-element elementor-element-${h.overlay.containerDataId} e-flex e-con-boxed e-con e-child`} data-id={h.overlay.containerDataId} data-element_type="container" data-settings='{"position":"absolute"}'>
+              <div class="e-con-inner">
+                <div class={`elementor-element elementor-element-${h.overlay.innerContainerId} e-con-full e-flex elementor-invisible e-con e-child`} data-id={h.overlay.innerContainerId} data-element_type="container" data-settings='{"animation":"fadeInUp"}'>
+                  <div class={`elementor-element elementor-element-${h.overlay.headingWidget1Id} elementor-widget elementor-widget-heading`} data-id={h.overlay.headingWidget1Id} data-element_type="widget" data-widget_type="heading.default">
+                    <h2 class="elementor-heading-title elementor-size-default">{h.overlay.headings[0]}</h2>
+                  </div>
+                  <div class={`elementor-element elementor-element-${h.overlay.headingWidget2Id} elementor-widget elementor-widget-heading`} data-id={h.overlay.headingWidget2Id} data-element_type="widget" data-widget_type="heading.default">
+                    <h2 class="elementor-heading-title elementor-size-default">{h.overlay.headings[1]}</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <!-- Brand Story heading + text -->
+        <div class={`elementor-element elementor-element-${BRAND_STORY_HERO_SECTION_WIDGETS.containerDataId} e-con-full e-flex e-con e-parent`} data-id={BRAND_STORY_HERO_SECTION_WIDGETS.containerDataId} data-element_type="container" data-settings='{"background_background":"classic"}'>
+          <div class={`elementor-element elementor-element-${BRAND_STORY_HERO_SECTION_WIDGETS.innerContainerId} e-flex e-con-boxed e-con e-child`} data-id={BRAND_STORY_HERO_SECTION_WIDGETS.innerContainerId} data-element_type="container">
+            <div class="e-con-inner">
+              <div class={`elementor-element elementor-element-${BRAND_STORY_HERO_SECTION_WIDGETS.leftColumnId} e-con-full e-flex e-con e-child`} data-id={BRAND_STORY_HERO_SECTION_WIDGETS.leftColumnId} data-element_type="container">
+                <div class={`elementor-element elementor-element-${BRAND_STORY_HERO_SECTION_WIDGETS.headingWidgetId} elementor-invisible elementor-widget elementor-widget-heading`} data-id={BRAND_STORY_HERO_SECTION_WIDGETS.headingWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="heading.default">
+                  <h2 class="elementor-heading-title elementor-size-default">Brand story</h2>
+                </div>
+                <div class={`elementor-element elementor-element-${BRAND_STORY_HERO_SECTION_WIDGETS.iconWidgetId} elementor-invisible elementor-widget elementor-widget-image`} data-id={BRAND_STORY_HERO_SECTION_WIDGETS.iconWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="image.default">
+                  <img loading="lazy" decoding="async" width={BRAND_STORY_HERO_SECTION_WIDGETS.iconWidth} height={BRAND_STORY_HERO_SECTION_WIDGETS.iconHeight} src={BRAND_STORY_HERO_SECTION_WIDGETS.iconSrc} class="attachment-full size-full wp-image-4849" alt="" />
+                </div>
+              </div>
+              <div class={`elementor-element elementor-element-${BRAND_STORY_HERO_SECTION_WIDGETS.rightColumnId} e-con-full e-flex e-con e-child`} data-id={BRAND_STORY_HERO_SECTION_WIDGETS.rightColumnId} data-element_type="container">
+                <div class={`elementor-element elementor-element-${BRAND_STORY_HERO_SECTION_WIDGETS.textWidgetId} elementor-invisible elementor-widget elementor-widget-text-editor`} data-id={BRAND_STORY_HERO_SECTION_WIDGETS.textWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="text-editor.default">
+                  <Fragment set:html={BRAND_STORY_HERO_SECTION_WIDGETS.text} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image gallery with hover toggle -->
+        <div class="elementor-element elementor-element-e145691 e-con-full e-flex e-con e-parent" data-id="e145691" data-element_type="container" data-settings='{"background_background":"classic"}'>
+          <div class="elementor-element elementor-element-5bc39bd e-con-full e-flex e-con e-child" data-id="5bc39bd" data-element_type="container">
+            {BRAND_STORY_GALLERY_IMAGES.map((img) => (
+              <div class={`elementor-element elementor-element-${img.containerId} e-con-full al-one e-flex e-con e-child${img.active ? ' active' : ''}`} data-id={img.containerId} data-element_type="container">
+                <div class={`elementor-element elementor-element-${img.widgetId} elementor-widget elementor-widget-image`} data-id={img.widgetId} data-element_type="widget" data-widget_type="image.default">
+                  <img loading="lazy" decoding="async" width={img.width} height={img.height} src={img.src} class="attachment-full size-full wp-image-4850" alt="" srcset={img.srcset} sizes="(max-width: 958px) 100vw, 958px" />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div class="elementor-element elementor-element-58cd87e e-con-full e-flex e-con e-child" data-id="58cd87e" data-element_type="container">
+            <div class="elementor-element elementor-element-d113276 elementor-widget elementor-widget-html" data-id="d113276" data-element_type="widget" data-widget_type="html.default">
+              <script is:inline>
+                jQuery(function () {
+                  var $ = jQuery;
+                  if ($('.al-one').length) {
+                    $('.al-one').on('mouseenter', function () {
+                      $(this).addClass('active').siblings().removeClass('active');
+                    });
+                  }
+                });
+              </script>
+            </div>
+          </div>
+        </div>
+
+        <!-- Final image + text -->
+        <div class={`elementor-element elementor-element-${BRAND_STORY_FINAL.containerDataId} e-con-full e-flex e-con e-parent`} data-id={BRAND_STORY_FINAL.containerDataId} data-element_type="container" data-settings='{"background_background":"classic"}'>
+          <div class={`elementor-element elementor-element-${BRAND_STORY_FINAL.innerContainerId} e-flex e-con-boxed e-con e-child`} data-id={BRAND_STORY_FINAL.innerContainerId} data-element_type="container">
+            <div class="e-con-inner">
+              <div class={`elementor-element elementor-element-${BRAND_STORY_FINAL.imageContainerId} e-con-full e-flex e-con e-child`} data-id={BRAND_STORY_FINAL.imageContainerId} data-element_type="container" data-settings='{"background_background":"classic"}'>
+                <div class={`elementor-element elementor-element-${BRAND_STORY_FINAL.imageWidgetId} elementor-invisible elementor-widget elementor-widget-image`} data-id={BRAND_STORY_FINAL.imageWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="image.default">
+                  <img loading="lazy" decoding="async" width={BRAND_STORY_FINAL.image.width} height={BRAND_STORY_FINAL.image.height} src={BRAND_STORY_FINAL.image.src} class={`attachment-full size-full wp-image-${BRAND_STORY_FINAL.image.wpImageId}`} alt="" srcset={BRAND_STORY_FINAL.image.srcset} sizes={BRAND_STORY_FINAL.image.sizes} />
+                </div>
+              </div>
+              <div class={`elementor-element elementor-element-${BRAND_STORY_FINAL.textContainerId} e-con-full e-flex elementor-invisible e-con e-child`} data-id={BRAND_STORY_FINAL.textContainerId} data-element_type="container" data-settings='{"animation":"fadeInLeft"}'>
+                <div class={`elementor-element elementor-element-${BRAND_STORY_FINAL.textWidgetId} elementor-widget elementor-widget-text-editor`} data-id={BRAND_STORY_FINAL.textWidgetId} data-element_type="widget" data-widget_type="text-editor.default">
+                  <p>{BRAND_STORY_FINAL.text}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</BaseLayout>

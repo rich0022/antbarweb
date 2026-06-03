@@ -2,13 +2,11 @@
 import { getCollection } from 'astro:content';
 import HomePage from '../components/home/HomePage.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { readContentBody } from '../lib/content-body';
 import { contentEntryFileName } from '../lib/content-entry';
 import { resolveMirrorRoute } from '../lib/mirror-assets';
 
 const pages = await getCollection('pages');
 const homeEntry = pages.find((entry) => entry.id === 'home');
-const bodyHtml = homeEntry ? await readContentBody('pages', contentEntryFileName(homeEntry.id, 'pages')) : '';
 const mirrorRoute = homeEntry ? resolveMirrorRoute('pages', contentEntryFileName(homeEntry.id, 'pages')) : '';
 ---
 
@@ -17,5 +15,5 @@ const mirrorRoute = homeEntry ? resolveMirrorRoute('pages', contentEntryFileName
   description={homeEntry?.data.description}
   mirrorRoute={mirrorRoute}
 >
-  <HomePage html={bodyHtml} />
+  <HomePage />
 </BaseLayout>

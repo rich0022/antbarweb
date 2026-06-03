@@ -1,0 +1,84 @@
+---
+import { GALLERY_SLIDES, GALLERY_CAROUSEL, GALLERY_CAROUSEL_SETTINGS } from '../../data/homepage';
+
+const slides = GALLERY_SLIDES;
+---
+
+<div
+  class={`elementor-element elementor-element-${GALLERY_CAROUSEL.containerDataId} e-flex e-con-boxed e-con e-parent`}
+  data-id={GALLERY_CAROUSEL.containerDataId}
+  data-element_type="container"
+>
+  <div class="e-con-inner">
+    <div
+      class="elementor-element elementor-element-81e1317 e-con-full e-flex e-con e-child"
+      data-id="81e1317"
+      data-element_type="container"
+    >
+      <div
+        class={`elementor-element elementor-element-${GALLERY_CAROUSEL.titleContainerId} e-con-full e-flex elementor-invisible e-con e-child`}
+        data-id={GALLERY_CAROUSEL.titleContainerId}
+        data-element_type="container"
+        data-settings='{"animation":"fadeInUp"}'
+      >
+        <div
+          class={`elementor-element elementor-element-${GALLERY_CAROUSEL.titleWidgetId} elementor-widget elementor-widget-image`}
+          data-id={GALLERY_CAROUSEL.titleWidgetId}
+          data-element_type="widget"
+          data-widget_type="image.default"
+        >
+          <img
+            loading="lazy"
+            decoding="async"
+            width={GALLERY_CAROUSEL.titleImage.width}
+            height={GALLERY_CAROUSEL.titleImage.height}
+            src={GALLERY_CAROUSEL.titleImage.src}
+            class="attachment-full size-full wp-image-1651"
+            alt={GALLERY_CAROUSEL.titleImage.alt}
+            srcset={GALLERY_CAROUSEL.titleImage.srcset}
+            sizes={GALLERY_CAROUSEL.titleImage.sizes}
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class={`elementor-element elementor-element-${GALLERY_CAROUSEL.carouselContainerId} e-con-full e-flex elementor-invisible e-con e-child`}
+      data-id={GALLERY_CAROUSEL.carouselContainerId}
+      data-element_type="container"
+      data-settings='{"animation":"fadeInUp"}'
+    >
+      <div
+        class={`elementor-element elementor-element-${GALLERY_CAROUSEL.carouselWidgetId} elementor-arrows-position-inside elementor-widget elementor-widget-n-carousel`}
+        data-id={GALLERY_CAROUSEL.carouselWidgetId}
+        data-element_type="widget"
+        id="tfj"
+        data-settings={GALLERY_CAROUSEL_SETTINGS}
+        data-widget_type="nested-carousel.default"
+      >
+        <div class="e-n-carousel swiper" role="region" aria-roledescription="carousel" aria-label="Carousel" dir="ltr">
+          <div class="swiper-wrapper" aria-live="off">
+            {slides.map((slide, index) => {
+              const slideNum = index + 1;
+              const img = slide.image;
+              return (
+                <div class="swiper-slide" data-slide={slideNum} role="group" aria-roledescription="slide" aria-label={`${slideNum} of 7`}>
+                  <div class="elementor-element elementor-element-7f99212 e-con-full e-flex e-con e-child" data-id="7f99212" data-element_type="container">
+                    <div class="elementor-element elementor-element-d1f36af elementor-widget elementor-widget-image" data-id="d1f36af" data-element_type="widget" data-widget_type="image.default">
+                      <img loading="lazy" decoding="async" width={img.width} height={img.height} src={img.src} class="elementor-animation-grow attachment-full size-full wp-image-4835" alt="" srcset={img.srcset} sizes={img.sizes} />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div class="elementor-swiper-button elementor-swiper-button-prev" role="button" tabindex="0" aria-label="Previous">
+          <svg aria-hidden="true" class="e-font-icon-svg e-eicon-chevron-left" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><path d="M646 125C629 125 613 133 604 142L308 442C296 454 292 471 292 487 292 504 296 521 308 533L604 854C617 867 629 875 646 875 663 875 679 871 692 858 704 846 713 829 713 812 713 796 708 779 692 767L438 487 692 225C700 217 708 204 708 187 708 171 704 154 692 142 675 129 663 125 646 125Z"></path></svg>
+        </div>
+        <div class="elementor-swiper-button elementor-swiper-button-next" role="button" tabindex="0" aria-label="Next">
+          <svg aria-hidden="true" class="e-font-icon-svg e-eicon-chevron-right" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><path d="M696 533C708 521 713 504 713 487 713 471 708 454 696 446L400 146C388 133 375 125 354 125 338 125 325 129 313 142 300 154 292 171 292 187 292 204 296 221 308 233L563 492 304 771C292 783 288 800 288 817 288 833 296 850 308 863 321 871 338 875 354 875 371 875 388 867 400 854L696 533Z"></path></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

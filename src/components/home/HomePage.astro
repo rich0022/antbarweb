@@ -1,36 +1,58 @@
 ---
-import { extractHomePageSections, HOME_PAGE_WRAPPER } from '../../lib/homepage-sections';
-
-interface Props {
-  html: string;
-}
-
-const { html } = Astro.props;
-const sections = extractHomePageSections(html);
-
-const sectionOrder = [
-  { key: 'heroCarousel', label: 'hero-carousel' },
-  { key: 'auxiliaryHtml', label: 'auxiliary-html' },
-  { key: 'productHero', label: 'product-hero' },
-  { key: 'productIntro', label: 'product-intro' },
-  { key: 'productGrid', label: 'product-grid' },
-  { key: 'productVideo', label: 'product-video' },
-  { key: 'remainder', label: 'remainder' },
-] as const;
+import { PRODUCT_HERO, PRODUCT_INTRO, PRODUCT_VIDEO } from '../../data/homepage';
+import HeroCarousel from './HeroCarousel.astro';
+import ProductGrid from './ProductGrid.astro';
+import GalleryCarousel from './GalleryCarousel.astro';
 ---
 
-<Fragment set:html={HOME_PAGE_WRAPPER.mainOpen} />
-<Fragment set:html={HOME_PAGE_WRAPPER.pageWrapperOpen} />
-<Fragment set:html={HOME_PAGE_WRAPPER.elementorOpen} />
-{
-  sectionOrder.map((section) =>
-    sections[section.key] ? (
-      <div data-home-section={section.label}>
-        <Fragment set:html={sections[section.key]} />
+<main id="content" class="site-main post-2 page type-page status-publish hentry">
+  <div class="page-content">
+    <div data-elementor-type="wp-page" data-elementor-id="2" class="elementor elementor-2" data-elementor-post-type="page">
+      <HeroCarousel />
+
+      <!-- Product Hero -->
+      <div class={`elementor-element elementor-element-${PRODUCT_HERO.containerDataId} e-con-full e-flex e-con e-parent`} data-id={PRODUCT_HERO.containerDataId} data-element_type="container">
+        <div class={`elementor-element elementor-element-${PRODUCT_HERO.widgetDataId} elementor-widget elementor-widget-image`} data-id={PRODUCT_HERO.widgetDataId} data-element_type="widget" data-widget_type="image.default">
+          <a href={PRODUCT_HERO.link}>
+            <img loading="lazy" decoding="async" width={PRODUCT_HERO.image.width} height={PRODUCT_HERO.image.height} src={PRODUCT_HERO.image.src} class="attachment-full size-full wp-image-4829" alt="" srcset={PRODUCT_HERO.image.srcset} sizes={PRODUCT_HERO.image.sizes} />
+          </a>
+        </div>
       </div>
-    ) : null,
-  )
-}
-</div>
-</div>
+
+      <!-- Product Intro -->
+      <div class={`elementor-element elementor-element-${PRODUCT_INTRO.containerDataId} e-flex e-con-boxed elementor-invisible e-con e-parent`} data-id={PRODUCT_INTRO.containerDataId} data-element_type="container" data-settings='{"animation":"fadeInUp"}'>
+        <div class="e-con-inner">
+          <div class={`elementor-element elementor-element-${PRODUCT_INTRO.headingContainerId} e-con-full e-flex e-con e-child`} data-id={PRODUCT_INTRO.headingContainerId} data-element_type="container">
+            <div class={`elementor-element elementor-element-${PRODUCT_INTRO.headingWidgetId} elementor-widget elementor-widget-heading`} data-id={PRODUCT_INTRO.headingWidgetId} data-element_type="widget" data-widget_type="heading.default">
+              <h2 class="elementor-heading-title elementor-size-default">{PRODUCT_INTRO.heading}</h2>
+            </div>
+          </div>
+          <div class={`elementor-element elementor-element-${PRODUCT_INTRO.buttonContainerId} e-con-full e-flex e-con e-child`} data-id={PRODUCT_INTRO.buttonContainerId} data-element_type="container">
+            <div class={`elementor-element elementor-element-${PRODUCT_INTRO.buttonWidgetId} elementor-widget elementor-widget-button`} data-id={PRODUCT_INTRO.buttonWidgetId} data-element_type="widget" data-widget_type="button.default">
+              <a class="elementor-button elementor-button-link elementor-size-sm" href={PRODUCT_INTRO.buttonHref}>
+                <span class="elementor-button-content-wrapper">
+                  <span class="elementor-button-text">{PRODUCT_INTRO.buttonText}</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ProductGrid />
+
+      <!-- Product Video -->
+      <div class={`elementor-element elementor-element-${PRODUCT_VIDEO.containerDataId} e-flex e-con-boxed elementor-invisible e-con e-parent`} data-id={PRODUCT_VIDEO.containerDataId} data-element_type="container" data-settings='{"animation":"fadeInUp"}'>
+        <div class="e-con-inner">
+          <div class={`elementor-element elementor-element-${PRODUCT_VIDEO.widgetDataId} elementor-widget elementor-widget-video`} data-id={PRODUCT_VIDEO.widgetDataId} data-element_type="widget" data-settings='{"video_type":"hosted","autoplay":"yes","play_on_mobile":"yes","loop":"yes","mute":"yes"}' data-widget_type="video.default">
+            <div class="e-hosted-video elementor-wrapper elementor-open-inline">
+              <video class="elementor-video" src={PRODUCT_VIDEO.src} autoplay loop muted playsinline controlsList="nodownload"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <GalleryCarousel />
+    </div>
+  </div>
 </main>
