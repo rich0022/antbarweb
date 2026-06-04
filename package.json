@@ -11,6 +11,7 @@
     "extract:content": "node scripts/extract-content.mjs",
     "fetch:missing-blog": "node scripts/fetch-missing-blog.mjs",
     "fetch:missing-review": "node scripts/fetch-missing-review.mjs",
+    "generate:article-shell": "node scripts/bundle-article-shell.mjs",
     "sync:mirror-assets": "node scripts/sync-mirror-assets.mjs",
     "normalize:mirror-html": "node scripts/normalize-public-html.mjs",
     "generate:site-shell": "node scripts/generate-site-shell-data.mjs",

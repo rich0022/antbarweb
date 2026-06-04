@@ -2,10 +2,11 @@
 import { getCollection } from 'astro:content';
 import PostsWidget from '../../components/archive/PostsWidget.astro';
 import ContentBody from '../../components/ContentBody.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import StandaloneLayout from '../../layouts/StandaloneLayout.astro';
 import { readContentBody } from '../../lib/content-body';
 import { contentEntryFileName } from '../../lib/content-entry';
 import { extractArchiveWidget } from '../../lib/archive-widget';
+import '../../styles/review-bundle.css';
 
 const allReviews = await getCollection('review');
 const indexEntry = allReviews.find((entry) => entry.id === 'index' || entry.data.slug === 'review');
@@ -13,7 +14,7 @@ const bodyHtml = indexEntry ? await readContentBody('review', contentEntryFileNa
 const archive = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
 ---
 
-<BaseLayout title={indexEntry?.data.title ?? 'ANTBAR Reviews'} description={indexEntry?.data.description ?? ''} mirrorRoute="review">
+<StandaloneLayout title={indexEntry?.data.title ?? 'ANTBAR Reviews'} description={indexEntry?.data.description ?? ''} pageId="2779">
   {archive ? (
     <>
       <ContentBody html={archive.beforeHtml} />
@@ -23,4 +24,4 @@ const archive = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
   ) : (
     <ContentBody html={bodyHtml} />
   )}
-</BaseLayout>
+</StandaloneLayout>

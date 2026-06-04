@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import PostsWidget from '../components/archive/PostsWidget.astro';
-import ContentBody from '../components/ContentBody.astro';
+import ProductFilterBar from '../components/archive/ProductFilterBar.astro';
 import StandaloneLayout from '../layouts/StandaloneLayout.astro';
 import { extractArchiveWidget } from '../lib/archive-widget';
 import { readContentBody } from '../lib/content-body';
@@ -9,19 +9,90 @@ import { contentEntryFileName } from '../lib/content-entry';
 import '../styles/all-products-bundle.css';
 
 const pages = await getCollection('pages');
-const entry = pages.find((p) => p.id === 'all-products');
-const bodyHtml = entry ? await readContentBody('pages', contentEntryFileName(entry.id, 'pages')) : '';
-const archive = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
+const products = await getCollection('products');
+
+const allEntry = pages.find((p) => p.id === 'all-products');
+const disposableEntry = products.find((p) => p.id === 'disposable');
+const podSysEntry = products.find((p) => p.id === 'pod-sys');
+
+const allBody = allEntry ? await readContentBody('pages', contentEntryFileName(allEntry.id, 'pages')) : '';
+const disposableBody = disposableEntry ? await readContentBody('products', contentEntryFileName(disposableEntry.id, 'products')) : '';
+const podSysBody = podSysEntry ? await readContentBody('products', contentEntryFileName(podSysEntry.id, 'products')) : '';
+
+const allArchive = allBody ? extractArchiveWidget(allBody) : null;
+const disposableArchive = disposableBody ? extractArchiveWidget(disposableBody) : null;
+const podSysArchive = podSysBody ? extractArchiveWidget(podSysBody) : null;
+
+// Force all three widgets to share the same element ID so post-976.css styles apply to all
+const ALL_WIDGET_DATA_ID = allArchive?.widget.dataId ?? '42d6ced';
+if (disposableArchive) {
+  disposableArchive.widget.dataId = ALL_WIDGET_DATA_ID;
+  disposableArchive.widget.widgetClass = disposableArchive.widget.widgetClass.replace(/elementor-element-[a-f0-9]+/, `elementor-element-${ALL_WIDGET_DATA_ID}`);
+}
+if (podSysArchive) {
+  podSysArchive.widget.dataId = ALL_WIDGET_DATA_ID;
+  podSysArchive.widget.widgetClass = podSysArchive.widget.widgetClass.replace(/elementor-element-[a-f0-9]+/, `elementor-element-${ALL_WIDGET_DATA_ID}`);
+}
 ---
 
-<StandaloneLayout title={entry?.data.title ?? 'All Products'} description={entry?.data.description ?? ''} pageId="976">
-  {archive ? (
-    <>
-      <ContentBody html={archive.beforeHtml} />
-      <PostsWidget widget={archive.widget} />
-      <ContentBody html={archive.afterHtml} />
-    </>
-  ) : (
-    <ContentBody html={bodyHtml} />
-  )}
+<StandaloneLayout title={allEntry?.data.title ?? 'All Products'} description={allEntry?.data.description ?? ''} pageId="976">
+  <main id="content" class="site-main post-976 page type-page status-publish hentry">
+    <div class="page-content">
+      <div data-elementor-type="wp-page" data-elementor-id="976" class="elementor elementor-976" data-elementor-post-type="page">
+        <ProductFilterBar activeTab="all" />
+
+        <div class="elementor-element elementor-element-e0d72b6 e-flex e-con-boxed elementor-invisible e-con e-parent" data-id="e0d72b6" data-element_type="container" id="productWrap" data-settings='{"animation":"fadeInUp"}'>
+          <div class="e-con-inner">
+            {allArchive && (
+              <div data-product-grid="all">
+                <PostsWidget widget={allArchive.widget} />
+              </div>
+            )}
+            {disposableArchive && (
+              <div data-product-grid="disposable" hidden>
+                <PostsWidget widget={disposableArchive.widget} />
+              </div>
+            )}
+            {podSysArchive && (
+              <div data-product-grid="pod-sys" hidden>
+                <PostsWidget widget={podSysArchive.widget} />
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div class="elementor-element elementor-element-34cd564 elementor-widget elementor-widget-html" data-id="34cd564" data-element_type="widget" data-widget_type="html.default">
+          <script is:inline>
+            (() => {
+              const tabs = document.querySelectorAll('[data-product-tab]');
+              const grids = document.querySelectorAll('[data-product-grid]');
+
+              function activateTab(tabId) {
+                tabs.forEach((t) => {
+                  const isActive = t.getAttribute('data-product-tab') === tabId;
+                  t.closest('.elementor-widget-button')?.classList.toggle('active', isActive);
+                });
+                grids.forEach((g) => {
+                  g.hidden = g.getAttribute('data-product-grid') !== tabId;
+                });
+              }
+
+              const params = new URLSearchParams(window.location.search);
+              const initialTab = params.get('tab');
+              if (initialTab && ['disposable', 'pod-sys'].includes(initialTab)) {
+                activateTab(initialTab);
+              }
+
+              tabs.forEach((tab) => {
+                tab.addEventListener('click', () => {
+                  const target = tab.getAttribute('data-product-tab');
+                  activateTab(target);
+                });
+              });
+            })();
+          </script>
+        </div>
+      </div>
+    </div>
+  </main>
 </StandaloneLayout>

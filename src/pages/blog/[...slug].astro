@@ -1,97 +1,74 @@
 ---
-import { getCollection } from 'astro:content';
-import ContentBody from '../../components/ContentBody.astro';
-import StandaloneLayout from '../../layouts/StandaloneLayout.astro';
-import { contentEntryFileName, contentEntrySlug } from '../../lib/content-entry';
-import { readContentBody } from '../../lib/content-body';
+import { getCollection, getEntry, render } from 'astro:content';
+import ArticlePage from '../../components/article/ArticlePage.astro';
+import ArticleShellRuntime from '../../components/article/ArticleShellRuntime.astro';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { contentEntrySlug } from '../../lib/content-entry';
 import {
-  collectBlogMirrorSlugs,
-  readMirrorBodyHtml,
-} from '../../lib/mirror-assets';
-import { readFile, access } from 'node:fs/promises';
-import path from 'node:path';
-import '../../styles/blog-bundle.css';
+  BLOG_FEATURED_ITEMS,
+  BLOG_HOT_SALE_PRODUCTS,
+  BLOG_LATEST_ITEMS,
+  BLOG_RELATED_ITEMS,
+  extractTocItems,
+  readMarkdownBody,
+  readMirrorArticleMeta,
+  readMirrorPublishedLabel,
+} from '../../lib/article-page';
 
 export async function getStaticPaths() {
   const contentPosts = await getCollection('blog');
-  const mirrorSlugs = await collectBlogMirrorSlugs();
-  const paths = new Map();
 
-  for (const entry of contentPosts) {
-    if (entry.id === 'index' || entry.data.slug === 'blog') continue;
-    const slug = contentEntrySlug(entry.id, 'blog');
-    paths.set(slug, { mode: 'content' as const, entry });
-  }
-
-  for (const slug of mirrorSlugs) {
-    if (!paths.has(slug)) {
-      paths.set(slug, { mode: 'mirror' as const, slug });
-    }
-  }
-
-  return [...paths.entries()].map(([slug, props]) => ({
-    params: { slug },
-    props: { slug, ...props },
-  }));
+  return contentPosts
+    .filter((entry) => entry.id !== 'index' && entry.data.slug !== 'blog')
+    .map((entry) => ({
+      params: { slug: contentEntrySlug(entry.id, 'blog') },
+      props: { entryId: entry.id },
+    }));
 }
-
-const sharedPostIds = new Set(['49','68','305','1132','1146','1817','2978','3997','4326']);
-
-const SINGLE_POST_CSS = [
-  '/wp-content/uploads/elementor/css/post-3997.css',
-  '/wp-content/uploads/elementor/css/post-4326.css',
-  '/wp-content/plugins/elementor-pro/assets/css/widget-form.min.css',
-  '/wp-content/plugins/elementor-pro/assets/css/widget-post-info.min.css',
-  '/wp-content/plugins/elementor-pro/assets/css/widget-table-of-contents.min.css',
-];
 
 const props = Astro.props as {
-  slug: string;
-  mode: 'content' | 'mirror';
-  entry?: { id: string; data: { title: string; description?: string } };
+  entryId: string;
 };
 
-let title = 'ANTBAR Blog';
-let description = '';
-let bodyHtml = '';
-let extraStylesheets: string[] = [];
-
-if (props.mode === 'content' && props.entry) {
-  title = props.entry.data.title;
-  description = props.entry.data.description ?? '';
-  bodyHtml = await readContentBody('blog', contentEntryFileName(props.entry.id, 'blog'));
-  const ids = [...bodyHtml.matchAll(/data-elementor-id="(\d+)"/g)].map((m) => m[1]);
-  const postId = ids.find((id) => !sharedPostIds.has(id));
-  extraStylesheets = [...SINGLE_POST_CSS];
-  if (postId) {
-    const cssPath = `/wp-content/uploads/elementor/css/post-${postId}.css`;
-    try {
-      await access(path.join(process.cwd(), 'public', cssPath));
-      extraStylesheets.push(cssPath);
-    } catch { /* file doesn't exist */ }
-  }
-} else {
-  const mirrorRoute = `blog/${props.slug}`;
-  const htmlPath = path.join(process.cwd(), 'mirror', mirrorRoute, 'index.html');
-  const raw = await readFile(htmlPath, 'utf8');
-  title = raw.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.trim() ?? title;
-  description =
-    raw.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i)?.[1] ?? '';
-  bodyHtml = await readMirrorBodyHtml(mirrorRoute);
-  extraStylesheets = [...SINGLE_POST_CSS];
-  const cssMatch = raw.match(/href='(\/wp-content\/uploads\/elementor\/css\/post-\d+\.css\?ver=\d+)'/g);
-  if (cssMatch) {
-    for (const href of cssMatch) {
-      const idMatch = href.match(/post-(\d+)\.css/);
-      if (idMatch && !sharedPostIds.has(idMatch[1])) {
-        extraStylesheets.push(href.slice(6, -1));
-        break;
-      }
-    }
-  }
+const entry = await getEntry('blog', props.entryId);
+if (!entry) {
+  throw new Error(`Missing blog entry for ${props.entryId}`);
 }
+const { Content } = await render(entry);
+const slug = contentEntrySlug(entry.id, 'blog');
+const [markdownBody, publishedLabel, articleMeta] = await Promise.all([
+  readMarkdownBody('blog', props.entryId),
+  readMirrorPublishedLabel(`blog/${slug}`),
+  readMirrorArticleMeta(`blog/${slug}`),
+]);
+
+const tocItems = extractTocItems(markdownBody);
 ---
 
-<StandaloneLayout title={title} description={description} extraStylesheets={extraStylesheets}>
-  <ContentBody html={bodyHtml} />
-</StandaloneLayout>
+<ArticleLayout
+  title={entry.data.title}
+  description={entry.data.description ?? entry.data.excerpt ?? ''}
+  mirrorRoute={`blog/${slug}`}
+  bodyClass={articleMeta.bodyClass}
+>
+  <ArticlePage
+    title={entry.data.title}
+    sectionLabel="Blog"
+    currentPostId={articleMeta.postId}
+    publishedLabel={publishedLabel}
+    tocItems={tocItems}
+    latestItems={BLOG_LATEST_ITEMS}
+    relatedTitle="Related Blogs"
+    relatedItems={BLOG_RELATED_ITEMS}
+    featuredItems={BLOG_FEATURED_ITEMS}
+    hotProducts={BLOG_HOT_SALE_PRODUCTS}
+  >
+    <Content />
+  </ArticlePage>
+  <ArticleShellRuntime
+    postId={articleMeta.postId ?? 4603}
+    title={entry.data.title}
+    excerpt={entry.data.excerpt ?? entry.data.description ?? ''}
+    featuredImage={entry.data.heroImage ?? entry.data.featuredImage ?? '/wp-content/uploads/2024/05/LOGO.png'}
+  />
+</ArticleLayout>

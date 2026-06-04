@@ -6,6 +6,8 @@ export default defineConfig({
   trailingSlash: 'always',
   redirects: {
     '/antbar-3000-6000': '/pod-sys/antbar-3000-6000/',
+    '/disposable/': '/all-products/',
+    '/pod-sys/': '/all-products/',
   },
   build: {
     assets: 'assets',

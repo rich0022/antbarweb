@@ -1,0 +1,38 @@
+---
+import '../../styles/article-markdown.css';
+
+interface Props {
+  title: string;
+  excerpt?: string;
+  eyebrow?: string;
+  meta?: string[];
+}
+
+const {
+  title,
+  excerpt = '',
+  eyebrow = '',
+  meta = [],
+} = Astro.props;
+
+const visibleMeta = meta.filter(Boolean);
+---
+
+<main class="article-page">
+  <section class="article-page__hero">
+    <div class="article-page__shell">
+      {eyebrow && <p class="article-page__eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {excerpt && <p class="article-page__excerpt">{excerpt}</p>}
+      {visibleMeta.length > 0 && <p class="article-page__meta">{visibleMeta.join(' · ')}</p>}
+    </div>
+  </section>
+
+  <section class="article-page__body">
+    <div class="article-page__shell">
+      <article class="article-markdown">
+        <slot />
+      </article>
+    </div>
+  </section>
+</main>

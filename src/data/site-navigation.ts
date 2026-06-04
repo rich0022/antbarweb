@@ -97,7 +97,7 @@ export const PRIMARY_NAV: MegaMenuItem[] = [
 
 export const PRODUCT_MEGA_TILES = [
   {
-    href: '/disposable/',
+    href: '/all-products/?tab=disposable',
     src: '/wp-content/uploads/2023/12/Product2540宽，版心1200-08.png',
     width: 151,
     height: 151,
@@ -107,7 +107,7 @@ export const PRODUCT_MEGA_TILES = [
     imageWidgetId: '76fef2c',
   },
   {
-    href: '/pod-sys/',
+    href: '/all-products/?tab=pod-sys',
     src: '/wp-content/uploads/2023/12/Product2540宽，版心1200-13.png',
     width: 151,
     height: 151,
@@ -163,8 +163,8 @@ export const FOOTER_DESKTOP_COLUMNS: FooterColumn[] = [
   {
     title: 'Product',
     links: [
-      { label: 'Disposable', href: '/disposable/' },
-      { label: 'Closed Pod System', href: '/pod-sys/' },
+      { label: 'Disposable', href: '/all-products/?tab=disposable' },
+      { label: 'Closed Pod System', href: '/all-products/?tab=pod-sys' },
     ],
   },
   {

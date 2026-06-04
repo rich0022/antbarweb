@@ -1,0 +1,98 @@
+.article-md-slot .elementor-widget-container {
+  width: 100%;
+}
+
+.article-md-body > *:first-child {
+  margin-top: 0;
+}
+
+.article-md-body > *:last-child {
+  margin-bottom: 0;
+}
+
+.article-md-body :where(p, li, blockquote) {
+  color: #333;
+  font: 400 1rem/1.8 "Poppins", sans-serif;
+}
+
+.article-md-body p,
+.article-md-body ul,
+.article-md-body ol,
+.article-md-body blockquote,
+.article-md-body table {
+  margin: 1.15rem 0;
+}
+
+.article-md-body h2,
+.article-md-body h3,
+.article-md-body h4,
+.article-md-body h5,
+.article-md-body h6 {
+  margin: 2.2rem 0 0.85rem;
+  color: #111;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.2;
+}
+
+.article-md-body h2 {
+  font-size: clamp(1.55rem, 2.6vw, 2.1rem);
+}
+
+.article-md-body h3 {
+  font-size: clamp(1.22rem, 2vw, 1.52rem);
+}
+
+.article-md-body a,
+.article-mirror-toc a {
+  color: #111;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
+}
+
+.article-md-body strong {
+  color: #111;
+}
+
+.article-md-body ul,
+.article-md-body ol {
+  padding-left: 1.35rem;
+}
+
+.article-md-body li + li,
+.article-mirror-toc li + li {
+  margin-top: 0.5rem;
+}
+
+.article-md-body img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 1.4rem auto;
+  background: #fff;
+}
+
+.article-md-body table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e5e5e5;
+}
+
+.article-md-body th,
+.article-md-body td {
+  padding: 0.78rem 0.92rem;
+  border: 1px solid #e5e5e5;
+  text-align: left;
+  vertical-align: top;
+  font: 400 0.94rem/1.6 "Poppins", sans-serif;
+}
+
+.article-md-body th {
+  background: #f6f6f6;
+  font-weight: 700;
+}
+
+.article-mirror-toc {
+  margin: 0;
+  padding-left: 1.2rem;
+}

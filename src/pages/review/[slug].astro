@@ -1,34 +1,28 @@
 ---
-import { getCollection } from 'astro:content';
-import ContentBody from '../../components/ContentBody.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { contentEntryFileName, contentEntrySlug } from '../../lib/content-entry';
-import { readContentBody } from '../../lib/content-body';
-import {
-  collectReviewMirrorRoutes,
-  readMirrorBodyHtml,
-  resolveMirrorRoute,
-} from '../../lib/mirror-assets';
+import { getCollection, getEntry, render } from 'astro:content';
+import ArticlePage from '../../components/article/ArticlePage.astro';
+import ArticleShellRuntime from '../../components/article/ArticleShellRuntime.astro';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { contentEntrySlug } from '../../lib/content-entry';
 import { resolveReviewUrlSlug, REVIEW_URL_ALIASES } from '../../lib/route-aliases';
-import { readFile } from 'node:fs/promises';
-import path from 'node:path';
+import {
+  REVIEW_FEATURED_ITEMS,
+  REVIEW_HOT_SALE_PRODUCTS,
+  REVIEW_LATEST_ITEMS,
+  REVIEW_RELATED_ITEMS,
+  extractTocItems,
+  readMarkdownBody,
+  readMirrorArticleMeta,
+  readMirrorPublishedLabel,
+} from '../../lib/article-page';
 
 export async function getStaticPaths() {
   const contentPosts = await getCollection('review');
-  const mirrorRoutes = await collectReviewMirrorRoutes();
   const paths = new Map<string, Record<string, unknown>>();
 
   for (const entry of contentPosts) {
     if (entry.id === 'index' || entry.id === 'review' || entry.data.slug === 'review') continue;
-    const slug = contentEntrySlug(entry.id, 'review');
-    paths.set(slug, { mode: 'content' as const, entry });
-  }
-
-  for (const [slug, mirrorRoute] of mirrorRoutes) {
-    if (slug === 'index') continue;
-    if (!paths.has(slug)) {
-      paths.set(slug, { mode: 'mirror' as const, slug, mirrorRoute });
-    }
+    paths.set(contentEntrySlug(entry.id, 'review'), { entryId: entry.id });
   }
 
   for (const [alias, target] of Object.entries(REVIEW_URL_ALIASES)) {
@@ -44,34 +38,48 @@ export async function getStaticPaths() {
 
 const props = Astro.props as {
   slug: string;
-  mode: 'content' | 'mirror';
-  mirrorRoute?: string;
-  entry?: { id: string; data: { title: string; description?: string } };
+  entryId: string;
 };
 
 const canonicalSlug = resolveReviewUrlSlug(props.slug);
-let title = 'ANTBAR Review';
-let description = '';
-let bodyHtml = '';
-let mirrorRoute = props.mirrorRoute ?? `review/${canonicalSlug}`;
-
-if (props.mode === 'content' && props.entry) {
-  title = props.entry.data.title;
-  description = props.entry.data.description ?? '';
-  bodyHtml = await readContentBody('review', contentEntryFileName(props.entry.id, 'review'));
-  mirrorRoute = resolveMirrorRoute('review', contentEntryFileName(props.entry.id, 'review'));
-} else {
-  const route = props.mirrorRoute ?? `review/${canonicalSlug}`;
-  const htmlPath = path.join(process.cwd(), 'mirror', route, 'index.html');
-  const raw = await readFile(htmlPath, 'utf8');
-  title = raw.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.trim() ?? title;
-  description =
-    raw.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i)?.[1] ?? '';
-  bodyHtml = await readMirrorBodyHtml(route);
-  mirrorRoute = route;
+const entry = await getEntry('review', props.entryId);
+if (!entry) {
+  throw new Error(`Missing review entry for ${props.entryId}`);
 }
+const { Content } = await render(entry);
+const [markdownBody, publishedLabel, articleMeta] = await Promise.all([
+  readMarkdownBody('review', props.entryId),
+  readMirrorPublishedLabel(`review/${canonicalSlug}`),
+  readMirrorArticleMeta(`review/${canonicalSlug}`),
+]);
+
+const tocItems = extractTocItems(markdownBody);
 ---
 
-<BaseLayout title={title} description={description} mirrorRoute={mirrorRoute}>
-  <ContentBody html={bodyHtml} />
-</BaseLayout>
+<ArticleLayout
+  title={entry.data.title}
+  description={entry.data.description ?? entry.data.excerpt ?? ''}
+  mirrorRoute={`review/${canonicalSlug}`}
+  bodyClass={articleMeta.bodyClass}
+>
+  <ArticlePage
+    title={entry.data.title}
+    sectionLabel="Review"
+    currentPostId={articleMeta.postId}
+    publishedLabel={publishedLabel}
+    tocItems={tocItems}
+    latestItems={REVIEW_LATEST_ITEMS}
+    relatedTitle="Related Review"
+    relatedItems={REVIEW_RELATED_ITEMS}
+    featuredItems={REVIEW_FEATURED_ITEMS}
+    hotProducts={REVIEW_HOT_SALE_PRODUCTS}
+  >
+    <Content />
+  </ArticlePage>
+  <ArticleShellRuntime
+    postId={articleMeta.postId ?? 3650}
+    title={entry.data.title}
+    excerpt={entry.data.excerpt ?? entry.data.description ?? ''}
+    featuredImage={entry.data.heroImage ?? entry.data.featuredImage ?? '/wp-content/uploads/2024/05/LOGO.png'}
+  />
+</ArticleLayout>
