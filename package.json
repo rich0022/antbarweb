@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev --host",
-    "build": "astro build && node scripts/purge-build-css.mjs",
-    "build:cf": "astro build && node scripts/purge-build-css.mjs && node scripts/prepare-cloudflare-static.mjs",
+    "build": "astro build && node scripts/purge-build-css.mjs && node scripts/post-build-cleanup.mjs",
+    "build:cf": "astro build && node scripts/purge-build-css.mjs && node scripts/post-build-cleanup.mjs && node scripts/prepare-cloudflare-static.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs && node scripts/update-mirror-webp-refs.mjs",
+    "bundle:page": "node scripts/bundle-page.mjs",
     "extract:content": "node scripts/extract-content.mjs",
     "fetch:missing-blog": "node scripts/fetch-missing-blog.mjs",
     "fetch:missing-review": "node scripts/fetch-missing-review.mjs",

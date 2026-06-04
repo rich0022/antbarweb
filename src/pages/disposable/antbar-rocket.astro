@@ -1,0 +1,28 @@
+---
+import SubPageLayout from '../../layouts/SubPageLayout.astro';
+import ContentBody from '../../components/ContentBody.astro';
+import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
+import { readMirrorBodyHtml } from '../../lib/mirror-assets';
+import { stripMainWrapper } from '../../lib/site-shell';
+import '../../styles/rocket-bundle.css';
+
+const mirrorRoute = 'disposable/antbar-rocket';
+const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
+
+const postId = 1429;
+const title = 'ROCKET Disposable Vape-ANTBAR';
+const description = 'ANTBAR ROCKET small and lightweight, the best disposable vapes online wholesale.';
+const featuredImage = '/wp-content/uploads/2024/03/ROCKET-1.png';
+---
+
+<SubPageLayout title={title} description={description} pageId={String(postId)}>
+  <main id="content">
+    <ContentBody html={bodyHtml} />
+  </main>
+  <ProductShellRuntime
+    postId={postId}
+    title={title}
+    excerpt={description}
+    featuredImage={featuredImage}
+  />
+</SubPageLayout>

@@ -1,0 +1,28 @@
+---
+import SubPageLayout from '../../layouts/SubPageLayout.astro';
+import ContentBody from '../../components/ContentBody.astro';
+import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
+import { readMirrorBodyHtml } from '../../lib/mirror-assets';
+import { stripMainWrapper } from '../../lib/site-shell';
+import '../../styles/dah6000-bundle.css';
+
+const mirrorRoute = 'disposable/antbar-3000-6000';
+const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
+
+const postId = 1441;
+const title = 'DAH6000 Disposable Vape 6.5ml-ANTBAR';
+const description = 'DAH3000 and DAH6000 disposable vapes system, large port, large capacity, type-C charging, designed for the best vaping experience.';
+const featuredImage = '/wp-content/uploads/2024/03/DAH6000.png';
+---
+
+<SubPageLayout title={title} description={description} pageId={String(postId)}>
+  <main id="content">
+    <ContentBody html={bodyHtml} />
+  </main>
+  <ProductShellRuntime
+    postId={postId}
+    title={title}
+    excerpt={description}
+    featuredImage={featuredImage}
+  />
+</SubPageLayout>

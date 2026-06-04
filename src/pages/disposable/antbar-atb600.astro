@@ -1,0 +1,28 @@
+---
+import SubPageLayout from '../../layouts/SubPageLayout.astro';
+import ContentBody from '../../components/ContentBody.astro';
+import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
+import { readMirrorBodyHtml } from '../../lib/mirror-assets';
+import { stripMainWrapper } from '../../lib/site-shell';
+import '../../styles/atb600-bundle.css';
+
+const mirrorRoute = 'disposable/antbar-atb600';
+const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
+
+const postId = 1403;
+const title = 'ATB600 Disposable Vape-ANTBAR';
+const description = 'Adhering to the concept of user first, AntBar develops ATB600 disposable system for the best vaping experience.';
+const featuredImage = '/wp-content/uploads/2024/03/ATB600.png';
+---
+
+<SubPageLayout title={title} description={description} pageId={String(postId)}>
+  <main id="content">
+    <ContentBody html={bodyHtml} />
+  </main>
+  <ProductShellRuntime
+    postId={postId}
+    title={title}
+    excerpt={description}
+    featuredImage={featuredImage}
+  />
+</SubPageLayout>

@@ -1,0 +1,28 @@
+---
+import SubPageLayout from '../../layouts/SubPageLayout.astro';
+import ContentBody from '../../components/ContentBody.astro';
+import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
+import { readMirrorBodyHtml } from '../../lib/mirror-assets';
+import { stripMainWrapper } from '../../lib/site-shell';
+import '../../styles/ahp10000-bundle.css';
+
+const mirrorRoute = 'disposable/v10000-puffs-disposable-vape';
+const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
+
+const postId = 1436;
+const title = 'AHP10000 Puffs Disposable Vape 12ml-ANTBAR';
+const description = 'The ANTBAR 12ml AHP10000 Puffs Disposable Vape is a high-tech vaping device that comes with a powerful battery and a large e-juice capacity.';
+const featuredImage = '/wp-content/uploads/2024/05/ahp10000.png';
+---
+
+<SubPageLayout title={title} description={description} pageId={String(postId)}>
+  <main id="content">
+    <ContentBody html={bodyHtml} />
+  </main>
+  <ProductShellRuntime
+    postId={postId}
+    title={title}
+    excerpt={description}
+    featuredImage={featuredImage}
+  />
+</SubPageLayout>

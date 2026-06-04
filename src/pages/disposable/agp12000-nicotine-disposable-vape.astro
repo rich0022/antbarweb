@@ -1,0 +1,29 @@
+---
+import SubPageLayout from '../../layouts/SubPageLayout.astro';
+import ContentBody from '../../components/ContentBody.astro';
+import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
+import { readMirrorBodyHtml } from '../../lib/mirror-assets';
+import { stripMainWrapper } from '../../lib/site-shell';
+import '../../styles/agp12000-bundle.css';
+
+const mirrorRoute = 'disposable/agp12000-nicotine-disposable-vape';
+const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
+
+const postId = 3489;
+const title = 'AGP12000 Disposable Vape 14ML/12000 Puffs-ANTBAR';
+const description =
+  'The AGP12000 Nicotine Disposable Vape offers A smart large display design allows you to view key information such as liquid and battery capacity at a glance.';
+const featuredImage = '/wp-content/uploads/2024/05/LOGO.png';
+---
+
+<SubPageLayout title={title} description={description} pageId={String(postId)}>
+  <main id="content">
+    <ContentBody html={bodyHtml} />
+  </main>
+  <ProductShellRuntime
+    postId={postId}
+    title={title}
+    excerpt={description}
+    featuredImage={featuredImage}
+  />
+</SubPageLayout>

@@ -1,0 +1,28 @@
+---
+import SubPageLayout from '../../layouts/SubPageLayout.astro';
+import ContentBody from '../../components/ContentBody.astro';
+import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
+import { readMirrorBodyHtml } from '../../lib/mirror-assets';
+import { stripMainWrapper } from '../../lib/site-shell';
+import '../../styles/sa8000-bundle.css';
+
+const mirrorRoute = 'disposable/antbar-sa8000';
+const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
+
+const postId = 1360;
+const title = 'SA8000 Rechargeable Disposable Vape 8000 Puffs-ANTBAR';
+const description = 'SA8000 12ml/8000puff the best big puffs rechargeable disposable vapes online wholesale.';
+const featuredImage = '/wp-content/uploads/2024/03/SA8000.png';
+---
+
+<SubPageLayout title={title} description={description} pageId={String(postId)}>
+  <main id="content">
+    <ContentBody html={bodyHtml} />
+  </main>
+  <ProductShellRuntime
+    postId={postId}
+    title={title}
+    excerpt={description}
+    featuredImage={featuredImage}
+  />
+</SubPageLayout>

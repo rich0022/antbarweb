@@ -1,0 +1,29 @@
+---
+import SubPageLayout from '../../layouts/SubPageLayout.astro';
+import ContentBody from '../../components/ContentBody.astro';
+import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
+import { readMirrorBodyHtml } from '../../lib/mirror-assets';
+import { stripMainWrapper } from '../../lib/site-shell';
+import '../../styles/kt800-bundle.css';
+
+const mirrorRoute = 'disposable/antbar-kt800';
+const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
+
+const postId = 2818;
+const title = 'KT800 Disposable Vape Kits Online Wholesale-ANTBAR';
+const description =
+  'Antbar The Disposable Vape Kits Online Sale, Large port, large capacity, small battery, can be filled with oil, type-C charging.';
+const featuredImage = '/wp-content/uploads/2024/05/KT800.jpg';
+---
+
+<SubPageLayout title={title} description={description} pageId={String(postId)}>
+  <main id="content">
+    <ContentBody html={bodyHtml} />
+  </main>
+  <ProductShellRuntime
+    postId={postId}
+    title={title}
+    excerpt={description}
+    featuredImage={featuredImage}
+  />
+</SubPageLayout>

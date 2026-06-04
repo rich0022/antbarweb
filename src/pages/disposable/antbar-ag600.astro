@@ -1,0 +1,28 @@
+---
+import SubPageLayout from '../../layouts/SubPageLayout.astro';
+import ContentBody from '../../components/ContentBody.astro';
+import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
+import { readMirrorBodyHtml } from '../../lib/mirror-assets';
+import { stripMainWrapper } from '../../lib/site-shell';
+import '../../styles/ag600-bundle.css';
+
+const mirrorRoute = 'disposable/disposable/antbar-ag600';
+const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
+
+const postId = 1435;
+const title = 'AG600 Disposable Vape 600 Puffs-ANTBAR';
+const description = 'AG600 only weight 31g, Mesh Coil, 3.6V Constant Voltage. The popular disposable vape in 2024!';
+const featuredImage = '/wp-content/uploads/2024/03/AG600.png';
+---
+
+<SubPageLayout title={title} description={description} pageId={String(postId)}>
+  <main id="content">
+    <ContentBody html={bodyHtml} />
+  </main>
+  <ProductShellRuntime
+    postId={postId}
+    title={title}
+    excerpt={description}
+    featuredImage={featuredImage}
+  />
+</SubPageLayout>

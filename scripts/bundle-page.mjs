@@ -28,6 +28,48 @@ const PAGE_CSS_MAP = {
   support: ['post-948.css', 'wp-content/plugins/elementor/assets/css/widget-toggle.min.css'],
   verification: ['post-950.css'],
   'all-products': ['post-976.css', 'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css'],
+  'agp12000': [
+    'post-3489.css',
+    'post-3519.css',
+    'wp-content/plugins/elementor/assets/css/widget-video.min.css',
+    'wp-content/plugins/elementor/assets/css/widget-image-box.min.css',
+    'wp-content/plugins/elementor/assets/css/widget-menu-anchor.min.css',
+  ],
+  kt800: [
+    'post-2818.css',
+    'post-3531.css',
+    'wp-content/plugins/elementor/assets/css/widget-video.min.css',
+    'wp-content/plugins/elementor/assets/css/widget-menu-anchor.min.css',
+  ],
+  at800: [
+    'post-1972.css',
+    'post-3531.css',
+    'wp-content/plugins/elementor/assets/css/widget-video.min.css',
+    'wp-content/plugins/elementor/assets/css/widget-menu-anchor.min.css',
+  ],
+  ag600: [
+    'post-1435.css',
+    'wp-content/plugins/elementor/assets/css/widget-menu-anchor.min.css',
+  ],
+  rocket: [
+    'post-1429.css',
+    'wp-content/plugins/elementor/assets/css/widget-menu-anchor.min.css',
+  ],
+  sa8000: [
+    'post-1360.css',
+    'post-3439.css',
+    'wp-content/plugins/elementor/assets/css/widget-video.min.css',
+    'wp-content/plugins/elementor/assets/css/widget-menu-anchor.min.css',
+  ],
+  ahp10000: [
+    'post-1436.css',
+  ],
+  atb600: [
+    'post-1403.css',
+  ],
+  dah6000: [
+    'post-1441.css',
+  ],
 };
 
 const BASE_CSS = [
