@@ -1,19 +1,17 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { contentEntryFileName } from '../lib/content-entry';
-import { resolveMirrorRoute } from '../lib/mirror-assets';
+import SubPageLayout from '../layouts/SubPageLayout.astro';
 import { ANTBAR_LAB_HERO, ANTBAR_LAB_INTRO, ANTBAR_LAB_CERTS } from '../data/about-subpages';
+import '../styles/antbar-lab-bundle.css';
 
 const pages = await getCollection('pages');
 const entry = pages.find((p) => p.id === 'antbar-lab');
-const mirrorRoute = entry ? resolveMirrorRoute('pages', contentEntryFileName(entry.id, 'pages')) : '';
 const h = ANTBAR_LAB_HERO;
 const intro = ANTBAR_LAB_INTRO;
 const certs = ANTBAR_LAB_CERTS;
 ---
 
-<BaseLayout title={entry?.data.title ?? 'Antbar Lab'} description={entry?.data.description ?? ''} mirrorRoute={mirrorRoute}>
+<SubPageLayout title={entry?.data.title ?? 'Antbar Lab'} description={entry?.data.description ?? ''} pageId="118">
   <main id="content" class="site-main post-118 page type-page status-publish hentry">
     <div class="page-content">
       <div data-elementor-type="wp-page" data-elementor-id="118" class="elementor elementor-118" data-elementor-post-type="page">
@@ -36,12 +34,8 @@ const certs = ANTBAR_LAB_CERTS;
                     <div class="e-con-inner">
                       <div class={`elementor-element elementor-element-${intro.headingsContainerId} e-flex e-con-boxed e-con e-child`} data-id={intro.headingsContainerId} data-element_type="container">
                         <div class="e-con-inner">
-                          <div class={`elementor-element elementor-element-${intro.heading1WidgetId} elementor-widget elementor-widget-heading`} data-id={intro.heading1WidgetId} data-element_type="widget" data-widget_type="heading.default">
-                            <h2 class="elementor-heading-title elementor-size-default">TO EXPLORE</h2>
-                          </div>
-                          <div class={`elementor-element elementor-element-${intro.heading2WidgetId} elementor-widget elementor-widget-heading`} data-id={intro.heading2WidgetId} data-element_type="widget" data-widget_type="heading.default">
-                            <h2 class="elementor-heading-title elementor-size-default">TO EXPERIENCE</h2>
-                          </div>
+                          <div class={`elementor-element elementor-element-${intro.heading1WidgetId} elementor-widget elementor-widget-heading`} data-id={intro.heading1WidgetId} data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">TO EXPLORE</h2></div>
+                          <div class={`elementor-element elementor-element-${intro.heading2WidgetId} elementor-widget elementor-widget-heading`} data-id={intro.heading2WidgetId} data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">TO EXPERIENCE</h2></div>
                         </div>
                       </div>
                       <div class={`elementor-element elementor-element-${intro.iconContainerId} e-con-full e-flex e-con e-child`} data-id={intro.iconContainerId} data-element_type="container">
@@ -63,19 +57,13 @@ const certs = ANTBAR_LAB_CERTS;
                   <div class={`elementor-element elementor-element-${intro.rightImageWidgetId} elementor-widget elementor-widget-image`} data-id={intro.rightImageWidgetId} data-element_type="widget" data-widget_type="image.default">
                     <img loading="lazy" decoding="async" width={intro.rightImage.width} height={intro.rightImage.height} src={intro.rightImage.src} class={`attachment-full size-full wp-image-${intro.rightImage.wpImageId}`} alt="" srcset={intro.rightImage.srcset} sizes={intro.rightImage.sizes} />
                   </div>
-                  <div class={`elementor-element elementor-element-${intro.rightTextWidgetId} elementor-widget elementor-widget-text-editor`} data-id={intro.rightTextWidgetId} data-element_type="widget" data-widget_type="text-editor.default">
-                    <p>{intro.rightText}</p>
-                  </div>
+                  <div class={`elementor-element elementor-element-${intro.rightTextWidgetId} elementor-widget elementor-widget-text-editor`} data-id={intro.rightTextWidgetId} data-element_type="widget" data-widget_type="text-editor.default"><p>{intro.rightText}</p></div>
                 </div>
               </div>
             </div>
             <div class={`elementor-element elementor-element-${intro.bottomContainerId} e-con-full e-flex e-con e-child`} data-id={intro.bottomContainerId} data-element_type="container">
-              <div class={`elementor-element elementor-element-${intro.headingWidgetId} elementor-invisible elementor-widget elementor-widget-heading`} data-id={intro.headingWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="heading.default">
-                <h2 class="elementor-heading-title elementor-size-default">{intro.bottomHeading}</h2>
-              </div>
-              <div class={`elementor-element elementor-element-${intro.textWidgetId} elementor-invisible elementor-widget elementor-widget-text-editor`} data-id={intro.textWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="text-editor.default">
-                <p>{intro.bottomText}</p>
-              </div>
+              <div class={`elementor-element elementor-element-${intro.headingWidgetId} elementor-invisible elementor-widget elementor-widget-heading`} data-id={intro.headingWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">{intro.bottomHeading}</h2></div>
+              <div class={`elementor-element elementor-element-${intro.textWidgetId} elementor-invisible elementor-widget elementor-widget-text-editor`} data-id={intro.textWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="text-editor.default"><p>{intro.bottomText}</p></div>
             </div>
           </div>
         </div>
@@ -84,12 +72,8 @@ const certs = ANTBAR_LAB_CERTS;
           <div class="e-con-inner">
             <div class={`elementor-element elementor-element-${certs.innerContainerId} e-flex e-con-boxed e-con e-child`} data-id={certs.innerContainerId} data-element_type="container">
               <div class="e-con-inner">
-                <div class={`elementor-element elementor-element-${certs.headingWidgetId} elementor-invisible elementor-widget elementor-widget-heading`} data-id={certs.headingWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="heading.default">
-                  <h2 class="elementor-heading-title elementor-size-default" set:html={certs.heading} />
-                </div>
-                <div class={`elementor-element elementor-element-${certs.textWidgetId} elementor-widget elementor-widget-text-editor`} data-id={certs.textWidgetId} data-element_type="widget" data-widget_type="text-editor.default">
-                  <p>{certs.text}</p>
-                </div>
+                <div class={`elementor-element elementor-element-${certs.headingWidgetId} elementor-invisible elementor-widget elementor-widget-heading`} data-id={certs.headingWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default" set:html={certs.heading} /></div>
+                <div class={`elementor-element elementor-element-${certs.textWidgetId} elementor-widget elementor-widget-text-editor`} data-id={certs.textWidgetId} data-element_type="widget" data-widget_type="text-editor.default"><p>{certs.text}</p></div>
               </div>
             </div>
             <div class={`elementor-element elementor-element-${certs.imagesContainerId} e-flex e-con-boxed elementor-invisible e-con e-child`} data-id={certs.imagesContainerId} data-element_type="container" data-settings='{"animation":"fadeInUp"}'>
@@ -109,4 +93,4 @@ const certs = ANTBAR_LAB_CERTS;
       </div>
     </div>
   </main>
-</BaseLayout>
+</SubPageLayout>

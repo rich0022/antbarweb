@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import ContentBody from '../../components/ContentBody.astro';
-import ProductLayout from '../../layouts/ProductLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { contentEntryFileName } from '../../lib/content-entry';
 import { readContentBody } from '../../lib/content-body';
 import {
@@ -68,6 +68,6 @@ if (props.mode === 'content' && props.entry) {
 }
 ---
 
-<ProductLayout title={title} description={description} mirrorRoute={mirrorRoute}>
+<BaseLayout title={title} description={description} mirrorRoute={mirrorRoute}>
   <ContentBody html={bodyHtml} />
-</ProductLayout>
+</BaseLayout>

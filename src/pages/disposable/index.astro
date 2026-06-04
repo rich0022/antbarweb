@@ -2,40 +2,25 @@
 import { getCollection } from 'astro:content';
 import PostsWidget from '../../components/archive/PostsWidget.astro';
 import ContentBody from '../../components/ContentBody.astro';
-import ProductLayout from '../../layouts/ProductLayout.astro';
-import { extractArchiveWidget } from '../../lib/archive-widget';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { readContentBody } from '../../lib/content-body';
 import { contentEntryFileName } from '../../lib/content-entry';
-import { resolveMirrorRoute } from '../../lib/mirror-assets';
+import { extractArchiveWidget } from '../../lib/archive-widget';
 
 const products = await getCollection('products');
-const categoryEntry = products.find(
-  (entry) =>
-    entry.id === 'disposable/index' || entry.id === 'disposable' || entry.data.slug === 'disposable',
-);
-const bodyHtml = categoryEntry
-  ? await readContentBody('products', contentEntryFileName(categoryEntry.id, 'products'))
-  : '';
-const mirrorRoute = categoryEntry
-  ? resolveMirrorRoute('products', contentEntryFileName(categoryEntry.id, 'products'))
-  : 'disposable';
-const postsWidget = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
+const categoryEntry = products.find((entry) => entry.id === 'disposable/index');
+const bodyHtml = categoryEntry ? await readContentBody('products', contentEntryFileName(categoryEntry.id, 'products')) : '';
+const archive = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
 ---
 
-<ProductLayout
-  title={categoryEntry?.data.title ?? 'Disposable Products'}
-  description={categoryEntry?.data.description}
-  mirrorRoute={mirrorRoute}
->
-  {
-    postsWidget ? (
-      <>
-        <ContentBody html={postsWidget.beforeHtml} />
-        <PostsWidget widget={postsWidget.widget} />
-        <ContentBody html={postsWidget.afterHtml} />
-      </>
-    ) : (
-      <ContentBody html={bodyHtml} />
-    )
-  }
-</ProductLayout>
+<BaseLayout title={categoryEntry?.data.title ?? 'Disposable Vapes'} description={categoryEntry?.data.description ?? ''} mirrorRoute="disposable">
+  {archive ? (
+    <>
+      <ContentBody html={archive.beforeHtml} />
+      <PostsWidget widget={archive.widget} />
+      <ContentBody html={archive.afterHtml} />
+    </>
+  ) : (
+    <ContentBody html={bodyHtml} />
+  )}
+</BaseLayout>

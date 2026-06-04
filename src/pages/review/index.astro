@@ -2,35 +2,25 @@
 import { getCollection } from 'astro:content';
 import PostsWidget from '../../components/archive/PostsWidget.astro';
 import ContentBody from '../../components/ContentBody.astro';
-import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { readContentBody } from '../../lib/content-body';
 import { contentEntryFileName } from '../../lib/content-entry';
-import { resolveMirrorRoute } from '../../lib/mirror-assets';
 import { extractArchiveWidget } from '../../lib/archive-widget';
 
-const reviews = await getCollection('review');
-const indexEntry = reviews.find((entry) => entry.id === 'index' || entry.data.slug === 'review');
+const allReviews = await getCollection('review');
+const indexEntry = allReviews.find((entry) => entry.id === 'index' || entry.data.slug === 'review');
 const bodyHtml = indexEntry ? await readContentBody('review', contentEntryFileName(indexEntry.id, 'review')) : '';
-const mirrorRoute = indexEntry
-  ? resolveMirrorRoute('review', contentEntryFileName(indexEntry.id, 'review'))
-  : 'review';
 const archive = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
 ---
 
-<ArticleLayout
-  title={indexEntry?.data.title ?? 'ANTBAR Review'}
-  description={indexEntry?.data.description}
-  mirrorRoute={mirrorRoute}
->
-  {
-    archive ? (
-      <>
-        <ContentBody html={archive.beforeHtml} />
-        <PostsWidget widget={archive.widget} />
-        <ContentBody html={archive.afterHtml} />
-      </>
-    ) : (
-      <ContentBody html={bodyHtml} />
-    )
-  }
-</ArticleLayout>
+<BaseLayout title={indexEntry?.data.title ?? 'ANTBAR Reviews'} description={indexEntry?.data.description ?? ''} mirrorRoute="review">
+  {archive ? (
+    <>
+      <ContentBody html={archive.beforeHtml} />
+      <PostsWidget widget={archive.widget} />
+      <ContentBody html={archive.afterHtml} />
+    </>
+  ) : (
+    <ContentBody html={bodyHtml} />
+  )}
+</BaseLayout>

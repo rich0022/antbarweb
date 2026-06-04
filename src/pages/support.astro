@@ -1,0 +1,47 @@
+---
+import StandaloneLayout from '../layouts/StandaloneLayout.astro';
+import SupportClientScript from '../components/support/SupportClientScript.astro';
+import { SUPPORT_FAQS } from '../data/support-faq';
+import '../styles/support-bundle.css';
+---
+
+<StandaloneLayout
+  title="Frequently FAQS(Support) | ANTBAR Disposable Vapes Brand"
+  description="Common FAQs asked of ANTBAR about our vapes, vape kits, vape coils and or. Get answers to improve your vaping satisfaction in a flash."
+  pageId="948"
+>
+  <main id="content" class="site-main post-948 page type-page status-publish hentry">
+    <div class="page-content">
+      <div data-elementor-type="wp-page" data-elementor-id="948" class="elementor elementor-948" data-elementor-post-type="page">
+        <div class="elementor-element elementor-element-64e84b22 e-flex e-con-boxed e-con e-parent" data-id="64e84b22" data-element_type="container">
+          <div class="e-con-inner">
+            <div class="elementor-element elementor-element-41eff90d e-flex e-con-boxed e-con e-child" data-id="41eff90d" data-element_type="container">
+              <div class="e-con-inner">
+                <div class="elementor-element elementor-element-1ac8df71 elementor-invisible elementor-widget elementor-widget-heading" data-id="1ac8df71" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="heading.default">
+                  <h1 class="elementor-heading-title elementor-size-default">FAQs</h1>
+                </div>
+                <div class="elementor-element elementor-element-22b2485 elementor-widget elementor-widget-toggle" data-id="22b2485" data-element_type="widget" data-widget_type="toggle.default">
+                  <div class="elementor-toggle">
+                    {SUPPORT_FAQS.map((faq) => (
+                      <div class="elementor-toggle-item">
+                        <div id={`elementor-tab-title-${3630 + faq.tabNumber}`} class="elementor-tab-title" data-tab={faq.tabNumber} role="button" aria-controls={`elementor-tab-content-${3630 + faq.tabNumber}`} aria-expanded="false">
+                          <span class="elementor-toggle-icon elementor-toggle-icon-right" aria-hidden="true">
+                            <span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-plus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg></span>
+                            <span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-minus" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg></span>
+                          </span>
+                          <a class="elementor-toggle-title" tabindex="0">{faq.question}</a>
+                        </div>
+                        <div id={`elementor-tab-content-${3630 + faq.tabNumber}`} class="elementor-tab-content elementor-clearfix" data-tab={faq.tabNumber} role="region" aria-labelledby={`elementor-tab-title-${3630 + faq.tabNumber}`}><p>{faq.answer}</p></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <SupportClientScript />
+</StandaloneLayout>

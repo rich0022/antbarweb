@@ -18,7 +18,7 @@ const TitleTag = widget.cards[0]?.titleTag ?? 'h2';
   data-widget_type={widget.dataWidgetType}
 >
   <div class="elementor-widget-container">
-    <div class={widget.postsContainerClass} role="list">
+    <div class={`${widget.postsContainerClass} elementor-has-item-ratio`} role="list">
       {
         widget.cards.map((card) => (
           <article class={card.articleClass} role="listitem">
@@ -120,3 +120,4 @@ const TitleTag = widget.cards[0]?.titleTag ?? 'h2';
     }
   </div>
 </div>
+{widget.nextPageHref && <script is:inline src="/scripts/load-more.js"></script>}

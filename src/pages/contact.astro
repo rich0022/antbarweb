@@ -1,0 +1,77 @@
+---
+import StandaloneLayout from '../layouts/StandaloneLayout.astro';
+import '../styles/contact-bundle.css';
+---
+
+<StandaloneLayout
+  title="Contact To E-Cigarette Wholesale Company |ANTBAR"
+  description="Contact us for the most up-to-date disposable e-cigarette information for 2024 and get discounted prices on Sa8000 and other disposable electronics!"
+  pageId="927"
+>
+  <main id="content" class="site-main post-927 page type-page status-publish hentry">
+    <div class="page-content">
+      <div data-elementor-type="wp-page" data-elementor-id="927" class="elementor elementor-927" data-elementor-post-type="page">
+        <div class="elementor-element elementor-element-d3638e0 e-flex e-con-boxed e-con e-parent" data-id="d3638e0" data-element_type="container">
+          <div class="e-con-inner">
+            <div class="elementor-element elementor-element-31e3ac6 elementor-invisible elementor-widget elementor-widget-heading" data-id="31e3ac6" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="heading.default">
+              <h1 class="elementor-heading-title elementor-size-default">Contact Us</h1>
+            </div>
+            <div class="elementor-element elementor-element-cb8b231 elementor-button-align-start elementor-invisible elementor-widget elementor-widget-form" data-id="cb8b231" data-element_type="widget" data-settings='{"step_next_label":"下一个","step_previous_label":"上一个","_animation":"fadeInUp","button_width":"100","step_type":"number_text","step_icon_shape":"circle"}' data-widget_type="form.default">
+              <form class="elementor-form" method="post" id="contactForm" name="新表单" aria-label="新表单">
+                <input type="hidden" name="post_id" value="927"/>
+                <input type="hidden" name="form_id" value="cb8b231"/>
+                <input type="hidden" name="referer_title" value="Contact To E-Cigarette Wholesale Company |ANTBAR"/>
+                <input type="hidden" name="queried_id" value="927"/>
+                <div class="elementor-form-fields-wrapper elementor-labels-">
+                  <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-100">
+                    <label for="form-field-name" class="elementor-field-label elementor-screen-only">Send E-mail</label>
+                    <input size="1" type="text" name="form_fields[name]" id="form-field-name" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Your Name"/>
+                  </div>
+                  <div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-100 elementor-field-required">
+                    <label for="form-field-email" class="elementor-field-label elementor-screen-only">Email</label>
+                    <input size="1" type="email" name="form_fields[email]" id="form-field-email" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Your E-mail" required="required"/>
+                  </div>
+                  <div class="elementor-field-type-textarea elementor-field-group elementor-column elementor-field-group-message elementor-col-100">
+                    <label for="form-field-message" class="elementor-field-label elementor-screen-only">Message</label>
+                    <textarea class="elementor-field-textual elementor-field elementor-size-sm" name="form_fields[message]" id="form-field-message" rows="4" placeholder="Your Message"></textarea>
+                  </div>
+                  <div class="elementor-field-type-recaptcha_v3 elementor-field-group elementor-column elementor-field-group-field_e8d4fbf elementor-col-100 recaptcha_v3-bottomright">
+                    <div class="elementor-field" id="form-field-field_e8d4fbf"><div class="elementor-g-recaptcha" data-sitekey="6LdrHhgpAAAAALDBfAGhrONGByPoi1-Zkb-g1mnm" data-type="v3" data-action="Form" data-badge="bottomright" data-size="invisible"></div></div>
+                  </div>
+                  <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
+                    <button class="elementor-button elementor-size-sm" type="submit">
+                      <span class="elementor-button-content-wrapper">
+                        <span class="elementor-button-text">Submit</span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="elementor-element elementor-element-cff89a2 elementor-widget elementor-widget-html" data-id="cff89a2" data-element_type="widget" data-widget_type="html.default">
+              <script>
+                jQuery(function(){
+                  var $ = jQuery
+                  $("#contactForm").on("submit",function(){
+                    var name = $("#form-field-name").val()
+                    var email = $("#form-field-email").val()
+                    var msg = $("#form-field-message").val()
+                    console.log(name,email,msg)
+                    $.ajax({
+                      type: "GET",
+                      url: 'http://zhmapi.ew80.com/v1/index',
+                      data: "code=2585056154119282662607434&key=0",
+                      success: function(msg){
+                      }
+                    })
+                    return false
+                  })
+                })
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</StandaloneLayout>

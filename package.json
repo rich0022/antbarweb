@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "build:cf": "astro build && node scripts/prepare-cloudflare-static.mjs",
+    "dev": "astro dev --host",
+    "start": "astro dev --host",
+    "build": "astro build && node scripts/purge-build-css.mjs",
+    "build:cf": "astro build && node scripts/purge-build-css.mjs && node scripts/prepare-cloudflare-static.mjs",
     "extract:content": "node scripts/extract-content.mjs",
     "fetch:missing-blog": "node scripts/fetch-missing-blog.mjs",
     "fetch:missing-review": "node scripts/fetch-missing-review.mjs",
@@ -21,6 +21,7 @@
     "astro": "^6.4.3"
   },
   "devDependencies": {
+    "purgecss": "^8.0.0",
     "typescript": "^5.8.0"
   }
 }

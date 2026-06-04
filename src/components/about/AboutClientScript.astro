@@ -1,0 +1,87 @@
+<script is:inline>
+  (() => {
+    // --- scroll-bg parallax (replaces jQuery scroll-bg) ---
+    const hero = document.querySelector('.scroll-bn');
+    const nav = document.getElementById('hNav');
+    if (hero && nav) {
+      const img = hero.querySelector('img');
+      if (img) {
+        const bg = document.createElement('div');
+        bg.className = 'scroll-bg';
+        bg.style.cssText = `background-image:url(${img.src});position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background-size:cover;background-position:center`;
+        const updateTop = () => { bg.style.top = `${nav.offsetHeight}px`; };
+        updateTop();
+        window.addEventListener('resize', updateTop);
+        document.body.prepend(bg);
+      }
+    }
+
+    // --- bs-tabs navigation (replaces jQuery bs-tabs) ---
+    const container = document.getElementById('bsConts');
+    if (container) {
+      const sections = container.querySelectorAll('.bs-one');
+      const images = container.querySelectorAll('.bs-img .elementor-widget-container');
+      if (sections.length && images.length) {
+        const tabs = document.createElement('div');
+        tabs.className = 'bs-tabs';
+        images.forEach((img) => {
+          const tab = img.cloneNode(true);
+          tab.classList.add('bs-tab');
+          tabs.appendChild(tab);
+        });
+        container.prepend(tabs);
+
+        const tabEls = tabs.querySelectorAll('.bs-tab');
+        let current = -1;
+        let scrolling = true;
+
+        function setActive(index) {
+          current = index;
+          tabEls.forEach((t, i) => t.classList.toggle('active', i === index));
+          sections.forEach((s, i) => s.classList.toggle('active', i === index));
+        }
+
+        window.addEventListener('scroll', () => {
+          if (!scrolling) return;
+          const mid = window.scrollY + window.innerHeight / 2;
+          let best = -1, bestDist = Infinity;
+          sections.forEach((s, i) => {
+            const top = s.getBoundingClientRect().top + window.scrollY;
+            const dist = Math.abs(top - mid);
+            if (dist < bestDist && top < mid) { bestDist = dist; best = i; }
+          });
+          if (best >= 0 && best !== current) setActive(best);
+        }, { passive: true });
+        window.dispatchEvent(new Event('scroll'));
+
+        // sticky positioning
+        const header = document.querySelector('header');
+        function updateSticky() {
+          if (!header) return;
+          const containerTop = container.getBoundingClientRect().top + window.scrollY;
+          const headerH = header.offsetHeight;
+          const scrollY = window.scrollY;
+          if (scrollY + headerH >= containerTop) {
+            tabs.classList.add('fixed');
+            tabs.classList.remove('bot');
+            tabs.style.top = `${headerH}px`;
+          } else {
+            tabs.classList.remove('fixed');
+            tabs.style.top = '0';
+          }
+          const lastTab = tabs.querySelector('.bs-tab:last-child');
+          if (lastTab && containerTop + container.offsetHeight < headerH + scrollY + lastTab.offsetHeight) {
+            tabs.classList.add('bot');
+            tabs.classList.remove('fixed');
+            tabs.style.top = 'auto';
+          } else if (tabs.classList.contains('bot') && scrollY + headerH < containerTop + container.offsetHeight - lastTab.offsetHeight) {
+            tabs.classList.remove('bot');
+          }
+        }
+        window.addEventListener('scroll', updateSticky, { passive: true });
+        window.addEventListener('resize', updateSticky);
+        updateSticky();
+      }
+    }
+  })();
+</script>

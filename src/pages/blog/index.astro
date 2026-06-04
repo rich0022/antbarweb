@@ -2,23 +2,22 @@
 import { getCollection } from 'astro:content';
 import PostsWidget from '../../components/archive/PostsWidget.astro';
 import ContentBody from '../../components/ContentBody.astro';
-import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import StandaloneLayout from '../../layouts/StandaloneLayout.astro';
 import { readContentBody } from '../../lib/content-body';
 import { contentEntryFileName } from '../../lib/content-entry';
-import { resolveMirrorRoute } from '../../lib/mirror-assets';
 import { extractArchiveWidget } from '../../lib/archive-widget';
+import '../../styles/blog-bundle.css';
 
 const allBlog = await getCollection('blog');
 const blogIndex = allBlog.find((entry) => entry.id === 'index' || entry.data.slug === 'blog');
 const bodyHtml = blogIndex ? await readContentBody('blog', contentEntryFileName(blogIndex.id, 'blog')) : '';
-const mirrorRoute = blogIndex ? resolveMirrorRoute('blog', contentEntryFileName(blogIndex.id, 'blog')) : 'blog';
 const archive = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
 ---
 
-<ArticleLayout
+<StandaloneLayout
   title={blogIndex?.data.title ?? 'ANTBAR Blog'}
   description={blogIndex?.data.description ?? ''}
-  mirrorRoute={mirrorRoute}
+  pageId="1817"
 >
   {
     archive ? (
@@ -31,4 +30,4 @@ const archive = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
       <ContentBody html={bodyHtml} />
     )
   }
-</ArticleLayout>
+</StandaloneLayout>

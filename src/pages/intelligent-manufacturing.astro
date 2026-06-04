@@ -1,20 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { contentEntryFileName } from '../lib/content-entry';
-import { resolveMirrorRoute } from '../lib/mirror-assets';
+import SubPageLayout from '../layouts/SubPageLayout.astro';
+import '../styles/intelligent-manufacturing-bundle.css';
+
 const pages = await getCollection('pages');
 const entry = pages.find((p) => p.id === 'intelligent-manufacturing');
-const mirrorRoute = entry ? resolveMirrorRoute('pages', contentEntryFileName(entry.id, 'pages')) : '';
 
 const haItems = [
-  { numWidgetId: '5f5654a', headingWidgetId: 'b27173f', textWidgetId: '3ea67d2', num: '01', heading: 'Pioneer in<br>Automatic Robots', text: 'The automatic robotic arms are wholly invented and independently developed by our team. They are used to manufacture a diverse range of vaping products including disposable products and POD systems, etc. This utilization of robotic arms allows Antbar to cater to various customer preferences and manufacture more brilliant vape manufacturing solutions.' },
-  { numWidgetId: '7347617', headingWidgetId: 'cec4269', textWidgetId: '41194b3', num: '02', heading: 'Higher Effificiency<br>and Lower Cost', text: 'Using intelligent manufacturing approach, Antbar\'s automated manufacturing process drastically decreases the labour cost and time and resource wastage compared to traditional manual assembly methods,and improves production efficiency by more than 50%.' },
-  { numWidgetId: '1eaba52', headingWidgetId: '51f2452', textWidgetId: '737c841', num: '03', heading: 'Process Monitoring<br>and Quality Control', text: 'Automated production stringently monitor the problems that need to be addressed. By collecting and analyzing data, we enable to preview the condition of our production lines. Once these problems are identified in advance, we can make appropriate responses and adjustments to prevent problems from occurring and reduce the risk of poor product quality, downtime or disruption. In this way we can guarantee that every AntBar product is of the highest standard.' },
+  { num: '01', heading: 'Pioneer in<br>Automatic Robots', text: 'The automatic robotic arms are wholly invented and independently developed by our team. They are used to manufacture a diverse range of vaping products including disposable products and POD systems, etc.' },
+  { num: '02', heading: 'Higher Effificiency<br>and Lower Cost', text: "Using intelligent manufacturing approach, Antbar's automated manufacturing process drastically decreases the labour cost and time and resource wastage compared to traditional manual assembly methods,and improves production efficiency by more than 50%." },
+  { num: '03', heading: 'Process Monitoring<br>and Quality Control', text: 'Automated production stringently monitor the problems that need to be addressed. By collecting and analyzing data, we enable to preview the condition of our production lines.' },
 ] as const;
 ---
 
-<BaseLayout title={entry?.data.title ?? 'Intelligent Manufacturing'} description={entry?.data.description ?? ''} mirrorRoute={mirrorRoute}>
+<SubPageLayout title={entry?.data.title ?? 'Intelligent Manufacturing'} description={entry?.data.description ?? ''} pageId="43">
   <main id="content" class="site-main post-43 page type-page status-publish hentry">
     <div class="page-content">
       <div data-elementor-type="wp-page" data-elementor-id="43" class="elementor elementor-43" data-elementor-post-type="page">
@@ -32,21 +31,15 @@ const haItems = [
           <div class="e-con-inner">
             <div class="elementor-element elementor-element-57cf07a e-con-full e-flex e-con e-child" data-id="57cf07a" data-element_type="container">
               <div class="elementor-element elementor-element-882f900 e-con-full e-flex e-con e-child" data-id="882f900" data-element_type="container">
-                <div class="elementor-element elementor-element-85fe7b3 elementor-widget elementor-widget-heading" data-id="85fe7b3" data-element_type="widget" data-widget_type="heading.default">
-                  <h2 class="elementor-heading-title elementor-size-default">Intelligent<br />Manufacturing</h2>
-                </div>
+                <div class="elementor-element elementor-element-85fe7b3 elementor-widget elementor-widget-heading" data-id="85fe7b3" data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">Intelligent<br />Manufacturing</h2></div>
               </div>
               <div class="elementor-element elementor-element-1d3c7db e-con-full e-flex e-con e-child" data-id="1d3c7db" data-element_type="container">
-                <div class="elementor-element elementor-element-91332d4 elementor-widget elementor-widget-image" data-id="91332d4" data-element_type="widget" data-widget_type="image.default">
-                  <img loading="lazy" decoding="async" width="96" height="32" src="/wp-content/uploads/2024/04/图标-2.png" class="attachment-large size-large wp-image-2088" alt="" />
-                </div>
+                <div class="elementor-element elementor-element-91332d4 elementor-widget elementor-widget-image" data-id="91332d4" data-element_type="widget" data-widget_type="image.default"><img loading="lazy" decoding="async" width="96" height="32" src="/wp-content/uploads/2024/04/图标-2.png" class="attachment-large size-large wp-image-2088" alt="" /></div>
               </div>
             </div>
             <div class="elementor-element elementor-element-587355c e-con-full e-flex e-con e-child" data-id="587355c" data-element_type="container">
               <div class="elementor-element elementor-element-10da818 e-con-full e-flex e-con e-child" data-id="10da818" data-element_type="container">
-                <div class="elementor-element elementor-element-d1aac49 elementor-widget elementor-widget-text-editor" data-id="d1aac49" data-element_type="widget" data-widget_type="text-editor.default">
-                  <p>ARTIFICIAL INTELLIGENCE</p>
-                </div>
+                <div class="elementor-element elementor-element-d1aac49 elementor-widget elementor-widget-text-editor" data-id="d1aac49" data-element_type="widget" data-widget_type="text-editor.default"><p>ARTIFICIAL INTELLIGENCE</p></div>
               </div>
             </div>
             <div class="elementor-element elementor-element-d87b7f9 e-con-full e-flex e-con e-child" data-id="d87b7f9" data-element_type="container">
@@ -56,9 +49,7 @@ const haItems = [
                 </div>
               </div>
               <div class="elementor-element elementor-element-d3f5b54 e-con-full e-flex e-con e-child" data-id="d3f5b54" data-element_type="container">
-                <div class="elementor-element elementor-element-8d8cae7 elementor-invisible elementor-widget elementor-widget-text-editor" data-id="8d8cae7" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="text-editor.default">
-                  <p>Our factory uses real-time data analysis, artificial intelligence (AI), and machine learning in the manufacturing process to realize intelligent manufacturing. The self-developed auto-mated plant improves both production efficiency and cost reduction. The state-of-the-art vape automated production line has encompassed a comprehensive range of processes, which include bracket and silicone assembly, welding heating wire, oil guide cotton inspection, automated e-liquid filling, and functional testing.</p>
-                </div>
+                <div class="elementor-element elementor-element-8d8cae7 elementor-invisible elementor-widget elementor-widget-text-editor" data-id="8d8cae7" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="text-editor.default"><p>Our factory uses real-time data analysis, artificial intelligence (AI), and machine learning in the manufacturing process to realize intelligent manufacturing. The self-developed auto-mated plant improves both production efficiency and cost reduction.</p></div>
               </div>
             </div>
           </div>
@@ -68,104 +59,30 @@ const haItems = [
           <div class="e-con-inner">
             <div class="elementor-element elementor-element-ab1713f e-con-full e-flex e-con e-child" data-id="ab1713f" data-element_type="container">
               <div class="elementor-element elementor-element-66b54cf e-con-full e-flex e-con e-child" data-id="66b54cf" data-element_type="container">
-                <div class="elementor-element elementor-element-dec6542 elementor-widget elementor-widget-heading" data-id="dec6542" data-element_type="widget" data-widget_type="heading.default">
-                  <h2 class="elementor-heading-title elementor-size-default">Highlights of Automated Plant</h2>
-                </div>
+                <div class="elementor-element elementor-element-dec6542 elementor-widget elementor-widget-heading" data-id="dec6542" data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">Highlights of Automated Plant</h2></div>
               </div>
               <div class="elementor-element elementor-element-e01feab e-con-full e-flex e-con e-child" data-id="e01feab" data-element_type="container">
-                <div class="elementor-element elementor-element-ee49efa elementor-widget elementor-widget-image" data-id="ee49efa" data-element_type="widget" data-widget_type="image.default">
-                  <img loading="lazy" decoding="async" width="96" height="32" src="/wp-content/uploads/2024/04/图标-2.png" class="attachment-large size-large wp-image-2088" alt="" />
-                </div>
+                <div class="elementor-element elementor-element-ee49efa elementor-widget elementor-widget-image" data-id="ee49efa" data-element_type="widget" data-widget_type="image.default"><img loading="lazy" decoding="async" width="96" height="32" src="/wp-content/uploads/2024/04/图标-2.png" class="attachment-large size-large wp-image-2088" alt="" /></div>
               </div>
             </div>
             <div class="elementor-element elementor-element-da9a5fa e-con-full e-flex e-con e-child" data-id="da9a5fa" data-element_type="container">
               <div class="elementor-element elementor-element-f956a79 e-con-full e-flex e-con e-child" data-id="f956a79" data-element_type="container">
-                <div class="elementor-element elementor-element-cb43d7d elementor-widget elementor-widget-text-editor" data-id="cb43d7d" data-element_type="widget" data-widget_type="text-editor.default">
-                  <p>ARTIFICIAL INTELLIGENCE</p>
-                </div>
+                <div class="elementor-element elementor-element-cb43d7d elementor-widget elementor-widget-text-editor" data-id="cb43d7d" data-element_type="widget" data-widget_type="text-editor.default"><p>ARTIFICIAL INTELLIGENCE</p></div>
               </div>
             </div>
             <div class="elementor-element elementor-element-a975e99 e-con-full ha-conts e-flex e-con e-child" data-id="a975e99" data-element_type="container" id="haConts">
               {haItems.map((item, i) => (
-                <div class={`elementor-element elementor-element-${['438ffce','3c4bd0a','0f39c07'][i]} e-con-full ha-one e-flex e-con e-child`} data-id={['438ffce','3c4bd0a','0f39c07'][i]} data-element_type="container">
-                  <div class={`elementor-element elementor-element-${['ae15aa4','f20061a','83fcf7b'][i]} e-con-full e-flex e-con e-child`} data-id={['ae15aa4','f20061a','83fcf7b'][i]} data-element_type="container">
-                    <div class={`elementor-element elementor-element-${item.numWidgetId} ha-num elementor-widget elementor-widget-heading`} data-id={item.numWidgetId} data-element_type="widget" data-widget_type="heading.default">
-                      <h2 class="elementor-heading-title elementor-size-default">{item.num}</h2>
-                    </div>
+                <div class="elementor-element elementor-element-438ffce e-con-full ha-one e-flex e-con e-child" data-id="438ffce" data-element_type="container">
+                  <div class="elementor-element elementor-element-ae15aa4 e-con-full e-flex e-con e-child" data-id="ae15aa4" data-element_type="container">
+                    <div class="elementor-element elementor-element-5f5654a ha-num elementor-widget elementor-widget-heading" data-id="5f5654a" data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">{item.num}</h2></div>
                   </div>
-                  <div class={`elementor-element elementor-element-${['795961e','b4b8fe6','1e86870'][i]} e-con-full e-flex e-con e-child`} data-id={['795961e','b4b8fe6','1e86870'][i]} data-element_type="container">
-                    <div class={`elementor-element elementor-element-${['56d7f5d','95855aa','ee49f1d'][i]} e-con-full ha-bar e-flex e-con e-child`} data-id={['56d7f5d','95855aa','ee49f1d'][i]} data-element_type="container" data-settings='{"background_background":"classic"}'>
-                      <div class={`elementor-element elementor-element-${['b42544e','13fc9a6','294b99b'][i]} ha-thumb e-con-full e-flex e-con e-child`} data-id={['b42544e','13fc9a6','294b99b'][i]} data-element_type="container" data-settings='{"background_background":"classic"}'></div>
-                    </div>
-                    <div class={`elementor-element elementor-element-${item.headingWidgetId} elementor-widget elementor-widget-heading`} data-id={item.headingWidgetId} data-element_type="widget" data-widget_type="heading.default">
-                      <h2 class="elementor-heading-title elementor-size-default" set:html={item.heading} />
-                    </div>
-                    <div class={`elementor-element elementor-element-${item.textWidgetId} elementor-invisible elementor-widget elementor-widget-text-editor`} data-id={item.textWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="text-editor.default">
-                      <p>{item.text}</p>
-                    </div>
+                  <div class="elementor-element elementor-element-795961e e-con-full e-flex e-con e-child" data-id="795961e" data-element_type="container">
+                    <div class="elementor-element elementor-element-56d7f5d e-con-full ha-bar e-flex e-con e-child" data-id="56d7f5d" data-element_type="container" data-settings='{"background_background":"classic"}'><div class="elementor-element elementor-element-b42544e ha-thumb e-con-full e-flex e-con e-child" data-id="b42544e" data-element_type="container" data-settings='{"background_background":"classic"}'></div></div>
+                    <div class="elementor-element elementor-element-b27173f elementor-widget elementor-widget-heading" data-id="b27173f" data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default" set:html={item.heading} /></div>
+                    <div class="elementor-element elementor-element-3ea67d2 elementor-invisible elementor-widget elementor-widget-text-editor" data-id="3ea67d2" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="text-editor.default"><p>{item.text}</p></div>
                   </div>
                 </div>
               ))}
-            </div>
-            <div class="elementor-element elementor-element-b1521fe elementor-widget elementor-widget-html" data-id="b1521fe" data-element_type="widget" data-widget_type="html.default">
-              <script is:inline>
-                jQuery(function () {
-                  var $ = jQuery;
-                  if ($('#haConts').length) {
-                    var haTabs = $('<div class="ha-tabs"></div>');
-                    $('.ha-num').each(function () {
-                      var el = $(this).find('.elementor-heading-title').clone();
-                      el.addClass('ha-tab');
-                      haTabs.append(el);
-                    });
-                    $('#haConts').prepend(haTabs);
-                    listen();
-                    function listen() {
-                      var tabs = $('.ha-tab');
-                      var conts = $('.ha-one');
-                      var cIndex = -1;
-                      var scroll3 = true;
-                      tabs.click(function () {
-                        if (!scroll3) return;
-                        scroll3 = false;
-                        $(this).addClass('active').siblings().removeClass('active');
-                        $('html,body').animate({ scrollTop: conts.eq($(this).index()).offset().top }, 300, function () {
-                          setTimeout(function () { scroll3 = true; }, 10);
-                        });
-                      });
-                      $(window).scroll(function () {
-                        if (!scroll3) return;
-                        var tg = $(this).scrollTop() + $(window).height() / 2;
-                        var min = Infinity;
-                        conts.each(function (i, item) {
-                          var t = $(item).offset().top;
-                          if (Math.abs(t - tg) < min && t < tg) { min = Math.abs(t - tg); cIndex = i; }
-                        });
-                        if (cIndex >= 0) {
-                          tabs.eq(cIndex).addClass('active').siblings().removeClass('active');
-                          conts.eq(cIndex).addClass('active').siblings().removeClass('active');
-                        }
-                      });
-                      $(window).trigger('scroll');
-                    }
-                    var left2 = $('.ha-tabs');
-                    var main2 = $('#haConts');
-                    var header2 = $('header');
-                    function setT2() {
-                      var t2 = main2.offset().top;
-                      var h2 = header2.outerHeight();
-                      var a2 = $(window).scrollTop();
-                      if (a2 + h2 >= t2) { left2.addClass('fixed').removeClass('bot').css('top', h2); }
-                      else { left2.removeClass('fixed').css('top', 0); }
-                      if (t2 + main2.outerHeight() < h2 + a2 + left2.children('.ha-tab').outerHeight()) { left2.addClass('bot').removeClass('fixed').css('top', 'auto'); }
-                      else { left2.removeClass('bot').css('top', 0); }
-                      if (left2.hasClass('fixed')) { left2.css('top', h2); }
-                    }
-                    $(window).on('scroll', function () { setT2(); });
-                    setT2();
-                  }
-                });
-              </script>
             </div>
           </div>
         </div>
@@ -173,14 +90,10 @@ const haItems = [
         <div class="elementor-element elementor-element-32449e7 e-flex e-con-boxed e-con e-parent" data-id="32449e7" data-element_type="container" data-settings='{"background_background":"classic"}'>
           <div class="e-con-inner">
             <div class="elementor-element elementor-element-6ce254e e-con-full e-flex e-con e-child" data-id="6ce254e" data-element_type="container">
-              <div class="elementor-element elementor-element-b15a0fc elementor-widget elementor-widget-image" data-id="b15a0fc" data-element_type="widget" data-widget_type="image.default">
-                <img loading="lazy" decoding="async" width="1167" height="740" src="/wp-content/uploads/2024/04/Intelligent-Manufacturing-3.jpg" class="elementor-animation-grow attachment-full size-full wp-image-2097" alt="" srcset="/wp-content/uploads/2024/04/Intelligent-Manufacturing-3.jpg 1167w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-3-300x190.jpg 300w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-3-1024x649.jpg 1024w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-3-768x487.jpg 768w" sizes="(max-width: 1167px) 100vw, 1167px" />
-              </div>
+              <div class="elementor-element elementor-element-b15a0fc elementor-widget elementor-widget-image" data-id="b15a0fc" data-element_type="widget" data-widget_type="image.default"><img loading="lazy" decoding="async" width="1167" height="740" src="/wp-content/uploads/2024/04/Intelligent-Manufacturing-3.jpg" class="elementor-animation-grow attachment-full size-full wp-image-2097" alt="" srcset="/wp-content/uploads/2024/04/Intelligent-Manufacturing-3.jpg 1167w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-3-300x190.jpg 300w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-3-1024x649.jpg 1024w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-3-768x487.jpg 768w" sizes="(max-width: 1167px) 100vw, 1167px" /></div>
             </div>
             <div class="elementor-element elementor-element-01b0268 e-con-full e-flex e-con e-child" data-id="01b0268" data-element_type="container">
-              <div class="elementor-element elementor-element-e672ad0 elementor-widget elementor-widget-image" data-id="e672ad0" data-element_type="widget" data-widget_type="image.default">
-                <img loading="lazy" decoding="async" width="1167" height="740" src="/wp-content/uploads/2024/04/Intelligent-Manufacturing-4.jpg" class="elementor-animation-grow attachment-full size-full wp-image-2098" alt="" srcset="/wp-content/uploads/2024/04/Intelligent-Manufacturing-4.jpg 1167w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-4-300x190.jpg 300w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-4-1024x649.jpg 1024w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-4-768x487.jpg 768w" sizes="(max-width: 1167px) 100vw, 1167px" />
-              </div>
+              <div class="elementor-element elementor-element-e672ad0 elementor-widget elementor-widget-image" data-id="e672ad0" data-element_type="widget" data-widget_type="image.default"><img loading="lazy" decoding="async" width="1167" height="740" src="/wp-content/uploads/2024/04/Intelligent-Manufacturing-4.jpg" class="elementor-animation-grow attachment-full size-full wp-image-2098" alt="" srcset="/wp-content/uploads/2024/04/Intelligent-Manufacturing-4.jpg 1167w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-4-300x190.jpg 300w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-4-1024x649.jpg 1024w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-4-768x487.jpg 768w" sizes="(max-width: 1167px) 100vw, 1167px" /></div>
             </div>
           </div>
         </div>
@@ -188,4 +101,59 @@ const haItems = [
       </div>
     </div>
   </main>
-</BaseLayout>
+</SubPageLayout>
+
+<script is:inline>
+  (() => {
+    const cont = document.getElementById('haConts');
+    if (!cont) return;
+    const sections = cont.querySelectorAll('.ha-one');
+    const nums = cont.querySelectorAll('.ha-num .elementor-heading-title');
+    if (!sections.length || !nums.length) return;
+    const tabs = document.createElement('div');
+    tabs.className = 'ha-tabs';
+    nums.forEach(n => { const t = n.cloneNode(true); t.classList.add('ha-tab'); tabs.appendChild(t); });
+    cont.prepend(tabs);
+    const tabEls = tabs.querySelectorAll('.ha-tab');
+    let current = -1, scrolling = true;
+
+    tabEls.forEach((tab, i) => {
+      tab.addEventListener('click', () => {
+        if (!scrolling) return;
+        scrolling = false;
+        tabEls.forEach((t, j) => t.classList.toggle('active', j === i));
+        sections.forEach((s, j) => s.classList.toggle('active', j === i));
+        sections[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => { scrolling = true; }, 400);
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (!scrolling) return;
+      const mid = window.scrollY + window.innerHeight / 2;
+      let best = -1, bestDist = Infinity;
+      sections.forEach((s, i) => {
+        const top = s.getBoundingClientRect().top + window.scrollY;
+        const dist = Math.abs(top - mid);
+        if (dist < bestDist && top < mid) { bestDist = dist; best = i; }
+      });
+      if (best >= 0 && best !== current) {
+        current = best;
+        tabEls.forEach((t, j) => t.classList.toggle('active', j === best));
+        sections.forEach((s, j) => s.classList.toggle('active', j === best));
+      }
+    }, { passive: true });
+    window.dispatchEvent(new Event('scroll'));
+
+    const header = document.querySelector('header');
+    function sticky() {
+      if (!header) return;
+      const ct = cont.getBoundingClientRect().top + window.scrollY;
+      const hh = header.offsetHeight;
+      if (window.scrollY + hh >= ct) { tabs.classList.add('fixed'); tabs.style.top = hh + 'px'; }
+      else { tabs.classList.remove('fixed'); tabs.style.top = '0'; }
+    }
+    window.addEventListener('scroll', sticky, { passive: true });
+    sticky();
+  })();
+</script>

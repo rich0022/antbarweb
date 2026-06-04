@@ -1,16 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 import ContentBody from '../../components/ContentBody.astro';
-import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import StandaloneLayout from '../../layouts/StandaloneLayout.astro';
 import { contentEntryFileName, contentEntrySlug } from '../../lib/content-entry';
 import { readContentBody } from '../../lib/content-body';
 import {
   collectBlogMirrorSlugs,
   readMirrorBodyHtml,
-  resolveMirrorRoute,
 } from '../../lib/mirror-assets';
-import { readFile } from 'node:fs/promises';
+import { readFile, access } from 'node:fs/promises';
 import path from 'node:path';
+import '../../styles/blog-bundle.css';
 
 export async function getStaticPaths() {
   const contentPosts = await getCollection('blog');
@@ -35,6 +35,16 @@ export async function getStaticPaths() {
   }));
 }
 
+const sharedPostIds = new Set(['49','68','305','1132','1146','1817','2978','3997','4326']);
+
+const SINGLE_POST_CSS = [
+  '/wp-content/uploads/elementor/css/post-3997.css',
+  '/wp-content/uploads/elementor/css/post-4326.css',
+  '/wp-content/plugins/elementor-pro/assets/css/widget-form.min.css',
+  '/wp-content/plugins/elementor-pro/assets/css/widget-post-info.min.css',
+  '/wp-content/plugins/elementor-pro/assets/css/widget-table-of-contents.min.css',
+];
+
 const props = Astro.props as {
   slug: string;
   mode: 'content' | 'mirror';
@@ -44,22 +54,44 @@ const props = Astro.props as {
 let title = 'ANTBAR Blog';
 let description = '';
 let bodyHtml = '';
-const mirrorRoute = `blog/${props.slug}`;
+let extraStylesheets: string[] = [];
 
 if (props.mode === 'content' && props.entry) {
   title = props.entry.data.title;
   description = props.entry.data.description ?? '';
   bodyHtml = await readContentBody('blog', contentEntryFileName(props.entry.id, 'blog'));
+  const ids = [...bodyHtml.matchAll(/data-elementor-id="(\d+)"/g)].map((m) => m[1]);
+  const postId = ids.find((id) => !sharedPostIds.has(id));
+  extraStylesheets = [...SINGLE_POST_CSS];
+  if (postId) {
+    const cssPath = `/wp-content/uploads/elementor/css/post-${postId}.css`;
+    try {
+      await access(path.join(process.cwd(), 'public', cssPath));
+      extraStylesheets.push(cssPath);
+    } catch { /* file doesn't exist */ }
+  }
 } else {
-  const htmlPath = path.join(process.cwd(), 'mirror', 'blog', props.slug, 'index.html');
+  const mirrorRoute = `blog/${props.slug}`;
+  const htmlPath = path.join(process.cwd(), 'mirror', mirrorRoute, 'index.html');
   const raw = await readFile(htmlPath, 'utf8');
   title = raw.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.trim() ?? title;
   description =
     raw.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i)?.[1] ?? '';
   bodyHtml = await readMirrorBodyHtml(mirrorRoute);
+  extraStylesheets = [...SINGLE_POST_CSS];
+  const cssMatch = raw.match(/href='(\/wp-content\/uploads\/elementor\/css\/post-\d+\.css\?ver=\d+)'/g);
+  if (cssMatch) {
+    for (const href of cssMatch) {
+      const idMatch = href.match(/post-(\d+)\.css/);
+      if (idMatch && !sharedPostIds.has(idMatch[1])) {
+        extraStylesheets.push(href.slice(6, -1));
+        break;
+      }
+    }
+  }
 }
 ---
 
-<ArticleLayout title={title} description={description} mirrorRoute={mirrorRoute}>
+<StandaloneLayout title={title} description={description} extraStylesheets={extraStylesheets}>
   <ContentBody html={bodyHtml} />
-</ArticleLayout>
+</StandaloneLayout>

@@ -1,27 +1,22 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import AboutLayout from '../layouts/AboutLayout.astro';
 import { ABOUT_HERO, ABOUT_SECTIONS } from '../data/about-us';
-
-import { contentEntryFileName } from '../lib/content-entry';
-import { resolveMirrorRoute } from '../lib/mirror-assets';
 
 const pages = await getCollection('pages');
 const entry = pages.find((p) => p.id === 'about-us');
-const mirrorRoute = entry ? resolveMirrorRoute('pages', contentEntryFileName(entry.id, 'pages')) : '';
-
 const h = ABOUT_HERO;
 const sections = ABOUT_SECTIONS;
 ---
-<!-- same template, just changed mirrorRoute to pageSlug -->
-<BaseLayout
+
+<AboutLayout
   title={entry?.data.title ?? 'About Antbar | The Best disposable vape Wholesale'}
   description={entry?.data.description ?? ''}
-  mirrorRoute={mirrorRoute}
 >
   <main id="content" class="site-main post-37 page type-page status-publish hentry">
     <div class="page-content">
       <div data-elementor-type="wp-page" data-elementor-id="37" class="elementor elementor-37" data-elementor-post-type="page">
+        <!-- Hero section -->
         <div class={`elementor-element elementor-element-${h.containerDataId} e-con-full scroll-bn e-flex e-con e-parent`} data-id={h.containerDataId} data-element_type="container">
           <div class={`elementor-element elementor-element-${h.imageContainerId} e-con-full e-flex e-con e-child`} data-id={h.imageContainerId} data-element_type="container">
             <div class={`elementor-element elementor-element-${h.desktopWidgetId} elementor-hidden-mobile elementor-widget elementor-widget-image`} data-id={h.desktopWidgetId} data-element_type="widget" data-widget_type="image.default">
@@ -39,24 +34,9 @@ const sections = ABOUT_SECTIONS;
               </div>
             </div>
           </div>
-          <div class={`elementor-element elementor-element-${h.scriptWidgetId} elementor-widget elementor-widget-html`} data-id={h.scriptWidgetId} data-element_type="widget" data-widget_type="html.default">
-            <script is:inline>
-              jQuery(function () {
-                var $ = jQuery;
-                var sbn = $('.scroll-bn');
-                if (sbn.length) {
-                  var src = $('.scroll-bn .elementor-widget-container>img').attr('src');
-                  var scbg = $('<div class="scroll-bg"></div>');
-                  scbg.css('background-image', 'url(' + src + ')');
-                  scbg.css('top', $('#hNav').height() + $('#wpadminbar').height());
-                  $('body').append(scbg);
-                  $(window).resize(function () { scbg.css('top', $('#hNav').height() + $('#wpadminbar').height()); });
-                }
-              });
-            </script>
-          </div>
         </div>
 
+        <!-- Section 1: Brand Story (image left, text right) -->
         <div class={`elementor-element elementor-element-${sections[0].sectionContainerId} e-flex e-con-boxed e-con e-parent`} data-id={sections[0].sectionContainerId} data-element_type="container" data-settings='{"background_background":"classic"}'>
           <div class="e-con-inner">
             <div class="elementor-element elementor-element-c4a0705 e-con-full e-flex e-con e-child" data-id="c4a0705" data-element_type="container">
@@ -76,6 +56,7 @@ const sections = ABOUT_SECTIONS;
           </div>
         </div>
 
+        <!-- Sections 2-4: tabbed sections (bs-conts) -->
         <div class="elementor-element elementor-element-4a9ab80 e-con-full bs-conts e-flex e-con e-parent" data-id="4a9ab80" data-element_type="container" id="bsConts" data-settings='{"background_background":"classic"}'>
           {sections.slice(1).map((section) => (
             <div class={`elementor-element elementor-element-${section.sectionContainerId} bs-one e-flex e-con-boxed e-con e-child`} data-id={section.sectionContainerId} data-element_type="container" data-settings='{"background_background":"classic"}'>
@@ -95,36 +76,13 @@ const sections = ABOUT_SECTIONS;
               </div>
             </div>
           ))}
-          <div class="elementor-element elementor-element-b7a1bc2 e-con-full e-flex e-con e-child" data-id="b7a1bc2" data-element_type="container">
-            <div class="elementor-element elementor-element-d2ed372 elementor-widget elementor-widget-html" data-id="d2ed372" data-element_type="widget" data-widget_type="html.default">
-              <script is:inline>
-                jQuery(function () {
-                  var $ = jQuery;
-                  if ($('#bsConts').length) {
-                    var bsTabs = $('<div class="bs-tabs"></div>');
-                    $('.bs-img').each(function () { var el = $(this).find('.elementor-widget-container').clone(); el.addClass('bs-tab'); bsTabs.append(el); });
-                    $('#bsConts').prepend(bsTabs);
-                    listen2();
-                    function listen2() {
-                      var tabs = $('.bs-tab'), conts = $('.bs-one'), cIndex = -1, scroll2 = true;
-                      $(window).scroll(function () { if (!scroll2) return; var tg = $(this).scrollTop() + $(window).height() / 2, min = Infinity; conts.each(function (i, item) { var t = $(item).offset().top; if (Math.abs(t - tg) < min && t < tg) { min = Math.abs(t - tg); cIndex = i; } }); if (cIndex >= 0) { tabs.eq(cIndex).addClass('active').siblings().removeClass('active'); conts.eq(cIndex).addClass('active').siblings().removeClass('active'); } });
-                      $(window).trigger('scroll');
-                    }
-                    var left = $('.bs-tabs'), main = $('#bsConts'), header = $('header');
-                    function setT() { var t = main.offset().top, h = header.outerHeight(), a = $(window).scrollTop(); if (a + h >= t) { left.addClass('fixed').removeClass('bot').css('top', h); } else { left.removeClass('fixed').css('top', 0); } if (t + main.outerHeight() < h + a + left.children('.bs-tab').outerHeight()) { left.addClass('bot').removeClass('fixed').css('top', 'auto'); } else { left.removeClass('bot').css('top', 0); } if (left.hasClass('fixed')) { left.css('top', h); } }
-                    $(window).on('scroll', function () { setT(); });
-                    setT();
-                  }
-                });
-              </script>
-            </div>
-          </div>
         </div>
 
+        <!-- Spacer -->
         <div class="elementor-element elementor-element-e76ebcc e-flex e-con-boxed e-con e-parent" data-id="e76ebcc" data-element_type="container" data-settings='{"background_background":"classic"}'>
           <div class="e-con-inner"></div>
         </div>
       </div>
     </div>
   </main>
-</BaseLayout>
+</AboutLayout>

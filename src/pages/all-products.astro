@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import PostsWidget from '../components/archive/PostsWidget.astro';
+import ContentBody from '../components/ContentBody.astro';
+import StandaloneLayout from '../layouts/StandaloneLayout.astro';
+import { extractArchiveWidget } from '../lib/archive-widget';
+import { readContentBody } from '../lib/content-body';
+import { contentEntryFileName } from '../lib/content-entry';
+import '../styles/all-products-bundle.css';
+
+const pages = await getCollection('pages');
+const entry = pages.find((p) => p.id === 'all-products');
+const bodyHtml = entry ? await readContentBody('pages', contentEntryFileName(entry.id, 'pages')) : '';
+const archive = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
+---
+
+<StandaloneLayout title={entry?.data.title ?? 'All Products'} description={entry?.data.description ?? ''} pageId="976">
+  {archive ? (
+    <>
+      <ContentBody html={archive.beforeHtml} />
+      <PostsWidget widget={archive.widget} />
+      <ContentBody html={archive.afterHtml} />
+    </>
+  ) : (
+    <ContentBody html={bodyHtml} />
+  )}
+</StandaloneLayout>

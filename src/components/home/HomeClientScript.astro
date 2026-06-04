@@ -100,7 +100,7 @@
 
     function animationNameFor(element) {
       const raw = element.getAttribute('data-settings') || '';
-      const match = raw.match(/"animation":"([^"]+)"/);
+      const match = raw.match(/"(?:_)?animation":"([^"]+)"/);
       return match?.[1] || 'fadeInUp';
     }
 
@@ -133,6 +133,11 @@
     function closeMenuItem(item) {
       item.classList.remove('is-open');
       item.querySelector('.e-n-menu-dropdown-icon')?.setAttribute('aria-expanded', 'false');
+      const content = item.querySelector('.e-n-menu-content');
+      if (content) {
+        const con = content.querySelector('.e-con');
+        if (con) con.classList.remove('e-active');
+      }
     }
     function openMenuItem(item) {
       menuItems.forEach((entry) => {
@@ -140,6 +145,14 @@
       });
       item.classList.add('is-open');
       item.querySelector('.e-n-menu-dropdown-icon')?.setAttribute('aria-expanded', 'true');
+      const content = item.querySelector('.e-n-menu-content');
+      if (content) {
+        const itemRect = item.getBoundingClientRect();
+        content.style.setProperty('--stretch-left', `${-itemRect.left}px`);
+        content.style.setProperty('--stretch-width', `${window.innerWidth}px`);
+        const con = content.querySelector('.e-con');
+        if (con) con.classList.add('e-active');
+      }
     }
     menuItems.forEach((item) => {
       if (!item.querySelector('.e-n-menu-content')) return;

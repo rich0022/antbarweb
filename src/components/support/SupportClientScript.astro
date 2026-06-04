@@ -1,0 +1,20 @@
+<script>
+  (() => {
+    document.querySelectorAll('.elementor-toggle-item .elementor-tab-title').forEach((title) => {
+      title.addEventListener('click', () => {
+        const isActive = title.classList.contains('elementor-active');
+        const content = title.nextElementSibling;
+
+        if (isActive) {
+          title.classList.remove('elementor-active');
+          title.setAttribute('aria-expanded', 'false');
+          if (content) content.style.display = 'none';
+        } else {
+          title.classList.add('elementor-active');
+          title.setAttribute('aria-expanded', 'true');
+          if (content) content.style.display = 'block';
+        }
+      });
+    });
+  })();
+</script>

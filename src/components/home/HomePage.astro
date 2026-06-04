@@ -10,7 +10,6 @@ import GalleryCarousel from './GalleryCarousel.astro';
     <div data-elementor-type="wp-page" data-elementor-id="2" class="elementor elementor-2" data-elementor-post-type="page">
       <HeroCarousel />
 
-      <!-- Product Hero -->
       <div class={`elementor-element elementor-element-${PRODUCT_HERO.containerDataId} e-con-full e-flex e-con e-parent`} data-id={PRODUCT_HERO.containerDataId} data-element_type="container">
         <div class={`elementor-element elementor-element-${PRODUCT_HERO.widgetDataId} elementor-widget elementor-widget-image`} data-id={PRODUCT_HERO.widgetDataId} data-element_type="widget" data-widget_type="image.default">
           <a href={PRODUCT_HERO.link}>
@@ -19,7 +18,6 @@ import GalleryCarousel from './GalleryCarousel.astro';
         </div>
       </div>
 
-      <!-- Product Intro -->
       <div class={`elementor-element elementor-element-${PRODUCT_INTRO.containerDataId} e-flex e-con-boxed elementor-invisible e-con e-parent`} data-id={PRODUCT_INTRO.containerDataId} data-element_type="container" data-settings='{"animation":"fadeInUp"}'>
         <div class="e-con-inner">
           <div class={`elementor-element elementor-element-${PRODUCT_INTRO.headingContainerId} e-con-full e-flex e-con e-child`} data-id={PRODUCT_INTRO.headingContainerId} data-element_type="container">
@@ -41,7 +39,6 @@ import GalleryCarousel from './GalleryCarousel.astro';
 
       <ProductGrid />
 
-      <!-- Product Video -->
       <div class={`elementor-element elementor-element-${PRODUCT_VIDEO.containerDataId} e-flex e-con-boxed elementor-invisible e-con e-parent`} data-id={PRODUCT_VIDEO.containerDataId} data-element_type="container" data-settings='{"animation":"fadeInUp"}'>
         <div class="e-con-inner">
           <div class={`elementor-element elementor-element-${PRODUCT_VIDEO.widgetDataId} elementor-widget elementor-widget-video`} data-id={PRODUCT_VIDEO.widgetDataId} data-element_type="widget" data-settings='{"video_type":"hosted","autoplay":"yes","play_on_mobile":"yes","loop":"yes","mute":"yes"}' data-widget_type="video.default">

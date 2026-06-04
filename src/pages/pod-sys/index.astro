@@ -2,39 +2,25 @@
 import { getCollection } from 'astro:content';
 import PostsWidget from '../../components/archive/PostsWidget.astro';
 import ContentBody from '../../components/ContentBody.astro';
-import ProductLayout from '../../layouts/ProductLayout.astro';
-import { extractArchiveWidget } from '../../lib/archive-widget';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { readContentBody } from '../../lib/content-body';
 import { contentEntryFileName } from '../../lib/content-entry';
-import { resolveMirrorRoute } from '../../lib/mirror-assets';
+import { extractArchiveWidget } from '../../lib/archive-widget';
 
 const products = await getCollection('products');
-const podCategory = products.find(
-  (entry) => entry.id === 'pod-sys/index' || entry.id === 'pod-sys' || entry.data.slug === 'pod-sys',
-);
-const bodyHtml = podCategory
-  ? await readContentBody('products', contentEntryFileName(podCategory.id, 'products'))
-  : '';
-const mirrorRoute = podCategory
-  ? resolveMirrorRoute('products', contentEntryFileName(podCategory.id, 'products'))
-  : 'pod-sys';
-const postsWidget = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
+const podCategory = products.find((entry) => entry.id === 'pod-sys/index');
+const bodyHtml = podCategory ? await readContentBody('products', contentEntryFileName(podCategory.id, 'products')) : '';
+const archive = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
 ---
 
-<ProductLayout
-  title={podCategory?.data.title ?? 'Pod System'}
-  description={podCategory?.data.description}
-  mirrorRoute={mirrorRoute}
->
-  {
-    postsWidget ? (
-      <>
-        <ContentBody html={postsWidget.beforeHtml} />
-        <PostsWidget widget={postsWidget.widget} />
-        <ContentBody html={postsWidget.afterHtml} />
-      </>
-    ) : (
-      <ContentBody html={bodyHtml} />
-    )
-  }
-</ProductLayout>
+<BaseLayout title={podCategory?.data.title ?? 'Closed Pod Systems'} description={podCategory?.data.description ?? ''} mirrorRoute="pod-sys">
+  {archive ? (
+    <>
+      <ContentBody html={archive.beforeHtml} />
+      <PostsWidget widget={archive.widget} />
+      <ContentBody html={archive.afterHtml} />
+    </>
+  ) : (
+    <ContentBody html={bodyHtml} />
+  )}
+</BaseLayout>

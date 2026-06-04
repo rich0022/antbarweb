@@ -1,0 +1,42 @@
+---
+import SiteFooter from '../components/site/SiteFooter.astro';
+import SiteHeader from '../components/site/SiteHeader.astro';
+import HomeClientScript from '../components/home/HomeClientScript.astro';
+import HomePopups from '../components/home/HomePopups.astro';
+import { ANIMATION_INLINE_CSS } from '../data/site-assets';
+import '../styles/home-local.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  pageId?: string;
+  extraStylesheets?: string[];
+}
+
+const { title = 'ANTBAR', description = '', pageId, extraStylesheets } = Astro.props;
+const pageClass = pageId ? ` elementor-page elementor-page-${pageId}` : '';
+const bodyClass = `wp-singular wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305${pageClass}`;
+---
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-32x32.png" sizes="32x32" />
+    <link rel="icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-180x180.png" />
+    <meta name="msapplication-TileImage" content="/wp-content/uploads/2023/12/cropped-cropped-pic-270x270.png" />
+    {extraStylesheets?.map((href) => <link rel="stylesheet" href={href} />)}
+    <style set:html={ANIMATION_INLINE_CSS} />
+  </head>
+  <body class={bodyClass}>
+    <SiteHeader useLegacyScript={false} />
+    <slot />
+    <SiteFooter />
+    <HomePopups />
+    <HomeClientScript />
+  </body>
+</html>
