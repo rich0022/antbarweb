@@ -295,6 +295,19 @@
       startAutoplay();
     }
 
+    /* Sticky header */
+    const hNav = document.getElementById('hNav');
+    const hTop = document.getElementById('hTop');
+    if (hNav && hTop) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          hNav.classList.toggle('elementor-sticky--active', !entry.isIntersecting);
+        },
+        { threshold: 0 },
+      );
+      observer.observe(hTop);
+    }
+
     document.querySelectorAll('[data-local-carousel]').forEach((root) => initCarousel(root));
   })();
 </script>
