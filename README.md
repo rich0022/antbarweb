@@ -1,10 +1,20 @@
 # ANTBAR Astro Site
 
-This repository contains the Astro implementation for `https://www.antbar.com/`.
+Astro site project.
 
-## Current State
+## Commands
 
-- Product detail pages have already been moved out of the mirror flow.
-- Product-page CSS and JS have been merged into the project and must be protected from accidental purge or cleanup.
-- Blog and Review body content has been cleaned into Markdown.
-- The main remaining work is site-shell consistency, verification popup consistency, list/simple pages,
+```bash
+npm install
+npm run dev
+npm run build
+npm run build:cf
+```
+
+## Agent Direction
+
+Use this document as the only current direction file:
+
+- `docs/AGENT-DIRECTION.md`
+
+Older migration documents were removed because they described outdated work.
