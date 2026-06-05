@@ -11,6 +11,6 @@ If any older document conflicts with this file, follow this file.
 Important facts:
 
 1. Product detail pages have already been de-mirrored.
-2. Product page CSS and JS have already been merged into the project.
+2. Product page CSS and JS have already been merged into this project.
 3. Blog and Review detail content has already been cleaned into Markdown.
-4. The remaining work
+4. The remaining work is not to restart product-page migration.
