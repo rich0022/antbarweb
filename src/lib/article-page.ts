@@ -2,7 +2,8 @@ import type { CollectionEntry } from 'astro:content';
 import { readFile } from 'node:fs/promises';
 import { contentEntryFileName, contentEntrySlug } from './content-entry';
 import { getContentFilePath } from './content-body';
-import { mirrorHtmlPath } from './mirror-assets';
+import { mirrorHtmlPath, stripScriptsFromHtml } from './mirror-assets';
+import { stripMainWrapper, stripSiteShellFromHtml } from './site-shell';
 
 export type ArticleCollection = 'blog' | 'review';
 
@@ -24,6 +25,16 @@ export type ArticleRef = {
 
 export type HotProductCard = ArticleCard & {
   cta: string;
+};
+
+export type MirrorArticlePage = {
+  title: string;
+  description: string;
+  featuredImage: string;
+  bodyClass: string;
+  postId: number | null;
+  publishedLabel: string;
+  bodyHtml: string;
 };
 
 type ArticleEntry = CollectionEntry<'blog'> | CollectionEntry<'review'>;
@@ -288,6 +299,43 @@ export async function readMirrorPublishedLabel(mirrorRoute: string): Promise<str
   } catch {
     return '';
   }
+}
+
+function cleanMirrorTitle(title: string): string {
+  return title
+    .replace(/\s*[|\-]\s*ANTBAR$/i, '')
+    .replace(/\s*\|\s*ANTBAR$/i, '')
+    .replace(/\s*\-ANTBAR$/i, '')
+    .trim();
+}
+
+export async function readMirrorArticlePage(mirrorRoute: string): Promise<MirrorArticlePage> {
+  const html = await readFile(mirrorHtmlPath(mirrorRoute), 'utf8');
+  const bodyInner = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? html;
+  const bodyClass = html.match(/<body[^>]*class=["']([^"']*)["']/i)?.[1] ?? '';
+  const postId = Number(bodyClass.match(/\bpostid-(\d+)\b/i)?.[1] ?? '');
+  const title =
+    html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i)?.[1] ??
+    cleanMirrorTitle(html.match(/<title>([^<]+)<\/title>/i)?.[1] ?? '');
+  const description =
+    html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1] ??
+    html.match(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']+)["']/i)?.[1] ??
+    '';
+  const featuredImage =
+    html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)?.[1] ??
+    '/wp-content/uploads/2024/05/LOGO.png';
+  const publishedLabel = html.match(/<time>([^<]+)<\/time>/i)?.[1]?.trim() ?? '';
+  const bodyHtml = stripMainWrapper(stripSiteShellFromHtml(stripScriptsFromHtml(bodyInner)));
+
+  return {
+    title,
+    description,
+    featuredImage,
+    bodyClass,
+    postId: Number.isFinite(postId) ? postId : null,
+    publishedLabel,
+    bodyHtml,
+  };
 }
 
 export function buildArticleCard(entry: ArticleEntry, collection: ArticleCollection): ArticleCard {

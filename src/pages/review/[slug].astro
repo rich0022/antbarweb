@@ -2,6 +2,7 @@
 import { getCollection, getEntry, render } from 'astro:content';
 import ArticlePage from '../../components/article/ArticlePage.astro';
 import ArticleShellRuntime from '../../components/article/ArticleShellRuntime.astro';
+import ContentBody from '../../components/ContentBody.astro';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import { contentEntrySlug } from '../../lib/content-entry';
 import { resolveReviewUrlSlug, REVIEW_URL_ALIASES } from '../../lib/route-aliases';
@@ -13,8 +14,10 @@ import {
   extractTocItems,
   readMarkdownBody,
   readMirrorArticleMeta,
+  readMirrorArticlePage,
   readMirrorPublishedLabel,
 } from '../../lib/article-page';
+import { collectReviewMirrorRoutes } from '../../lib/mirror-assets';
 
 export async function getStaticPaths() {
   const contentPosts = await getCollection('review');
@@ -30,6 +33,11 @@ export async function getStaticPaths() {
     if (targetProps) paths.set(alias, targetProps);
   }
 
+  for (const [slug, mirrorRoute] of await collectReviewMirrorRoutes()) {
+    if (paths.has(slug)) continue;
+    paths.set(slug, { mirrorRoute });
+  }
+
   return [...paths.entries()].map(([slug, props]) => ({
     params: { slug },
     props: { slug, ...props },
@@ -38,48 +46,94 @@ export async function getStaticPaths() {
 
 const props = Astro.props as {
   slug: string;
-  entryId: string;
+  entryId?: string;
+  mirrorRoute?: string;
 };
 
 const canonicalSlug = resolveReviewUrlSlug(props.slug);
-const entry = await getEntry('review', props.entryId);
-if (!entry) {
-  throw new Error(`Missing review entry for ${props.entryId}`);
-}
-const { Content } = await render(entry);
-const [markdownBody, publishedLabel, articleMeta] = await Promise.all([
-  readMarkdownBody('review', props.entryId),
-  readMirrorPublishedLabel(`review/${canonicalSlug}`),
-  readMirrorArticleMeta(`review/${canonicalSlug}`),
-]);
 
-const tocItems = extractTocItems(markdownBody);
+let title = '';
+let description = '';
+let mirrorRoute = props.mirrorRoute ?? `review/${canonicalSlug}`;
+let bodyClass = '';
+let runtimePostId: number | null = null;
+let runtimeExcerpt = '';
+let runtimeFeaturedImage = '/wp-content/uploads/2024/05/LOGO.png';
+let publishedLabel = '';
+let tocItems: { id: string; text: string }[] = [];
+let EntryContent: Awaited<ReturnType<typeof render>>['Content'] | null = null;
+let legacyBodyHtml = '';
+
+if (props.entryId) {
+  const entry = await getEntry('review', props.entryId);
+  if (!entry) {
+    throw new Error(`Missing review entry for ${props.entryId}`);
+  }
+
+  title = entry.data.title;
+  description = entry.data.description ?? entry.data.excerpt ?? '';
+  mirrorRoute = `review/${canonicalSlug}`;
+
+  const [{ Content }, markdownBody, articleMeta, mirrorPublishedLabel] = await Promise.all([
+    render(entry),
+    readMarkdownBody('review', props.entryId),
+    readMirrorArticleMeta(mirrorRoute),
+    readMirrorPublishedLabel(mirrorRoute),
+  ]);
+
+  EntryContent = Content;
+  bodyClass = articleMeta.bodyClass;
+  runtimePostId = articleMeta.postId;
+  runtimeExcerpt = entry.data.excerpt ?? description;
+  runtimeFeaturedImage =
+    entry.data.heroImage ?? entry.data.featuredImage ?? runtimeFeaturedImage;
+  publishedLabel = mirrorPublishedLabel;
+  tocItems = extractTocItems(markdownBody);
+} else if (props.mirrorRoute) {
+  const legacyArticle = await readMirrorArticlePage(props.mirrorRoute);
+  title = legacyArticle.title;
+  description = legacyArticle.description;
+  bodyClass = legacyArticle.bodyClass;
+  runtimePostId = legacyArticle.postId;
+  runtimeExcerpt = legacyArticle.description;
+  runtimeFeaturedImage = legacyArticle.featuredImage;
+  publishedLabel = legacyArticle.publishedLabel;
+  legacyBodyHtml = legacyArticle.bodyHtml;
+} else {
+  throw new Error(`Missing review route data for ${props.slug}`);
+}
 ---
 
 <ArticleLayout
-  title={entry.data.title}
-  description={entry.data.description ?? entry.data.excerpt ?? ''}
-  mirrorRoute={`review/${canonicalSlug}`}
-  bodyClass={articleMeta.bodyClass}
+  title={title}
+  description={description}
+  mirrorRoute={mirrorRoute}
+  bodyClass={bodyClass}
 >
-  <ArticlePage
-    title={entry.data.title}
-    sectionLabel="Review"
-    currentPostId={articleMeta.postId}
-    publishedLabel={publishedLabel}
-    tocItems={tocItems}
-    latestItems={REVIEW_LATEST_ITEMS}
-    relatedTitle="Related Review"
-    relatedItems={REVIEW_RELATED_ITEMS}
-    featuredItems={REVIEW_FEATURED_ITEMS}
-    hotProducts={REVIEW_HOT_SALE_PRODUCTS}
-  >
-    <Content />
-  </ArticlePage>
+  {
+    EntryContent ? (
+      <ArticlePage
+        title={title}
+        sectionLabel="Review"
+        currentPostId={runtimePostId}
+        publishedLabel={publishedLabel}
+        tocItems={tocItems}
+        latestItems={REVIEW_LATEST_ITEMS}
+        relatedTitle="Related Review"
+        relatedItems={REVIEW_RELATED_ITEMS}
+        featuredItems={REVIEW_FEATURED_ITEMS}
+        hotProducts={REVIEW_HOT_SALE_PRODUCTS}
+      >
+        <EntryContent />
+      </ArticlePage>
+    ) : (
+      <ContentBody html={legacyBodyHtml} />
+    )
+  }
   <ArticleShellRuntime
-    postId={articleMeta.postId ?? 3650}
-    title={entry.data.title}
-    excerpt={entry.data.excerpt ?? entry.data.description ?? ''}
-    featuredImage={entry.data.heroImage ?? entry.data.featuredImage ?? '/wp-content/uploads/2024/05/LOGO.png'}
+    postId={runtimePostId ?? 3650}
+    title={title}
+    excerpt={runtimeExcerpt}
+    featuredImage={runtimeFeaturedImage}
   />
 </ArticleLayout>

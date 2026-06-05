@@ -1,7 +1,7 @@
 <script is:inline>
   (() => {
-    if (window.__antbarHomeInitialized) return;
-    window.__antbarHomeInitialized = true;
+    if (window.__antbarSiteShellInitialized) return;
+    window.__antbarSiteShellInitialized = true;
 
     const dialogMap = {
       menu: document.querySelector('[data-home-dialog="menu"]'),
@@ -295,7 +295,6 @@
       startAutoplay();
     }
 
-    /* Sticky header */
     const hNav = document.getElementById('hNav');
     const hTop = document.getElementById('hTop');
     if (hNav && hTop) {

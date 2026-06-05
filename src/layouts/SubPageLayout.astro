@@ -1,10 +1,6 @@
 ---
-import SiteFooter from '../components/site/SiteFooter.astro';
-import SiteHeader from '../components/site/SiteHeader.astro';
-import HomeClientScript from '../components/home/HomeClientScript.astro';
-import HomePopups from '../components/home/HomePopups.astro';
+import SiteShellLayout from './SiteShellLayout.astro';
 import { ANIMATION_INLINE_CSS, MEGA_MENU_STYLE_CSS, SITE_OVERFLOW_GUARD_CSS } from '../data/site-assets';
-import '../styles/home-local.css';
 
 interface Props {
   title?: string;
@@ -16,26 +12,11 @@ const { title = 'ANTBAR', description = '', pageId } = Astro.props;
 const bodyClass = `wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 elementor-page elementor-page-${pageId}`;
 ---
 
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    {description && <meta name="description" content={description} />}
-    <link rel="icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-32x32.png" sizes="32x32" />
-    <link rel="icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-192x192.png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-180x180.png" />
-    <meta name="msapplication-TileImage" content="/wp-content/uploads/2023/12/cropped-cropped-pic-270x270.png" />
-    <style set:html={ANIMATION_INLINE_CSS} />
-    <style set:html={SITE_OVERFLOW_GUARD_CSS} />
-    <style set:html={MEGA_MENU_STYLE_CSS} />
-  </head>
-  <body class={bodyClass}>
-    <SiteHeader useLegacyScript={false} />
-    <slot />
-    <SiteFooter />
-    <HomePopups />
-    <HomeClientScript />
-  </body>
-</html>
+<SiteShellLayout
+  title={title}
+  description={description}
+  bodyClass={bodyClass}
+  inlineStyles={[ANIMATION_INLINE_CSS, SITE_OVERFLOW_GUARD_CSS, MEGA_MENU_STYLE_CSS]}
+>
+  <slot />
+</SiteShellLayout>

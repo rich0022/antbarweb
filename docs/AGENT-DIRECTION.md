@@ -22,7 +22,7 @@
    - 部分简单页面仍直接依赖 mirror CSS
    - Blog / Review 详情页需要统一模板
    - About / Brand Story / R&D / Lab 等品牌页需要 section 化
-   - 产品页已有 CSS / JS 需要保护，不能被 purge 或重构破坏
+   - 产品页已有 CSS / JS 需要先保护稳定，再逐步轻量化
 
 后续 agent 不要再把产品页当成“还没去 mirror 化”的任务处理。
 
@@ -30,23 +30,34 @@
 
 ## 2. 总体目标
 
-本项目目标是：
+本项目目标是把 `antbarweb` 逐步整理成接近 `vantase` 的干净 Astro 项目结构。
+
+目标不是继续从 mirror 中抽 CSS / JS，也不是长期保护 Elementor 生成的重样式不动，而是：
 
 ```text
 保持现有视觉和 URL 稳定
+mirror 只作为视觉对照基线
+Astro 组件作为最终结构
+项目内轻量 CSS 作为最终样式来源
+项目内统一 JS 作为最终交互来源
 统一全站壳层
 统一合规验证弹窗
 统一 Blog / Review 模板
 清理简单页和列表页的 mirror CSS 依赖
 逐步 section 化品牌页
-保护已经完成的产品详情页 CSS / JS
+逐步减少 Elementor / mirror CSS 依赖
+逐步移除重复、无效、过重的 CSS / JS
+产品详情页 CSS / JS 先保护稳定，再分批轻量化
 保证 Cloudflare Astro 构建稳定
 ````
+
+短期允许保留必要 legacy CSS / JS，但它们只是过渡层，不是最终目标。
 
 不是：
 
 ```text
 重新设计网站
+继续直接从 mirror 抽 CSS / JS 解决问题
 重写所有产品详情页
 把所有产品页强行改成统一 ProductLayout
 删除所有历史 CSS
@@ -60,7 +71,9 @@
 
 ### 3.1 不要动产品详情页主体结构
 
-产品详情页已经去 mirror 化，后续只允许做稳定性维护。
+产品详情页已经去 mirror 化，不需要重新从 mirror 抽 HTML。
+
+当前重点不是重写产品页主体结构，而是在保持视觉稳定的前提下，逐步把产品页 CSS / JS 轻量化。
 
 允许做：
 
@@ -73,16 +86,23 @@
 7. 修复 header / footer / navigation 接入问题。
 8. 给 purge 增加保护规则。
 9. 检查 canonical、sitemap、SEO 基础字段。
+10. 对比现有产品页视觉，逐步移除无效 Elementor CSS。
+11. 将重复页面 CSS 合并成项目内组件 CSS。
+12. 将通用交互迁移到项目内统一 JS。
+13. 保留必要的产品页专用样式。
+14. 分产品页、小步清理，并在每次修改后做桌面端和移动端回归。
 
 禁止做：
 
 1. 不要重新从 mirror 抽产品页。
 2. 不要强行统一产品页布局。
 3. 不要重写产品页视觉结构。
-4. 不要删除产品页专用 CSS。
-5. 不要删除产品页专用 JS。
+4. 不要盲目删除产品页专用 CSS。
+5. 不要盲目删除产品页专用 JS。
 6. 不要让 purge 自动清理产品页 selector。
 7. 不要为了“干净”破坏已有产品页效果。
+8. 不要一次性重写所有产品页样式。
+9. 不要长期保留明显无用、重复、过重的 Elementor 样式不处理。
 
 ---
 
@@ -185,6 +205,8 @@ Search Popup
 不重复初始化
 不依赖每页单独复制
 不因为某个页面旧代码导致壳层不一致
+建立接近 vantase 的轻量站点壳层结构
+逐步把壳层相关 CSS / JS 收敛到项目内实现
 ```
 
 ---
@@ -285,7 +307,7 @@ FAQSection
 
 ---
 
-### E 级：产品详情页，只做保护和回归
+### E 级：产品详情页，先保护稳定，再逐步轻量化
 
 当前状态：
 
@@ -299,20 +321,22 @@ FAQSection
 1. 保持现有视觉不变。
 2. 保持现有响应式不变。
 3. 保持产品页 CSS / JS bundle 稳定。
-4. 防止 purge 删除产品页样式。
-5. 防止弹窗重复。
-6. 防止导航不统一。
-7. 防止资源路径失效。
-8. 防止构建输出缺文件。
+4. 对比现有视觉，逐步减少无效 Elementor CSS。
+5. 将可复用样式和交互逐步迁移到项目内轻量实现。
+6. 防止 purge 删除产品页样式。
+7. 防止弹窗重复。
+8. 防止导航不统一。
+9. 防止资源路径失效。
+10. 防止构建输出缺文件。
 
 不做：
 
 ```text
 不重新抽产品页
-不重写产品页
+不一次性重写所有产品页
 不统一 ProductLayout
-不删除产品页 CSS
-不删除产品页 JS
+不盲目删除产品页 CSS
+不盲目删除产品页 JS
 不改变产品页视觉
 ```
 
@@ -326,9 +350,12 @@ FAQSection
 
 1. 合并公共 CSS。
 2. 为简单页减少 mirror CSS 依赖。
-3. 为产品页保留专用 CSS。
-4. 为 purge 增加 safelist。
-5. 把明显重复、无引用、无效的 CSS 清理掉。
+3. 为壳层建立项目内轻量 CSS 基线。
+4. 为产品页保留必要专用 CSS。
+5. 为 purge 增加 safelist。
+6. 把明显重复、无引用、无效的 CSS 清理掉。
+7. 分批替换壳层和简单页的 Elementor 重样式。
+8. 对产品页做小步、可回归的 CSS 轻量化。
 
 禁止：
 
@@ -337,6 +364,7 @@ FAQSection
 3. 用全局 CSS 覆盖产品页特殊样式。
 4. 只检查首页，不检查产品页。
 5. purge 后不做页面回归。
+6. 继续直接从 mirror 抽 CSS 作为长期方案。
 
 每次 CSS 修改后至少检查：
 
@@ -358,8 +386,10 @@ Contact 或 Support
 2. 去除重复初始化。
 3. 统一验证弹窗逻辑。
 4. 统一 search popup。
-5. 保留产品页必要 JS。
-6. 删除确认无引用的历史脚本。
+5. 建立全站统一 JS 入口。
+6. 将壳层和简单页交互迁移到项目内统一 JS。
+7. 保留产品页必要 JS。
+8. 删除确认无引用的历史脚本。
 
 禁止：
 
@@ -368,12 +398,13 @@ Contact 或 Support
 3. 重复绑定移动端菜单。
 4. 引入多套搜索弹窗。
 5. 为一个页面写一套独立全局脚本。
+6. 继续依赖多套 legacy 壳层脚本并长期共存。
 
 ---
 
 ## 8. 推荐执行顺序
 
-### Phase 1：统一站点壳层
+### Phase 1：统一站点壳层，并建立轻量 CSS / JS 基线
 
 处理：
 
@@ -386,6 +417,8 @@ Mobile Menu
 验证弹窗
 Search Popup
 BaseLayout
+全站公共 CSS tokens
+全站公共 JS 入口
 ```
 
 完成标准：
@@ -395,6 +428,18 @@ BaseLayout
 3. 验证弹窗只剩一套。
 4. Search popup 只剩一套。
 5. 首页和子页面不再使用不同壳层。
+6. 不再从 mirror 直接抽壳层 CSS 作为最终方案。
+7. Header / Footer / Navigation 主要由项目内组件和项目内 CSS 驱动。
+8. 删除壳层相关重复初始化和重复脚本。
+9. 建立接近 vantase 的轻量全站壳层结构。
+
+注意：
+
+```text
+这不是重写所有页面 CSS / JS
+但也不是只接线不清理
+Phase 1 应该清理壳层相关的 Elementor 重样式和重复 JS
+```
 
 ---
 
@@ -516,7 +561,8 @@ BaseLayout
 ```text
 不要改产品详情页主体
 不要改文章正文
-不要大范围清理 CSS
+不要一次性大改产品页样式
+不要为了轻量化破坏现有视觉
 ```
 
 ---
@@ -603,15 +649,16 @@ purge safelist
 构建输出
 响应式回归
 弹窗去重
+分批轻量化清理
 ```
 
 禁止：
 
 ```text
-不要重写产品详情页
+不要一次性重写产品详情页
 不要重新从 mirror 抽产品页
 不要改产品页视觉结构
-不要删除产品页专用 CSS / JS
+不要盲目删除产品页专用 CSS / JS
 ```
 
 ---
@@ -672,9 +719,10 @@ docs/AGENT-DIRECTION.md
 5. Contact / Support / Verification 简单页清理完成。
 6. 品牌页逐步 section 化。
 7. 产品详情页保持稳定，不被破坏。
-8. CSS / JS bundle 管理清楚。
-9. purge 不误删关键样式。
-10. Cloudflare Astro 构建稳定。
+8. 壳层和简单页 CSS / JS 明显轻量化并逐步脱离 mirror / Elementor 依赖。
+9. CSS / JS bundle 管理清楚。
+10. purge 不误删关键样式。
+11. Cloudflare Astro 构建稳定。
 
 README 里可以改成：
 
@@ -684,5 +732,4 @@ README 里可以改成：
 For all future agent work, use this document as the canonical direction:
 
 - [docs/AGENT-DIRECTION.md](docs/AGENT-DIRECTION.md)
-
 

@@ -1,8 +1,7 @@
 ---
-import SiteFooter from '../components/site/SiteFooter.astro';
-import SiteHeader from '../components/site/SiteHeader.astro';
+import SiteShellLayout from './SiteShellLayout.astro';
 import { ANIMATION_INLINE_CSS, ELEMENTOR_LAZY_CSS } from '../data/site-assets';
-import { getMirrorHeadAssets, getPopupTemplates } from '../lib/mirror-assets';
+import { getMirrorHeadAssets } from '../lib/mirror-assets';
 
 interface Props {
   title: string;
@@ -21,7 +20,6 @@ const {
 } = Astro.props;
 
 const assets = mirrorRoute ? await getMirrorHeadAssets(mirrorRoute) : null;
-const popupTemplates = await getPopupTemplates();
 const bodyClass =
   bodyClassOverride ||
   assets?.bodyClass ||
@@ -29,41 +27,12 @@ const bodyClass =
 const stylesheets = [...new Set(['/assets/article-shell-bundle.css', ...extraStylesheets])];
 ---
 
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    {description && <meta name="description" content={description} />}
-    <link rel="icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-32x32.png" sizes="32x32" />
-    <link rel="icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-192x192.png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-180x180.png" />
-    <meta name="msapplication-TileImage" content="/wp-content/uploads/2023/12/cropped-cropped-pic-270x270.png" />
-    {assets?.inlineStyles.map((css) => <style set:html={css} />)}
-    {stylesheets.map((href) => <link rel="stylesheet" href={href} />)}
-    <style set:html={ANIMATION_INLINE_CSS} />
-    <style set:html={ELEMENTOR_LAZY_CSS} />
-  </head>
-  <body class={bodyClass}>
-    <script is:inline>
-      document.addEventListener(
-        'click',
-        (event) => {
-          const anchor = event.target.closest('a[href]');
-          if (!anchor) return;
-          const href = anchor.getAttribute('href');
-          if (!href || !/^https?:\/\/(?:www\.)?antbar\.com/i.test(href)) return;
-          event.preventDefault();
-          const localPath = href.replace(/^https?:\/\/(?:www\.)?antbar\.com/i, '') || '/';
-          window.location.assign(localPath);
-        },
-        true,
-      );
-    </script>
-    <SiteHeader />
-    <slot />
-    <SiteFooter />
-    <Fragment set:html={popupTemplates} />
-  </body>
-</html>
+<SiteShellLayout
+  title={title}
+  description={description}
+  bodyClass={bodyClass}
+  stylesheets={stylesheets}
+  inlineStyles={[...(assets?.inlineStyles ?? []), ANIMATION_INLINE_CSS, ELEMENTOR_LAZY_CSS]}
+>
+  <slot />
+</SiteShellLayout>

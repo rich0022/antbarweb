@@ -26,6 +26,44 @@ export const MIRROR_HTML_DIR = path.join(process.cwd(), 'mirror');
 
 let sharedStylesheets: string[] | null = null;
 
+const SHARED_SHELL_STYLESHEET_NAMES = [
+  '/wp-content/themes/hello-elementor/assets/css/reset.css',
+  '/wp-content/themes/hello-elementor/assets/css/theme.css',
+  '/wp-content/themes/hello-elementor/assets/css/header-footer.css',
+  '/wp-content/plugins/elementor/assets/css/frontend.min.css',
+  '/wp-content/uploads/elementor/css/post-305.css',
+  '/wp-content/uploads/elementor/css/post-49.css',
+  '/wp-content/plugins/elementor/assets/css/widget-image.min.css',
+  '/wp-content/plugins/elementor/assets/css/widget-heading.min.css',
+  '/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css',
+  '/wp-content/plugins/elementor-pro/assets/css/widget-mega-menu.min.css',
+  '/wp-content/plugins/elementor-pro/assets/css/modules/sticky.min.css',
+  '/wp-content/uploads/elementor/css/post-68.css',
+  '/wp-content/plugins/elementor/assets/css/widget-divider.min.css',
+  '/wp-content/plugins/elementor/assets/css/widget-nested-accordion.min.css',
+  '/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css',
+  '/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css',
+  '/wp-content/plugins/elementor-pro/assets/css/conditionals/popup.min.css',
+  '/wp-content/plugins/elementor-pro/assets/css/widget-search-form.min.css',
+  '/wp-content/uploads/elementor/css/post-2978.css',
+  '/wp-content/uploads/elementor/css/post-1146.css',
+  '/wp-content/uploads/elementor/css/post-1132.css',
+  '/wp-content/uploads/elementor/google-fonts/css/poppins.css',
+  '/wp-content/uploads/elementor/google-fonts/css/roboto.css',
+  '/wp-content/uploads/elementor/google-fonts/css/robotoslab.css',
+  '/wp-content/plugins/elementor/assets/lib/animations/styles/fadeIn.min.css',
+  '/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInRight.min.css',
+  '/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInLeft.min.css',
+  '/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInUp.min.css',
+  '/wp-content/plugins/elementor/assets/lib/animations/styles/slideInDown.min.css',
+  '/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-grow.min.css',
+];
+
+function isSharedShellStylesheet(assetPath: string): boolean {
+  const normalized = assetPath.replace(/\?.*$/, '');
+  return SHARED_SHELL_STYLESHEET_NAMES.some((name) => normalized.endsWith(name));
+}
+
 function isHaContsScript(script: MirrorScript): boolean {
   return Boolean(script.inline?.includes('#haConts') || script.inline?.includes('haConts'));
 }
@@ -160,7 +198,7 @@ export async function getSharedMirrorStylesheets(): Promise<string[]> {
   }
 
   sharedStylesheets = await filterExistingAssetPaths(
-    [...hrefs].filter((href) => !href.includes('block-library')),
+    [...hrefs].filter((href) => !href.includes('block-library') && !isSharedShellStylesheet(href)),
   );
   return sharedStylesheets;
 }
@@ -222,9 +260,11 @@ export async function getMirrorHeadAssets(mirrorRoute: string): Promise<MirrorHe
     ...pageAssets.footerScripts,
   ]);
 
-  const mergedStylesheets = await filterExistingAssetPaths([
-    ...new Set([...pageAssets.stylesheets, ...sharedStylesheetsList].map(normalizeMirrorUrl)),
-  ]);
+  const mergedStylesheets = await filterExistingAssetPaths(
+    [...new Set([...pageAssets.stylesheets, ...sharedStylesheetsList].map(normalizeMirrorUrl))].filter(
+      (href) => !isSharedShellStylesheet(href),
+    ),
+  );
 
   return {
     ...pageAssets,

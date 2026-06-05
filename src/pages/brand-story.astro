@@ -6,7 +6,6 @@ import {
   BRAND_STORY_GALLERY_IMAGES, BRAND_STORY_FINAL,
 } from '../data/about-subpages';
 import '../styles/brand-story-bundle.css';
-import HomeClientScript from '../components/home/HomeClientScript.astro';
 
 const pages = await getCollection('pages');
 const entry = pages.find((p) => p.id === 'brand-story');

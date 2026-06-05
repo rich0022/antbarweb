@@ -1,0 +1,78 @@
+---
+import SiteFooter from '../components/site/SiteFooter.astro';
+import SiteHeader from '../components/site/SiteHeader.astro';
+import SiteShellClientScript from '../components/site/SiteShellClientScript.astro';
+import SiteShellPopups from '../components/site/SiteShellPopups.astro';
+import '../styles/site-shell-bundle.css';
+import '../styles/home-local.css';
+import type { MirrorScript } from '../lib/mirror-assets';
+
+interface Props {
+  title?: string;
+  description?: string;
+  bodyClass?: string;
+  stylesheets?: string[];
+  inlineStyles?: string[];
+  headScripts?: MirrorScript[];
+  footerScripts?: MirrorScript[];
+}
+
+const {
+  title = 'ANTBAR',
+  description = '',
+  bodyClass = '',
+  stylesheets = [],
+  inlineStyles = [],
+  headScripts = [],
+  footerScripts = [],
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-32x32.png" sizes="32x32" />
+    <link rel="icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-180x180.png" />
+    <meta name="msapplication-TileImage" content="/wp-content/uploads/2023/12/cropped-cropped-pic-270x270.png" />
+    {inlineStyles.map((css) => <style set:html={css} />)}
+    {stylesheets.map((href) => <link rel="stylesheet" href={href} />)}
+    {headScripts.map((script) =>
+      script.src ? <script src={script.src} is:inline></script>
+      : script.inline ? <script set:html={script.inline} is:inline></script>
+      : null,
+    )}
+    <slot name="head" />
+  </head>
+  <body class={bodyClass}>
+    <script is:inline>
+      document.addEventListener(
+        'click',
+        (event) => {
+          const anchor = event.target.closest('a[href]');
+          if (!anchor) return;
+          const href = anchor.getAttribute('href');
+          if (!href || !/^https?:\/\/(?:www\.)?antbar\.com/i.test(href)) return;
+          event.preventDefault();
+          const localPath = href.replace(/^https?:\/\/(?:www\.)?antbar\.com/i, '') || '/';
+          window.location.assign(localPath);
+        },
+        true,
+      );
+    </script>
+    <SiteHeader useLegacyScript={false} />
+    <slot />
+    <SiteFooter />
+    <SiteShellPopups />
+    {footerScripts.map((script) =>
+      script.src ? <script src={script.src} is:inline></script>
+      : script.inline ? <script set:html={script.inline} is:inline></script>
+      : null,
+    )}
+    <SiteShellClientScript />
+  </body>
+</html>
