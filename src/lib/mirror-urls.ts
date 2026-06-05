@@ -26,3 +26,20 @@ export function shouldSkipMirrorScript(script: MirrorScript): boolean {
   if (src.includes('hello-frontend')) return true;
   return false;
 }
+
+/** Mirror header/footer widgets that duplicate SiteShellClientScript / SiteShellPopups. */
+export function shouldSkipShellMirrorScript(script: MirrorScript): boolean {
+  const inline = script.inline ?? '';
+  if (!inline) return false;
+
+  if (inline.includes('setPop') && inline.includes('elementor-popup-modal-2978')) return true;
+  if (inline.includes('#hMenu') && inline.includes('elementor-popup-modal')) return true;
+  if (inline.includes('#mainNav .e-n-menu-title') && inline.includes('e-current')) return true;
+  if (inline.includes('elementor/action') && inline.includes('popup')) return true;
+
+  return false;
+}
+
+export function shouldKeepMirrorScript(script: MirrorScript): boolean {
+  return !shouldSkipMirrorScript(script) && !shouldSkipShellMirrorScript(script);
+}

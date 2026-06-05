@@ -19,9 +19,18 @@
       body.classList.toggle('home-dialog-open', Object.values(dialogMap).some((item) => item && !item.hidden));
     }
 
+    function syncMenuDialogOffset() {
+      const menuDialog = dialogMap.menu;
+      if (!menuDialog) return;
+      const header = document.getElementById('hNav') ?? document.querySelector('header');
+      const top = header?.getBoundingClientRect().height ?? 72;
+      menuDialog.style.setProperty('--shell-header-offset', `${Math.round(top)}px`);
+    }
+
     function openDialog(name) {
       const dialog = dialogMap[name];
       if (!dialog) return;
+      if (name === 'menu') syncMenuDialogOffset();
       setDialogState(dialog, true);
       const input = dialog.querySelector('input[type="search"]');
       if (input) window.setTimeout(() => input.focus(), 60);
@@ -35,6 +44,9 @@
       event.preventDefault();
       openDialog('menu');
       event.currentTarget?.classList.add('active');
+    });
+    window.addEventListener('resize', () => {
+      if (dialogMap.menu && !dialogMap.menu.hidden) syncMenuDialogOffset();
     });
 
     document.getElementById('hSearchTrigger')?.addEventListener('click', (event) => {

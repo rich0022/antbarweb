@@ -106,7 +106,7 @@ async function main() {
     const originalSize = (await stat(cssPath)).size;
     totalOriginal += originalSize;
 
-    if (base.startsWith('home-local') || originalSize < 1000) {
+    if (base.startsWith('site-shell-local') || base.startsWith('home-local') || originalSize < 1000) {
       totalPurged += originalSize;
       continue;
     }

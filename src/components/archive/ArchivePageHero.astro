@@ -1,0 +1,92 @@
+---
+interface Props {
+  variant?: 'blog' | 'review';
+  desktopImage: string;
+  mobileImage: string;
+  heading: string;
+  tagline: string;
+}
+
+const { variant = 'blog', desktopImage, mobileImage, heading, tagline } = Astro.props;
+
+const ids =
+  variant === 'review'
+    ? {
+        root: '757380ea',
+        images: '7dd07c85',
+        desktop: '79f68550',
+        mobile: 'b53cde6',
+        overlay: '250cb1f0',
+        heading: 'b4e5643',
+        tagline: '5f9fe64e',
+      }
+    : {
+        root: '894a26a',
+        images: 'b139f20',
+        desktop: '83657f4',
+        mobile: 'c95a3fb',
+        overlay: '880c0ed',
+        heading: '4e52c24',
+        tagline: '5ef9938',
+      };
+---
+
+<div class={`elementor-element elementor-element-${ids.root} e-con-full e-flex e-con e-parent`} data-id={ids.root} data-element_type="container">
+  <div class={`elementor-element elementor-element-${ids.images} e-con-full e-flex e-con e-child`} data-id={ids.images} data-element_type="container">
+    <div
+      class={`elementor-element elementor-element-${ids.desktop} elementor-hidden-mobile elementor-widget elementor-widget-image`}
+      data-id={ids.desktop}
+      data-element_type="widget"
+      data-widget_type="image.default"
+    >
+      <img
+        loading="lazy"
+        decoding="async"
+        width="2560"
+        height="952"
+        src={desktopImage}
+        alt=""
+      />
+    </div>
+    <div
+      class={`elementor-element elementor-element-${ids.mobile} elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-image`}
+      data-id={ids.mobile}
+      data-element_type="widget"
+      data-widget_type="image.default"
+    >
+      <img
+        loading="lazy"
+        decoding="async"
+        width="1170"
+        height="1931"
+        src={mobileImage}
+        alt=""
+      />
+    </div>
+  </div>
+  <div
+    class={`elementor-element elementor-element-${ids.overlay} e-con-full e-flex e-con e-child`}
+    data-id={ids.overlay}
+    data-element_type="container"
+    data-settings='{"position":"absolute"}'
+  >
+    <div
+      class={`elementor-element elementor-element-${ids.heading} elementor-invisible elementor-widget elementor-widget-heading`}
+      data-id={ids.heading}
+      data-element_type="widget"
+      data-settings='{"_animation":"fadeInUp"}'
+      data-widget_type="heading.default"
+    >
+      <h2 class="elementor-heading-title elementor-size-default">{heading}</h2>
+    </div>
+    <div
+      class={`elementor-element elementor-element-${ids.tagline} elementor-invisible elementor-widget elementor-widget-text-editor`}
+      data-id={ids.tagline}
+      data-element_type="widget"
+      data-settings='{"_animation":"fadeInUp"}'
+      data-widget_type="text-editor.default"
+    >
+      <p>{tagline}</p>
+    </div>
+  </div>
+</div>

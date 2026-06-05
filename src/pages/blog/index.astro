@@ -1,33 +1,53 @@
 ---
 import { getCollection } from 'astro:content';
+import ArchiveFeaturedPost from '../../components/archive/ArchiveFeaturedPost.astro';
+import ArchivePageHero from '../../components/archive/ArchivePageHero.astro';
 import PostsWidget from '../../components/archive/PostsWidget.astro';
-import ContentBody from '../../components/ContentBody.astro';
 import StandaloneLayout from '../../layouts/StandaloneLayout.astro';
-import { readContentBody } from '../../lib/content-body';
-import { contentEntryFileName } from '../../lib/content-entry';
-import { extractArchiveWidget } from '../../lib/archive-widget';
+import { BLOG_ARCHIVE_PAGE } from '../../data/archive-pages';
+import {
+  buildArchivePostsWidget,
+  listArchivePosts,
+  resolveFeaturedArchivePost,
+} from '../../lib/archive-posts';
 import '../../styles/blog-bundle.css';
 
 const allBlog = await getCollection('blog');
 const blogIndex = allBlog.find((entry) => entry.id === 'index' || entry.data.slug === 'blog');
-const bodyHtml = blogIndex ? await readContentBody('blog', contentEntryFileName(blogIndex.id, 'blog')) : '';
-const archive = bodyHtml ? extractArchiveWidget(bodyHtml) : null;
+const pageConfig = BLOG_ARCHIVE_PAGE;
+
+const allCards = await listArchivePosts('blog', allBlog);
+const featured = await resolveFeaturedArchivePost('blog', pageConfig.featuredSlug, allBlog);
+const gridCards = allCards.filter((card) => !card.href.endsWith(`/${pageConfig.featuredSlug}/`));
+const postsWidget = buildArchivePostsWidget('blog', gridCards);
 ---
 
 <StandaloneLayout
   title={blogIndex?.data.title ?? 'ANTBAR Blog'}
   description={blogIndex?.data.description ?? ''}
-  pageId="1817"
+  pageId={pageConfig.pageId}
 >
-  {
-    archive ? (
-      <>
-        <ContentBody html={archive.beforeHtml} />
-        <PostsWidget widget={archive.widget} />
-        <ContentBody html={archive.afterHtml} />
-      </>
-    ) : (
-      <ContentBody html={bodyHtml} />
-    )
-  }
+  <main id="content" class={`site-main post-${pageConfig.pageId} page type-page status-publish hentry`}>
+    <div class="page-content">
+      <div
+        data-elementor-type="wp-page"
+        data-elementor-id={pageConfig.pageId}
+        class={`elementor elementor-${pageConfig.pageId}`}
+        data-elementor-post-type="page"
+      >
+        <ArchivePageHero variant="blog" {...pageConfig.hero} />
+        {featured && <ArchiveFeaturedPost {...featured} />}
+        <div
+          class="elementor-element elementor-element-331ca0c e-flex e-con-boxed e-con e-parent"
+          data-id="331ca0c"
+          data-element_type="container"
+          data-settings='{"background_background":"classic"}'
+        >
+          <div class="e-con-inner">
+            <PostsWidget widget={postsWidget} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </StandaloneLayout>

@@ -4,7 +4,7 @@ import SiteHeader from '../components/site/SiteHeader.astro';
 import SiteShellClientScript from '../components/site/SiteShellClientScript.astro';
 import SiteShellPopups from '../components/site/SiteShellPopups.astro';
 import '../styles/site-shell-bundle.css';
-import '../styles/home-local.css';
+import '../styles/site-shell-local.css';
 import type { MirrorScript } from '../lib/mirror-assets';
 
 interface Props {
@@ -64,7 +64,7 @@ const {
         true,
       );
     </script>
-    <SiteHeader useLegacyScript={false} />
+    <SiteHeader />
     <slot />
     <SiteFooter />
     <SiteShellPopups />

@@ -11,11 +11,6 @@ import {
 } from '../../data/site-navigation';
 import { isNavItemActive } from '../../lib/nav-active';
 
-interface Props {
-  useLegacyScript?: boolean;
-}
-
-const { useLegacyScript = true } = Astro.props;
 const pathname = Astro.url.pathname;
 const widgetNumber = MEGA_MENU_WIDGET_NUMBER;
 
@@ -325,64 +320,4 @@ function panelWidgetId(tabIndex: number): string {
       </div>
     </div>
   </div>
-  {
-    useLegacyScript && (
-      <div
-        class="elementor-element elementor-element-f6a51c8 e-con-full e-flex e-con e-parent"
-        data-id="f6a51c8"
-        data-element_type="container"
-      >
-        <div
-          class="elementor-element elementor-element-a36975a elementor-widget elementor-widget-html"
-          data-id="a36975a"
-          data-element_type="widget"
-          data-widget_type="html.default"
-        >
-          <script is:inline>
-            jQuery(function () {
-              var $ = jQuery;
-
-              var curMenu = {};
-              $('#mainNav .e-n-menu-title').on('mouseenter', function () {
-                curMenu = $('#mainNav .e-n-menu-title.e-current');
-                curMenu.removeClass('e-current');
-              });
-              $('#mainNav .e-n-menu-title').on('mouseleave', function () {
-                curMenu.addClass('e-current');
-              });
-
-              $('#hMenu').click(function () {
-                if ($(this).hasClass('active')) {
-                  $(this).removeClass('active');
-                } else {
-                  $(this).addClass('active');
-                }
-                setPop();
-              });
-              $(window).resize(function () {
-                setPop();
-              });
-              function setPop() {
-                var h = $('header').outerHeight();
-                var ht = parseInt($('html').css('marginTop'));
-                if ($('#hNav').css('position') == 'fixed') {
-                  h = $('#hNav').outerHeight();
-                  ht = 0;
-                }
-                var css = { marginTop: h, height: $(window).height() - h - ht };
-                var pop = $('#elementor-popup-modal-2978');
-                if (pop.length) {
-                  pop.css(css);
-                } else {
-                  setTimeout(function () {
-                    $('#elementor-popup-modal-2978').css(css);
-                  }, 100);
-                }
-              }
-            });
-          </script>
-        </div>
-      </div>
-    )
-  }
 </header>

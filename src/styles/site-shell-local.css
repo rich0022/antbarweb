@@ -1,5 +1,5 @@
-/* Homepage local overrides — dialogs, nav interaction, carousels, blog cards.
-   Layout/theme rules live in home-bundle.css (aligned with dist reference home-local). */
+/* Site shell local overrides — dialogs, nav interaction, carousels, shared widgets.
+   Page theme rules live in per-page *-bundle.css files. */
 
 .elementor-animated {
   animation-duration: 0.9s;
@@ -43,10 +43,16 @@
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
   animation: slideInDown 0.35s ease;
 }
+.home-dialog--menu {
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-top: var(--shell-header-offset, 72px);
+}
 .home-dialog__panel--menu {
   width: min(94vw, 420px);
   margin-left: auto;
   margin-right: 20px;
+  max-height: calc(100vh - var(--shell-header-offset, 72px) - 24px);
 }
 .home-dialog__panel--search {
   width: min(92vw, 720px);
