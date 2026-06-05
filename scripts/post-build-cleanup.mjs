@@ -13,6 +13,7 @@ const DIST = join(ROOT, 'dist', 'wp-content');
 const PUBLIC_UPLOADS = join(ROOT, 'public', 'wp-content', 'uploads');
 
 const EXT_RE = /\.(png|jpe?g)$/i;
+const DEPLOY_EXCLUDED_RE = /\.orig\.mp4$/i;
 const DELETED = [];
 
 function* walk(dir) {
@@ -52,3 +53,20 @@ for (const filePath of walk(DIST)) {
 }
 
 console.log(`Removed ${fileCount} original images: ${(sizeRemoved/1024/1024).toFixed(1)}MB`);
+
+const distRoot = join(ROOT, 'dist');
+for (const base of ['', 'client']) {
+  const wpContent = join(distRoot, base, 'wp-content');
+  if (!existsSync(wpContent)) continue;
+  for (const filePath of walk(wpContent)) {
+    if (!DEPLOY_EXCLUDED_RE.test(filePath)) continue;
+    const sz = filesize(filePath);
+    unlinkSync(filePath);
+    sizeRemoved += sz;
+    fileCount++;
+  }
+}
+
+if (fileCount > 0) {
+  console.log(`Cleanup total removed: ${fileCount} files, ${(sizeRemoved/1024/1024).toFixed(1)}MB`);
+}
