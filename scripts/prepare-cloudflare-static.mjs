@@ -4,8 +4,9 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const DIST_DIR = path.join(ROOT, 'dist');
 const BLOCKED_MEDIA = [
-  '/wp-content/uploads/2024/07/AGP12000-479-.mp4',
-  '/wp-content/uploads/2024/07/C486-ok-2k.mp4',
+  // Keep only local backup originals out of the Cloudflare bundle.
+  '/wp-content/uploads/2024/07/AGP12000-479-.orig.mp4',
+  '/wp-content/uploads/2024/07/C486-ok-2k.orig.mp4',
 ];
 
 async function removeBlockedMedia() {

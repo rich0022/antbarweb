@@ -3,6 +3,7 @@ node_modules/
 
 # Build output
 dist/
+dist-3456-reference/
 
 # Scraped data (not part of the Astro project)
 scrape/
@@ -36,6 +37,6 @@ npm-debug.log*
 # Local tooling
 .codegraph/
 
-# Oversized media kept local until externalized
-public/wp-content/uploads/2024/07/AGP12000-479-.mp4
-public/wp-content/uploads/2024/07/C486-ok-2k.mp4
+# Original oversized sources (compressed versions are tracked for deploy)
+public/wp-content/uploads/2024/07/AGP12000-479-.orig.mp4
+public/wp-content/uploads/2024/07/C486-ok-2k.orig.mp4
