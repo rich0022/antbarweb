@@ -27,10 +27,10 @@
 
     function syncShellDropdownOffset(target = null) {
       const header = document.querySelector('[data-site-shell-header-bar]') ?? document.querySelector('header');
-      const bottom = header?.getBoundingClientRect().bottom ?? 72;
-      const offset = `${Math.max(Math.round(bottom), 0)}px`;
+      const bottom = header?.getBoundingClientRect().bottom ?? 60;
+      const offset = `${Math.max(Math.round(bottom), 56)}px`;
       document.documentElement.style.setProperty('--shell-header-bottom', offset);
-      target?.style?.setProperty('--shell-header-bottom', offset);
+      if (target) target.style.top = offset;
     }
 
     function openDialog(name) {
@@ -104,6 +104,16 @@
       });
       menuTrigger?.classList.remove('active');
     });
+
+    window.addEventListener('scroll', () => {
+      Object.values(dialogMap).forEach((dialog) => {
+        if (dialog && !dialog.hidden && dialog.dataset.siteShellDialog !== 'age') {
+          closeDialog(dialog);
+        }
+      });
+      menuTrigger?.classList.remove('active');
+      menuItems.forEach((item) => closeMenuItem(item));
+    }, { passive: true });
 
     const ageAcceptedKey = 'antbar-age-verified';
     const ageDialog = dialogMap.age;
@@ -192,7 +202,10 @@
     menuItems.forEach((item) => {
       if (!item.querySelector('[data-site-shell-nav-panel]')) return;
       item.addEventListener('mouseenter', () => openMenuItem(item));
-      item.addEventListener('mouseleave', () => closeMenuItem(item));
+      item.addEventListener('mouseleave', (event) => {
+        if (item.contains(event.relatedTarget)) return;
+        closeMenuItem(item);
+      });
       item.addEventListener('focusin', () => openMenuItem(item));
       item.addEventListener('focusout', (event) => {
         if (item.contains(event.relatedTarget)) return;
@@ -333,13 +346,37 @@
     const hNav = document.querySelector('[data-site-shell-header-bar]');
     const hTop = document.querySelector('[data-site-shell-warning]');
     if (hNav && hTop) {
+      const hHeader = hNav.parentElement;
+      let originalHeaderHeight = null;
+
+      function lockNav() {
+        if (!hNav.classList.contains('is-sticky')) {
+          if (originalHeaderHeight == null) originalHeaderHeight = hHeader.offsetHeight;
+          hHeader.style.minHeight = originalHeaderHeight + 'px';
+          hNav.classList.add('is-sticky');
+        }
+      }
+
+      function releaseNav() {
+        hNav.classList.remove('is-sticky');
+        hHeader.style.minHeight = '';
+      }
+
       const observer = new IntersectionObserver(
         ([entry]) => {
-          hNav.classList.toggle('is-sticky', !entry.isIntersecting);
+          entry.isIntersecting ? releaseNav() : lockNav();
         },
         { threshold: 0 },
       );
       observer.observe(hTop);
+
+      window.addEventListener('resize', () => {
+        if (hNav.classList.contains('is-sticky')) {
+          hHeader.style.minHeight = '';
+          originalHeaderHeight = null;
+          lockNav();
+        }
+      });
     }
 
     document.querySelectorAll('[data-local-carousel]').forEach((root) => initCarousel(root));

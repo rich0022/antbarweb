@@ -57,9 +57,9 @@ function auditHtml(relativePath, html) {
   }
 
   for (const [label, pattern] of [
-    ['age', /id="elementor-popup-modal-1146"/g],
-    ['menu', /id="elementor-popup-modal-2978"/g],
-    ['search', /id="elementor-popup-modal-1132"/g],
+    ['age', /id="site-shell-age-dialog"/g],
+    ['menu', /id="site-shell-menu-dialog"/g],
+    ['search', /id="site-shell-search-dialog"/g],
   ]) {
     const count = countMatches(html, pattern);
     if (count !== 1) {

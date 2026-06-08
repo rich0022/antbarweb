@@ -21,7 +21,6 @@
 html,
 body {
   max-width: 100%;
-  overflow-x: clip;
 }
 
 .site-shell-frame {
@@ -82,8 +81,7 @@ body {
 }
 
 .site-header__bar {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 90;
   background: var(--site-shell-dark);
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
@@ -91,6 +89,10 @@ body {
 }
 
 .site-header__bar.is-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
 }
 
@@ -132,6 +134,16 @@ body {
 
 .site-header__nav-item {
   position: relative;
+}
+
+.site-header__nav-item--has-panel::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 1;
 }
 
 .site-header__nav-entry {
@@ -433,7 +445,7 @@ body {
   margin: 0 0 18px;
   color: #ffffff;
   font-family: "Poppins", sans-serif;
-  font-size: 1rem;
+  font-size: clamp(0.94rem, 0.88vw, 1.02rem);
   font-weight: 600;
 }
 
@@ -458,7 +470,7 @@ body {
 .site-footer__accordion-links a {
   color: var(--site-shell-muted);
   font-family: "Poppins", sans-serif;
-  font-size: 0.92rem;
+  font-size: clamp(0.88rem, 0.83vw, 0.96rem);
   line-height: 1.65;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -474,7 +486,7 @@ body {
 .site-footer__social-copy {
   color: var(--site-shell-muted);
   font-family: "Poppins", sans-serif;
-  font-size: 0.92rem;
+  font-size: clamp(0.88rem, 0.83vw, 0.96rem);
   line-height: 1.7;
 }
 
@@ -537,7 +549,7 @@ body {
   padding: 16px 0;
   color: #ffffff;
   font-family: "Poppins", sans-serif;
-  font-size: 0.96rem;
+  font-size: clamp(0.88rem, 0.83vw, 0.96rem);
   font-weight: 500;
   cursor: pointer;
   list-style: none;
@@ -576,7 +588,7 @@ body {
   gap: 16px;
   color: rgba(255, 255, 255, 0.62);
   font-family: "Poppins", sans-serif;
-  font-size: 0.84rem;
+  font-size: clamp(0.78rem, 0.72vw, 0.86rem);
 }
 
 /* Dialog / Popup */
@@ -652,6 +664,18 @@ body {
   background: #ffffff;
   box-shadow: none;
   pointer-events: auto;
+  animation: siteShellMenuIn 0.22s ease;
+}
+
+@keyframes siteShellMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .site-shell-dialog__panel--search {
@@ -684,11 +708,6 @@ body {
 
 .site-shell-menu-shell__topbar {
   display: none;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 20px clamp(22px, 5vw, 32px);
-  background: #000000;
 }
 
 .site-shell-menu-shell__brand {
@@ -729,7 +748,7 @@ body {
 }
 
 .site-shell-menu {
-  padding: 24px clamp(22px, 5vw, 32px) 40px;
+  padding: 16px clamp(22px, 5vw, 32px) 32px;
 }
 
 .site-shell-menu__title {
@@ -747,14 +766,14 @@ body {
 .site-shell-menu__root-link,
 .site-shell-menu__links a {
   display: block;
-  padding: 18px 0;
+  padding: 12px 0;
   color: #000;
   text-decoration: none;
   font-family: "Poppins", sans-serif;
 }
 
 .site-shell-menu__root-link {
-  font-size: clamp(1.1rem, 5vw, 1.45rem);
+  font-size: clamp(0.92rem, 3.5vw, 1.1rem);
   font-weight: 500;
 }
 
@@ -772,8 +791,8 @@ body {
   justify-content: space-between;
   list-style: none;
   cursor: pointer;
-  padding: 20px 0;
-  font-size: clamp(1.1rem, 5vw, 1.45rem);
+  padding: 14px 0;
+  font-size: clamp(0.92rem, 3.5vw, 1.1rem);
   font-family: "Poppins", sans-serif;
   font-weight: 500;
 }
@@ -785,7 +804,7 @@ body {
 .site-shell-menu__section summary::after {
   content: "+";
   color: rgba(0, 0, 0, 0.55);
-  font-size: 2.25rem;
+  font-size: 1.75rem;
   line-height: 1;
 }
 
@@ -796,21 +815,21 @@ body {
 
 .site-shell-menu__links {
   display: grid;
-  gap: 12px;
-  padding: 0 0 20px;
+  gap: 6px;
+  padding: 0 0 16px;
 }
 
 .site-shell-menu__links a {
   padding: 4px 0;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .site-shell-menu__products {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  padding: 10px 0 24px;
+  gap: 14px;
+  padding: 8px 0 20px;
 }
 
 .site-shell-menu__product-card {
@@ -826,8 +845,8 @@ body {
 
 .site-shell-menu__product-card img {
   width: auto;
-  max-width: 90px;
-  height: 140px;
+  max-width: 70px;
+  height: 110px;
   object-fit: contain;
 }
 
@@ -837,19 +856,20 @@ body {
 }
 
 .site-shell-menu__product-card span {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }
 
 .site-shell-menu__cta {
   display: flex;
   width: fit-content;
-  margin: 0 auto 24px;
+  margin: 0 auto 20px;
   justify-content: center;
-  padding: 9px 18px;
+  padding: 7px 16px;
   border: 1px solid #000;
   border-radius: 8px;
   color: #000;
   text-decoration: none;
+  font-size: 0.9rem;
 }
 
 .site-shell-search-shell {
@@ -1090,6 +1110,12 @@ body {
     display: inline-flex;
   }
 
+  .site-shell-dialog__panel--menu {
+    max-height: calc(100vh - var(--shell-header-bottom, 72px) - 24px);
+    overflow-y: auto;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  }
+
   .blog .elementor-post__title {
     height: 8vw;
   }
@@ -1125,7 +1151,7 @@ body {
   }
 
   .site-footer__primary {
-    padding-top: 44px;
+    padding-top: 28px;
   }
 
   .site-footer__inner.site-shell-frame,
@@ -1153,21 +1179,21 @@ body {
   }
 
   .site-footer__brand {
-    margin-bottom: 26px;
+    margin-bottom: 16px;
   }
 
   .site-footer__brand img {
-    width: 178px;
+    width: 160px;
   }
 
   .site-footer__section-title {
     margin: 0;
-    font-size: 1.35rem;
+    font-size: 1.05rem;
     font-weight: 400;
   }
 
   .site-footer__mobile-nav > .site-footer__section-title {
-    padding: 0 0 22px;
+    padding: 0 0 16px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   }
 
@@ -1180,34 +1206,34 @@ body {
   }
 
   .site-footer__accordion summary {
-    padding: 22px 0;
-    font-size: 1.35rem;
+    padding: 16px 0;
+    font-size: 1.05rem;
     font-weight: 400;
   }
 
   .site-footer__accordion summary::after {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 600;
   }
 
   .site-footer__column--contact {
     order: 2;
-    margin-top: 28px;
+    margin-top: 20px;
   }
 
   .site-footer__column--social {
     order: 3;
-    margin-top: 28px;
+    margin-top: 20px;
   }
 
   .site-footer__contact-text,
   .site-footer__social-copy {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .site-footer__social-link {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 6px;
     background: #ffffff;
     color: #000000;
@@ -1216,8 +1242,8 @@ body {
   .site-footer__meta-inner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
-    font-size: 1rem;
+    gap: 6px;
+    font-size: 0.85rem;
   }
 
   .site-shell-dialog__panel {

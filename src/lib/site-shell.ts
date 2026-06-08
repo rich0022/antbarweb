@@ -5,7 +5,7 @@ export function stripSiteShellFromHtml(html: string): string {
   return normalizeMirrorHtml(html)
     .replace(/<header\b[^>]*\belementor-location-header\b[\s\S]*?<\/header>/gi, '')
     .replace(/<footer\b[^>]*\belementor-location-footer\b[\s\S]*?<\/footer>/gi, '')
-    .replace(/<div[^>]*id=["']elementor-popup-modal-\d+["'][\s\S]*$/i, '')
+    .replace(/<div[^>]*id=["']site-shell-(?:menu|search|age)-dialog["'][\s\S]*$/i, '')
     .replace(/<div\b[^>]*(?:data-elementor-type=["']popup["']|class=["'][^"']*\belementor-location-popup\b[^"']*["'])[\s\S]*$/i, '')
     .trim();
 }
