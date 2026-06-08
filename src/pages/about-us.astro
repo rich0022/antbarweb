@@ -33,7 +33,7 @@ const detailSections = ABOUT_SECTIONS.slice(1);
         />
       </picture>
       <div class="about-hero__overlay">
-        <div class="about-hero__copy elementor-invisible" data-settings='{"animation":"fadeInUp"}'>
+        <div class="about-hero__copy scroll-reveal" data-animate="fadeInUp">
           <p>{ABOUT_HERO.headings[0]}</p>
           <p><strong>{ABOUT_HERO.headings[1]}</strong></p>
         </div>
@@ -42,7 +42,7 @@ const detailSections = ABOUT_SECTIONS.slice(1);
 
     <section class="about-feature about-feature--brand" aria-labelledby="about-brand-title">
       <div class="about-feature__inner">
-        <div class="about-feature__media elementor-invisible" data-settings='{"_animation":"fadeInRight"}'>
+        <div class="about-feature__media scroll-reveal" data-animate="fadeInRight">
           <a class="about-feature__image-link" href={brandStory.buttonHref} aria-label={brandStory.heading}>
             <img
               loading="lazy"
@@ -56,7 +56,7 @@ const detailSections = ABOUT_SECTIONS.slice(1);
             />
           </a>
         </div>
-        <div class="about-feature__copy elementor-invisible" data-settings='{"_animation":"fadeInLeft"}'>
+        <div class="about-feature__copy scroll-reveal" data-animate="fadeInLeft">
           <h1 id="about-brand-title">{brandStory.heading}</h1>
           <p>{brandStory.text}</p>
           <a class="about-feature__button" href={brandStory.buttonHref}>View More</a>
@@ -68,7 +68,7 @@ const detailSections = ABOUT_SECTIONS.slice(1);
       {detailSections.map((section) => (
         <article class="about-section">
           <div class="about-section__inner">
-            <div class="about-section__media elementor-invisible" data-settings='{"_animation":"fadeInLeft"}'>
+            <div class="about-section__media scroll-reveal" data-animate="fadeInLeft">
               <a class="about-section__image-link" href={section.buttonHref} aria-label={section.heading.replace('\n', ' ')}>
                 <img
                   loading="lazy"
@@ -82,7 +82,7 @@ const detailSections = ABOUT_SECTIONS.slice(1);
                 />
               </a>
             </div>
-            <div class="about-section__copy elementor-invisible" data-settings='{"_animation":"fadeInRight"}'>
+            <div class="about-section__copy scroll-reveal" data-animate="fadeInRight">
               <h2 set:html={section.heading.replace('\n', '<br />')} />
               <p>{section.text}</p>
               <a class="about-section__button" href={section.buttonHref}>View More</a>

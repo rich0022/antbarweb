@@ -4,6 +4,7 @@ import SiteHeader from '../components/site/SiteHeader.astro';
 import SiteShellClientScript from '../components/site/SiteShellClientScript.astro';
 import SiteShellPopups from '../components/site/SiteShellPopups.astro';
 import '../styles/site-shell-local.css';
+import { SITE_SHELL_BODY_CLASS } from '../data/site-shell';
 import type { MirrorScript } from '../lib/mirror-assets';
 
 interface Props {
@@ -25,6 +26,8 @@ const {
   headScripts = [],
   footerScripts = [],
 } = Astro.props;
+
+const mergedBodyClass = [SITE_SHELL_BODY_CLASS, bodyClass].filter(Boolean).join(' ');
 ---
 
 <!doctype html>
@@ -47,7 +50,7 @@ const {
     )}
     <slot name="head" />
   </head>
-  <body class={bodyClass}>
+  <body class={mergedBodyClass}>
     <script is:inline>
       document.addEventListener(
         'click',

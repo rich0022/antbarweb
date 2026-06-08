@@ -7,7 +7,7 @@ import '../styles/intelligent-manufacturing.css';
 const pages = await getCollection('pages');
 const entry = pages.find((page) => page.id === 'intelligent-manufacturing');
 const bodyClass =
-  'wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 intelligent-manufacturing-body';
+  'intelligent-manufacturing-body';
 
 const highlights = [
   {
@@ -62,7 +62,7 @@ const highlights = [
       </div>
       <p class="manufacturing-label">ARTIFICIAL INTELLIGENCE</p>
       <div class="manufacturing-overview__grid">
-        <figure class="manufacturing-overview__image elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+        <figure class="manufacturing-overview__image scroll-reveal" data-animate="fadeInUp">
           <img
             loading="lazy"
             decoding="async"
@@ -74,7 +74,7 @@ const highlights = [
             alt=""
           />
         </figure>
-        <p class="manufacturing-overview__text elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+        <p class="manufacturing-overview__text scroll-reveal" data-animate="fadeInUp">
           Our factory uses real-time data analysis, artificial intelligence (AI), and machine learning in the manufacturing process to realize intelligent manufacturing. The self-developed auto-mated plant improves both production efficiency and cost reduction.
         </p>
       </div>
@@ -97,7 +97,7 @@ const highlights = [
               <div class="manufacturing-highlight__copy">
                 <div class="manufacturing-highlight__bar"><span></span></div>
                 <h3 set:html={item.heading} />
-                <p class="elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>{item.text}</p>
+                <p class="scroll-reveal" data-animate="fadeInUp">{item.text}</p>
               </div>
             </article>
           ))}

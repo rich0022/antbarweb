@@ -1,0 +1,377 @@
+.archive-page {
+  background: #fff;
+  color: #000;
+  font-family: "Poppins", sans-serif;
+}
+
+.archive-hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.archive-hero__media {
+  display: block;
+  width: 100%;
+}
+
+.archive-hero__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.archive-hero__media--mobile {
+  display: none;
+}
+
+.archive-hero__overlay {
+  position: absolute;
+  inset: 0;
+  top: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.archive-hero__heading {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 3.6vw;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.archive-hero__tagline {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.7vw;
+  font-weight: 300;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.archive-featured-wrap {
+  padding: 6vw 0 2vw;
+  background: #f6f6f6;
+}
+
+.archive-featured {
+  width: 78%;
+  margin: 0 auto;
+}
+
+.archive-featured__card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  padding: 1.5vw;
+  border-radius: 1em;
+  background: #fff;
+}
+
+.archive-featured__media {
+  flex: 0 0 58%;
+  max-width: 58%;
+  padding-right: 1vw;
+  box-sizing: border-box;
+}
+
+.archive-featured__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.archive-featured__copy {
+  display: flex;
+  flex: 0 0 42%;
+  max-width: 42%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+.archive-featured__title {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6vw;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.archive-featured__title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.archive-featured__title a:hover {
+  color: #818181;
+}
+
+.archive-featured__date {
+  margin: 2vw 0 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 1vw;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #989898;
+}
+
+.archive-featured__button {
+  display: inline-block;
+  margin: 2vw 0 0;
+  padding: 0.4rem 2.5rem;
+  border: 0.08vw solid #020101;
+  border-radius: 3rem;
+  background: transparent;
+  color: #020101;
+  font-family: "Poppins", sans-serif;
+  font-size: 1vw;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.archive-featured__button:hover,
+.archive-featured__button:focus {
+  background: #000;
+  color: #fff;
+}
+
+.archive-grid-wrap {
+  padding: 1.5vw 0 12vw;
+  background: #f6f6f6;
+}
+
+.archive-grid-section {
+  width: 78%;
+  margin: 0 auto;
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.2rem 2.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.archive-grid__card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: hidden;
+  border-radius: 1em;
+  background: #fff;
+}
+
+.archive-grid__thumb-link {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 80%;
+  overflow: hidden;
+}
+
+.archive-grid__thumb-link img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% + 1px);
+  height: auto;
+  transform: scale(1.01) translate(-50%, -50%);
+}
+
+.archive-grid__body {
+  padding: 0 1.5rem;
+  margin-top: 0;
+}
+
+.archive-grid__title {
+  margin: 0 0 0.8rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2vw;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.archive-grid__title a {
+  color: #000;
+  text-decoration: none;
+}
+
+.archive-grid__read-more {
+  display: inline-block;
+  align-self: flex-start;
+  margin-bottom: 0.8rem;
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 1vw;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.archive-grid__meta {
+  margin-top: auto;
+  padding: 10px 1.5rem;
+  color: #989898;
+  font-family: "Poppins", sans-serif;
+  font-size: 1vw;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .archive-featured,
+  .archive-grid-section {
+    width: 95%;
+  }
+
+  .archive-featured-wrap {
+    padding-top: 4vw;
+    padding-bottom: 4vw;
+  }
+
+  .archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .archive-hero__heading {
+    font-size: 5vw;
+  }
+
+  .archive-hero__tagline {
+    font-size: 2vw;
+  }
+
+  .archive-featured-wrap {
+    padding-top: 4vw;
+    padding-bottom: 4vw;
+  }
+
+  .archive-featured__title {
+    font-size: 3vw;
+  }
+
+  .archive-featured__date {
+    font-size: 1.8vw;
+  }
+
+  .archive-featured__button {
+    font-size: 1.8vw;
+  }
+
+  .archive-grid-wrap {
+    padding-bottom: 12vw;
+  }
+
+  .archive-grid__title {
+    font-size: 2.4vw;
+  }
+
+  .archive-grid__meta {
+    font-size: 1.6vw;
+  }
+
+  .archive-grid__read-more {
+    font-size: 1.8vw;
+  }
+}
+
+@media (max-width: 767px) {
+  .archive-hero__media--desktop {
+    display: none;
+  }
+
+  .archive-hero__media--mobile {
+    display: block;
+  }
+
+  .archive-hero__overlay {
+    top: 30%;
+  }
+
+  .archive-hero__heading {
+    font-size: 9vw;
+  }
+
+  .archive-hero__tagline {
+    font-size: 5vw;
+  }
+
+  .archive-featured-wrap {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .archive-featured {
+    width: 90%;
+  }
+
+  .archive-featured__card {
+    padding: 4vw;
+    border-radius: 0.5em;
+  }
+
+  .archive-featured__media,
+  .archive-featured__copy {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-right: 0;
+  }
+
+  .archive-featured__title {
+    font-size: 5vw;
+  }
+
+  .archive-featured__date {
+    font-size: 3vw;
+  }
+
+  .archive-featured__button {
+    font-size: 3vw;
+  }
+
+  .archive-grid-section {
+    width: 90%;
+  }
+
+  .archive-grid-wrap {
+    padding-bottom: 5rem;
+  }
+
+  .archive-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .archive-grid__title {
+    font-size: 5vw;
+  }
+
+  .archive-grid__meta {
+    font-size: 3vw;
+  }
+
+  .archive-grid__read-more {
+    font-size: 3vw;
+  }
+}

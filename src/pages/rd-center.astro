@@ -7,7 +7,7 @@ import '../styles/rd-center.css';
 const pages = await getCollection('pages');
 const entry = pages.find((page) => page.id === 'rd-center');
 const bodyClass =
-  'wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 rd-center-body';
+  'rd-center-body';
 
 const counters = [
   { title: 'SOFTWARE COPYRIGHT', value: '6' },
@@ -87,8 +87,8 @@ const patents = [
       <div class="rd-intro__inner">
         <div class="rd-intro__content">
           <img
-            class="rd-intro__image elementor-invisible"
-            data-settings='{"_animation":"fadeInUp"}'
+            class="rd-intro__image scroll-reveal"
+            data-animate="fadeInUp"
             loading="lazy"
             decoding="async"
             width="1809"
@@ -98,15 +98,15 @@ const patents = [
             sizes="(max-width: 1809px) 100vw, 1809px"
             alt=""
           />
-          <p class="rd-intro__text elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+          <p class="rd-intro__text scroll-reveal" data-animate="fadeInUp">
             Driven by market-oriented and technological innovation, Antbar spares no expense and effort in research and development. Based on independent research and development, Antbar have established a professional R&D team led by senior engineers in the industry and introduced advanced scientific equipment. The team has a keen mind on the vaping industry and new trend, and keeps on rolling out more optimal solutions by integrating technology, marketing and production, committed to creating products with more stable performance. Antbar has cooperated with several renowned universities on new materials and technical to solve some tricky problems in this field. Antbar strives to become an industry-leading atomizer technology corporation that drives the innovation of electronic atomizer.
           </p>
         </div>
         <div class="rd-intro__heading">
-          <h1 id="rd-center-title" class="elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>R&D Center</h1>
+          <h1 id="rd-center-title" class="scroll-reveal" data-animate="fadeInUp">R&D Center</h1>
           <img
-            class="elementor-invisible"
-            data-settings='{"_animation":"fadeInUp"}'
+            class="scroll-reveal"
+            data-animate="fadeInUp"
             loading="lazy"
             decoding="async"
             width="96"
@@ -135,10 +135,10 @@ const patents = [
           <img loading="lazy" decoding="async" width="1016" height="989" src="/wp-content/uploads/2024/04/地球-GIF.gif" alt="" />
         </div>
         <div class="rd-property__heading">
-          <h2 id="rd-property-title" class="elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>Intellectual<br />Property</h2>
+          <h2 id="rd-property-title" class="scroll-reveal" data-animate="fadeInUp">Intellectual<br />Property</h2>
           <img
-            class="elementor-invisible"
-            data-settings='{"_animation":"fadeInUp"}'
+            class="scroll-reveal"
+            data-animate="fadeInUp"
             loading="lazy"
             decoding="async"
             width="96"
@@ -147,14 +147,14 @@ const patents = [
             alt=""
           />
         </div>
-        <p class="rd-property__text elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+        <p class="rd-property__text scroll-reveal" data-animate="fadeInUp">
           Advocating scientific and technological innovation and market-oriented, Antbar produces some products that are widely sold in dozens of countries and regions around the world. With its excellent technical advantage and market competitiveness, Antbar has won recognition and praise from a large number of enterprises, distributors, and consumers at home and abroad.
         </p>
       </div>
 
       <div class="rd-counters" aria-label="Patent statistics">
         {counters.map((counter) => (
-          <div class="rd-counter elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+          <div class="rd-counter scroll-reveal" data-animate="fadeInUp">
             <p>{counter.title}</p>
             <strong>{counter.value}</strong>
           </div>
@@ -163,7 +163,7 @@ const patents = [
 
       <div class="rd-patents">
         {patents.map((patent) => (
-          <figure class="rd-patent elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+          <figure class="rd-patent scroll-reveal" data-animate="fadeInUp">
             <img loading="lazy" decoding="async" width={patent.w} height={patent.h} src={patent.src} alt="" />
           </figure>
         ))}

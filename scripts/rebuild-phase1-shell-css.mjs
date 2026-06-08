@@ -41,14 +41,6 @@ const LEGACY_SHELL_CSS = [
 ];
 
 const PAGE_CSS_MAP = {
-  blog: [
-    'wp-content/uploads/elementor/css/post-1817.css',
-    'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css',
-  ],
-  review: [
-    'wp-content/uploads/elementor/css/post-2779.css',
-    'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css',
-  ],
   disposable: [
     'wp-content/uploads/elementor/css/post-1075.css',
     'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css',
@@ -56,14 +48,6 @@ const PAGE_CSS_MAP = {
   'pod-sys': [
     'wp-content/uploads/elementor/css/post-1077.css',
     'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css',
-  ],
-  contact: [
-    'wp-content/uploads/elementor/css/post-927.css',
-    'wp-content/plugins/elementor-pro/assets/css/widget-form.min.css',
-  ],
-  support: [
-    'wp-content/uploads/elementor/css/post-948.css',
-    'wp-content/plugins/elementor/assets/css/widget-toggle.min.css',
   ],
   verification: ['wp-content/uploads/elementor/css/post-950.css'],
   agp12000: [

@@ -12,8 +12,8 @@ const rightItems = PRODUCT_GRID_ITEMS.filter((item) => item.layout === 'stack-ri
       {leftItems.map((item) => (
         <article
           id={`home-product-${item.id}`}
-          class="home-product-card elementor-invisible"
-          data-settings={`{"_animation":"${item.animation}"}`}
+          class="home-product-card scroll-reveal"
+          data-animate={item.animation}
         >
           <a class="home-product-card__link" href={item.href} aria-label={item.name}>
             <img
@@ -36,8 +36,8 @@ const rightItems = PRODUCT_GRID_ITEMS.filter((item) => item.layout === 'stack-ri
       <div class="home-product-grid__column home-product-grid__column--feature">
         <article
           id={`home-product-${centerItem.id}`}
-          class="home-product-card home-product-card--feature elementor-invisible"
-          data-settings={`{"_animation":"${centerItem.animation}"}`}
+          class="home-product-card home-product-card--feature scroll-reveal"
+          data-animate={centerItem.animation}
         >
           <a class="home-product-card__link" href={centerItem.href} aria-label={centerItem.name}>
             <img
@@ -60,8 +60,8 @@ const rightItems = PRODUCT_GRID_ITEMS.filter((item) => item.layout === 'stack-ri
       {rightItems.map((item) => (
         <article
           id={`home-product-${item.id}`}
-          class="home-product-card elementor-invisible"
-          data-settings={`{"_animation":"${item.animation}"}`}
+          class="home-product-card scroll-reveal"
+          data-animate={item.animation}
         >
           <a class="home-product-card__link" href={item.href} aria-label={item.name}>
             <img

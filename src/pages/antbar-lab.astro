@@ -11,7 +11,7 @@ const hero = ANTBAR_LAB_HERO;
 const intro = ANTBAR_LAB_INTRO;
 const certs = ANTBAR_LAB_CERTS;
 const bodyClass =
-  'wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 antbar-lab-body';
+  'antbar-lab-body';
 ---
 
 <SiteShellLayout
@@ -39,7 +39,7 @@ const bodyClass =
 
     <section class="lab-intro" aria-labelledby="lab-title">
       <div class="lab-intro__grid">
-        <div class="lab-intro__left elementor-invisible" data-settings='{"animation":"fadeInLeft"}'>
+        <div class="lab-intro__left scroll-reveal" data-animate="fadeInLeft">
           <div class="lab-intro__kicker">
             <div>
               <p>TO EXPLORE</p>
@@ -59,7 +59,7 @@ const bodyClass =
             alt=""
           />
         </div>
-        <div class="lab-intro__right elementor-invisible" data-settings='{"animation":"fadeInRight"}'>
+        <div class="lab-intro__right scroll-reveal" data-animate="fadeInRight">
           <img
             loading="lazy"
             decoding="async"
@@ -75,17 +75,17 @@ const bodyClass =
       </div>
 
       <div class="lab-intro__summary">
-        <h1 id="lab-title" class="elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>{intro.bottomHeading}</h1>
-        <p class="elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>{intro.bottomText}</p>
+        <h1 id="lab-title" class="scroll-reveal" data-animate="fadeInUp">{intro.bottomHeading}</h1>
+        <p class="scroll-reveal" data-animate="fadeInUp">{intro.bottomText}</p>
       </div>
     </section>
 
     <section class="lab-certs" aria-labelledby="lab-certs-title">
       <div class="lab-certs__intro">
-        <h2 id="lab-certs-title" class="elementor-invisible" data-settings='{"_animation":"fadeInUp"}' set:html={certs.heading} />
+        <h2 id="lab-certs-title" class="scroll-reveal" data-animate="fadeInUp" set:html={certs.heading} />
         <p>{certs.text}</p>
       </div>
-      <div class="lab-certs__grid elementor-invisible" data-settings='{"animation":"fadeInUp"}'>
+      <div class="lab-certs__grid scroll-reveal" data-animate="fadeInUp">
         {certs.certs.map((cert) => (
           <figure class="lab-cert">
             <img

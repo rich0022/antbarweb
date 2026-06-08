@@ -1,5 +1,4 @@
 import type { CollectionEntry } from 'astro:content';
-import type { ArchivePostCard, ArchivePostsWidget } from './archive-widget';
 import { readMirrorArticlePage, readMirrorPublishedLabel } from './article-page';
 import { contentEntrySlug } from './content-entry';
 import {
@@ -9,45 +8,14 @@ import {
 
 export type ArchiveCollection = 'blog' | 'review';
 
-type SortableArchiveCard = ArchivePostCard & { sortKey: number };
-
-const WIDGET_SHELL: Record<
-  ArchiveCollection,
-  Omit<ArchivePostsWidget, 'cards' | 'nextPageHref' | 'currentPage' | 'maxPage' | 'loadMoreText'>
-> = {
-  blog: {
-    widgetClass:
-      'elementor-element elementor-element-239032f elementor-posts--align-left elementor-posts__hover-none blog elementor-grid-3 elementor-grid-tablet-2 elementor-grid-mobile-1 elementor-posts--thumbnail-top load-more-align-center elementor-invisible elementor-widget elementor-widget-posts',
-    dataId: '239032f',
-    dataElementType: 'widget',
-    dataSettings:
-      '{"cards_row_gap":{"unit":"rem","size":2.2,"sizes":[]},"pagination_type":"load_more_on_click","_animation":"fadeInUp","cards_columns":"3","cards_columns_tablet":"2","cards_columns_mobile":"1"}',
-    dataWidgetType: 'posts.cards',
-    postsContainerClass:
-      'elementor-posts-container elementor-posts elementor-posts--skin-cards elementor-grid',
-    skin: 'cards',
-  },
-  review: {
-    widgetClass:
-      'elementor-element elementor-element-5d36121 elementor-posts--align-left elementor-posts__hover-none blog elementor-grid-3 elementor-grid-tablet-2 elementor-grid-mobile-1 elementor-posts--thumbnail-top load-more-align-center elementor-invisible elementor-widget elementor-widget-posts',
-    dataId: '5d36121',
-    dataElementType: 'widget',
-    dataSettings:
-      '{"cards_row_gap":{"unit":"rem","size":2.2,"sizes":[]},"pagination_type":"load_more_on_click","_animation":"fadeInUp","cards_columns":"3","cards_columns_tablet":"2","cards_columns_mobile":"1"}',
-    dataWidgetType: 'posts.cards',
-    postsContainerClass:
-      'elementor-posts-container elementor-posts elementor-posts--skin-cards elementor-grid',
-    skin: 'cards',
-  },
+export type ArchiveGridCard = {
+  href: string;
+  title: string;
+  image: string;
+  dateText?: string;
 };
 
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
+type SortableArchiveGridCard = ArchiveGridCard & { sortKey: number };
 
 function parseArchiveDate(value: string): number {
   if (!value) return 0;
@@ -66,20 +34,12 @@ function buildArchiveCard(params: {
   image: string;
   dateText?: string;
   sortKey: number;
-}): SortableArchiveCard {
-  const href = `/${params.collection}/${params.slug}/`;
+}): SortableArchiveGridCard {
   return {
     sortKey: params.sortKey,
-    articleClass: `elementor-post elementor-grid-item post type-post status-publish format-standard has-post-thumbnail hentry category-${params.collection}`,
-    href,
-    imageSrc: params.image,
-    imageAlt: params.title,
-    imageWidth: '532',
-    imageHeight: '535',
-    titleTag: 'h2',
-    titleHtml: escapeHtml(params.title),
-    readMoreText: 'View More',
-    readMoreAria: `Read more about ${params.title}`,
+    href: `/${params.collection}/${params.slug}/`,
+    title: params.title,
+    image: params.image,
     dateText: params.dateText || undefined,
   };
 }
@@ -87,7 +47,7 @@ function buildArchiveCard(params: {
 async function cardFromContentEntry(
   entry: CollectionEntry<'blog'> | CollectionEntry<'review'>,
   collection: ArchiveCollection,
-): Promise<SortableArchiveCard> {
+): Promise<SortableArchiveGridCard> {
   const slug = contentEntrySlug(entry.id, collection);
   const mirrorRoute = `${collection}/${slug}`;
   const dateText =
@@ -111,7 +71,7 @@ async function cardFromContentEntry(
 async function cardFromMirror(
   collection: ArchiveCollection,
   slug: string,
-): Promise<SortableArchiveCard> {
+): Promise<SortableArchiveGridCard> {
   const mirrorRoute = `${collection}/${slug}`;
   const article = await readMirrorArticlePage(mirrorRoute);
   return buildArchiveCard({
@@ -127,8 +87,8 @@ async function cardFromMirror(
 export async function listArchivePosts(
   collection: ArchiveCollection,
   entries: CollectionEntry<'blog'>[] | CollectionEntry<'review'>[],
-): Promise<ArchivePostCard[]> {
-  const cards: SortableArchiveCard[] = [];
+): Promise<ArchiveGridCard[]> {
+  const cards: SortableArchiveGridCard[] = [];
   const seen = new Set<string>();
 
   for (const entry of entries) {
@@ -157,16 +117,6 @@ export async function listArchivePosts(
     .map(({ sortKey: _sortKey, ...card }) => card);
 }
 
-export function buildArchivePostsWidget(
-  collection: ArchiveCollection,
-  cards: ArchivePostCard[],
-): ArchivePostsWidget {
-  return {
-    ...WIDGET_SHELL[collection],
-    cards,
-  };
-}
-
 export type FeaturedArchivePost = {
   title: string;
   href: string;
@@ -185,7 +135,7 @@ export async function resolveFeaturedArchivePost(
     return {
       title: entry.data.title,
       href: card.href,
-      image: card.imageSrc,
+      image: card.image,
       dateText: card.dateText ?? '',
     };
   }

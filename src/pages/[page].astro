@@ -1,9 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import PostsWidget from '../components/archive/PostsWidget.astro';
 import ContentBody from '../components/ContentBody.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { extractArchiveWidget } from '../lib/archive-widget';
 import { readContentBody } from '../lib/content-body';
 import { contentEntryFileName, contentEntrySlug } from '../lib/content-entry';
 import { resolveMirrorRoute } from '../lib/mirror-assets';
@@ -22,19 +20,8 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const bodyHtml = await readContentBody('pages', contentEntryFileName(entry.id, 'pages'));
 const mirrorRoute = resolveMirrorRoute('pages', contentEntryFileName(entry.id, 'pages'));
-const postsWidget = entry.data.slug === 'all-products' && bodyHtml ? extractArchiveWidget(bodyHtml) : null;
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description} mirrorRoute={mirrorRoute}>
-  {
-    postsWidget ? (
-      <>
-        <ContentBody html={postsWidget.beforeHtml} />
-        <PostsWidget widget={postsWidget.widget} />
-        <ContentBody html={postsWidget.afterHtml} />
-      </>
-    ) : (
-      <ContentBody html={bodyHtml} />
-    )
-  }
+  <ContentBody html={bodyHtml} />
 </BaseLayout>

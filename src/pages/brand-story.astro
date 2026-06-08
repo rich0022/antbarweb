@@ -16,7 +16,7 @@ const hero = BRAND_STORY_HERO;
 const intro = BRAND_STORY_HERO_SECTION_WIDGETS;
 const final = BRAND_STORY_FINAL;
 const bodyClass =
-  'wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 brand-story-body';
+  'brand-story-body';
 ---
 
 <SiteShellLayout
@@ -42,7 +42,7 @@ const bodyClass =
       </picture>
       {hero.overlay && (
         <div class="brand-story-hero__overlay">
-          <div class="brand-story-hero__copy elementor-invisible" data-settings='{"animation":"fadeInUp"}'>
+          <div class="brand-story-hero__copy scroll-reveal" data-animate="fadeInUp">
             <p>{hero.overlay.headings[0]}</p>
             <p><strong>{hero.overlay.headings[1]}</strong></p>
           </div>
@@ -52,7 +52,7 @@ const bodyClass =
 
     <section class="brand-story-intro" aria-labelledby="brand-story-title">
       <div class="brand-story-intro__inner">
-        <div class="brand-story-intro__heading elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+        <div class="brand-story-intro__heading scroll-reveal" data-animate="fadeInUp">
           <h1 id="brand-story-title">Brand story</h1>
           <img
             loading="lazy"
@@ -63,7 +63,7 @@ const bodyClass =
             alt=""
           />
         </div>
-        <div class="brand-story-intro__text elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+        <div class="brand-story-intro__text scroll-reveal" data-animate="fadeInUp">
           <p set:html={intro.text} />
         </div>
       </div>
@@ -95,7 +95,7 @@ const bodyClass =
 
     <section class="brand-story-final" aria-label="Brand story details">
       <div class="brand-story-final__inner">
-        <div class="brand-story-final__image elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+        <div class="brand-story-final__image scroll-reveal" data-animate="fadeInUp">
           <img
             loading="lazy"
             decoding="async"
@@ -107,7 +107,7 @@ const bodyClass =
             alt=""
           />
         </div>
-        <div class="brand-story-final__text elementor-invisible" data-settings='{"animation":"fadeInLeft"}'>
+        <div class="brand-story-final__text scroll-reveal" data-animate="fadeInLeft">
           <p>{final.text}</p>
         </div>
       </div>

@@ -1,5 +1,4 @@
 export type ArchivePageConfig = {
-  pageId: string;
   hero: {
     desktopImage: string;
     mobileImage: string;
@@ -10,7 +9,6 @@ export type ArchivePageConfig = {
 };
 
 export const BLOG_ARCHIVE_PAGE: ArchivePageConfig = {
-  pageId: '1817',
   hero: {
     desktopImage: '/wp-content/uploads/2024/05/blog-1.webp',
     mobileImage: '/wp-content/uploads/2024/05/blog-2.webp',
@@ -21,7 +19,6 @@ export const BLOG_ARCHIVE_PAGE: ArchivePageConfig = {
 };
 
 export const REVIEW_ARCHIVE_PAGE: ArchivePageConfig = {
-  pageId: '2779',
   hero: {
     desktopImage: '/wp-content/uploads/2024/05/review-1.webp',
     mobileImage: '/wp-content/uploads/2024/05/REVIEW-2.webp',

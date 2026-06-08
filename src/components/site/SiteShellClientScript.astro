@@ -153,21 +153,19 @@
     });
 
     function animationNameFor(element) {
-      const raw = element.getAttribute('data-settings') || '';
-      const match = raw.match(/"(?:_)?animation":"([^"]+)"/);
-      return match?.[1] || 'fadeInUp';
+      return element.getAttribute('data-animate') || 'fadeInUp';
     }
 
     function revealElement(element) {
-      element.classList.remove('elementor-invisible');
-      element.classList.add('elementor-animated', animationNameFor(element));
+      element.classList.remove('scroll-reveal');
+      element.classList.add('scroll-reveal--visible', animationNameFor(element));
     }
 
     function revealSlideContent(slide) {
-      slide?.querySelectorAll('.elementor-invisible[data-settings]').forEach(revealElement);
+      slide?.querySelectorAll('.scroll-reveal[data-animate]').forEach(revealElement);
     }
 
-    const revealItems = document.querySelectorAll('.elementor-invisible[data-settings]');
+    const revealItems = document.querySelectorAll('.scroll-reveal[data-animate]');
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -244,8 +242,8 @@
       const viewport = root.querySelector('.swiper');
       const wrapper = root.querySelector('.swiper-wrapper');
       const slides = [...root.querySelectorAll('.swiper-slide')];
-      const prev = root.querySelector('.elementor-swiper-button-prev');
-      const next = root.querySelector('.elementor-swiper-button-next');
+      const prev = root.querySelector('.shell-carousel__arrow--prev');
+      const next = root.querySelector('.shell-carousel__arrow--next');
       const pagination = root.querySelector('.swiper-pagination');
       const delay = Number(root.dataset.autoplayDelay || 5000);
       let index = 0;

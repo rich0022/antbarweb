@@ -9,52 +9,21 @@ interface Props {
 const { title, href, image, dateText = '' } = Astro.props;
 ---
 
-<div
-  class="elementor-element elementor-element-60e8896 e-flex e-con-boxed e-con e-parent"
-  data-id="60e8896"
-  data-element_type="container"
-  data-settings='{"background_background":"classic"}'
->
-  <div class="e-con-inner">
-    <div
-      class="elementor-element elementor-element-3a2ab2e e-con-full e-flex elementor-invisible e-con e-child"
-      data-id="3a2ab2e"
-      data-element_type="container"
-      data-settings='{"background_background":"classic","animation":"fadeInUp"}'
-    >
-      <div class="elementor-element elementor-element-f4dd595 e-con-full e-flex e-con e-child" data-id="f4dd595" data-element_type="container">
-        <div class="elementor-element elementor-element-617172c elementor-widget elementor-widget-image" data-id="617172c" data-element_type="widget" data-widget_type="image.default">
-          <a href={href}>
-            <img loading="lazy" decoding="async" width="1489" height="1003" src={image} alt="" />
-          </a>
-        </div>
-      </div>
-      <div
-        class="elementor-element elementor-element-c62f68e e-con-full e-flex e-con e-child"
-        data-id="c62f68e"
-        data-element_type="container"
-        data-settings='{"background_background":"classic"}'
-      >
-        <div class="elementor-element elementor-element-a54a3ff hover-gray elementor-widget elementor-widget-heading" data-id="a54a3ff" data-element_type="widget" data-widget_type="heading.default">
-          <h3 class="elementor-heading-title elementor-size-default">
-            <a href={href}>{title}</a>
-          </h3>
-        </div>
-        {
-          dateText && (
-            <div class="elementor-element elementor-element-cb6dce5 elementor-widget elementor-widget-heading" data-id="cb6dce5" data-element_type="widget" data-widget_type="heading.default">
-              <h3 class="elementor-heading-title elementor-size-default">{dateText}</h3>
-            </div>
-          )
-        }
-        <div class="elementor-element elementor-element-2971704 elementor-widget elementor-widget-button" data-id="2971704" data-element_type="widget" data-widget_type="button.default">
-          <a class="elementor-button elementor-button-link elementor-size-sm" href={href}>
-            <span class="elementor-button-content-wrapper">
-              <span class="elementor-button-text">View More</span>
-            </span>
-          </a>
-        </div>
-      </div>
+<section class="archive-featured-wrap" aria-label="Featured post">
+  <div class="archive-featured">
+    <article class="archive-featured__card scroll-reveal" data-animate="fadeInUp">
+    <div class="archive-featured__media">
+      <a href={href} aria-label={title}>
+        <img loading="lazy" decoding="async" width="1489" height="1003" src={image} alt="" />
+      </a>
     </div>
+    <div class="archive-featured__copy">
+      <h3 class="archive-featured__title">
+        <a href={href}>{title}</a>
+      </h3>
+      {dateText && <p class="archive-featured__date">{dateText}</p>}
+      <a class="archive-featured__button" href={href}>View More</a>
+    </div>
+    </article>
   </div>
-</div>
+</section>

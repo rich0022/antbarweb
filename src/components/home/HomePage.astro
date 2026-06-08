@@ -24,10 +24,10 @@ import GalleryCarousel from './GalleryCarousel.astro';
   </section>
 
   <section
-    class="home-products-intro elementor-invisible"
+    class="home-products-intro scroll-reveal"
     id="home-products"
     aria-labelledby="home-products-title"
-    data-settings='{"animation":"fadeInUp"}'
+    data-animate="fadeInUp"
   >
     <div class="home-products-intro__inner">
       <div class="home-products-intro__copy">
@@ -44,10 +44,10 @@ import GalleryCarousel from './GalleryCarousel.astro';
   <ProductGrid />
 
   <section
-    class="home-video elementor-invisible"
+    class="home-video scroll-reveal"
     id="home-product-video"
     aria-label="Product video"
-    data-settings='{"animation":"fadeInUp"}'
+    data-animate="fadeInUp"
   >
     <div class="home-video__frame">
       <video class="home-video__media" src={PRODUCT_VIDEO.src} autoplay loop muted playsinline controlsList="nodownload"></video>

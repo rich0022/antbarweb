@@ -18,12 +18,8 @@ const PUBLIC = join(ROOT, 'public');
 const DIST = join(ROOT, 'dist');
 
 const PAGE_CSS_MAP = {
-  blog: ['post-1817.css', 'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css'],
-  review: ['post-2779.css', 'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css'],
   disposable: ['post-1075.css', 'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css'],
   'pod-sys': ['post-1077.css', 'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css'],
-  contact: ['post-927.css', 'wp-content/plugins/elementor-pro/assets/css/widget-form.min.css'],
-  support: ['post-948.css', 'wp-content/plugins/elementor/assets/css/widget-toggle.min.css'],
   verification: ['post-950.css'],
 };
 

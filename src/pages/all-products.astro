@@ -1,40 +1,20 @@
 ---
 import { getCollection } from 'astro:content';
 import SiteShellLayout from '../layouts/SiteShellLayout.astro';
-import { extractArchiveWidget } from '../lib/archive-widget';
-import { readContentBody } from '../lib/content-body';
-import { contentEntryFileName } from '../lib/content-entry';
+import { getProductCatalogTabs } from '../lib/product-catalog';
 import '../styles/all-products.css';
 
 const pages = await getCollection('pages');
-const products = await getCollection('products');
-
 const allEntry = pages.find((p) => p.id === 'all-products');
-const disposableEntry = products.find((p) => p.id === 'disposable');
-const podSysEntry = products.find((p) => p.id === 'pod-sys');
+const productTabs = getProductCatalogTabs();
 
-const allBody = allEntry ? await readContentBody('pages', contentEntryFileName(allEntry.id, 'pages')) : '';
-const disposableBody = disposableEntry ? await readContentBody('products', contentEntryFileName(disposableEntry.id, 'products')) : '';
-const podSysBody = podSysEntry ? await readContentBody('products', contentEntryFileName(podSysEntry.id, 'products')) : '';
-
-const allArchive = allBody ? extractArchiveWidget(allBody) : null;
-const disposableArchive = disposableBody ? extractArchiveWidget(disposableBody) : null;
-const podSysArchive = podSysBody ? extractArchiveWidget(podSysBody) : null;
-
-const productTabs = [
-  { id: 'all', label: 'All Products', cards: allArchive?.widget.cards ?? [] },
-  { id: 'disposable', label: 'Disposable', cards: disposableArchive?.widget.cards ?? [] },
-  { id: 'pod-sys', label: 'Closed Pod system', cards: podSysArchive?.widget.cards ?? [] },
-];
-
-const bodyClass =
-  'wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 product-catalog-body';
+const bodyClass = 'product-catalog-body';
 ---
 
 <SiteShellLayout title={allEntry?.data.title ?? 'All Products'} description={allEntry?.data.description ?? ''} bodyClass={bodyClass}>
   <main id="content" class="site-main product-catalog-page">
     <section class="product-catalog" aria-labelledby="product-catalog-title">
-      <header class="product-catalog__header elementor-invisible" data-settings='{"animation":"fadeInUp"}'>
+      <header class="product-catalog__header scroll-reveal" data-animate="fadeInUp">
         <h1 id="product-catalog-title">ANTBAR PRODUCTS</h1>
         <nav class="product-catalog__tabs" aria-label="Product categories">
           {productTabs.map((tab, index) => (
@@ -50,34 +30,32 @@ const bodyClass =
         </nav>
       </header>
 
-      <div class="product-catalog__panels elementor-invisible" data-settings='{"animation":"fadeInUp"}'>
+      <div class="product-catalog__panels scroll-reveal" data-animate="fadeInUp">
         {productTabs.map((tab, index) => (
           <section class="product-catalog__panel" data-product-grid={tab.id} hidden={index !== 0} aria-label={tab.label}>
             <div class="product-catalog__grid" role="list">
               {tab.cards.map((card) => (
                 <article class="product-card" role="listitem">
-                  <a class="product-card__image-link" href={card.href} aria-label={card.readMoreAria || `View ${card.titleHtml}`}>
+                  <a class="product-card__image-link" href={card.href} aria-label={`View ${card.title}`}>
                     <span class="product-card__image-frame">
                       <img
                         loading="lazy"
                         decoding="async"
-                        width={card.imageWidth}
-                        height={card.imageHeight}
-                        src={card.imageSrc}
-                        alt={card.imageAlt}
-                        srcset={card.imageSrcSet}
-                        sizes={card.imageSizes}
+                        width={card.image.width}
+                        height={card.image.height}
+                        src={card.image.src}
+                        alt={card.image.alt ?? card.title}
+                        srcset={card.image.srcset}
+                        sizes={card.image.sizes}
                       />
                     </span>
                   </a>
                   <div class="product-card__body">
                     <h2 class="product-card__title">
-                      <a href={card.href}>
-                        <Fragment set:html={card.titleHtml} />
-                      </a>
+                      <a href={card.href}>{card.title}</a>
                     </h2>
-                    <a class="product-card__read-more" href={card.href} aria-label={card.readMoreAria || `View ${card.titleHtml}`}>
-                      {card.readMoreText || 'View More'}
+                    <a class="product-card__read-more" href={card.href} aria-label={`Read more about ${card.title}`}>
+                      View More
                     </a>
                   </div>
                 </article>

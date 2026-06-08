@@ -56,7 +56,12 @@ button {
   display: none !important;
 }
 
-.elementor-animated {
+.scroll-reveal {
+  visibility: hidden;
+}
+
+.scroll-reveal--visible {
+  visibility: visible;
   animation-duration: 0.9s;
   animation-fill-mode: both;
 }
@@ -442,9 +447,9 @@ body {
 #mainNav .site-header__nav-toggle,
 #hMenu.site-header__icon-button,
 #hSearchTrigger.site-header__icon-button,
-.elementor-kit-305 #mainNav .site-header__nav-toggle,
-.elementor-kit-305 #hMenu.site-header__icon-button,
-.elementor-kit-305 #hSearchTrigger.site-header__icon-button {
+.site-shell-body #mainNav .site-header__nav-toggle,
+.site-shell-body #hMenu.site-header__icon-button,
+.site-shell-body #hSearchTrigger.site-header__icon-button {
   background: transparent;
   border: 0;
   border-color: transparent;

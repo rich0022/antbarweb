@@ -1,15 +1,19 @@
 ---
 import SiteShellLayout from './SiteShellLayout.astro';
 import { ANIMATION_INLINE_CSS } from '../data/site-assets';
-import '../styles/about-us.css';
+import '../styles/archive-list.css';
 
 interface Props {
   title?: string;
   description?: string;
+  bodyClass?: string;
 }
 
-const { title = 'ANTBAR', description = '' } = Astro.props;
-const bodyClass = 'about-page-body';
+const {
+  title = 'ANTBAR',
+  description = '',
+  bodyClass = 'archive-page-body',
+} = Astro.props;
 ---
 
 <SiteShellLayout

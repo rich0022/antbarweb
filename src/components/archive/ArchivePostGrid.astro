@@ -1,0 +1,47 @@
+---
+import type { ArchiveGridCard } from '../../lib/archive-posts';
+
+interface Props {
+  cards: ArchiveGridCard[];
+}
+
+const { cards } = Astro.props;
+---
+
+<section class="archive-grid-wrap" aria-label="Archive posts">
+  <div class="archive-grid-section">
+    <ul class="archive-grid scroll-reveal" data-animate="fadeInUp" role="list">
+    {
+      cards.map((card) => (
+        <li class="archive-grid__item" role="listitem">
+          <article class="archive-grid__card">
+            <a class="archive-grid__thumb-link" href={card.href} tabindex="-1" aria-hidden="true">
+              <img
+                loading="lazy"
+                decoding="async"
+                width="532"
+                height="535"
+                src={card.image}
+                alt={card.title}
+              />
+            </a>
+            <div class="archive-grid__body">
+              <h2 class="archive-grid__title">
+                <a href={card.href}>{card.title}</a>
+              </h2>
+              <a class="archive-grid__read-more" href={card.href} aria-label={`Read more about ${card.title}`}>
+                View More
+              </a>
+            </div>
+            {card.dateText && (
+              <div class="archive-grid__meta">
+                <span class="archive-grid__date">{card.dateText}</span>
+              </div>
+            )}
+          </article>
+        </li>
+      ))
+    }
+    </ul>
+  </div>
+</section>

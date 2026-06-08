@@ -1,18 +1,24 @@
 <script>
   (() => {
-    document.querySelectorAll('.elementor-toggle-item .elementor-tab-title').forEach((title) => {
-      title.addEventListener('click', () => {
-        const isActive = title.classList.contains('elementor-active');
-        const content = title.nextElementSibling;
+    document.querySelectorAll('.support-accordion__trigger').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const isActive = trigger.classList.contains('is-active');
+        const panel = trigger.nextElementSibling;
 
         if (isActive) {
-          title.classList.remove('elementor-active');
-          title.setAttribute('aria-expanded', 'false');
-          if (content) content.style.display = 'none';
+          trigger.classList.remove('is-active');
+          trigger.setAttribute('aria-expanded', 'false');
+          if (panel instanceof HTMLElement) {
+            panel.classList.remove('is-open');
+            panel.hidden = true;
+          }
         } else {
-          title.classList.add('elementor-active');
-          title.setAttribute('aria-expanded', 'true');
-          if (content) content.style.display = 'block';
+          trigger.classList.add('is-active');
+          trigger.setAttribute('aria-expanded', 'true');
+          if (panel instanceof HTMLElement) {
+            panel.classList.add('is-open');
+            panel.hidden = false;
+          }
         }
       });
     });
