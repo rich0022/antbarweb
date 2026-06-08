@@ -1,5 +1,5 @@
 ---
-import SiteShellLayout from './SiteShellLayout.astro';
+import LegacyShellLayout from './LegacyShellLayout.astro';
 import { ANIMATION_INLINE_CSS, MEGA_MENU_STYLE_CSS, SITE_OVERFLOW_GUARD_CSS } from '../data/site-assets';
 
 interface Props {
@@ -12,11 +12,11 @@ const { title = 'ANTBAR', description = '', pageId } = Astro.props;
 const bodyClass = `wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 elementor-page elementor-page-${pageId}`;
 ---
 
-<SiteShellLayout
+<LegacyShellLayout
   title={title}
   description={description}
   bodyClass={bodyClass}
   inlineStyles={[ANIMATION_INLINE_CSS, SITE_OVERFLOW_GUARD_CSS, MEGA_MENU_STYLE_CSS]}
 >
   <slot />
-</SiteShellLayout>
+</LegacyShellLayout>

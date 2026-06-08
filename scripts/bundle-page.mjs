@@ -2,7 +2,7 @@
 /**
  * Generic CSS bundler. Usage: node scripts/bundle-page.mjs <page-id> [extra...]
  * Outputs: src/styles/<page-id>-bundle.css
- * page-id examples: home, about-us, brand-story, rd-center, antbar-lab, intelligent-manufacturing
+ * page-id examples: blog, review, contact, support, agp12000
  */
 import { readFile, writeFile, access } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -11,12 +11,6 @@ const ROOT = join(import.meta.dirname, '..');
 const PUBLIC = join(ROOT, 'public');
 
 const PAGE_CSS_MAP = {
-  home: ['post-2.css', 'swiper.min.css', 'e-swiper.min.css', 'widget-nested-carousel.min.css', 'widget-video.min.css'],
-  'about-us': ['post-37.css'],
-  'brand-story': ['post-41.css'],
-  'rd-center': ['post-45.css', 'widget-counter.min.css'],
-  'antbar-lab': ['post-118.css'],
-  'intelligent-manufacturing': ['post-43.css'],
   blog: [
     'post-1817.css',
     'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css',
@@ -27,7 +21,6 @@ const PAGE_CSS_MAP = {
   contact: ['post-927.css', 'wp-content/plugins/elementor-pro/assets/css/widget-form.min.css'],
   support: ['post-948.css', 'wp-content/plugins/elementor/assets/css/widget-toggle.min.css'],
   verification: ['post-950.css'],
-  'all-products': ['post-976.css', 'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css'],
   'agp12000': [
     'post-3489.css',
     'post-3519.css',

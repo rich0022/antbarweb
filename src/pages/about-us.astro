@@ -5,84 +5,93 @@ import { ABOUT_HERO, ABOUT_SECTIONS } from '../data/about-us';
 
 const pages = await getCollection('pages');
 const entry = pages.find((p) => p.id === 'about-us');
-const h = ABOUT_HERO;
-const sections = ABOUT_SECTIONS;
+const brandStory = ABOUT_SECTIONS[0]!;
+const detailSections = ABOUT_SECTIONS.slice(1);
 ---
 
 <AboutLayout
   title={entry?.data.title ?? 'About Antbar | The Best disposable vape Wholesale'}
   description={entry?.data.description ?? ''}
 >
-  <main id="content" class="site-main post-37 page type-page status-publish hentry">
-    <div class="page-content">
-      <div data-elementor-type="wp-page" data-elementor-id="37" class="elementor elementor-37" data-elementor-post-type="page">
-        <!-- Hero section -->
-        <div class={`elementor-element elementor-element-${h.containerDataId} e-con-full scroll-bn e-flex e-con e-parent`} data-id={h.containerDataId} data-element_type="container">
-          <div class={`elementor-element elementor-element-${h.imageContainerId} e-con-full e-flex e-con e-child`} data-id={h.imageContainerId} data-element_type="container">
-            <div class={`elementor-element elementor-element-${h.desktopWidgetId} elementor-hidden-mobile elementor-widget elementor-widget-image`} data-id={h.desktopWidgetId} data-element_type="widget" data-widget_type="image.default">
-              <img loading="lazy" decoding="async" width={h.desktopImage.width} height={h.desktopImage.height} src={h.desktopImage.src} class="attachment-full size-full wp-image-2067" alt="" srcset={h.desktopImage.srcset} sizes={h.desktopImage.sizes} />
-            </div>
-            <div class={`elementor-element elementor-element-${h.mobileWidgetId} elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-image`} data-id={h.mobileWidgetId} data-element_type="widget" data-widget_type="image.default">
-              <img loading="lazy" decoding="async" width={h.mobileImage.width} height={h.mobileImage.height} src={h.mobileImage.src} class="attachment-full size-full wp-image-2987" alt="" srcset={h.mobileImage.srcset} sizes={h.mobileImage.sizes} />
-            </div>
-          </div>
-          <div class={`elementor-element elementor-element-${h.overlayContainerId} e-flex e-con-boxed e-con e-child`} data-id={h.overlayContainerId} data-element_type="container" data-settings='{"position":"absolute"}'>
-            <div class="e-con-inner">
-              <div class={`elementor-element elementor-element-${h.overlayInnerId} e-con-full e-flex elementor-invisible e-con e-child`} data-id={h.overlayInnerId} data-element_type="container" data-settings='{"animation":"fadeInUp"}'>
-                <div class={`elementor-element elementor-element-${h.headingWidget1Id} elementor-widget elementor-widget-heading`} data-id={h.headingWidget1Id} data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">{h.headings[0]}</h2></div>
-                <div class={`elementor-element elementor-element-${h.headingWidget2Id} elementor-widget elementor-widget-heading`} data-id={h.headingWidget2Id} data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">{h.headings[1]}</h2></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section 1: Brand Story (image left, text right) -->
-        <div class={`elementor-element elementor-element-${sections[0].sectionContainerId} e-flex e-con-boxed e-con e-parent`} data-id={sections[0].sectionContainerId} data-element_type="container" data-settings='{"background_background":"classic"}'>
-          <div class="e-con-inner">
-            <div class="elementor-element elementor-element-c4a0705 e-con-full e-flex e-con e-child" data-id="c4a0705" data-element_type="container">
-              <div class={`elementor-element elementor-element-${sections[0].imageContainerId} e-con-full e-flex e-con e-child`} data-id={sections[0].imageContainerId} data-element_type="container">
-                <div class={`elementor-element elementor-element-${sections[0].imageWidgetId} elementor-invisible elementor-widget elementor-widget-image`} data-id={sections[0].imageWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInRight"}' data-widget_type="image.default">
-                  <img loading="lazy" decoding="async" width={sections[0].image.width} height={sections[0].image.height} src={sections[0].image.src} class={`elementor-animation-grow attachment-full size-full wp-image-${sections[0].image.wpImageId}`} alt="" srcset={sections[0].image.srcset} sizes={sections[0].image.sizes} />
-                </div>
-              </div>
-              <div class={`elementor-element elementor-element-${sections[0].textContainerId} e-con-full e-flex e-con e-child`} data-id={sections[0].textContainerId} data-element_type="container">
-                <div class={`elementor-element elementor-element-${sections[0].headingWidgetId} elementor-invisible elementor-widget elementor-widget-heading`} data-id={sections[0].headingWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInLeft"}' data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">{sections[0].heading}</h2></div>
-                <div class={`elementor-element elementor-element-${sections[0].textWidgetId} elementor-invisible elementor-widget elementor-widget-text-editor`} data-id={sections[0].textWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInLeft"}' data-widget_type="text-editor.default"><p>{sections[0].text}</p></div>
-                <div class={`elementor-element elementor-element-${sections[0].buttonWidgetId} elementor-align-left elementor-invisible elementor-widget elementor-widget-button`} data-id={sections[0].buttonWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInLeft"}' data-widget_type="button.default">
-                  <a class="elementor-button elementor-button-link elementor-size-sm" href={sections[0].buttonHref}><span class="elementor-button-content-wrapper"><span class="elementor-button-text">View More</span></span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sections 2-4: tabbed sections (bs-conts) -->
-        <div class="elementor-element elementor-element-4a9ab80 e-con-full bs-conts e-flex e-con e-parent" data-id="4a9ab80" data-element_type="container" id="bsConts" data-settings='{"background_background":"classic"}'>
-          {sections.slice(1).map((section) => (
-            <div class={`elementor-element elementor-element-${section.sectionContainerId} bs-one e-flex e-con-boxed e-con e-child`} data-id={section.sectionContainerId} data-element_type="container" data-settings='{"background_background":"classic"}'>
-              <div class="e-con-inner">
-                <div class={`elementor-element elementor-element-${section.imageContainerId} e-con-full e-flex e-con e-child`} data-id={section.imageContainerId} data-element_type="container">
-                  <div class={`elementor-element elementor-element-${section.imageWidgetId} bs-img elementor-invisible elementor-widget elementor-widget-image`} data-id={section.imageWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInLeft"}' data-widget_type="image.default">
-                    <img loading="lazy" decoding="async" width={section.image.width} height={section.image.height} src={section.image.src} class={`elementor-animation-grow attachment-full size-full wp-image-${section.image.wpImageId}`} alt="" srcset={section.image.srcset} sizes={section.image.sizes} />
-                  </div>
-                </div>
-                <div class={`elementor-element elementor-element-${section.textContainerId} e-con-full e-flex e-con e-child`} data-id={section.textContainerId} data-element_type="container">
-                  <div class={`elementor-element elementor-element-${section.headingWidgetId} elementor-invisible elementor-widget elementor-widget-heading`} data-id={section.headingWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInRight"}' data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default" set:html={section.heading} /></div>
-                  <div class={`elementor-element elementor-element-${section.textWidgetId} elementor-invisible elementor-widget elementor-widget-text-editor`} data-id={section.textWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInRight"}' data-widget_type="text-editor.default"><p>{section.text}</p></div>
-                  <div class={`elementor-element elementor-element-${section.buttonWidgetId} elementor-align-left elementor-invisible elementor-widget elementor-widget-button`} data-id={section.buttonWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInRight"}' data-widget_type="button.default">
-                    <a class="elementor-button elementor-button-link elementor-size-sm" href={section.buttonHref}><span class="elementor-button-content-wrapper"><span class="elementor-button-text">View More</span></span></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <!-- Spacer -->
-        <div class="elementor-element elementor-element-e76ebcc e-flex e-con-boxed e-con e-parent" data-id="e76ebcc" data-element_type="container" data-settings='{"background_background":"classic"}'>
-          <div class="e-con-inner"></div>
+  <main id="content" class="site-main about-page">
+    <section class="about-hero scroll-bn" aria-label="About Antbar hero">
+      <picture class="about-hero__picture">
+        <source
+          media="(max-width: 767px)"
+          srcset={ABOUT_HERO.mobileImage.srcset}
+          sizes={ABOUT_HERO.mobileImage.sizes}
+        />
+        <img
+          loading="eager"
+          decoding="async"
+          width={ABOUT_HERO.desktopImage.width}
+          height={ABOUT_HERO.desktopImage.height}
+          src={ABOUT_HERO.desktopImage.src}
+          srcset={ABOUT_HERO.desktopImage.srcset}
+          sizes={ABOUT_HERO.desktopImage.sizes}
+          alt=""
+        />
+      </picture>
+      <div class="about-hero__overlay">
+        <div class="about-hero__copy elementor-invisible" data-settings='{"animation":"fadeInUp"}'>
+          <p>{ABOUT_HERO.headings[0]}</p>
+          <p><strong>{ABOUT_HERO.headings[1]}</strong></p>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section class="about-feature about-feature--brand" aria-labelledby="about-brand-title">
+      <div class="about-feature__inner">
+        <div class="about-feature__media elementor-invisible" data-settings='{"_animation":"fadeInRight"}'>
+          <a class="about-feature__image-link" href={brandStory.buttonHref} aria-label={brandStory.heading}>
+            <img
+              loading="lazy"
+              decoding="async"
+              width={brandStory.image.width}
+              height={brandStory.image.height}
+              src={brandStory.image.src}
+              alt=""
+              srcset={brandStory.image.srcset}
+              sizes={brandStory.image.sizes}
+            />
+          </a>
+        </div>
+        <div class="about-feature__copy elementor-invisible" data-settings='{"_animation":"fadeInLeft"}'>
+          <h1 id="about-brand-title">{brandStory.heading}</h1>
+          <p>{brandStory.text}</p>
+          <a class="about-feature__button" href={brandStory.buttonHref}>View More</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-sections" id="about-sections" aria-label="About Antbar sections">
+      {detailSections.map((section) => (
+        <article class="about-section">
+          <div class="about-section__inner">
+            <div class="about-section__media elementor-invisible" data-settings='{"_animation":"fadeInLeft"}'>
+              <a class="about-section__image-link" href={section.buttonHref} aria-label={section.heading.replace('\n', ' ')}>
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  width={section.image.width}
+                  height={section.image.height}
+                  src={section.image.src}
+                  alt=""
+                  srcset={section.image.srcset}
+                  sizes={section.image.sizes}
+                />
+              </a>
+            </div>
+            <div class="about-section__copy elementor-invisible" data-settings='{"_animation":"fadeInRight"}'>
+              <h2 set:html={section.heading.replace('\n', '<br />')} />
+              <p>{section.text}</p>
+              <a class="about-section__button" href={section.buttonHref}>View More</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <div class="about-page__spacer" aria-hidden="true"></div>
   </main>
 </AboutLayout>

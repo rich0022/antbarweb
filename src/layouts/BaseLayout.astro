@@ -1,5 +1,5 @@
 ---
-import SiteShellLayout from './SiteShellLayout.astro';
+import LegacyShellLayout from './LegacyShellLayout.astro';
 import { mergeMirrorHeadAssets } from '../lib/mirror-assets';
 import { ANIMATION_INLINE_CSS, ELEMENTOR_LAZY_CSS, MEGA_MENU_STYLE_CSS, SITE_OVERFLOW_GUARD_CSS } from '../data/site-assets';
 
@@ -13,7 +13,7 @@ const { title = 'ANTBAR', description = '', mirrorRoute = '' } = Astro.props;
 const assets = await mergeMirrorHeadAssets(mirrorRoute);
 ---
 
-<SiteShellLayout
+<LegacyShellLayout
   title={title}
   description={description}
   bodyClass={assets.bodyClass}
@@ -23,4 +23,4 @@ const assets = await mergeMirrorHeadAssets(mirrorRoute);
   footerScripts={assets.footerScripts}
 >
   <slot />
-</SiteShellLayout>
+</LegacyShellLayout>

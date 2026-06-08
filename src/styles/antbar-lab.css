@@ -1,0 +1,224 @@
+.lab-page {
+  overflow: hidden;
+  background: #fff;
+  color: #000;
+  font-family: "Poppins", sans-serif;
+}
+
+.lab-hero,
+.lab-hero__picture,
+.lab-hero__picture img {
+  display: block;
+  width: 100%;
+}
+
+.lab-hero {
+  overflow: hidden;
+  background: #f2f2f2;
+}
+
+.lab-hero__picture img {
+  height: 48.75vw;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.lab-intro {
+  padding: 5vw 0;
+  background: #fff;
+}
+
+.lab-intro__grid {
+  display: grid;
+  grid-template-columns: 64% 35%;
+  gap: 1%;
+  width: 72%;
+  margin: 0 auto;
+}
+
+.lab-intro__kicker {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 2vw;
+  margin-bottom: 1.8vw;
+}
+
+.lab-intro__kicker p {
+  margin: 0;
+  font-size: 1.8vw;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.lab-intro__kicker strong {
+  font-weight: 700;
+}
+
+.lab-intro__kicker img {
+  width: 91px;
+  height: auto;
+}
+
+.lab-intro__wide-image,
+.lab-intro__right img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.lab-intro__right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lab-intro__right p {
+  margin: 0 0 -1vw;
+  color: #7a7a7a;
+  font-size: 1.04vw;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.lab-intro__summary {
+  width: 72%;
+  margin: 3vw auto 0;
+  padding: 1vw;
+}
+
+.lab-intro__summary h1,
+.lab-certs__intro h2 {
+  margin: 0 -4vw 1vw 0;
+  color: #000;
+  font-size: 3.2vw;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.lab-intro__summary p,
+.lab-certs__intro p {
+  margin: 0 0 1vw;
+  color: #000;
+  font-size: 1.05vw;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+.lab-certs {
+  padding: 0 0 8vw;
+  background: #fff;
+}
+
+.lab-certs__intro {
+  width: 45.36%;
+  margin: 3vw auto 0;
+  text-align: center;
+}
+
+.lab-certs__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 100px;
+  width: 64.8%;
+  margin: 0 auto;
+}
+
+.lab-cert {
+  overflow: hidden;
+  margin: 0;
+}
+
+.lab-cert img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 1s ease;
+}
+
+.lab-cert:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+  .lab-intro__grid,
+  .lab-intro__summary,
+  .lab-certs {
+    width: auto;
+  }
+
+  .lab-intro__grid,
+  .lab-intro__summary {
+    width: 88%;
+  }
+
+  .lab-intro__kicker {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .lab-certs__intro {
+    width: 88%;
+  }
+
+  .lab-certs__intro p {
+    font-size: 1.8vw;
+    line-height: 1.5;
+  }
+
+  .lab-certs__grid {
+    width: 79.2%;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .lab-hero__picture img {
+    height: auto;
+  }
+
+  .lab-intro__grid {
+    display: block;
+    width: 95%;
+  }
+
+  .lab-intro__kicker p {
+    font-size: 7vw;
+  }
+
+  .lab-intro__kicker img {
+    width: 64px;
+  }
+
+  .lab-intro__right {
+    margin-top: 7vw;
+  }
+
+  .lab-intro__right p,
+  .lab-intro__summary p,
+  .lab-certs__intro p {
+    font-size: 4vw;
+    line-height: 1.6;
+  }
+
+  .lab-intro__summary {
+    width: 95%;
+    padding: 5vw 0 0;
+  }
+
+  .lab-intro__summary h1,
+  .lab-certs__intro h2 {
+    margin: 0 0 5vw;
+    font-size: 7vw;
+  }
+
+  .lab-certs__intro {
+    width: 95%;
+  }
+
+  .lab-certs__grid {
+    grid-template-columns: 1fr;
+    gap: 8vw;
+    width: 78%;
+  }
+}

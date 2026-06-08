@@ -1,96 +1,106 @@
 ---
 import { getCollection } from 'astro:content';
-import SubPageLayout from '../layouts/SubPageLayout.astro';
-import { ANTBAR_LAB_HERO, ANTBAR_LAB_INTRO, ANTBAR_LAB_CERTS } from '../data/about-subpages';
-import '../styles/antbar-lab-bundle.css';
+import SiteShellLayout from '../layouts/SiteShellLayout.astro';
+import { ANTBAR_LAB_CERTS, ANTBAR_LAB_HERO, ANTBAR_LAB_INTRO } from '../data/about-subpages';
+import { ANIMATION_INLINE_CSS } from '../data/site-assets';
+import '../styles/antbar-lab.css';
 
 const pages = await getCollection('pages');
-const entry = pages.find((p) => p.id === 'antbar-lab');
-const h = ANTBAR_LAB_HERO;
+const entry = pages.find((page) => page.id === 'antbar-lab');
+const hero = ANTBAR_LAB_HERO;
 const intro = ANTBAR_LAB_INTRO;
 const certs = ANTBAR_LAB_CERTS;
+const bodyClass =
+  'wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 antbar-lab-body';
 ---
 
-<SubPageLayout title={entry?.data.title ?? 'Antbar Lab'} description={entry?.data.description ?? ''} pageId="118">
-  <main id="content" class="site-main post-118 page type-page status-publish hentry">
-    <div class="page-content">
-      <div data-elementor-type="wp-page" data-elementor-id="118" class="elementor elementor-118" data-elementor-post-type="page">
+<SiteShellLayout
+  title={entry?.data.title ?? 'Antbar Lab'}
+  description={entry?.data.description ?? ''}
+  bodyClass={bodyClass}
+  inlineStyles={[ANIMATION_INLINE_CSS]}
+>
+  <main id="content" class="site-main lab-page">
+    <section class="lab-hero scroll-bn" aria-label="Antbar Lab hero">
+      <picture class="lab-hero__picture">
+        <source media="(max-width: 767px)" srcset={hero.mobileImage.srcset} sizes={hero.mobileImage.sizes} />
+        <img
+          loading="eager"
+          decoding="async"
+          width={hero.desktopImage.width}
+          height={hero.desktopImage.height}
+          src={hero.desktopImage.src}
+          srcset={hero.desktopImage.srcset}
+          sizes={hero.desktopImage.sizes}
+          alt=""
+        />
+      </picture>
+    </section>
 
-        <div class={`elementor-element elementor-element-${h.containerDataId} e-con-full ${h.heroClass} e-flex e-con e-parent`} data-id={h.containerDataId} data-element_type="container">
-          <div class={`elementor-element elementor-element-${h.desktopWidgetId} elementor-hidden-mobile elementor-widget elementor-widget-image`} data-id={h.desktopWidgetId} data-element_type="widget" data-widget_type="image.default">
-            <img loading="lazy" decoding="async" width={h.desktopImage.width} height={h.desktopImage.height} src={h.desktopImage.src} class={`attachment-full size-full wp-image-${h.desktopImage.wpImageId}`} alt="" srcset={h.desktopImage.srcset} sizes={h.desktopImage.sizes} />
+    <section class="lab-intro" aria-labelledby="lab-title">
+      <div class="lab-intro__grid">
+        <div class="lab-intro__left elementor-invisible" data-settings='{"animation":"fadeInLeft"}'>
+          <div class="lab-intro__kicker">
+            <div>
+              <p>TO EXPLORE</p>
+              <p><strong>TO EXPERIENCE</strong></p>
+            </div>
+            <img loading="lazy" decoding="async" width={intro.iconWidth} height={intro.iconHeight} src="/wp-content/uploads/2024/04/图标.png" alt="" />
           </div>
-          <div class={`elementor-element elementor-element-${h.mobileWidgetId} elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-image`} data-id={h.mobileWidgetId} data-element_type="widget" data-widget_type="image.default">
-            <img loading="lazy" decoding="async" width={h.mobileImage.width} height={h.mobileImage.height} src={h.mobileImage.src} class={`attachment-full size-full wp-image-${h.mobileImage.wpImageId}`} alt="" srcset={h.mobileImage.srcset} sizes={h.mobileImage.sizes} />
-          </div>
+          <img
+            class="lab-intro__wide-image"
+            loading="lazy"
+            decoding="async"
+            width={intro.leftImage.width}
+            height={intro.leftImage.height}
+            src={intro.leftImage.src}
+            srcset={intro.leftImage.srcset}
+            sizes={intro.leftImage.sizes}
+            alt=""
+          />
         </div>
-
-        <div class={`elementor-element elementor-element-${intro.containerDataId} e-flex e-con-boxed e-con e-parent`} data-id={intro.containerDataId} data-element_type="container" data-settings='{"background_background":"classic"}'>
-          <div class="e-con-inner">
-            <div class={`elementor-element elementor-element-${intro.innerContainerId} e-flex e-con-boxed e-con e-child`} data-id={intro.innerContainerId} data-element_type="container">
-              <div class="e-con-inner">
-                <div class={`elementor-element elementor-element-${intro.leftColumnId} e-con-full e-flex elementor-invisible e-con e-child`} data-id={intro.leftColumnId} data-element_type="container" data-settings='{"animation":"fadeInLeft"}'>
-                  <div class={`elementor-element elementor-element-${intro.leftInnerId} e-flex e-con-boxed e-con e-child`} data-id={intro.leftInnerId} data-element_type="container">
-                    <div class="e-con-inner">
-                      <div class={`elementor-element elementor-element-${intro.headingsContainerId} e-flex e-con-boxed e-con e-child`} data-id={intro.headingsContainerId} data-element_type="container">
-                        <div class="e-con-inner">
-                          <div class={`elementor-element elementor-element-${intro.heading1WidgetId} elementor-widget elementor-widget-heading`} data-id={intro.heading1WidgetId} data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">TO EXPLORE</h2></div>
-                          <div class={`elementor-element elementor-element-${intro.heading2WidgetId} elementor-widget elementor-widget-heading`} data-id={intro.heading2WidgetId} data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">TO EXPERIENCE</h2></div>
-                        </div>
-                      </div>
-                      <div class={`elementor-element elementor-element-${intro.iconContainerId} e-con-full e-flex e-con e-child`} data-id={intro.iconContainerId} data-element_type="container">
-                        <div class={`elementor-element elementor-element-${intro.iconWidgetId} elementor-widget elementor-widget-image`} data-id={intro.iconWidgetId} data-element_type="widget" data-widget_type="image.default">
-                          <img loading="lazy" decoding="async" width={intro.iconWidth} height={intro.iconHeight} src="/wp-content/uploads/2024/04/图标.png" class="attachment-large size-large wp-image-2065" alt="" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class={`elementor-element elementor-element-${intro.leftImageContainerId} e-flex e-con-boxed e-con e-child`} data-id={intro.leftImageContainerId} data-element_type="container">
-                    <div class="e-con-inner">
-                      <div class={`elementor-element elementor-element-${intro.leftImageWidgetId} elementor-widget elementor-widget-image`} data-id={intro.leftImageWidgetId} data-element_type="widget" data-widget_type="image.default">
-                        <img loading="lazy" decoding="async" width={intro.leftImage.width} height={intro.leftImage.height} src={intro.leftImage.src} class={`attachment-full size-full wp-image-${intro.leftImage.wpImageId}`} alt="" srcset={intro.leftImage.srcset} sizes={intro.leftImage.sizes} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class={`elementor-element elementor-element-${intro.rightColumnId} e-con-full e-flex elementor-invisible e-con e-child`} data-id={intro.rightColumnId} data-element_type="container" data-settings='{"animation":"fadeInRight"}'>
-                  <div class={`elementor-element elementor-element-${intro.rightImageWidgetId} elementor-widget elementor-widget-image`} data-id={intro.rightImageWidgetId} data-element_type="widget" data-widget_type="image.default">
-                    <img loading="lazy" decoding="async" width={intro.rightImage.width} height={intro.rightImage.height} src={intro.rightImage.src} class={`attachment-full size-full wp-image-${intro.rightImage.wpImageId}`} alt="" srcset={intro.rightImage.srcset} sizes={intro.rightImage.sizes} />
-                  </div>
-                  <div class={`elementor-element elementor-element-${intro.rightTextWidgetId} elementor-widget elementor-widget-text-editor`} data-id={intro.rightTextWidgetId} data-element_type="widget" data-widget_type="text-editor.default"><p>{intro.rightText}</p></div>
-                </div>
-              </div>
-            </div>
-            <div class={`elementor-element elementor-element-${intro.bottomContainerId} e-con-full e-flex e-con e-child`} data-id={intro.bottomContainerId} data-element_type="container">
-              <div class={`elementor-element elementor-element-${intro.headingWidgetId} elementor-invisible elementor-widget elementor-widget-heading`} data-id={intro.headingWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">{intro.bottomHeading}</h2></div>
-              <div class={`elementor-element elementor-element-${intro.textWidgetId} elementor-invisible elementor-widget elementor-widget-text-editor`} data-id={intro.textWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="text-editor.default"><p>{intro.bottomText}</p></div>
-            </div>
-          </div>
+        <div class="lab-intro__right elementor-invisible" data-settings='{"animation":"fadeInRight"}'>
+          <img
+            loading="lazy"
+            decoding="async"
+            width={intro.rightImage.width}
+            height={intro.rightImage.height}
+            src={intro.rightImage.src}
+            srcset={intro.rightImage.srcset}
+            sizes={intro.rightImage.sizes}
+            alt=""
+          />
+          <p>{intro.rightText}</p>
         </div>
-
-        <div class={`elementor-element elementor-element-${certs.containerDataId} e-flex e-con-boxed e-con e-parent`} data-id={certs.containerDataId} data-element_type="container" data-settings='{"background_background":"classic"}'>
-          <div class="e-con-inner">
-            <div class={`elementor-element elementor-element-${certs.innerContainerId} e-flex e-con-boxed e-con e-child`} data-id={certs.innerContainerId} data-element_type="container">
-              <div class="e-con-inner">
-                <div class={`elementor-element elementor-element-${certs.headingWidgetId} elementor-invisible elementor-widget elementor-widget-heading`} data-id={certs.headingWidgetId} data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default" set:html={certs.heading} /></div>
-                <div class={`elementor-element elementor-element-${certs.textWidgetId} elementor-widget elementor-widget-text-editor`} data-id={certs.textWidgetId} data-element_type="widget" data-widget_type="text-editor.default"><p>{certs.text}</p></div>
-              </div>
-            </div>
-            <div class={`elementor-element elementor-element-${certs.imagesContainerId} e-flex e-con-boxed elementor-invisible e-con e-child`} data-id={certs.imagesContainerId} data-element_type="container" data-settings='{"animation":"fadeInUp"}'>
-              <div class="e-con-inner">
-                {certs.certs.map((cert) => (
-                  <div class={`elementor-element elementor-element-${cert.containerId} e-con-full e-flex e-con e-child`} data-id={cert.containerId} data-element_type="container">
-                    <div class={`elementor-element elementor-element-${cert.widgetId} elementor-widget elementor-widget-image`} data-id={cert.widgetId} data-element_type="widget" data-widget_type="image.default">
-                      <img loading="lazy" decoding="async" width={cert.width} height={cert.height} src={cert.src} class={`attachment-full size-full wp-image-${cert.wpImageId}`} alt="" srcset={cert.srcset} sizes={`(max-width: ${cert.width}px) 100vw, ${cert.width}px`} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
+
+      <div class="lab-intro__summary">
+        <h1 id="lab-title" class="elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>{intro.bottomHeading}</h1>
+        <p class="elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>{intro.bottomText}</p>
+      </div>
+    </section>
+
+    <section class="lab-certs" aria-labelledby="lab-certs-title">
+      <div class="lab-certs__intro">
+        <h2 id="lab-certs-title" class="elementor-invisible" data-settings='{"_animation":"fadeInUp"}' set:html={certs.heading} />
+        <p>{certs.text}</p>
+      </div>
+      <div class="lab-certs__grid elementor-invisible" data-settings='{"animation":"fadeInUp"}'>
+        {certs.certs.map((cert) => (
+          <figure class="lab-cert">
+            <img
+              loading="lazy"
+              decoding="async"
+              width={cert.width}
+              height={cert.height}
+              src={cert.src}
+              srcset={cert.srcset}
+              sizes={`(max-width: ${cert.width}px) 100vw, ${cert.width}px`}
+              alt=""
+            />
+          </figure>
+        ))}
+      </div>
+    </section>
   </main>
-</SubPageLayout>
+</SiteShellLayout>

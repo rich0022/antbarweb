@@ -1,12 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import PostsWidget from '../components/archive/PostsWidget.astro';
-import ProductFilterBar from '../components/archive/ProductFilterBar.astro';
-import StandaloneLayout from '../layouts/StandaloneLayout.astro';
+import SiteShellLayout from '../layouts/SiteShellLayout.astro';
 import { extractArchiveWidget } from '../lib/archive-widget';
 import { readContentBody } from '../lib/content-body';
 import { contentEntryFileName } from '../lib/content-entry';
-import '../styles/all-products-bundle.css';
+import '../styles/all-products.css';
 
 const pages = await getCollection('pages');
 const products = await getCollection('products');
@@ -23,76 +21,101 @@ const allArchive = allBody ? extractArchiveWidget(allBody) : null;
 const disposableArchive = disposableBody ? extractArchiveWidget(disposableBody) : null;
 const podSysArchive = podSysBody ? extractArchiveWidget(podSysBody) : null;
 
-// Force all three widgets to share the same element ID so post-976.css styles apply to all
-const ALL_WIDGET_DATA_ID = allArchive?.widget.dataId ?? '42d6ced';
-if (disposableArchive) {
-  disposableArchive.widget.dataId = ALL_WIDGET_DATA_ID;
-  disposableArchive.widget.widgetClass = disposableArchive.widget.widgetClass.replace(/elementor-element-[a-f0-9]+/, `elementor-element-${ALL_WIDGET_DATA_ID}`);
-}
-if (podSysArchive) {
-  podSysArchive.widget.dataId = ALL_WIDGET_DATA_ID;
-  podSysArchive.widget.widgetClass = podSysArchive.widget.widgetClass.replace(/elementor-element-[a-f0-9]+/, `elementor-element-${ALL_WIDGET_DATA_ID}`);
-}
+const productTabs = [
+  { id: 'all', label: 'All Products', cards: allArchive?.widget.cards ?? [] },
+  { id: 'disposable', label: 'Disposable', cards: disposableArchive?.widget.cards ?? [] },
+  { id: 'pod-sys', label: 'Closed Pod system', cards: podSysArchive?.widget.cards ?? [] },
+];
+
+const bodyClass =
+  'wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 product-catalog-body';
 ---
 
-<StandaloneLayout title={allEntry?.data.title ?? 'All Products'} description={allEntry?.data.description ?? ''} pageId="976">
-  <main id="content" class="site-main post-976 page type-page status-publish hentry">
-    <div class="page-content">
-      <div data-elementor-type="wp-page" data-elementor-id="976" class="elementor elementor-976" data-elementor-post-type="page">
-        <ProductFilterBar activeTab="all" />
+<SiteShellLayout title={allEntry?.data.title ?? 'All Products'} description={allEntry?.data.description ?? ''} bodyClass={bodyClass}>
+  <main id="content" class="site-main product-catalog-page">
+    <section class="product-catalog" aria-labelledby="product-catalog-title">
+      <header class="product-catalog__header elementor-invisible" data-settings='{"animation":"fadeInUp"}'>
+        <h1 id="product-catalog-title">ANTBAR PRODUCTS</h1>
+        <nav class="product-catalog__tabs" aria-label="Product categories">
+          {productTabs.map((tab, index) => (
+            <button
+              class={`product-catalog__tab${index === 0 ? ' is-active' : ''}`}
+              type="button"
+              data-product-tab={tab.id}
+              aria-pressed={index === 0 ? 'true' : 'false'}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </nav>
+      </header>
 
-        <div class="elementor-element elementor-element-e0d72b6 e-flex e-con-boxed elementor-invisible e-con e-parent" data-id="e0d72b6" data-element_type="container" id="productWrap" data-settings='{"animation":"fadeInUp"}'>
-          <div class="e-con-inner">
-            {allArchive && (
-              <div data-product-grid="all">
-                <PostsWidget widget={allArchive.widget} />
-              </div>
-            )}
-            {disposableArchive && (
-              <div data-product-grid="disposable" hidden>
-                <PostsWidget widget={disposableArchive.widget} />
-              </div>
-            )}
-            {podSysArchive && (
-              <div data-product-grid="pod-sys" hidden>
-                <PostsWidget widget={podSysArchive.widget} />
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div class="elementor-element elementor-element-34cd564 elementor-widget elementor-widget-html" data-id="34cd564" data-element_type="widget" data-widget_type="html.default">
-          <script is:inline>
-            (() => {
-              const tabs = document.querySelectorAll('[data-product-tab]');
-              const grids = document.querySelectorAll('[data-product-grid]');
-
-              function activateTab(tabId) {
-                tabs.forEach((t) => {
-                  const isActive = t.getAttribute('data-product-tab') === tabId;
-                  t.closest('.elementor-widget-button')?.classList.toggle('active', isActive);
-                });
-                grids.forEach((g) => {
-                  g.hidden = g.getAttribute('data-product-grid') !== tabId;
-                });
-              }
-
-              const params = new URLSearchParams(window.location.search);
-              const initialTab = params.get('tab');
-              if (initialTab && ['disposable', 'pod-sys'].includes(initialTab)) {
-                activateTab(initialTab);
-              }
-
-              tabs.forEach((tab) => {
-                tab.addEventListener('click', () => {
-                  const target = tab.getAttribute('data-product-tab');
-                  activateTab(target);
-                });
-              });
-            })();
-          </script>
-        </div>
+      <div class="product-catalog__panels elementor-invisible" data-settings='{"animation":"fadeInUp"}'>
+        {productTabs.map((tab, index) => (
+          <section class="product-catalog__panel" data-product-grid={tab.id} hidden={index !== 0} aria-label={tab.label}>
+            <div class="product-catalog__grid" role="list">
+              {tab.cards.map((card) => (
+                <article class="product-card" role="listitem">
+                  <a class="product-card__image-link" href={card.href} aria-label={card.readMoreAria || `View ${card.titleHtml}`}>
+                    <span class="product-card__image-frame">
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        width={card.imageWidth}
+                        height={card.imageHeight}
+                        src={card.imageSrc}
+                        alt={card.imageAlt}
+                        srcset={card.imageSrcSet}
+                        sizes={card.imageSizes}
+                      />
+                    </span>
+                  </a>
+                  <div class="product-card__body">
+                    <h2 class="product-card__title">
+                      <a href={card.href}>
+                        <Fragment set:html={card.titleHtml} />
+                      </a>
+                    </h2>
+                    <a class="product-card__read-more" href={card.href} aria-label={card.readMoreAria || `View ${card.titleHtml}`}>
+                      {card.readMoreText || 'View More'}
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
       </div>
-    </div>
+    </section>
+
+    <script is:inline>
+      (() => {
+        const tabs = document.querySelectorAll('[data-product-tab]');
+        const panels = document.querySelectorAll('[data-product-grid]');
+        const validTabs = ['all', 'disposable', 'pod-sys'];
+
+        function activateTab(tabId) {
+          tabs.forEach((tab) => {
+            const isActive = tab.getAttribute('data-product-tab') === tabId;
+            tab.classList.toggle('is-active', isActive);
+            tab.setAttribute('aria-pressed', String(isActive));
+          });
+          panels.forEach((panel) => {
+            panel.hidden = panel.getAttribute('data-product-grid') !== tabId;
+          });
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const initialTab = params.get('tab');
+        activateTab(validTabs.includes(initialTab) ? initialTab : 'all');
+
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const target = tab.getAttribute('data-product-tab');
+            if (validTabs.includes(target)) activateTab(target);
+          });
+        });
+      })();
+    </script>
   </main>
-</StandaloneLayout>
+</SiteShellLayout>

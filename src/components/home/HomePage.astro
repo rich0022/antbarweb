@@ -1,55 +1,58 @@
 ---
-import { PRODUCT_HERO, PRODUCT_INTRO, PRODUCT_VIDEO } from '../../data/homepage';
+import { PRODUCT_HIGHLIGHT, PRODUCT_INTRO, PRODUCT_VIDEO } from '../../data/homepage';
 import HeroCarousel from './HeroCarousel.astro';
 import ProductGrid from './ProductGrid.astro';
 import GalleryCarousel from './GalleryCarousel.astro';
 ---
 
-<main id="content" class="site-main post-2 page type-page status-publish hentry">
-  <div class="page-content">
-    <div data-elementor-type="wp-page" data-elementor-id="2" class="elementor elementor-2" data-elementor-post-type="page">
-      <HeroCarousel />
+<main id="content" class="site-main home-page">
+  <HeroCarousel />
 
-      <div class={`elementor-element elementor-element-${PRODUCT_HERO.containerDataId} e-con-full e-flex e-con e-parent`} data-id={PRODUCT_HERO.containerDataId} data-element_type="container">
-        <div class={`elementor-element elementor-element-${PRODUCT_HERO.widgetDataId} elementor-widget elementor-widget-image`} data-id={PRODUCT_HERO.widgetDataId} data-element_type="widget" data-widget_type="image.default">
-          <a href={PRODUCT_HERO.link}>
-            <img loading="lazy" decoding="async" width={PRODUCT_HERO.image.width} height={PRODUCT_HERO.image.height} src={PRODUCT_HERO.image.src} class="attachment-full size-full wp-image-4829" alt="" srcset={PRODUCT_HERO.image.srcset} sizes={PRODUCT_HERO.image.sizes} />
-          </a>
-        </div>
+  <section class="home-highlight" id="home-product-highlight" aria-label="Featured product">
+    <a class="home-highlight__link" href={PRODUCT_HIGHLIGHT.link}>
+      <img
+        loading="lazy"
+        decoding="async"
+        width={PRODUCT_HIGHLIGHT.image.width}
+        height={PRODUCT_HIGHLIGHT.image.height}
+        src={PRODUCT_HIGHLIGHT.image.src}
+        alt=""
+        srcset={PRODUCT_HIGHLIGHT.image.srcset}
+        sizes={PRODUCT_HIGHLIGHT.image.sizes}
+      />
+    </a>
+  </section>
+
+  <section
+    class="home-products-intro elementor-invisible"
+    id="home-products"
+    aria-labelledby="home-products-title"
+    data-settings='{"animation":"fadeInUp"}'
+  >
+    <div class="home-products-intro__inner">
+      <div class="home-products-intro__copy">
+        <h2 id="home-products-title">{PRODUCT_INTRO.heading}</h2>
       </div>
-
-      <div class={`elementor-element elementor-element-${PRODUCT_INTRO.containerDataId} e-flex e-con-boxed elementor-invisible e-con e-parent`} data-id={PRODUCT_INTRO.containerDataId} data-element_type="container" data-settings='{"animation":"fadeInUp"}'>
-        <div class="e-con-inner">
-          <div class={`elementor-element elementor-element-${PRODUCT_INTRO.headingContainerId} e-con-full e-flex e-con e-child`} data-id={PRODUCT_INTRO.headingContainerId} data-element_type="container">
-            <div class={`elementor-element elementor-element-${PRODUCT_INTRO.headingWidgetId} elementor-widget elementor-widget-heading`} data-id={PRODUCT_INTRO.headingWidgetId} data-element_type="widget" data-widget_type="heading.default">
-              <h2 class="elementor-heading-title elementor-size-default">{PRODUCT_INTRO.heading}</h2>
-            </div>
-          </div>
-          <div class={`elementor-element elementor-element-${PRODUCT_INTRO.buttonContainerId} e-con-full e-flex e-con e-child`} data-id={PRODUCT_INTRO.buttonContainerId} data-element_type="container">
-            <div class={`elementor-element elementor-element-${PRODUCT_INTRO.buttonWidgetId} elementor-widget elementor-widget-button`} data-id={PRODUCT_INTRO.buttonWidgetId} data-element_type="widget" data-widget_type="button.default">
-              <a class="elementor-button elementor-button-link elementor-size-sm" href={PRODUCT_INTRO.buttonHref}>
-                <span class="elementor-button-content-wrapper">
-                  <span class="elementor-button-text">{PRODUCT_INTRO.buttonText}</span>
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
+      <div class="home-products-intro__cta">
+        <a class="home-products-intro__link" href={PRODUCT_INTRO.buttonHref}>
+          <span>{PRODUCT_INTRO.buttonText}</span>
+        </a>
       </div>
-
-      <ProductGrid />
-
-      <div class={`elementor-element elementor-element-${PRODUCT_VIDEO.containerDataId} e-flex e-con-boxed elementor-invisible e-con e-parent`} data-id={PRODUCT_VIDEO.containerDataId} data-element_type="container" data-settings='{"animation":"fadeInUp"}'>
-        <div class="e-con-inner">
-          <div class={`elementor-element elementor-element-${PRODUCT_VIDEO.widgetDataId} elementor-widget elementor-widget-video`} data-id={PRODUCT_VIDEO.widgetDataId} data-element_type="widget" data-settings='{"video_type":"hosted","autoplay":"yes","play_on_mobile":"yes","loop":"yes","mute":"yes"}' data-widget_type="video.default">
-            <div class="e-hosted-video elementor-wrapper elementor-open-inline">
-              <video class="elementor-video" src={PRODUCT_VIDEO.src} autoplay loop muted playsinline controlsList="nodownload"></video>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <GalleryCarousel />
     </div>
-  </div>
+  </section>
+
+  <ProductGrid />
+
+  <section
+    class="home-video elementor-invisible"
+    id="home-product-video"
+    aria-label="Product video"
+    data-settings='{"animation":"fadeInUp"}'
+  >
+    <div class="home-video__frame">
+      <video class="home-video__media" src={PRODUCT_VIDEO.src} autoplay loop muted playsinline controlsList="nodownload"></video>
+    </div>
+  </section>
+
+  <GalleryCarousel />
 </main>

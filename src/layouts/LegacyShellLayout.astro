@@ -1,0 +1,37 @@
+---
+import SiteShellLayout from './SiteShellLayout.astro';
+import '../styles/site-shell-legacy.css';
+import type { MirrorScript } from '../lib/mirror-assets';
+
+interface Props {
+  title?: string;
+  description?: string;
+  bodyClass?: string;
+  stylesheets?: string[];
+  inlineStyles?: string[];
+  headScripts?: MirrorScript[];
+  footerScripts?: MirrorScript[];
+}
+
+const {
+  title = 'ANTBAR',
+  description = '',
+  bodyClass = '',
+  stylesheets = [],
+  inlineStyles = [],
+  headScripts = [],
+  footerScripts = [],
+} = Astro.props;
+---
+
+<SiteShellLayout
+  title={title}
+  description={description}
+  bodyClass={bodyClass}
+  stylesheets={stylesheets}
+  inlineStyles={inlineStyles}
+  headScripts={headScripts}
+  footerScripts={footerScripts}
+>
+  <slot />
+</SiteShellLayout>

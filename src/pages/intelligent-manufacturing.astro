@@ -1,159 +1,170 @@
 ---
 import { getCollection } from 'astro:content';
-import SubPageLayout from '../layouts/SubPageLayout.astro';
-import '../styles/intelligent-manufacturing-bundle.css';
+import SiteShellLayout from '../layouts/SiteShellLayout.astro';
+import { ANIMATION_INLINE_CSS } from '../data/site-assets';
+import '../styles/intelligent-manufacturing.css';
 
 const pages = await getCollection('pages');
-const entry = pages.find((p) => p.id === 'intelligent-manufacturing');
+const entry = pages.find((page) => page.id === 'intelligent-manufacturing');
+const bodyClass =
+  'wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 intelligent-manufacturing-body';
 
-const haItems = [
-  { num: '01', heading: 'Pioneer in<br>Automatic Robots', text: 'The automatic robotic arms are wholly invented and independently developed by our team. They are used to manufacture a diverse range of vaping products including disposable products and POD systems, etc.' },
-  { num: '02', heading: 'Higher Effificiency<br>and Lower Cost', text: "Using intelligent manufacturing approach, Antbar's automated manufacturing process drastically decreases the labour cost and time and resource wastage compared to traditional manual assembly methods,and improves production efficiency by more than 50%." },
-  { num: '03', heading: 'Process Monitoring<br>and Quality Control', text: 'Automated production stringently monitor the problems that need to be addressed. By collecting and analyzing data, we enable to preview the condition of our production lines.' },
+const highlights = [
+  {
+    num: '01',
+    heading: 'Pioneer in<br />Automatic Robots',
+    text: 'The automatic robotic arms are wholly invented and independently developed by our team. They are used to manufacture a diverse range of vaping products including disposable products and POD systems, etc.',
+  },
+  {
+    num: '02',
+    heading: 'Higher Effificiency<br />and Lower Cost',
+    text: "Using intelligent manufacturing approach, Antbar's automated manufacturing process drastically decreases the labour cost and time and resource wastage compared to traditional manual assembly methods,and improves production efficiency by more than 50%.",
+  },
+  {
+    num: '03',
+    heading: 'Process Monitoring<br />and Quality Control',
+    text: 'Automated production stringently monitor the problems that need to be addressed. By collecting and analyzing data, we enable to preview the condition of our production lines.',
+  },
 ] as const;
 ---
 
-<SubPageLayout title={entry?.data.title ?? 'Intelligent Manufacturing'} description={entry?.data.description ?? ''} pageId="43">
-  <main id="content" class="site-main post-43 page type-page status-publish hentry">
-    <div class="page-content">
-      <div data-elementor-type="wp-page" data-elementor-id="43" class="elementor elementor-43" data-elementor-post-type="page">
+<SiteShellLayout
+  title={entry?.data.title ?? 'Intelligent Manufacturing'}
+  description={entry?.data.description ?? ''}
+  bodyClass={bodyClass}
+  inlineStyles={[ANIMATION_INLINE_CSS]}
+>
+  <main id="content" class="site-main manufacturing-page">
+    <section class="manufacturing-hero scroll-bn" aria-label="Intelligent Manufacturing hero">
+      <picture class="manufacturing-hero__picture">
+        <source
+          media="(max-width: 767px)"
+          srcset="/wp-content/uploads/2024/05/Intelligent-Manufacturing.jpg 1170w, /wp-content/uploads/2024/05/Intelligent-Manufacturing-182x300.jpg 182w, /wp-content/uploads/2024/05/Intelligent-Manufacturing-620x1024.jpg 620w, /wp-content/uploads/2024/05/Intelligent-Manufacturing-768x1268.jpg 768w, /wp-content/uploads/2024/05/Intelligent-Manufacturing-931x1536.jpg 931w"
+          sizes="(max-width: 1170px) 100vw, 1170px"
+        />
+        <img
+          loading="eager"
+          decoding="async"
+          width="2000"
+          height="975"
+          src="/wp-content/uploads/2024/04/Intelligent-Manufacturing-1.jpg"
+          srcset="/wp-content/uploads/2024/04/Intelligent-Manufacturing-1.jpg 2000w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-1-300x146.jpg 300w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-1-1024x499.jpg 1024w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-1-768x374.jpg 768w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-1-1536x749.jpg 1536w"
+          sizes="(max-width: 2000px) 100vw, 2000px"
+          alt=""
+        />
+      </picture>
+    </section>
 
-        <div class="elementor-element elementor-element-06a0075 e-con-full scroll-bn e-flex e-con e-parent" data-id="06a0075" data-element_type="container">
-          <div class="elementor-element elementor-element-c3c85a1 elementor-hidden-mobile elementor-widget elementor-widget-image" data-id="c3c85a1" data-element_type="widget" data-widget_type="image.default">
-            <img loading="lazy" decoding="async" width="2000" height="975" src="/wp-content/uploads/2024/04/Intelligent-Manufacturing-1.jpg" class="attachment-full size-full wp-image-2095" alt="" srcset="/wp-content/uploads/2024/04/Intelligent-Manufacturing-1.jpg 2000w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-1-300x146.jpg 300w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-1-1024x499.jpg 1024w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-1-768x374.jpg 768w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-1-1536x749.jpg 1536w" sizes="(max-width: 2000px) 100vw, 2000px" />
-          </div>
-          <div class="elementor-element elementor-element-bee1ca9 elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-image" data-id="bee1ca9" data-element_type="widget" data-widget_type="image.default">
-            <img loading="lazy" decoding="async" width="1170" height="1931" src="/wp-content/uploads/2024/05/Intelligent-Manufacturing.jpg" class="attachment-full size-full wp-image-2991" alt="" srcset="/wp-content/uploads/2024/05/Intelligent-Manufacturing.jpg 1170w, /wp-content/uploads/2024/05/Intelligent-Manufacturing-182x300.jpg 182w, /wp-content/uploads/2024/05/Intelligent-Manufacturing-620x1024.jpg 620w, /wp-content/uploads/2024/05/Intelligent-Manufacturing-768x1268.jpg 768w, /wp-content/uploads/2024/05/Intelligent-Manufacturing-931x1536.jpg 931w" sizes="(max-width: 1170px) 100vw, 1170px" />
-          </div>
-        </div>
-
-        <div class="elementor-element elementor-element-55fb12d e-flex e-con-boxed e-con e-parent" data-id="55fb12d" data-element_type="container" data-settings='{"background_background":"classic"}'>
-          <div class="e-con-inner">
-            <div class="elementor-element elementor-element-57cf07a e-con-full e-flex e-con e-child" data-id="57cf07a" data-element_type="container">
-              <div class="elementor-element elementor-element-882f900 e-con-full e-flex e-con e-child" data-id="882f900" data-element_type="container">
-                <div class="elementor-element elementor-element-85fe7b3 elementor-widget elementor-widget-heading" data-id="85fe7b3" data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">Intelligent<br />Manufacturing</h2></div>
-              </div>
-              <div class="elementor-element elementor-element-1d3c7db e-con-full e-flex e-con e-child" data-id="1d3c7db" data-element_type="container">
-                <div class="elementor-element elementor-element-91332d4 elementor-widget elementor-widget-image" data-id="91332d4" data-element_type="widget" data-widget_type="image.default"><img loading="lazy" decoding="async" width="96" height="32" src="/wp-content/uploads/2024/04/图标-2.png" class="attachment-large size-large wp-image-2088" alt="" /></div>
-              </div>
-            </div>
-            <div class="elementor-element elementor-element-587355c e-con-full e-flex e-con e-child" data-id="587355c" data-element_type="container">
-              <div class="elementor-element elementor-element-10da818 e-con-full e-flex e-con e-child" data-id="10da818" data-element_type="container">
-                <div class="elementor-element elementor-element-d1aac49 elementor-widget elementor-widget-text-editor" data-id="d1aac49" data-element_type="widget" data-widget_type="text-editor.default"><p>ARTIFICIAL INTELLIGENCE</p></div>
-              </div>
-            </div>
-            <div class="elementor-element elementor-element-d87b7f9 e-con-full e-flex e-con e-child" data-id="d87b7f9" data-element_type="container">
-              <div class="elementor-element elementor-element-73b52a4 e-con-full e-flex e-con e-child" data-id="73b52a4" data-element_type="container">
-                <div class="elementor-element elementor-element-297a206 elementor-invisible elementor-widget elementor-widget-image" data-id="297a206" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="image.default">
-                  <img loading="lazy" decoding="async" width="800" height="567" src="/wp-content/uploads/2024/04/Intelligent-Manufacturing-2.jpg" class="elementor-animation-grow attachment-large size-large wp-image-2096" alt="" srcset="/wp-content/uploads/2024/04/Intelligent-Manufacturing-2.jpg 984w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-2-300x213.jpg 300w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-2-768x545.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" />
-                </div>
-              </div>
-              <div class="elementor-element elementor-element-d3f5b54 e-con-full e-flex e-con e-child" data-id="d3f5b54" data-element_type="container">
-                <div class="elementor-element elementor-element-8d8cae7 elementor-invisible elementor-widget elementor-widget-text-editor" data-id="8d8cae7" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="text-editor.default"><p>Our factory uses real-time data analysis, artificial intelligence (AI), and machine learning in the manufacturing process to realize intelligent manufacturing. The self-developed auto-mated plant improves both production efficiency and cost reduction.</p></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="elementor-element elementor-element-b36c2f4 e-flex e-con-boxed e-con e-parent" data-id="b36c2f4" data-element_type="container" data-settings='{"background_background":"classic"}'>
-          <div class="e-con-inner">
-            <div class="elementor-element elementor-element-ab1713f e-con-full e-flex e-con e-child" data-id="ab1713f" data-element_type="container">
-              <div class="elementor-element elementor-element-66b54cf e-con-full e-flex e-con e-child" data-id="66b54cf" data-element_type="container">
-                <div class="elementor-element elementor-element-dec6542 elementor-widget elementor-widget-heading" data-id="dec6542" data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">Highlights of Automated Plant</h2></div>
-              </div>
-              <div class="elementor-element elementor-element-e01feab e-con-full e-flex e-con e-child" data-id="e01feab" data-element_type="container">
-                <div class="elementor-element elementor-element-ee49efa elementor-widget elementor-widget-image" data-id="ee49efa" data-element_type="widget" data-widget_type="image.default"><img loading="lazy" decoding="async" width="96" height="32" src="/wp-content/uploads/2024/04/图标-2.png" class="attachment-large size-large wp-image-2088" alt="" /></div>
-              </div>
-            </div>
-            <div class="elementor-element elementor-element-da9a5fa e-con-full e-flex e-con e-child" data-id="da9a5fa" data-element_type="container">
-              <div class="elementor-element elementor-element-f956a79 e-con-full e-flex e-con e-child" data-id="f956a79" data-element_type="container">
-                <div class="elementor-element elementor-element-cb43d7d elementor-widget elementor-widget-text-editor" data-id="cb43d7d" data-element_type="widget" data-widget_type="text-editor.default"><p>ARTIFICIAL INTELLIGENCE</p></div>
-              </div>
-            </div>
-            <div class="elementor-element elementor-element-a975e99 e-con-full ha-conts e-flex e-con e-child" data-id="a975e99" data-element_type="container" id="haConts">
-              {haItems.map((item, i) => (
-                <div class="elementor-element elementor-element-438ffce e-con-full ha-one e-flex e-con e-child" data-id="438ffce" data-element_type="container">
-                  <div class="elementor-element elementor-element-ae15aa4 e-con-full e-flex e-con e-child" data-id="ae15aa4" data-element_type="container">
-                    <div class="elementor-element elementor-element-5f5654a ha-num elementor-widget elementor-widget-heading" data-id="5f5654a" data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">{item.num}</h2></div>
-                  </div>
-                  <div class="elementor-element elementor-element-795961e e-con-full e-flex e-con e-child" data-id="795961e" data-element_type="container">
-                    <div class="elementor-element elementor-element-56d7f5d e-con-full ha-bar e-flex e-con e-child" data-id="56d7f5d" data-element_type="container" data-settings='{"background_background":"classic"}'><div class="elementor-element elementor-element-b42544e ha-thumb e-con-full e-flex e-con e-child" data-id="b42544e" data-element_type="container" data-settings='{"background_background":"classic"}'></div></div>
-                    <div class="elementor-element elementor-element-b27173f elementor-widget elementor-widget-heading" data-id="b27173f" data-element_type="widget" data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default" set:html={item.heading} /></div>
-                    <div class="elementor-element elementor-element-3ea67d2 elementor-invisible elementor-widget elementor-widget-text-editor" data-id="3ea67d2" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="text-editor.default"><p>{item.text}</p></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div class="elementor-element elementor-element-32449e7 e-flex e-con-boxed e-con e-parent" data-id="32449e7" data-element_type="container" data-settings='{"background_background":"classic"}'>
-          <div class="e-con-inner">
-            <div class="elementor-element elementor-element-6ce254e e-con-full e-flex e-con e-child" data-id="6ce254e" data-element_type="container">
-              <div class="elementor-element elementor-element-b15a0fc elementor-widget elementor-widget-image" data-id="b15a0fc" data-element_type="widget" data-widget_type="image.default"><img loading="lazy" decoding="async" width="1167" height="740" src="/wp-content/uploads/2024/04/Intelligent-Manufacturing-3.jpg" class="elementor-animation-grow attachment-full size-full wp-image-2097" alt="" srcset="/wp-content/uploads/2024/04/Intelligent-Manufacturing-3.jpg 1167w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-3-300x190.jpg 300w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-3-1024x649.jpg 1024w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-3-768x487.jpg 768w" sizes="(max-width: 1167px) 100vw, 1167px" /></div>
-            </div>
-            <div class="elementor-element elementor-element-01b0268 e-con-full e-flex e-con e-child" data-id="01b0268" data-element_type="container">
-              <div class="elementor-element elementor-element-e672ad0 elementor-widget elementor-widget-image" data-id="e672ad0" data-element_type="widget" data-widget_type="image.default"><img loading="lazy" decoding="async" width="1167" height="740" src="/wp-content/uploads/2024/04/Intelligent-Manufacturing-4.jpg" class="elementor-animation-grow attachment-full size-full wp-image-2098" alt="" srcset="/wp-content/uploads/2024/04/Intelligent-Manufacturing-4.jpg 1167w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-4-300x190.jpg 300w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-4-1024x649.jpg 1024w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-4-768x487.jpg 768w" sizes="(max-width: 1167px) 100vw, 1167px" /></div>
-            </div>
-          </div>
-        </div>
-
+    <section class="manufacturing-overview" aria-labelledby="manufacturing-title">
+      <div class="manufacturing-section-head">
+        <h1 id="manufacturing-title">Intelligent<br />Manufacturing</h1>
+        <img loading="lazy" decoding="async" width="96" height="32" src="/wp-content/uploads/2024/04/图标-2.png" alt="" />
       </div>
-    </div>
+      <p class="manufacturing-label">ARTIFICIAL INTELLIGENCE</p>
+      <div class="manufacturing-overview__grid">
+        <figure class="manufacturing-overview__image elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+          <img
+            loading="lazy"
+            decoding="async"
+            width="984"
+            height="698"
+            src="/wp-content/uploads/2024/04/Intelligent-Manufacturing-2.jpg"
+            srcset="/wp-content/uploads/2024/04/Intelligent-Manufacturing-2.jpg 984w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-2-300x213.jpg 300w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-2-768x545.jpg 768w"
+            sizes="(max-width: 984px) 100vw, 984px"
+            alt=""
+          />
+        </figure>
+        <p class="manufacturing-overview__text elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+          Our factory uses real-time data analysis, artificial intelligence (AI), and machine learning in the manufacturing process to realize intelligent manufacturing. The self-developed auto-mated plant improves both production efficiency and cost reduction.
+        </p>
+      </div>
+    </section>
+
+    <section class="manufacturing-highlights" aria-labelledby="manufacturing-highlights-title" data-manufacturing-highlights>
+      <div class="manufacturing-section-head">
+        <h2 id="manufacturing-highlights-title">Highlights of Automated Plant</h2>
+        <img loading="lazy" decoding="async" width="96" height="32" src="/wp-content/uploads/2024/04/图标-2.png" alt="" />
+      </div>
+      <p class="manufacturing-label">ARTIFICIAL INTELLIGENCE</p>
+      <div class="manufacturing-highlights__body">
+        <div class="manufacturing-highlight-tabs" data-manufacturing-tabs aria-hidden="true">
+          {highlights.map((item) => <span class:list={['manufacturing-highlight-tab', item.num === '01' && 'is-active']}>{item.num}</span>)}
+        </div>
+        <div class="manufacturing-highlight-list">
+          {highlights.map((item) => (
+            <article class:list={['manufacturing-highlight', item.num === '01' && 'is-active']} data-manufacturing-highlight>
+              <div class="manufacturing-highlight__num">{item.num}</div>
+              <div class="manufacturing-highlight__copy">
+                <div class="manufacturing-highlight__bar"><span></span></div>
+                <h3 set:html={item.heading} />
+                <p class="elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>{item.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="manufacturing-gallery" aria-label="Intelligent manufacturing gallery">
+      <figure>
+        <img
+          loading="lazy"
+          decoding="async"
+          width="1167"
+          height="740"
+          src="/wp-content/uploads/2024/04/Intelligent-Manufacturing-3.jpg"
+          srcset="/wp-content/uploads/2024/04/Intelligent-Manufacturing-3.jpg 1167w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-3-300x190.jpg 300w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-3-1024x649.jpg 1024w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-3-768x487.jpg 768w"
+          sizes="(max-width: 1167px) 100vw, 1167px"
+          alt=""
+        />
+      </figure>
+      <figure>
+        <img
+          loading="lazy"
+          decoding="async"
+          width="1167"
+          height="740"
+          src="/wp-content/uploads/2024/04/Intelligent-Manufacturing-4.jpg"
+          srcset="/wp-content/uploads/2024/04/Intelligent-Manufacturing-4.jpg 1167w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-4-300x190.jpg 300w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-4-1024x649.jpg 1024w, /wp-content/uploads/2024/04/Intelligent-Manufacturing-4-768x487.jpg 768w"
+          sizes="(max-width: 1167px) 100vw, 1167px"
+          alt=""
+        />
+      </figure>
+    </section>
   </main>
-</SubPageLayout>
 
-<script is:inline>
-  (() => {
-    const cont = document.getElementById('haConts');
-    if (!cont) return;
-    const sections = cont.querySelectorAll('.ha-one');
-    const nums = cont.querySelectorAll('.ha-num .elementor-heading-title');
-    if (!sections.length || !nums.length) return;
-    const tabs = document.createElement('div');
-    tabs.className = 'ha-tabs';
-    nums.forEach(n => { const t = n.cloneNode(true); t.classList.add('ha-tab'); tabs.appendChild(t); });
-    cont.prepend(tabs);
-    const tabEls = tabs.querySelectorAll('.ha-tab');
-    let current = -1, scrolling = true;
+  <script is:inline>
+    (() => {
+      const root = document.querySelector('[data-manufacturing-highlights]');
+      if (!root) return;
+      const tabs = [...root.querySelectorAll('.manufacturing-highlight-tab')];
+      const sections = [...root.querySelectorAll('[data-manufacturing-highlight]')];
+      if (!tabs.length || !sections.length) return;
 
-    tabEls.forEach((tab, i) => {
-      tab.addEventListener('click', () => {
-        if (!scrolling) return;
-        scrolling = false;
-        tabEls.forEach((t, j) => t.classList.toggle('active', j === i));
-        sections.forEach((s, j) => s.classList.toggle('active', j === i));
-        sections[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setTimeout(() => { scrolling = true; }, 400);
+      const activate = (index) => {
+        tabs.forEach((tab, tabIndex) => tab.classList.toggle('is-active', tabIndex === index));
+        sections.forEach((section, sectionIndex) => section.classList.toggle('is-active', sectionIndex === index));
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          activate(index);
+          sections[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
       });
-    });
 
-    window.addEventListener('scroll', () => {
-      if (!scrolling) return;
-      const mid = window.scrollY + window.innerHeight / 2;
-      let best = -1, bestDist = Infinity;
-      sections.forEach((s, i) => {
-        const top = s.getBoundingClientRect().top + window.scrollY;
-        const dist = Math.abs(top - mid);
-        if (dist < bestDist && top < mid) { bestDist = dist; best = i; }
-      });
-      if (best >= 0 && best !== current) {
-        current = best;
-        tabEls.forEach((t, j) => t.classList.toggle('active', j === best));
-        sections.forEach((s, j) => s.classList.toggle('active', j === best));
-      }
-    }, { passive: true });
-    window.dispatchEvent(new Event('scroll'));
-
-    const header = document.querySelector('header');
-    function sticky() {
-      if (!header) return;
-      const ct = cont.getBoundingClientRect().top + window.scrollY;
-      const hh = header.offsetHeight;
-      if (window.scrollY + hh >= ct) { tabs.classList.add('fixed'); tabs.style.top = hh + 'px'; }
-      else { tabs.classList.remove('fixed'); tabs.style.top = '0'; }
-    }
-    window.addEventListener('scroll', sticky, { passive: true });
-    sticky();
-  })();
-</script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (!visible) return;
+          const index = sections.indexOf(visible.target);
+          if (index >= 0) activate(index);
+        },
+        { threshold: [0.25, 0.5, 0.75] },
+      );
+      sections.forEach((section) => observer.observe(section));
+    })();
+  </script>
+</SiteShellLayout>

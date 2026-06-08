@@ -65,30 +65,32 @@ const slides = HERO_CAROUSEL_SLIDES;
                 </a>
               </div>
               <div class="home-hero__overlay">
-                <div
-                  class="home-hero__copy elementor-invisible"
-                  data-settings='{"animation":"fadeInUp"}'
-                >
-                  {
-                    slide.titleImage ? (
-                      <img
-                        class="home-hero__title-image"
-                        loading="lazy"
-                        decoding="async"
-                        width={slide.titleImage.width}
-                        height={slide.titleImage.height}
-                        src={slide.titleImage.src}
-                        alt={slide.titleImage.alt}
-                        srcset={slide.titleImage.srcset}
-                        sizes={slide.titleImage.sizes}
-                      />
-                    ) : slide.headingTag ? (
-                      <h2 class="home-hero__product-name">
-                        <a href={slide.link}>{slide.headingTag}</a>
-                      </h2>
-                    ) : null
-                  }
-                  <h2 class="home-hero__tagline">{slide.heading}</h2>
+                <div class="home-hero__overlay-inner">
+                  <div
+                    class="home-hero__copy elementor-invisible"
+                    data-settings='{"animation":"fadeInUp"}'
+                  >
+                    {
+                      slide.titleImage ? (
+                        <img
+                          class="home-hero__title-image"
+                          loading="lazy"
+                          decoding="async"
+                          width={slide.titleImage.width}
+                          height={slide.titleImage.height}
+                          src={slide.titleImage.src}
+                          alt={slide.titleImage.alt}
+                          srcset={slide.titleImage.srcset}
+                          sizes={slide.titleImage.sizes}
+                        />
+                      ) : slide.headingTag ? (
+                        <h2 class="home-hero__product-name">
+                          <a href={slide.link}>{slide.headingTag}</a>
+                        </h2>
+                      ) : null
+                    }
+                    <h2 class="home-hero__tagline">{slide.heading}</h2>
+                  </div>
                 </div>
               </div>
             </article>

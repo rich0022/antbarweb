@@ -1,5 +1,5 @@
 ---
-import SiteShellLayout from './SiteShellLayout.astro';
+import LegacyShellLayout from './LegacyShellLayout.astro';
 import { ANIMATION_INLINE_CSS, ELEMENTOR_LAZY_CSS } from '../data/site-assets';
 import { getMirrorHeadAssets } from '../lib/mirror-assets';
 
@@ -27,7 +27,7 @@ const bodyClass =
 const stylesheets = [...new Set(['/assets/article-shell-bundle.css', ...extraStylesheets])];
 ---
 
-<SiteShellLayout
+<LegacyShellLayout
   title={title}
   description={description}
   bodyClass={bodyClass}
@@ -35,4 +35,4 @@ const stylesheets = [...new Set(['/assets/article-shell-bundle.css', ...extraSty
   inlineStyles={[...(assets?.inlineStyles ?? []), ANIMATION_INLINE_CSS, ELEMENTOR_LAZY_CSS]}
 >
   <slot />
-</SiteShellLayout>
+</LegacyShellLayout>

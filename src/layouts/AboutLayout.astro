@@ -1,8 +1,7 @@
 ---
 import SiteShellLayout from './SiteShellLayout.astro';
-import AboutClientScript from '../components/about/AboutClientScript.astro';
 import { ANIMATION_INLINE_CSS } from '../data/site-assets';
-import '../styles/about-us-bundle.css';
+import '../styles/about-us.css';
 
 interface Props {
   title?: string;
@@ -10,7 +9,7 @@ interface Props {
 }
 
 const { title = 'ANTBAR', description = '' } = Astro.props;
-const bodyClass = 'wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 elementor-page elementor-page-37';
+const bodyClass = 'wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 about-page-body';
 ---
 
 <SiteShellLayout
@@ -20,5 +19,4 @@ const bodyClass = 'wp-singular page-template-default wp-custom-logo wp-embed-res
   inlineStyles={[ANIMATION_INLINE_CSS]}
 >
   <slot />
-  <AboutClientScript />
 </SiteShellLayout>

@@ -1,10 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
-import SubPageLayout from '../layouts/SubPageLayout.astro';
-import '../styles/rd-center-bundle.css';
+import SiteShellLayout from '../layouts/SiteShellLayout.astro';
+import { ANIMATION_INLINE_CSS } from '../data/site-assets';
+import '../styles/rd-center.css';
 
 const pages = await getCollection('pages');
-const entry = pages.find((p) => p.id === 'rd-center');
+const entry = pages.find((page) => page.id === 'rd-center');
+const bodyClass =
+  'wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 rd-center-body';
 
 const counters = [
   { title: 'SOFTWARE COPYRIGHT', value: '6' },
@@ -14,14 +17,38 @@ const counters = [
   { title: 'UTILITY MODEL PATENT', value: '259' },
 ] as const;
 
-const unis = [
-  { img: '/wp-content/uploads/2024/04/RD-Center-1.png', w: 344, h: 266, name: 'Huazhong University of Science and Technology' },
-  { img: '/wp-content/uploads/2024/04/RD-Center-2.png', w: 270, h: 270, name: 'Wuhan Textile University' },
-  { img: '/wp-content/uploads/2024/04/RD-Center-3.png', w: 272, h: 271, name: 'Wuhan Institute of Advanced Technology Chinese Academy of Science' },
-  { img: '/wp-content/uploads/2024/04/RD-Center-4.png', w: 271, h: 271, name: 'China University of Geosciences' },
+const universities = [
+  {
+    img: '/wp-content/uploads/2024/04/RD-Center-1.png',
+    bg: '/wp-content/uploads/2024/04/第1个.jpg',
+    w: 344,
+    h: 266,
+    name: 'Huazhong University of Science and Technology',
+  },
+  {
+    img: '/wp-content/uploads/2024/04/RD-Center-2.png',
+    bg: '/wp-content/uploads/2024/04/第2个.jpg',
+    w: 270,
+    h: 270,
+    name: 'Wuhan Textile University',
+  },
+  {
+    img: '/wp-content/uploads/2024/04/RD-Center-3.png',
+    bg: '/wp-content/uploads/2024/04/第3个.jpg',
+    w: 272,
+    h: 271,
+    name: 'Wuhan Institute of Advanced Technology Chinese Academy of Science',
+  },
+  {
+    img: '/wp-content/uploads/2024/04/RD-Center-4.png',
+    bg: '/wp-content/uploads/2024/04/第4个.jpg',
+    w: 271,
+    h: 271,
+    name: 'China University of Geosciences',
+  },
 ] as const;
 
-const patentImgs = [
+const patents = [
   { src: '/wp-content/uploads/2024/04/1.png', w: 482, h: 636 },
   { src: '/wp-content/uploads/2024/04/2.png', w: 482, h: 636 },
   { src: '/wp-content/uploads/2024/04/3.png', w: 482, h: 636 },
@@ -29,119 +56,118 @@ const patentImgs = [
 ] as const;
 ---
 
-<SubPageLayout title={entry?.data.title ?? 'R&D Center'} description={entry?.data.description ?? ''} pageId="45">
-  <main id="content" class="site-main post-45 page type-page status-publish hentry">
-    <div class="page-content">
-      <div data-elementor-type="wp-page" data-elementor-id="45" class="elementor elementor-45" data-elementor-post-type="page">
+<SiteShellLayout
+  title={entry?.data.title ?? 'R&D Center'}
+  description={entry?.data.description ?? ''}
+  bodyClass={bodyClass}
+  inlineStyles={[ANIMATION_INLINE_CSS]}
+>
+  <main id="content" class="site-main rd-center-page">
+    <section class="rd-hero scroll-bn" aria-label="R&D Center hero">
+      <picture class="rd-hero__picture">
+        <source
+          media="(max-width: 767px)"
+          srcset="/wp-content/uploads/2024/05/RD-Center.jpg 1170w, /wp-content/uploads/2024/05/RD-Center-182x300.jpg 182w, /wp-content/uploads/2024/05/RD-Center-620x1024.jpg 620w, /wp-content/uploads/2024/05/RD-Center-768x1268.jpg 768w, /wp-content/uploads/2024/05/RD-Center-931x1536.jpg 931w"
+          sizes="(max-width: 1170px) 100vw, 1170px"
+        />
+        <img
+          loading="eager"
+          decoding="async"
+          width="2560"
+          height="1248"
+          src="/wp-content/uploads/2024/04/RD-Center-1-scaled.jpg"
+          srcset="/wp-content/uploads/2024/04/RD-Center-1-scaled.jpg 2560w, /wp-content/uploads/2024/04/RD-Center-1-300x146.jpg 300w, /wp-content/uploads/2024/04/RD-Center-1-1024x499.jpg 1024w, /wp-content/uploads/2024/04/RD-Center-1-768x374.jpg 768w, /wp-content/uploads/2024/04/RD-Center-1-1536x749.jpg 1536w, /wp-content/uploads/2024/04/RD-Center-1-2048x998.jpg 2048w"
+          sizes="(max-width: 2560px) 100vw, 2560px"
+          alt=""
+        />
+      </picture>
+    </section>
 
-        <div class="elementor-element elementor-element-2bd4087 e-con-full scroll-bn e-flex e-con e-parent" data-id="2bd4087" data-element_type="container">
-          <div class="elementor-element elementor-element-88b9b95 elementor-hidden-mobile elementor-widget elementor-widget-image" data-id="88b9b95" data-element_type="widget" data-widget_type="image.default">
-            <img loading="lazy" decoding="async" width="2560" height="1248" src="/wp-content/uploads/2024/04/RD-Center-1-scaled.jpg" class="attachment-full size-full wp-image-2082" alt="" srcset="/wp-content/uploads/2024/04/RD-Center-1-scaled.jpg 2560w, /wp-content/uploads/2024/04/RD-Center-1-300x146.jpg 300w, /wp-content/uploads/2024/04/RD-Center-1-1024x499.jpg 1024w, /wp-content/uploads/2024/04/RD-Center-1-768x374.jpg 768w, /wp-content/uploads/2024/04/RD-Center-1-1536x749.jpg 1536w, /wp-content/uploads/2024/04/RD-Center-1-2048x998.jpg 2048w" sizes="(max-width: 2560px) 100vw, 2560px" />
-          </div>
-          <div class="elementor-element elementor-element-5d89d52 elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-image" data-id="5d89d52" data-element_type="widget" data-widget_type="image.default">
-            <img loading="lazy" decoding="async" width="1170" height="1931" src="/wp-content/uploads/2024/05/RD-Center.jpg" class="attachment-full size-full wp-image-2992" alt="" srcset="/wp-content/uploads/2024/05/RD-Center.jpg 1170w, /wp-content/uploads/2024/05/RD-Center-182x300.jpg 182w, /wp-content/uploads/2024/05/RD-Center-620x1024.jpg 620w, /wp-content/uploads/2024/05/RD-Center-768x1268.jpg 768w, /wp-content/uploads/2024/05/RD-Center-931x1536.jpg 931w" sizes="(max-width: 1170px) 100vw, 1170px" />
-          </div>
+    <section class="rd-intro" aria-labelledby="rd-center-title">
+      <div class="rd-intro__inner">
+        <div class="rd-intro__content">
+          <img
+            class="rd-intro__image elementor-invisible"
+            data-settings='{"_animation":"fadeInUp"}'
+            loading="lazy"
+            decoding="async"
+            width="1809"
+            height="1175"
+            src="/wp-content/uploads/2024/04/RD-Center-2.jpg"
+            srcset="/wp-content/uploads/2024/04/RD-Center-2.jpg 1809w, /wp-content/uploads/2024/04/RD-Center-2-300x195.jpg 300w, /wp-content/uploads/2024/04/RD-Center-2-1024x665.jpg 1024w, /wp-content/uploads/2024/04/RD-Center-2-768x499.jpg 768w, /wp-content/uploads/2024/04/RD-Center-2-1536x998.jpg 1536w"
+            sizes="(max-width: 1809px) 100vw, 1809px"
+            alt=""
+          />
+          <p class="rd-intro__text elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+            Driven by market-oriented and technological innovation, Antbar spares no expense and effort in research and development. Based on independent research and development, Antbar have established a professional R&D team led by senior engineers in the industry and introduced advanced scientific equipment. The team has a keen mind on the vaping industry and new trend, and keeps on rolling out more optimal solutions by integrating technology, marketing and production, committed to creating products with more stable performance. Antbar has cooperated with several renowned universities on new materials and technical to solve some tricky problems in this field. Antbar strives to become an industry-leading atomizer technology corporation that drives the innovation of electronic atomizer.
+          </p>
         </div>
-
-        <div class="elementor-element elementor-element-1ca8a9e e-con-full e-flex e-con e-parent" data-id="1ca8a9e" data-element_type="container" data-settings='{"background_background":"classic"}'>
-          <div class="elementor-element elementor-element-da4c811 e-flex e-con-boxed e-con e-child" data-id="da4c811" data-element_type="container">
-            <div class="e-con-inner">
-              <div class="elementor-element elementor-element-44d32d6 e-con-full e-flex e-con e-child" data-id="44d32d6" data-element_type="container">
-                <div class="elementor-element elementor-element-d10b847 elementor-invisible elementor-widget elementor-widget-image" data-id="d10b847" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="image.default">
-                  <img loading="lazy" decoding="async" width="1809" height="1175" src="/wp-content/uploads/2024/04/RD-Center-2.jpg" class="attachment-full size-full wp-image-2084" alt="" srcset="/wp-content/uploads/2024/04/RD-Center-2.jpg 1809w, /wp-content/uploads/2024/04/RD-Center-2-300x195.jpg 300w, /wp-content/uploads/2024/04/RD-Center-2-1024x665.jpg 1024w, /wp-content/uploads/2024/04/RD-Center-2-768x499.jpg 768w, /wp-content/uploads/2024/04/RD-Center-2-1536x998.jpg 1536w" sizes="(max-width: 1809px) 100vw, 1809px" />
-                </div>
-                <div class="elementor-element elementor-element-a024f68 e-con-full e-flex e-con e-child" data-id="a024f68" data-element_type="container">
-                  <div class="elementor-element elementor-element-3282726 elementor-invisible elementor-widget elementor-widget-text-editor" data-id="3282726" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="text-editor.default">
-                    <p>Driven by market-oriented and technological innovation, Antbar spares no expense and effort in research and development. Based on independent research and development, Antbar have established a professional R&amp;D team led by senior engineers in the industry and introduced advanced scientific equipment. The team has a keen mind on the vaping industry and new trend, and keeps on rolling out more optimal solutions by integrating technology, marketing and production, committed to creating products with more stable performance. Antbar has cooperated with several renowned universities on new materials and technical to solve some tricky problems in this field. Antbar strives to become an industry-leading atomizer technology corporation that drives the innovation of electronic atomizer.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="elementor-element elementor-element-ed6323c e-con-full e-flex e-con e-child" data-id="ed6323c" data-element_type="container">
-                <div class="elementor-element elementor-element-2a68840 elementor-invisible elementor-widget elementor-widget-heading" data-id="2a68840" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="heading.default"><h1 class="elementor-heading-title elementor-size-default">R&amp;D Center</h1></div>
-                <div class="elementor-element elementor-element-416c636 e-con-full e-flex e-con e-child" data-id="416c636" data-element_type="container">
-                  <div class="elementor-element elementor-element-cb71eab elementor-invisible elementor-widget elementor-widget-image" data-id="cb71eab" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="image.default">
-                    <img loading="lazy" decoding="async" width="96" height="32" src="/wp-content/uploads/2024/04/图标-2.png" class="attachment-large size-large wp-image-2088" alt="" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="rd-intro__heading">
+          <h1 id="rd-center-title" class="elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>R&D Center</h1>
+          <img
+            class="elementor-invisible"
+            data-settings='{"_animation":"fadeInUp"}'
+            loading="lazy"
+            decoding="async"
+            width="96"
+            height="32"
+            src="/wp-content/uploads/2024/04/图标-2.png"
+            alt=""
+          />
         </div>
-
-        <div class="elementor-element elementor-element-66334f7 e-con-full e-flex e-con e-parent" data-id="66334f7" data-element_type="container" data-settings='{"background_background":"classic"}'>
-          <div class="elementor-element elementor-element-f11204c e-con-full e-flex e-con e-child" data-id="f11204c" data-element_type="container">
-            {unis.map((uni, i) => (
-              <div class="elementor-element elementor-element-c8e095b e-con-full sc-one not-bg e-flex e-con e-child" data-id="c8e095b" data-element_type="container">
-                <div class="elementor-element elementor-element-d49ba95 e-con-full e-flex e-con e-child" data-id="d49ba95" data-element_type="container" data-settings='{"background_background":"classic"}'>
-                  <div class="elementor-element elementor-element-c1fb32a elementor-widget elementor-widget-image" data-id="c1fb32a" data-element_type="widget" data-widget_type="image.default">
-                    <img loading="lazy" decoding="async" width={uni.w} height={uni.h} src={uni.img} class="attachment-full size-full" alt="" />
-                  </div>
-                  <div class="elementor-element elementor-element-4658fad sc-name elementor-widget elementor-widget-text-editor" data-id="4658fad" data-element_type="widget" data-widget_type="text-editor.default">
-                    <p style="text-align:center;">{uni.name}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div class="elementor-element elementor-element-50058bd0 e-con-full e-flex e-con e-parent" data-id="50058bd0" data-element_type="container" data-settings='{"background_background":"classic"}'>
-          <div class="elementor-element elementor-element-af8981 e-flex e-con-boxed e-con e-child" data-id="af8981" data-element_type="container">
-            <div class="e-con-inner">
-              <div class="elementor-element elementor-element-e9ca5cf e-con-full e-flex e-con e-child" data-id="e9ca5cf" data-element_type="container">
-                <div class="elementor-element elementor-element-19673fc e-con-full e-flex e-con e-child" data-id="19673fc" data-element_type="container">
-                  <div class="elementor-element elementor-element-e600aa4 elementor-widget elementor-widget-image" data-id="e600aa4" data-element_type="widget" data-widget_type="image.default">
-                    <img loading="lazy" decoding="async" width="1016" height="989" src="/wp-content/uploads/2024/04/地球-GIF.gif" class="attachment-full size-full wp-image-2089" alt="" />
-                  </div>
-                </div>
-                <div class="elementor-element elementor-element-7c3ac9e e-con-full e-flex e-con e-child" data-id="7c3ac9e" data-element_type="container">
-                  <div class="elementor-element elementor-element-093250e elementor-invisible elementor-widget elementor-widget-heading" data-id="093250e" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="heading.default"><h2 class="elementor-heading-title elementor-size-default">Intellectual<br />Property</h2></div>
-                  <div class="elementor-element elementor-element-3186d54 e-con-full e-flex e-con e-child" data-id="3186d54" data-element_type="container">
-                    <div class="elementor-element elementor-element-03fa82b elementor-invisible elementor-widget elementor-widget-image" data-id="03fa82b" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="image.default">
-                      <img loading="lazy" decoding="async" width="96" height="32" src="/wp-content/uploads/2024/04/图标-2.png" class="attachment-full size-full wp-image-2088" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="elementor-element elementor-element-b9b56cb e-con-full e-flex e-con e-child" data-id="b9b56cb" data-element_type="container">
-                <div class="elementor-element elementor-element-6afd3f4 elementor-invisible elementor-widget elementor-widget-text-editor" data-id="6afd3f4" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="text-editor.default">
-                  <p>Advocating scientific and technological innovation and market-oriented, Antbar produces some products that are widely sold in dozens of countries and regions around the world. With its excellent technical advantage and market competitiveness, Antbar has won recognition and praise from a large number of enterprises, distributors, and consumers at home and abroad.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-dbf08c2 e-flex e-con-boxed e-con e-child" data-id="dbf08c2" data-element_type="container">
-            <div class="e-con-inner">
-              {counters.map((c, i) => (
-                <div class="elementor-element elementor-element-2839333 e-con-full e-flex e-con e-child" data-id="2839333" data-element_type="container">
-                  <div class="elementor-element elementor-element-1bead19 elementor-invisible elementor-widget elementor-widget-counter" data-id="1bead19" data-element_type="widget" data-settings='{"_animation":"fadeInUp"}' data-widget_type="counter.default">
-                    <div class="elementor-counter">
-                      <div class="elementor-counter-title">{c.title}</div>
-                      <div class="elementor-counter-number-wrapper">
-                        <span class="elementor-counter-number-prefix"></span>
-                        <span class="elementor-counter-number">{c.value}</span>
-                        <span class="elementor-counter-number-suffix"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div class="elementor-element elementor-element-aacb56a e-flex e-con-boxed e-con e-child" data-id="aacb56a" data-element_type="container">
-            <div class="e-con-inner">
-              {patentImgs.map((img, i) => (
-                <div class="elementor-element elementor-element-99e1bba e-con-full e-flex e-con e-child" data-id="99e1bba" data-element_type="container">
-                  <div class="elementor-element elementor-element-f174e50 elementor-invisible elementor-widget elementor-widget-image" data-id="f174e50" data-element_type="widget" data-settings='{"_animation":"fadeInUp","_animation_mobile":"fadeInUp"}' data-widget_type="image.default">
-                    <img loading="lazy" decoding="async" width={img.w} height={img.h} src={img.src} class="attachment-full size-full" alt="" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
+    </section>
+
+    <section class="rd-universities" aria-label="R&D university cooperation">
+      <div class="rd-universities__grid">
+        {universities.map((university) => (
+          <article class="rd-university-card" style={`--rd-card-bg: url("${university.bg}")`}>
+            <img loading="lazy" decoding="async" width={university.w} height={university.h} src={university.img} alt="" />
+            <p>{university.name}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="rd-property" aria-labelledby="rd-property-title">
+      <div class="rd-property__intro">
+        <div class="rd-property__visual">
+          <img loading="lazy" decoding="async" width="1016" height="989" src="/wp-content/uploads/2024/04/地球-GIF.gif" alt="" />
+        </div>
+        <div class="rd-property__heading">
+          <h2 id="rd-property-title" class="elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>Intellectual<br />Property</h2>
+          <img
+            class="elementor-invisible"
+            data-settings='{"_animation":"fadeInUp"}'
+            loading="lazy"
+            decoding="async"
+            width="96"
+            height="32"
+            src="/wp-content/uploads/2024/04/图标-2.png"
+            alt=""
+          />
+        </div>
+        <p class="rd-property__text elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+          Advocating scientific and technological innovation and market-oriented, Antbar produces some products that are widely sold in dozens of countries and regions around the world. With its excellent technical advantage and market competitiveness, Antbar has won recognition and praise from a large number of enterprises, distributors, and consumers at home and abroad.
+        </p>
+      </div>
+
+      <div class="rd-counters" aria-label="Patent statistics">
+        {counters.map((counter) => (
+          <div class="rd-counter elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+            <p>{counter.title}</p>
+            <strong>{counter.value}</strong>
+          </div>
+        ))}
+      </div>
+
+      <div class="rd-patents">
+        {patents.map((patent) => (
+          <figure class="rd-patent elementor-invisible" data-settings='{"_animation":"fadeInUp"}'>
+            <img loading="lazy" decoding="async" width={patent.w} height={patent.h} src={patent.src} alt="" />
+          </figure>
+        ))}
+      </div>
+    </section>
   </main>
-</SubPageLayout>
+</SiteShellLayout>

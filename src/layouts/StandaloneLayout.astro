@@ -1,5 +1,5 @@
 ---
-import SiteShellLayout from './SiteShellLayout.astro';
+import LegacyShellLayout from './LegacyShellLayout.astro';
 import { ANIMATION_INLINE_CSS } from '../data/site-assets';
 
 interface Props {
@@ -14,7 +14,7 @@ const pageClass = pageId ? ` elementor-page elementor-page-${pageId}` : '';
 const bodyClass = `wp-singular wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305${pageClass}`;
 ---
 
-<SiteShellLayout
+<LegacyShellLayout
   title={title}
   description={description}
   bodyClass={bodyClass}
@@ -22,4 +22,4 @@ const bodyClass = `wp-singular wp-custom-logo wp-embed-responsive wp-theme-hello
   inlineStyles={[ANIMATION_INLINE_CSS]}
 >
   <slot />
-</SiteShellLayout>
+</LegacyShellLayout>

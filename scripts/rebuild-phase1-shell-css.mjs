@@ -7,7 +7,7 @@ const PUBLIC = join(ROOT, 'public');
 const STYLES_DIR = join(ROOT, 'src', 'styles');
 const ARTICLE_ASSETS_DIR = join(PUBLIC, 'assets');
 
-const SHARED_SHELL_CSS = [
+const LEGACY_SHELL_CSS = [
   'wp-content/themes/hello-elementor/assets/css/reset.css',
   'wp-content/themes/hello-elementor/assets/css/theme.css',
   'wp-content/themes/hello-elementor/assets/css/header-footer.css',
@@ -41,21 +41,6 @@ const SHARED_SHELL_CSS = [
 ];
 
 const PAGE_CSS_MAP = {
-  home: [
-    'wp-content/uploads/elementor/css/post-2.css',
-    'wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css',
-    'wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css',
-    'wp-content/plugins/elementor-pro/assets/css/widget-nested-carousel.min.css',
-    'wp-content/plugins/elementor/assets/css/widget-video.min.css',
-  ],
-  'about-us': ['wp-content/uploads/elementor/css/post-37.css'],
-  'brand-story': ['wp-content/uploads/elementor/css/post-41.css'],
-  'rd-center': [
-    'wp-content/uploads/elementor/css/post-45.css',
-    'wp-content/plugins/elementor/assets/css/widget-counter.min.css',
-  ],
-  'antbar-lab': ['wp-content/uploads/elementor/css/post-118.css'],
-  'intelligent-manufacturing': ['wp-content/uploads/elementor/css/post-43.css'],
   blog: [
     'wp-content/uploads/elementor/css/post-1817.css',
     'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css',
@@ -81,10 +66,6 @@ const PAGE_CSS_MAP = {
     'wp-content/plugins/elementor/assets/css/widget-toggle.min.css',
   ],
   verification: ['wp-content/uploads/elementor/css/post-950.css'],
-  'all-products': [
-    'wp-content/uploads/elementor/css/post-976.css',
-    'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css',
-  ],
   agp12000: [
     'wp-content/uploads/elementor/css/post-3489.css',
     'wp-content/uploads/elementor/css/post-3519.css',
@@ -158,8 +139,8 @@ async function main() {
   await mkdir(STYLES_DIR, { recursive: true });
   await mkdir(ARTICLE_ASSETS_DIR, { recursive: true });
 
-  const shellCss = await buildBundle('Shared site shell CSS bundle', SHARED_SHELL_CSS);
-  await writeFile(join(STYLES_DIR, 'site-shell-bundle.css'), shellCss, 'utf8');
+  const legacyShellCss = await buildBundle('Legacy WordPress/Elementor global CSS', LEGACY_SHELL_CSS);
+  await writeFile(join(STYLES_DIR, 'site-shell-legacy.css'), legacyShellCss, 'utf8');
 
   for (const [pageId, files] of Object.entries(PAGE_CSS_MAP)) {
     const css = await buildBundle(`${pageId} content CSS bundle`, files);
@@ -169,7 +150,7 @@ async function main() {
   const articleCss = await buildBundle('Article content CSS bundle', ARTICLE_CONTENT_CSS);
   await writeFile(join(ARTICLE_ASSETS_DIR, 'article-shell-bundle.css'), articleCss, 'utf8');
 
-  console.log('Rebuilt shared shell CSS, page content bundles, and article content CSS.');
+  console.log('Rebuilt legacy shell CSS, page content bundles, and article content CSS.');
 }
 
 main().catch((error) => {

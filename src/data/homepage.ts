@@ -1,37 +1,19 @@
+export interface ResponsiveImage {
+  src: string;
+  srcset: string;
+  sizes: string;
+  width: number;
+  height: number;
+}
+
 export interface HeroSlide {
   id: string;
-  desktopImage: {
-    src: string;
-    srcset: string;
-    sizes: string;
-    width: number;
-    height: number;
-  };
-  mobileImage: {
-    src: string;
-    srcset: string;
-    sizes: string;
-    width: number;
-    height: number;
-  };
+  desktopImage: ResponsiveImage;
+  mobileImage: ResponsiveImage;
   link: string;
-  slideTitle: string;
-  titleImage?: {
-    src: string;
-    srcset: string;
-    sizes: string;
-    width: number;
-    height: number;
-    alt: string;
-  };
+  titleImage?: ResponsiveImage & { alt: string };
   heading: string;
   headingTag?: string;
-  slideContainerId: string;
-  overlayContainerId: string;
-  desktopWidgetId: string;
-  mobileWidgetId: string;
-  titleWidgetId?: string;
-  headingWidgetId: string;
 }
 
 export const HERO_CAROUSEL_SLIDES: HeroSlide[] = [
@@ -54,7 +36,6 @@ export const HERO_CAROUSEL_SLIDES: HeroSlide[] = [
       height: 1931,
     },
     link: '/disposable/antbar-sa8000/',
-    slideTitle: 'Slide #1',
     titleImage: {
       src: '/wp-content/uploads/2024/03/HOME-SA800-TITLE.png',
       srcset:
@@ -65,12 +46,6 @@ export const HERO_CAROUSEL_SLIDES: HeroSlide[] = [
       alt: 'SA8000 8000puff disposable vape kit 12ml e-juice',
     },
     heading: 'KEEP WORRY AWAY',
-    slideContainerId: '4d35988',
-    overlayContainerId: '4cbb1b8',
-    desktopWidgetId: '1c7f23b',
-    mobileWidgetId: '1d6180c',
-    titleWidgetId: '35fc2ea',
-    headingWidgetId: 'e72ce52',
   },
   {
     id: 'slide2',
@@ -91,7 +66,6 @@ export const HERO_CAROUSEL_SLIDES: HeroSlide[] = [
       height: 1931,
     },
     link: '/disposable/antbar-rocket/',
-    slideTitle: 'Slide #2',
     titleImage: {
       src: '/wp-content/uploads/2024/03/HOME-ROCKET-TITLE.png',
       srcset:
@@ -102,12 +76,6 @@ export const HERO_CAROUSEL_SLIDES: HeroSlide[] = [
       alt: 'ROCKET disposable vape kit',
     },
     heading: 'CRUSH ON ROCKET',
-    slideContainerId: 'ffc224f',
-    overlayContainerId: '5ad7983',
-    desktopWidgetId: '82a5d7b',
-    mobileWidgetId: '8e47a9c',
-    titleWidgetId: 'acbdd06',
-    headingWidgetId: '14d636f',
   },
   {
     id: 'slide3',
@@ -128,20 +96,12 @@ export const HERO_CAROUSEL_SLIDES: HeroSlide[] = [
       height: 1931,
     },
     link: '/disposable/agp12000-nicotine-disposable-vape/',
-    slideTitle: 'Slide #3',
-    heading: 'THREE-IN-ONE',
     headingTag: 'AGP12000',
-    slideContainerId: 'd01fdac',
-    overlayContainerId: 'bb93de0',
-    desktopWidgetId: 'fd0842b',
-    mobileWidgetId: '306bfc9',
-    headingWidgetId: '984f732',
+    heading: 'THREE-IN-ONE',
   },
 ] as const;
 
-export const HERO_CAROUSEL_SETTINGS = `{"carousel_items":[{"slide_title":"Slide #1","_id":"ba98e32"},{"slide_title":"Slide #2","_id":"cd7b854"},{"slide_title":"Slide #3","_id":"80fa47e"}],"slides_to_show":"1","slides_to_show_tablet":"1","slides_to_show_mobile":"1","autoplay":"yes","autoplay_speed":5000,"pause_on_hover":"yes","pause_on_interaction":"yes","infinite":"yes","speed":500,"offset_sides":"none","arrows":"yes","pagination":"bullets","image_spacing_custom":{"unit":"px","size":10,"sizes":[]},"image_spacing_custom_tablet":{"unit":"px","size":"","sizes":[]},"image_spacing_custom_mobile":{"unit":"px","size":"","sizes":[]}}` as const;
-
-export const PRODUCT_HERO = {
+export const PRODUCT_HIGHLIGHT = {
   link: '/disposable/antbar-sa8000/',
   image: {
     src: '/wp-content/uploads/2024/11/home2.avif',
@@ -151,39 +111,26 @@ export const PRODUCT_HERO = {
     width: 2560,
     height: 988,
   },
-  containerDataId: '872d0e5',
-  widgetDataId: '72fb7ed',
 } as const;
 
 export const PRODUCT_INTRO = {
   heading: 'PRODUCT',
   buttonText: 'Learn More',
   buttonHref: '/all-products/',
-  containerDataId: 'd4d8d65',
-  headingContainerId: '6e90c2c',
-  headingWidgetId: 'f9363e1',
-  buttonContainerId: 'a7ac963',
-  buttonWidgetId: '02f3ffc',
 } as const;
 
 export interface ProductGridItem {
+  id: string;
   name: string;
   href: string;
-  image: {
-    src: string;
-    srcset: string;
-    sizes: string;
-    width: number;
-    height: number;
-  };
+  image: ResponsiveImage;
   animation: string;
-  imageWidgetId: string;
-  headingWidgetId: string;
-  cellContainerId: string;
+  layout: 'stack-left' | 'feature-center' | 'stack-right';
 }
 
 export const PRODUCT_GRID_ITEMS: ProductGridItem[] = [
   {
+    id: 'at800',
     name: 'AT800',
     href: '/disposable/at800-puffs-disposable-vape/',
     image: {
@@ -195,11 +142,10 @@ export const PRODUCT_GRID_ITEMS: ProductGridItem[] = [
       height: 483,
     },
     animation: 'fadeInLeft',
-    imageWidgetId: '434faea',
-    headingWidgetId: '23b3f89',
-    cellContainerId: '2fe5563',
+    layout: 'stack-left',
   },
   {
+    id: 'ag600',
     name: 'AG600',
     href: '/disposable/antbar-ag600/',
     image: {
@@ -211,11 +157,10 @@ export const PRODUCT_GRID_ITEMS: ProductGridItem[] = [
       height: 483,
     },
     animation: 'fadeInLeft',
-    imageWidgetId: '8ca3830',
-    headingWidgetId: '8576a99',
-    cellContainerId: 'f6020e0',
+    layout: 'stack-left',
   },
   {
+    id: 'rocket',
     name: 'ROCKET',
     href: '/disposable/antbar-rocket/',
     image: {
@@ -227,11 +172,10 @@ export const PRODUCT_GRID_ITEMS: ProductGridItem[] = [
       height: 1002,
     },
     animation: 'fadeInUp',
-    imageWidgetId: '6293238',
-    headingWidgetId: '8784a74',
-    cellContainerId: '1dc57fd',
+    layout: 'feature-center',
   },
   {
+    id: 'agp12000',
     name: 'AGP12000',
     href: '/disposable/agp12000-nicotine-disposable-vape/',
     image: {
@@ -243,11 +187,10 @@ export const PRODUCT_GRID_ITEMS: ProductGridItem[] = [
       height: 483,
     },
     animation: 'fadeInRight',
-    imageWidgetId: '6abc33a',
-    headingWidgetId: '499c8df',
-    cellContainerId: '251e888',
+    layout: 'stack-right',
   },
   {
+    id: 'kt800',
     name: 'KT800',
     href: '/disposable/antbar-kt800/',
     image: {
@@ -259,27 +202,17 @@ export const PRODUCT_GRID_ITEMS: ProductGridItem[] = [
       height: 483,
     },
     animation: 'fadeInRight',
-    imageWidgetId: 'fd283eb',
-    headingWidgetId: 'ff454b2',
-    cellContainerId: '9131195',
+    layout: 'stack-right',
   },
 ] as const;
 
 export const PRODUCT_VIDEO = {
   src: '/wp-content/uploads/2023/12/SA8000-2023x264-x264-1.mp4',
-  containerDataId: 'b37a4e1',
-  widgetDataId: '3d65a94',
 } as const;
 
 export interface GallerySlide {
   id: string;
-  image: {
-    src: string;
-    srcset: string;
-    sizes: string;
-    width: number;
-    height: number;
-  };
+  image: ResponsiveImage;
 }
 
 export const GALLERY_SLIDES: GallerySlide[] = [
@@ -355,8 +288,7 @@ export const GALLERY_SLIDES: GallerySlide[] = [
   },
 ] as const;
 
-export const GALLERY_CAROUSEL = {
-  containerDataId: '94c2452',
+export const GALLERY_SECTION = {
   titleImage: {
     src: '/wp-content/uploads/2024/03/图层-1421.png',
     srcset:
@@ -366,10 +298,4 @@ export const GALLERY_CAROUSEL = {
     height: 107,
     alt: '',
   },
-  titleContainerId: 'f34afe0',
-  titleWidgetId: '2b83964',
-  carouselContainerId: '53fb841',
-  carouselWidgetId: '9dff6e2',
 } as const;
-
-export const GALLERY_CAROUSEL_SETTINGS = `{"carousel_items":[{"slide_title":"Slide #1","_id":"4d658d9"},{"slide_title":"Slide #2","_id":"9854ccc"},{"slide_title":"Slide #3","_id":"af82cbb"},{"slide_title":"Slide #4","_id":"dc3d767"},{"_id":"021dfa1","slide_title":"Slide #5"},{"_id":"5b6a88d","slide_title":"Slide #6"},{"_id":"8c67ea6","slide_title":"Slide #7"}],"slides_to_show":"3","image_spacing_custom":{"unit":"px","size":15,"sizes":[]},"slides_to_show_tablet":"2","slides_to_show_mobile":"1","autoplay":"yes","autoplay_speed":5000,"pause_on_hover":"yes","pause_on_interaction":"yes","infinite":"yes","speed":500,"offset_sides":"none","arrows":"yes","image_spacing_custom_tablet":{"unit":"px","size":"","sizes":[]},"image_spacing_custom_mobile":{"unit":"px","size":"","sizes":[]}}` as const;

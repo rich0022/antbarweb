@@ -1,0 +1,398 @@
+.rd-center-page {
+  overflow: hidden;
+  background: #fff;
+  color: #000;
+  font-family: "Poppins", sans-serif;
+}
+
+.rd-hero,
+.rd-hero__picture,
+.rd-hero__picture img {
+  display: block;
+  width: 100%;
+}
+
+.rd-hero {
+  overflow: hidden;
+  background: #f2f2f2;
+}
+
+.rd-hero__picture img {
+  height: 48.75vw;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.rd-intro {
+  padding: 5vw 0;
+  background: #fff;
+}
+
+.rd-intro__inner {
+  display: grid;
+  grid-template-columns: 87% 13%;
+  width: 72%;
+  margin: 0 auto;
+}
+
+.rd-intro__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rd-intro__text {
+  margin: 2.2rem 0;
+  color: #000;
+  font-size: 1.05vw;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.rd-intro__heading {
+  padding-top: 8vw;
+}
+
+.rd-intro__heading h1,
+.rd-property__heading h2 {
+  margin: 0 -11vw 0 0;
+  color: #000;
+  font-size: 3.2vw;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.rd-intro__heading img,
+.rd-property__heading img {
+  display: block;
+  width: 35%;
+  height: auto;
+  margin-top: 1vw;
+}
+
+.rd-universities {
+  padding: 0 0 6vw;
+  background: #fff;
+}
+
+.rd-universities__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  width: 77%;
+  margin: 0 auto;
+}
+
+.rd-university-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  margin: 0;
+  padding: 4.16vw 2vw 3vw;
+  border: 1px solid #c6c6c6;
+  border-radius: 0.42vw;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+
+.rd-university-card::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--rd-card-bg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  content: "";
+}
+
+.rd-university-card:hover,
+.rd-university-card:focus-within {
+  border-color: transparent;
+}
+
+.rd-university-card:hover::before,
+.rd-university-card:focus-within::before {
+  opacity: 1;
+}
+
+.rd-university-card img,
+.rd-university-card p {
+  position: relative;
+  z-index: 1;
+}
+
+.rd-university-card img {
+  display: block;
+  width: auto;
+  height: 9.42vw;
+  margin: 0 auto 1.8vw;
+}
+
+.rd-university-card p {
+  margin: 0;
+  color: #000;
+  font-size: 1.04vw;
+  font-weight: 400;
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.rd-university-card:hover p,
+.rd-university-card:focus-within p {
+  color: #fff;
+}
+
+.rd-property {
+  padding: 2vw 0 10vw;
+  background: #000;
+  color: #fff;
+}
+
+.rd-property__intro {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  grid-template-areas:
+    "media text"
+    "media copy";
+  align-items: center;
+  width: 76%;
+  margin: 0 auto;
+}
+
+.rd-property__visual {
+  grid-area: media;
+  text-align: center;
+}
+
+.rd-property__visual img {
+  display: block;
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.rd-property__heading {
+  grid-area: text;
+  align-self: end;
+}
+
+.rd-property__heading h2,
+.rd-property__text {
+  color: #fff;
+}
+
+.rd-property__heading h2 {
+  margin-right: -15vw;
+}
+
+.rd-property__text {
+  grid-area: copy;
+  margin: 2vw 0 0;
+  font-size: 1.05vw;
+  line-height: 1.5;
+}
+
+.rd-counters {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1vw;
+  width: 75%;
+  margin: 5vw auto 3vw;
+}
+
+.rd-counter {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  color: #fff;
+}
+
+.rd-counter p {
+  margin: 0;
+  color: #fff;
+  font-size: 0.9vw;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.rd-counter strong {
+  color: #fff;
+  font-size: 4vw;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.rd-patents {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  justify-content: space-around;
+  gap: 30px;
+  width: 72%;
+  margin: 0 auto;
+}
+
+.rd-patent {
+  overflow: hidden;
+  margin: 0;
+}
+
+.rd-patent img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1024px) {
+  .rd-intro__inner {
+    width: 88%;
+    grid-template-columns: 82% 18%;
+  }
+
+  .rd-intro__text {
+    margin: 2vw 0;
+    font-size: 2vw;
+  }
+
+  .rd-intro__heading h1,
+  .rd-property__heading h2 {
+    font-size: 4.2vw;
+    line-height: 1.15;
+  }
+
+  .rd-universities__grid {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .rd-university-card {
+    padding: 20px 10px;
+  }
+
+  .rd-university-card img {
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  .rd-university-card p {
+    font-size: 14px;
+  }
+
+  .rd-property {
+    padding: 3rem 0 5rem;
+  }
+
+  .rd-property__intro {
+    width: 88%;
+    grid-template-columns: 50% 50%;
+  }
+
+  .rd-property__text {
+    font-size: 2vw;
+  }
+
+  .rd-counters {
+    width: 85%;
+    margin-bottom: 5vw;
+  }
+
+  .rd-counter p {
+    font-size: 2vw;
+    line-height: 1.3;
+  }
+
+  .rd-counter strong {
+    font-size: 7vw;
+  }
+
+  .rd-patents {
+    width: 80%;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .rd-hero__picture img {
+    height: auto;
+  }
+
+  .rd-intro {
+    padding: 5vw 0;
+  }
+
+  .rd-intro__inner {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 95%;
+  }
+
+  .rd-intro__heading {
+    padding: 2vw;
+  }
+
+  .rd-intro__heading h1,
+  .rd-property__heading h2 {
+    margin: 0 0 2vw;
+    font-size: 7vw;
+  }
+
+  .rd-intro__heading img,
+  .rd-property__heading img {
+    width: 18%;
+  }
+
+  .rd-intro__text {
+    margin: 0;
+    font-size: 4vw;
+    line-height: 1.5;
+  }
+
+  .rd-universities__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    padding: 0 5px;
+  }
+
+  .rd-university-card {
+    margin: 5px;
+    border-radius: 8px;
+    padding: 20px 10px 10px;
+  }
+
+  .rd-property__intro {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 95%;
+  }
+
+  .rd-property__visual img {
+    width: 90%;
+  }
+
+  .rd-property__text {
+    margin: 4vw 0;
+    font-size: 4vw;
+  }
+
+  .rd-counters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 97%;
+    gap: 5vw 4vw;
+  }
+
+  .rd-counter p {
+    font-size: 4.2vw;
+  }
+
+  .rd-counter strong {
+    font-size: 12vw;
+  }
+
+  .rd-patents {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 20px;
+    padding: 0 20px;
+  }
+}
