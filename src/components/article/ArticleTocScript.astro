@@ -1,0 +1,33 @@
+---
+import type { TocItem } from '../../lib/article-page';
+
+interface Props {
+  tocItems: TocItem[];
+}
+
+const { tocItems } = Astro.props;
+---
+
+{
+  tocItems.length > 0 && (
+    <script
+      is:inline
+      define:vars={{ tocItems }}
+    >
+      (() => {
+        const root = document.querySelector('.article-body');
+        if (!root) return;
+
+        for (const item of tocItems) {
+          const headings = root.querySelectorAll('h2');
+          const match = [...headings].find(
+            (heading) => heading.textContent?.trim() === item.text,
+          );
+          if (match && !match.id) {
+            match.id = item.id;
+          }
+        }
+      })();
+    </script>
+  )
+}

@@ -1,38 +1,26 @@
 ---
-import LegacyShellLayout from './LegacyShellLayout.astro';
-import { ANIMATION_INLINE_CSS, ELEMENTOR_LAZY_CSS } from '../data/site-assets';
-import { getMirrorHeadAssets } from '../lib/mirror-assets';
+import SiteShellLayout from './SiteShellLayout.astro';
+import { ANIMATION_INLINE_CSS } from '../data/site-assets';
+import '../styles/article-page.css';
 
 interface Props {
   title: string;
   description?: string;
-  mirrorRoute?: string;
-  extraStylesheets?: string[];
   bodyClass?: string;
 }
 
 const {
   title,
   description = '',
-  mirrorRoute = '',
-  extraStylesheets = [],
-  bodyClass: bodyClassOverride = '',
+  bodyClass = 'article-page-body',
 } = Astro.props;
-
-const assets = mirrorRoute ? await getMirrorHeadAssets(mirrorRoute) : null;
-const bodyClass =
-  bodyClassOverride ||
-  assets?.bodyClass ||
-  'wp-singular wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305';
-const stylesheets = [...new Set(['/assets/article-shell-bundle.css', ...extraStylesheets])];
 ---
 
-<LegacyShellLayout
+<SiteShellLayout
   title={title}
   description={description}
   bodyClass={bodyClass}
-  stylesheets={stylesheets}
-  inlineStyles={[...(assets?.inlineStyles ?? []), ANIMATION_INLINE_CSS, ELEMENTOR_LAZY_CSS]}
+  inlineStyles={[ANIMATION_INLINE_CSS]}
 >
   <slot />
-</LegacyShellLayout>
+</SiteShellLayout>

@@ -1,25 +1,12 @@
 ---
-import '../../styles/article-page.css';
-
-type TocItem = {
-  id: string;
-  text: string;
-};
-
-type ArticleCard = {
-  title: string;
-  href: string;
-  image: string;
-};
-
-type HotProductCard = ArticleCard & {
-  cta: string;
-};
+import { ARTICLE_SOCIAL_LINKS } from '../../data/article-social';
+import type { ArticleCard, HotProductCard, TocItem } from '../../lib/article-page';
+import ArticlePostList from './ArticlePostList.astro';
+import ArticleTocScript from './ArticleTocScript.astro';
 
 interface Props {
   title: string;
   sectionLabel: 'Blog' | 'Review';
-  currentPostId?: number | string | null;
   author?: string;
   publishedLabel?: string;
   tocItems?: TocItem[];
@@ -33,7 +20,6 @@ interface Props {
 const {
   title,
   sectionLabel,
-  currentPostId = null,
   author = 'Antbar',
   publishedLabel = '',
   tocItems = [],
@@ -46,591 +32,181 @@ const {
 
 const isReview = sectionLabel === 'Review';
 const breadcrumbHref = isReview ? '/review/' : '/blog/';
-const fallbackPostId = isReview ? 3650 : 4603;
-const postId = String(currentPostId ?? fallbackPostId);
-
-const template = isReview
-  ? {
-      pageId: '4120',
-      rootClassSuffix:
-        'post type-post status-publish format-standard has-post-thumbnail hentry category-review',
-      breadcrumbParent: '4492ead3',
-      breadcrumbWidget: 'c5177f4',
-      mainParent: '7db1de51',
-      leftColumn: '3bcf0008',
-      headingWidget: '7688632',
-      metaRow: '2a92e7ee',
-      authorColumn: '491116df',
-      authorWidget: '55376808',
-      dateWidget: '35edfeaf',
-      socialColumn: '703b9f6a',
-      socialWidget: '7bfaf85',
-      contentWrap: '7832b2b7',
-      contentWidget: '7ba1a783',
-      bodyParent: '555395c6',
-      bodyTextWidget: '184ab4c3',
-      sidebarRoot: '53f78edd',
-      newsletterContainer: '35f4e69',
-      newsletterHeading: '234eaf6c',
-      newsletterText: '3dd1aee9',
-      newsletterForm: '504b6315',
-      tocContainer: '4d2718d0',
-      tocHeading: '2fe429c0',
-      tocWidget: '57ea8333',
-      latestContainer: '248ed897',
-      latestHeading: '6614ac68',
-      latestPosts: '3f76b97d',
-      relatedContainer: '495c24ed',
-      relatedHeading: '107f04c9',
-      relatedPosts: '69c2fb10',
-      featuredContainer: 'f35cfc0',
-      featuredHeading: '545cce28',
-      featuredPosts: '5441f182',
-      hotParent: '678b60e4',
-      hotHeading: '4531bfe1',
-      hotDivider: '5aad629b',
-      hotPosts: '8602e06',
-      hotMore: '6083d579',
-    }
-  : {
-      pageId: '3997',
-      rootClassSuffix:
-        'post type-post status-publish format-standard has-post-thumbnail hentry category-blog',
-      breadcrumbParent: '71f19f37',
-      breadcrumbWidget: '0aec745',
-      mainParent: '1aee8372',
-      leftColumn: '663d96c4',
-      headingWidget: '6595cb0',
-      metaRow: '138fca08',
-      authorColumn: '22c9f321',
-      authorWidget: '6c3aec1f',
-      dateWidget: '9866886',
-      socialColumn: '7cc888a3',
-      socialWidget: '33c7f894',
-      contentWrap: 'f5af453',
-      contentWidget: '5d72d17',
-      bodyParent: '08ed087',
-      bodyTextWidget: 'dfe02bc',
-      sidebarRoot: '57587240',
-      newsletterContainer: '1dd59485',
-      newsletterHeading: '28a4798',
-      newsletterText: 'e99b7ff',
-      newsletterForm: '61f9f403',
-      tocContainer: '703ba7c4',
-      tocHeading: '3430a431',
-      tocWidget: '01ce2c6',
-      latestContainer: '49f83ca4',
-      latestHeading: '77710916',
-      latestPosts: '12dd9aa4',
-      relatedContainer: '7860e76',
-      relatedHeading: '9dcc544',
-      relatedPosts: '035e33c',
-      featuredContainer: '77a75499',
-      featuredHeading: 'b7467b7',
-      featuredPosts: '73d9a352',
-      hotParent: '54ea460',
-      hotHeading: '4e84e347',
-      hotDivider: '7eac6c4a',
-      hotPosts: '3db37d34',
-      hotMore: '49a62233',
-    };
-
-const socialLinks = [
-  {
-    label: 'Instagram',
-    href: 'https://www.instagram.com/antbar_official/',
-    icon:
-      '<svg aria-hidden="true" class="e-font-icon-svg e-fab-instagram" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg>',
-  },
-  {
-    label: 'Facebook-f',
-    href: 'https://www.facebook.com/profile.php?id=100094221171904',
-    icon:
-      '<svg aria-hidden="true" class="e-font-icon-svg e-fab-facebook-f" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>',
-  },
-  {
-    label: 'Vk',
-    href: 'https://vk.com/smoantbar',
-    icon:
-      '<svg aria-hidden="true" class="e-font-icon-svg e-fab-vk" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M545 117.7c3.7-12.5 0-21.7-17.8-21.7h-58.9c-15 0-21.9 7.9-25.6 16.7 0 0-30 73.1-72.4 120.5-13.7 13.7-20 18.1-27.5 18.1-3.7 0-9.4-4.4-9.4-16.9V117.7c0-15-4.2-21.7-16.6-21.7h-92.6c-9.4 0-15 7-15 13.5 0 14.2 21.2 17.5 23.4 57.5v86.8c0 19-3.4 22.5-10.9 22.5-20 0-68.6-73.4-97.4-157.4-5.8-16.3-11.5-22.9-26.6-22.9H38.8c-16.8 0-20.2 7.9-20.2 16.7 0 15.6 20 93.1 93.1 195.5C160.4 378.1 229 416 291.4 416c37.5 0 42.1-8.4 42.1-22.9 0-66.8-3.4-73.1 15.4-73.1 8.7 0 23.7 4.4 58.7 38.1 40 40 46.6 57.9 69 57.9h58.9c16.8 0 25.3-8.4 20.4-25-11.2-34.9-86.9-106.7-90.3-111.5-8.7-11.2-6.2-16.2 0-26.2.1-.1 72-101.3 79.4-135.6z"></path></svg>',
-  },
-  {
-    label: 'Twitter',
-    href: 'https://x.com/antbar_official',
-    icon:
-      '<svg aria-hidden="true" class="e-font-icon-svg e-fab-twitter" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>',
-  },
-];
-
-function postsClass(id: string): string {
-  return `elementor-element elementor-element-${id} elementor-grid-1 elementor-grid-tablet-1 elementor-grid-mobile-1 elementor-posts--thumbnail-top elementor-widget elementor-widget-posts`;
-}
-
-const rootClass = `elementor elementor-${template.pageId} elementor-location-single post-${postId} ${template.rootClassSuffix}`;
+const breadcrumbSection = isReview ? 'Review' : 'Blog';
+const newsletterFormId = isReview ? 'article-newsletter-review' : 'article-newsletter-blog';
 ---
 
-<div
-  data-elementor-type="single-post"
-  data-elementor-id={template.pageId}
-  class={rootClass}
-  data-elementor-post-type="elementor_library"
->
-  <div
-    class={`elementor-element elementor-element-${template.breadcrumbParent} e-flex e-con-boxed e-con e-parent`}
-    data-id={template.breadcrumbParent}
-    data-element_type="container"
-    data-settings='{"background_background":"classic"}'
-  >
-    <div class="e-con-inner">
-      <div
-        class={`elementor-element elementor-element-${template.breadcrumbWidget} elementor-widget elementor-widget-post-info`}
-        data-id={template.breadcrumbWidget}
-        data-element_type="widget"
-        data-widget_type="post-info.default"
-      >
-        <ul class="elementor-inline-items elementor-icon-list-items elementor-post-info">
-          <li class="elementor-icon-list-item elementor-repeater-item-bceb4fa elementor-inline-item">
-            <a href="/">
-              <span class="elementor-icon-list-icon">
-                <i aria-hidden="true" class="far fa-tags"></i>
-              </span>
-              <span class="elementor-icon-list-text elementor-post-info__item elementor-post-info__item--type-custom">
-                Home
-              </span>
-            </a>
-          </li>
-          <li class="elementor-icon-list-item elementor-repeater-item-1c24bd5 elementor-inline-item">
-            <a href={breadcrumbHref}>
-              <span class="elementor-icon-list-text elementor-post-info__item elementor-post-info__item--type-custom">
-                {isReview ? '/ Review /' : '/ Blog /'}
-              </span>
-            </a>
-          </li>
-          <li class="elementor-icon-list-item elementor-repeater-item-a436520 elementor-inline-item">
-            <span class="elementor-icon-list-text elementor-post-info__item elementor-post-info__item--type-custom">
-              {title}
-            </span>
-          </li>
-        </ul>
-      </div>
+<main id="content" class="site-main article-page">
+  <nav class="article-breadcrumb" aria-label="Breadcrumb">
+    <div class="site-shell-frame article-breadcrumb__inner">
+      <ol class="article-breadcrumb__list">
+        <li class="article-breadcrumb__item">
+          <a href="/">Home</a>
+        </li>
+        <li class="article-breadcrumb__item">
+          <a href={breadcrumbHref}>{breadcrumbSection}</a>
+        </li>
+        <li class="article-breadcrumb__item article-breadcrumb__item--current" aria-current="page">
+          <span>{title}</span>
+        </li>
+      </ol>
     </div>
-  </div>
+  </nav>
 
-  <div
-    class={`elementor-element elementor-element-${template.mainParent} e-flex e-con-boxed e-con e-parent`}
-    data-id={template.mainParent}
-    data-element_type="container"
-    data-settings='{"background_background":"classic"}'
-  >
-    <div class="e-con-inner">
-      <div
-        class={`elementor-element elementor-element-${template.leftColumn} e-con-full e-flex e-con e-child`}
-        data-id={template.leftColumn}
-        data-element_type="container"
-      >
-        <div
-          class={`elementor-element elementor-element-${template.headingWidget} elementor-widget elementor-widget-heading`}
-          data-id={template.headingWidget}
-          data-element_type="widget"
-          data-widget_type="heading.default"
-        >
-          <h1 class="elementor-heading-title elementor-size-default">{title}</h1>
-        </div>
-
-        <div
-          class={`elementor-element elementor-element-${template.metaRow} e-con-full e-flex e-con e-child`}
-          data-id={template.metaRow}
-          data-element_type="container"
-        >
-          <div
-            class={`elementor-element elementor-element-${template.authorColumn} e-con-full e-flex e-con e-child`}
-            data-id={template.authorColumn}
-            data-element_type="container"
-          >
-            <div
-              class={`elementor-element elementor-element-${template.authorWidget} elementor-widget elementor-widget-text-editor`}
-              data-id={template.authorWidget}
-              data-element_type="widget"
-              data-widget_type="text-editor.default"
-            >
-              <p>
-                by <span style="color: #000000;"><strong>{author} </strong></span>–
-              </p>
-            </div>
-            <div
-              class={`elementor-element elementor-element-${template.dateWidget} elementor-widget elementor-widget-post-info`}
-              data-id={template.dateWidget}
-              data-element_type="widget"
-              data-widget_type="post-info.default"
-            >
-              <ul class="elementor-inline-items elementor-icon-list-items elementor-post-info">
-                <li class="elementor-icon-list-item elementor-repeater-item-7b84475 elementor-inline-item" itemprop="datePublished">
-                  <a href="#">
-                    <span class="elementor-icon-list-text elementor-post-info__item elementor-post-info__item--type-date">
-                      <time>{publishedLabel}</time>
-                    </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div
-            class={`elementor-element elementor-element-${template.socialColumn} e-con-full e-flex e-con e-child`}
-            data-id={template.socialColumn}
-            data-element_type="container"
-          >
-            <div
-              class={`elementor-element elementor-element-${template.socialWidget} e-grid-align-right elementor-shape-rounded elementor-grid-0 elementor-widget elementor-widget-social-icons`}
-              data-id={template.socialWidget}
-              data-element_type="widget"
-              data-widget_type="social-icons.default"
-            >
-              <div class="elementor-social-icons-wrapper elementor-grid" role="list">
-                {socialLinks.map((item) => (
-                  <span class="elementor-grid-item" role="listitem">
+  <div class="article-layout">
+    <div class="site-shell-frame article-layout__inner">
+      <article class="article-main">
+        <header class="article-header">
+          <h1 class="article-header__title">{title}</h1>
+          <div class="article-header__meta">
+            <p class="article-header__byline">
+              by <strong>{author}</strong>
+              {publishedLabel && (
+                <>
+                  {' '}
+                  – <time class="article-header__date">{publishedLabel}</time>
+                </>
+              )}
+            </p>
+            <ul class="article-header__social" role="list">
+              {
+                ARTICLE_SOCIAL_LINKS.map((item) => (
+                  <li role="listitem">
                     <a
-                      class={`elementor-icon elementor-social-icon elementor-social-icon-${item.label.toLowerCase()}`}
+                      class="article-header__social-link"
                       href={item.href}
                       target="_blank"
                       rel="noreferrer"
+                      aria-label={item.label}
                     >
-                      <span class="elementor-screen-only">{item.label}</span>
                       <Fragment set:html={item.icon} />
                     </a>
-                  </span>
-                ))}
-              </div>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <hr class="article-header__rule" />
+        </header>
+
+        <div class="article-body">
+          <slot />
+        </div>
+      </article>
+
+      <aside class="article-sidebar" aria-label="Article sidebar">
+        <section class="article-sidebar__section article-newsletter" aria-labelledby={`${newsletterFormId}-title`}>
+          <h2 id={`${newsletterFormId}-title`} class="article-newsletter__title">
+            JOIN OUR NEWS LETTER
+          </h2>
+          <p class="article-newsletter__text">
+            Subscribe to our newsletters to keep updated with the latest Antbar news.
+          </p>
+          <form class="article-newsletter__form" method="get" action="/contact/" aria-label="Newsletter signup">
+            <label class="article-newsletter__label" for={`${newsletterFormId}-email`}>Email</label>
+            <div class="article-newsletter__fields">
+              <input
+                id={`${newsletterFormId}-email`}
+                class="article-newsletter__input"
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                required
+              />
+              <button class="article-newsletter__submit" type="submit" aria-label="Submit email">
+                <svg aria-hidden="true" viewBox="0 0 256 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></svg>
+              </button>
             </div>
-          </div>
-        </div>
+          </form>
+        </section>
 
-        <div
-          class={`elementor-element elementor-element-${template.contentWrap} e-flex e-con-boxed e-con e-child`}
-          data-id={template.contentWrap}
-          data-element_type="container"
-        >
-          <div class="e-con-inner">
-            <div
-              class={`elementor-element elementor-element-${template.contentWidget} elementor-widget elementor-widget-theme-post-content`}
-              data-id={template.contentWidget}
-              data-element_type="widget"
-              data-widget_type="theme-post-content.default"
-            >
-              <div
-                data-elementor-type="wp-post"
-                data-elementor-id={postId}
-                class={`elementor elementor-${postId}`}
-                data-elementor-post-type="post"
-              >
-                <div
-                  class={`elementor-element elementor-element-${template.bodyParent} e-flex e-con-boxed e-con e-parent`}
-                  data-id={template.bodyParent}
-                  data-element_type="container"
-                >
-                  <div class="e-con-inner">
-                    <div
-                      class={`elementor-element elementor-element-${template.bodyTextWidget} elementor-widget elementor-widget-text-editor article-md-slot`}
-                      data-id={template.bodyTextWidget}
-                      data-element_type="widget"
-                      data-widget_type="text-editor.default"
-                    >
-                      <div class="elementor-widget-container article-md-body">
-                        <slot />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class={`elementor-element elementor-element-${template.sidebarRoot} e-con-full e-flex e-con e-child`}
-        data-id={template.sidebarRoot}
-        data-element_type="container"
-      >
-        <div
-          class={`elementor-element elementor-element-${template.newsletterContainer} e-con-full e-flex e-con e-child`}
-          data-id={template.newsletterContainer}
-          data-element_type="container"
-        >
-          <div
-            class={`elementor-element elementor-element-${template.newsletterHeading} elementor-widget elementor-widget-heading`}
-            data-id={template.newsletterHeading}
-            data-element_type="widget"
-            data-widget_type="heading.default"
-          >
-            <div class="elementor-heading-title elementor-size-default">JOIN OUR NEWS LETTER</div>
-          </div>
-          <div
-            class={`elementor-element elementor-element-${template.newsletterText} elementor-widget elementor-widget-text-editor`}
-            data-id={template.newsletterText}
-            data-element_type="widget"
-            data-widget_type="text-editor.default"
-          >
-            <p style="text-align: center;">Subscribe to our newsletters to keep updated with the latest Antbar news.</p>
-          </div>
-          <div
-            class={`elementor-element elementor-element-${template.newsletterForm} elementor-button-align-stretch elementor-widget elementor-widget-form`}
-            data-id={template.newsletterForm}
-            data-element_type="widget"
-            id="joinForm"
-            data-widget_type="form.default"
-          >
-            <form class="elementor-form" method="get" action="/contact/" aria-label="New Form">
-              <div class="elementor-form-fields-wrapper elementor-labels-">
-                <div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-80 elementor-field-required">
-                  <label for={`form-field-email-${template.pageId}`} class="elementor-field-label elementor-screen-only">
-                    Email
-                  </label>
-                  <input
-                    size="1"
-                    type="email"
-                    name="email"
-                    id={`form-field-email-${template.pageId}`}
-                    class="elementor-field elementor-size-sm elementor-field-textual"
-                    placeholder="Email Address"
-                    required
-                  />
-                </div>
-                <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-20 e-form__buttons">
-                  <button class="elementor-button elementor-size-sm" type="submit">
-                    <span class="elementor-button-content-wrapper">
-                      <span class="elementor-button-icon">
-                        <svg aria-hidden="true" class="e-font-icon-svg e-fas-angle-right" viewBox="0 0 256 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></svg>
-                        <span class="elementor-screen-only">Submit</span>
-                      </span>
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <div
-          class={`elementor-element elementor-element-${template.tocContainer} e-con-full e-flex e-con e-child`}
-          data-id={template.tocContainer}
-          data-element_type="container"
-        >
-          <div
-            class={`elementor-element elementor-element-${template.tocHeading} elementor-widget elementor-widget-heading`}
-            data-id={template.tocHeading}
-            data-element_type="widget"
-            data-widget_type="heading.default"
-          >
-            <div class="elementor-heading-title elementor-size-default">Table of Contents</div>
-          </div>
-          <div
-            class={`elementor-element elementor-element-${template.tocWidget} tableContent elementor-widget elementor-widget-table-of-contents`}
-            data-id={template.tocWidget}
-            data-element_type="widget"
-            data-widget_type="table-of-contents.default"
-          >
-            <div id={`elementor-toc__${template.tocWidget}`} class="elementor-toc__body">
-              <ol class="article-mirror-toc">
+        {
+          tocItems.length > 0 && (
+            <section class="article-sidebar__section article-toc" aria-labelledby="article-toc-title">
+              <h2 id="article-toc-title" class="article-sidebar__heading">Table of Contents</h2>
+              <div class="article-sidebar__panel">
+              <ol class="article-toc__list">
                 {tocItems.map((item) => (
                   <li>
                     <a href={`#${item.id}`}>{item.text}</a>
                   </li>
                 ))}
               </ol>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class={`elementor-element elementor-element-${template.latestContainer} e-con-full e-flex e-con e-child`}
-          data-id={template.latestContainer}
-          data-element_type="container"
-        >
-          <div
-            class={`elementor-element elementor-element-${template.latestHeading} elementor-widget elementor-widget-heading`}
-            data-id={template.latestHeading}
-            data-element_type="widget"
-            data-widget_type="heading.default"
-          >
-            <div class="elementor-heading-title elementor-size-default">Latest Article</div>
-          </div>
-          <div
-            class={postsClass(template.latestPosts)}
-            data-id={template.latestPosts}
-            data-element_type="widget"
-            data-widget_type="posts.classic"
-          >
-            <div class="elementor-widget-container">
-              <div class="elementor-posts-container elementor-posts elementor-posts--skin-classic elementor-grid" role="list">
-                {latestItems.map((item) => (
-                  <article class="elementor-post elementor-grid-item" role="listitem">
-                    <a class="elementor-post__thumbnail__link" href={item.href} tabindex="-1">
-                      <div class="elementor-post__thumbnail">
-                        <img loading="lazy" src={item.image} alt={item.title} />
-                      </div>
-                    </a>
-                    <div class="elementor-post__text">
-                      <div class="elementor-post__title">
-                        <a href={item.href}>{item.title}</a>
-                      </div>
-                    </div>
-                  </article>
-                ))}
               </div>
-            </div>
-          </div>
-        </div>
+            </section>
+          )
+        }
 
-        <div
-          class={`elementor-element elementor-element-${template.relatedContainer} e-con-full e-flex e-con e-child`}
-          data-id={template.relatedContainer}
-          data-element_type="container"
-        >
-          <div
-            class={`elementor-element elementor-element-${template.relatedHeading} elementor-widget elementor-widget-heading`}
-            data-id={template.relatedHeading}
-            data-element_type="widget"
-            data-widget_type="heading.default"
-          >
-            <div class="elementor-heading-title elementor-size-default">{relatedTitle}</div>
-          </div>
-          <div
-            class={postsClass(template.relatedPosts)}
-            data-id={template.relatedPosts}
-            data-element_type="widget"
-            data-widget_type="posts.classic"
-          >
-            <div class="elementor-widget-container">
-              <div class="elementor-posts-container elementor-posts elementor-posts--skin-classic elementor-grid" role="list">
-                {relatedItems.map((item) => (
-                  <article class="elementor-post elementor-grid-item" role="listitem">
-                    <a class="elementor-post__thumbnail__link" href={item.href} tabindex="-1">
-                      <div class="elementor-post__thumbnail">
-                        <img loading="lazy" src={item.image} alt={item.title} />
-                      </div>
-                    </a>
-                    <div class="elementor-post__text">
-                      <div class="elementor-post__title">
-                        <a href={item.href}>{item.title}</a>
-                      </div>
-                    </div>
-                  </article>
-                ))}
+        {
+          latestItems.length > 0 && (
+            <section class="article-sidebar__section" aria-labelledby="article-latest-title">
+              <h2 id="article-latest-title" class="article-sidebar__heading">Latest Article</h2>
+              <div class="article-sidebar__panel">
+                <ArticlePostList items={latestItems} variant="text" />
               </div>
-            </div>
-          </div>
-        </div>
+            </section>
+          )
+        }
 
-        <div
-          class={`elementor-element elementor-element-${template.featuredContainer} e-con-full e-flex e-con e-child`}
-          data-id={template.featuredContainer}
-          data-element_type="container"
-        >
-          <div
-            class={`elementor-element elementor-element-${template.featuredHeading} elementor-widget elementor-widget-heading`}
-            data-id={template.featuredHeading}
-            data-element_type="widget"
-            data-widget_type="heading.default"
-          >
-            <div class="elementor-heading-title elementor-size-default">Featured Articles</div>
-          </div>
-          <div
-            class={postsClass(template.featuredPosts)}
-            data-id={template.featuredPosts}
-            data-element_type="widget"
-            data-widget_type="posts.classic"
-            id="feaArt"
-          >
-            <div class="elementor-widget-container">
-              <div class="elementor-posts-container elementor-posts elementor-posts--skin-classic elementor-grid" role="list">
-                {featuredItems.map((item) => (
-                  <article class="elementor-post elementor-grid-item" role="listitem">
-                    <a class="elementor-post__thumbnail__link" href={item.href} tabindex="-1">
-                      <div class="elementor-post__thumbnail">
-                        <img loading="lazy" src={item.image} alt={item.title} />
-                      </div>
-                    </a>
-                    <div class="elementor-post__text">
-                      <div class="elementor-post__title">
-                        <a href={item.href}>{item.title}</a>
-                      </div>
-                    </div>
-                  </article>
-                ))}
+        {
+          relatedItems.length > 0 && (
+            <section class="article-sidebar__section" aria-labelledby="article-related-title">
+              <h2 id="article-related-title" class="article-sidebar__heading">{relatedTitle}</h2>
+              <div class="article-sidebar__panel">
+                <ArticlePostList items={relatedItems} variant="text" />
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </section>
+          )
+        }
+
+        {
+          featuredItems.length > 0 && (
+            <section class="article-sidebar__section" aria-labelledby="article-featured-title">
+              <h2 id="article-featured-title" class="article-sidebar__heading">Featured Articles</h2>
+              <div class="article-sidebar__panel article-sidebar__panel--featured">
+                <ArticlePostList items={featuredItems} variant="featured" />
+              </div>
+            </section>
+          )
+        }
+      </aside>
     </div>
   </div>
 
-  <div
-    class={`elementor-element elementor-element-${template.hotParent} e-flex e-con-boxed e-con e-parent`}
-    data-id={template.hotParent}
-    data-element_type="container"
-  >
-    <div class="e-con-inner">
-      <div
-        class={`elementor-element elementor-element-${template.hotHeading} elementor-widget elementor-widget-heading`}
-        data-id={template.hotHeading}
-        data-element_type="widget"
-        data-widget_type="heading.default"
-      >
-        <p class="elementor-heading-title elementor-size-default">HOT SALE PRODUCT</p>
-      </div>
-      <div
-        class={`elementor-element elementor-element-${template.hotDivider} elementor-widget-divider--view-line elementor-widget elementor-widget-divider`}
-        data-id={template.hotDivider}
-        data-element_type="widget"
-        data-widget_type="divider.default"
-      >
-        <div class="elementor-divider">
-          <span class="elementor-divider-separator"></span>
+  {
+    hotProducts.length > 0 && (
+      <section class="article-hot-products" aria-labelledby="article-hot-products-title">
+        <div class="site-shell-frame article-hot-products__inner">
+          <h2 id="article-hot-products-title" class="article-hot-products__title">HOT SALE PRODUCT</h2>
+          <hr class="article-hot-products__divider" />
+          <ul class="article-hot-products__grid" role="list">
+            {
+              hotProducts.map((item) => (
+                <li class="article-hot-products__item" role="listitem">
+                  <article class="article-hot-card">
+                    <a class="article-hot-card__thumb-link" href={item.href} tabindex="-1" aria-hidden="true">
+                      <span class="article-hot-card__thumb">
+                        <img loading="lazy" decoding="async" src={item.image} alt="" />
+                      </span>
+                    </a>
+                    <h3 class="article-hot-card__title">
+                      <a href={item.href}>{item.title}</a>
+                    </h3>
+                    <a class="article-hot-card__cta" href={item.href} aria-label={`Read more about ${item.title}`}>
+                      {item.cta}
+                    </a>
+                  </article>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="article-hot-products__more">
+            <a class="article-hot-products__more-link hover-grow" href="/all-products/">More products</a>
+          </p>
         </div>
-      </div>
-      <div
-        class={`elementor-element elementor-element-${template.hotPosts} elementor-grid-4 elementor-posts--align-center elementor-grid-tablet-4 elementor-grid-mobile-2 elementor-posts--thumbnail-top elementor-widget elementor-widget-posts`}
-        data-id={template.hotPosts}
-        data-element_type="widget"
-        id="hotProduct"
-        data-widget_type="posts.classic"
-      >
-        <div class="elementor-widget-container">
-          <div class="elementor-posts-container elementor-posts elementor-posts--skin-classic elementor-grid" role="list">
-            {hotProducts.map((item) => (
-              <article class="elementor-post elementor-grid-item" role="listitem">
-                <a class="elementor-post__thumbnail__link" href={item.href} tabindex="-1">
-                  <div class="elementor-post__thumbnail">
-                    <img loading="lazy" src={item.image} alt={item.title} />
-                  </div>
-                </a>
-                <div class="elementor-post__text">
-                  <div class="elementor-post__title">
-                    <a href={item.href}>{item.title}</a>
-                  </div>
-                  <a class="elementor-post__read-more" href={item.href} aria-label={`Read more about ${item.title}`} tabindex="-1">
-                    {item.cta}
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div
-        class={`elementor-element elementor-element-${template.hotMore} elementor-align-center elementor-widget elementor-widget-button`}
-        data-id={template.hotMore}
-        data-element_type="widget"
-        data-widget_type="button.default"
-      >
-        <a class="elementor-button elementor-button-link elementor-size-sm hover-grow" href="/all-products/">
-          <span class="elementor-button-content-wrapper">
-            <span class="elementor-button-text">More products</span>
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+      </section>
+    )
+  }
+</main>
+
+<ArticleTocScript tocItems={tocItems} />

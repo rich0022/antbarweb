@@ -1,0 +1,45 @@
+---
+import type { ArticleCard } from '../../lib/article-page';
+
+interface Props {
+  items: ArticleCard[];
+  variant?: 'text' | 'featured';
+}
+
+const { items, variant = 'text' } = Astro.props;
+---
+
+<ul
+  class:list={[
+    'article-post-list',
+    variant === 'featured' && 'article-post-list--featured',
+    variant === 'text' && 'article-post-list--text',
+  ]}
+  role="list"
+>
+  {
+    items.map((item) => (
+      <li class="article-post-list__item" role="listitem">
+        <article class="article-post-card">
+          {
+            variant === 'featured' && (
+              <a class="article-post-card__featured-link" href={item.href}>
+                <span class="article-post-card__featured-media">
+                  <img loading="lazy" decoding="async" src={item.image} alt="" />
+                </span>
+                <span class="article-post-card__featured-title">{item.title}</span>
+              </a>
+            )
+          }
+          {
+            variant === 'text' && (
+              <h3 class="article-post-card__title">
+                <a href={item.href}>{item.title}</a>
+              </h3>
+            )
+          }
+        </article>
+      </li>
+    ))
+  }
+</ul>
