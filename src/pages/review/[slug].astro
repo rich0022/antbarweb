@@ -99,6 +99,7 @@ if (props.entryId) {
   runtimeFeaturedImage = legacyArticle.featuredImage;
   publishedLabel = legacyArticle.publishedLabel;
   legacyBodyHtml = legacyArticle.bodyHtml;
+  tocItems = legacyArticle.tocItems;
 } else {
   throw new Error(`Missing review route data for ${props.slug}`);
 }
@@ -127,7 +128,20 @@ if (props.entryId) {
         <EntryContent />
       </ArticlePage>
     ) : (
-      <ContentBody html={legacyBodyHtml} />
+      <ArticlePage
+        title={title}
+        sectionLabel="Review"
+        currentPostId={runtimePostId}
+        publishedLabel={publishedLabel}
+        tocItems={tocItems}
+        latestItems={REVIEW_LATEST_ITEMS}
+        relatedTitle="Related Review"
+        relatedItems={REVIEW_RELATED_ITEMS}
+        featuredItems={REVIEW_FEATURED_ITEMS}
+        hotProducts={REVIEW_HOT_SALE_PRODUCTS}
+      >
+        <ContentBody html={legacyBodyHtml} />
+      </ArticlePage>
     )
   }
   <ArticleShellRuntime

@@ -92,6 +92,7 @@ if (props.entryId) {
   runtimeFeaturedImage = legacyArticle.featuredImage;
   publishedLabel = legacyArticle.publishedLabel;
   legacyBodyHtml = legacyArticle.bodyHtml;
+  tocItems = legacyArticle.tocItems;
 } else {
   throw new Error(`Missing blog route data for ${props.slug}`);
 }
@@ -120,7 +121,20 @@ if (props.entryId) {
         <EntryContent />
       </ArticlePage>
     ) : (
-      <ContentBody html={legacyBodyHtml} />
+      <ArticlePage
+        title={title}
+        sectionLabel="Blog"
+        currentPostId={runtimePostId}
+        publishedLabel={publishedLabel}
+        tocItems={tocItems}
+        latestItems={BLOG_LATEST_ITEMS}
+        relatedTitle="Related Blogs"
+        relatedItems={BLOG_RELATED_ITEMS}
+        featuredItems={BLOG_FEATURED_ITEMS}
+        hotProducts={BLOG_HOT_SALE_PRODUCTS}
+      >
+        <ContentBody html={legacyBodyHtml} />
+      </ArticlePage>
     )
   }
   <ArticleShellRuntime

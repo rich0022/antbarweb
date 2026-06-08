@@ -35,6 +35,7 @@ export type MirrorArticlePage = {
   postId: number | null;
   publishedLabel: string;
   bodyHtml: string;
+  tocItems: TocItem[];
 };
 
 type ArticleEntry = CollectionEntry<'blog'> | CollectionEntry<'review'>;
@@ -251,6 +252,20 @@ function stripInlineMarkdown(value: string): string {
     .trim();
 }
 
+function stripInlineHtml(value: string): string {
+  return value
+    .replace(/&nbsp;|&#160;/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&#8217;|&rsquo;/gi, "'")
+    .replace(/&#8220;|&#8221;|&ldquo;|&rdquo;/gi, '"')
+    .replace(/&#8211;|&#8212;|&ndash;|&mdash;/gi, '-')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function slugifyHeading(value: string): string {
   return stripInlineMarkdown(value)
     .toLowerCase()
@@ -258,6 +273,74 @@ function slugifyHeading(value: string): string {
     .replace(/[^a-z0-9\s-]/g, '')
     .trim()
     .replace(/\s+/g, '-');
+}
+
+function extractBalancedDiv(html: string, startIndex: number): { outer: string; inner: string; end: number } | null {
+  const openStart = html.indexOf('<div', startIndex);
+  if (openStart === -1) return null;
+
+  const openEnd = html.indexOf('>', openStart);
+  if (openEnd === -1) return null;
+
+  const tagPattern = /<\/?div\b[^>]*>/gi;
+  tagPattern.lastIndex = openEnd + 1;
+  let depth = 1;
+
+  for (let match = tagPattern.exec(html); match; match = tagPattern.exec(html)) {
+    if (match[0].startsWith('</div')) depth -= 1;
+    else depth += 1;
+
+    if (depth === 0) {
+      return {
+        outer: html.slice(openStart, match.index + match[0].length),
+        inner: html.slice(openEnd + 1, match.index),
+        end: match.index + match[0].length,
+      };
+    }
+  }
+
+  return null;
+}
+
+function extractLegacyArticleContent(html: string): string {
+  const wpPostMatch = html.match(/<div\b[^>]*data-elementor-type=["']wp-post["'][^>]*>/i);
+  if (!wpPostMatch || wpPostMatch.index === undefined) return html.trim();
+
+  const wpPost = extractBalancedDiv(html, wpPostMatch.index);
+  if (!wpPost) return html.trim();
+
+  const innerWrapperMatch = wpPost.inner.match(/<div\b[^>]*\be-parent\b[^>]*>/i);
+  if (!innerWrapperMatch || innerWrapperMatch.index === undefined) {
+    return wpPost.inner.trim();
+  }
+
+  const innerWrapper = extractBalancedDiv(wpPost.inner, innerWrapperMatch.index);
+  return (innerWrapper?.inner ?? wpPost.inner).trim();
+}
+
+function injectHeadingIdsAndCollectToc(html: string): { html: string; tocItems: TocItem[] } {
+  const seen = new Map<string, number>();
+  const tocItems: TocItem[] = [];
+
+  const withIds = html.replace(/<h([2-6])([^>]*)>([\s\S]*?)<\/h\1>/gi, (full, _level, attrs, inner) => {
+    const text = stripInlineHtml(inner);
+    if (!text) return full;
+
+    const baseSlug = slugifyHeading(text) || 'section';
+    const count = seen.get(baseSlug) ?? 0;
+    seen.set(baseSlug, count + 1);
+    const id = count === 0 ? baseSlug : `${baseSlug}-${count + 1}`;
+
+    tocItems.push({ id, text });
+
+    if (/\sid=["'][^"']+["']/i.test(attrs)) {
+      return full;
+    }
+
+    return `<h${_level}${attrs} id="${id}">${inner}</h${_level}>`;
+  });
+
+  return { html: withIds, tocItems };
 }
 
 export async function readMarkdownBody(
@@ -325,7 +408,9 @@ export async function readMirrorArticlePage(mirrorRoute: string): Promise<Mirror
     html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)?.[1] ??
     '/wp-content/uploads/2024/05/LOGO.png';
   const publishedLabel = html.match(/<time>([^<]+)<\/time>/i)?.[1]?.trim() ?? '';
-  const bodyHtml = stripMainWrapper(stripSiteShellFromHtml(stripScriptsFromHtml(bodyInner)));
+  const shellStrippedHtml = stripMainWrapper(stripSiteShellFromHtml(stripScriptsFromHtml(bodyInner)));
+  const extractedBodyHtml = extractLegacyArticleContent(shellStrippedHtml);
+  const { html: bodyHtml, tocItems } = injectHeadingIdsAndCollectToc(extractedBodyHtml);
 
   return {
     title,
@@ -335,6 +420,7 @@ export async function readMirrorArticlePage(mirrorRoute: string): Promise<Mirror
     postId: Number.isFinite(postId) ? postId : null,
     publishedLabel,
     bodyHtml,
+    tocItems,
   };
 }
 
