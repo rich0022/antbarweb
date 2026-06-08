@@ -1,22 +1,16 @@
+export interface ResponsiveImage {
+  src: string;
+  srcset: string;
+  sizes: string;
+  width: number;
+  height: number;
+}
+
 export interface AboutSection {
   heading: string;
   text: string;
   buttonHref: string;
-  image: {
-    src: string;
-    srcset: string;
-    sizes: string;
-    width: number;
-    height: number;
-    wpImageId: number;
-  };
-  sectionContainerId: string;
-  imageContainerId: string;
-  imageWidgetId: string;
-  textContainerId: string;
-  headingWidgetId: string;
-  textWidgetId: string;
-  buttonWidgetId: string;
+  image: ResponsiveImage;
 }
 
 export const ABOUT_HERO = {
@@ -37,15 +31,6 @@ export const ABOUT_HERO = {
     height: 1931,
   },
   headings: ['TO EXPLORE', 'TO EXPERIENCE'] as const,
-  containerDataId: '1ad28d8',
-  imageContainerId: 'eac586e',
-  desktopWidgetId: 'd64b6c4',
-  mobileWidgetId: '9837a5a',
-  overlayContainerId: '71bdaa9',
-  overlayInnerId: '06732d4',
-  headingWidget1Id: '5625704',
-  headingWidget2Id: '7b330de',
-  scriptWidgetId: '3edfae7',
 } as const;
 
 export const ABOUT_SECTIONS: AboutSection[] = [
@@ -60,15 +45,7 @@ export const ABOUT_SECTIONS: AboutSection[] = [
       sizes: '(max-width: 867px) 100vw, 867px',
       width: 867,
       height: 1119,
-      wpImageId: 2068,
     },
-    sectionContainerId: 'da2f5cc',
-    imageContainerId: 'fe96b8e',
-    imageWidgetId: '2791c3c',
-    textContainerId: '6c75adc',
-    headingWidgetId: 'b0089db',
-    textWidgetId: '02ba8c2',
-    buttonWidgetId: '8babd59',
   },
   {
     heading: 'Antbar Lab',
@@ -81,15 +58,7 @@ export const ABOUT_SECTIONS: AboutSection[] = [
       sizes: '(max-width: 867px) 100vw, 867px',
       width: 867,
       height: 1119,
-      wpImageId: 2069,
     },
-    sectionContainerId: '000fa24',
-    imageContainerId: '338ed0c',
-    imageWidgetId: '496436f',
-    textContainerId: 'c9f60b6',
-    headingWidgetId: '135fcb2',
-    textWidgetId: 'acadb6e',
-    buttonWidgetId: '71813f9',
   },
   {
     heading: 'Intelligent\nManufacturing',
@@ -102,15 +71,7 @@ export const ABOUT_SECTIONS: AboutSection[] = [
       sizes: '(max-width: 867px) 100vw, 867px',
       width: 867,
       height: 1119,
-      wpImageId: 2070,
     },
-    sectionContainerId: '1555338',
-    imageContainerId: 'd885159',
-    imageWidgetId: '5fd8712',
-    textContainerId: '5559e9a',
-    headingWidgetId: '6ae0aac',
-    textWidgetId: '426fd8f',
-    buttonWidgetId: 'bffb752',
   },
   {
     heading: 'R&D Center',
@@ -123,14 +84,6 @@ export const ABOUT_SECTIONS: AboutSection[] = [
       sizes: '(max-width: 867px) 100vw, 867px',
       width: 867,
       height: 1119,
-      wpImageId: 2071,
     },
-    sectionContainerId: '043af62',
-    imageContainerId: '9d5efb8',
-    imageWidgetId: 'f23ad8d',
-    textContainerId: 'f295ff3',
-    headingWidgetId: 'fb214bf',
-    textWidgetId: '61b814d',
-    buttonWidgetId: 'd6bd049',
   },
 ] as const;

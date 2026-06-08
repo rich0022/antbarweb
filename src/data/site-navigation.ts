@@ -17,7 +17,6 @@ export const SITE_LOGO = {
   alt: 'best disposable vape brand near you',
   srcset: '/wp-content/uploads/2024/05/LOGO.png 307w, /wp-content/uploads/2024/05/LOGO-300x76.png 300w',
   sizes: '(max-width: 307px) 100vw, 307px',
-  imageClass: 'attachment-full size-full wp-image-2958',
 };
 
 export const HEADER_SEARCH_ICON = {
@@ -25,7 +24,6 @@ export const HEADER_SEARCH_ICON = {
   src: '/wp-content/uploads/2023/12/1-2.png',
   width: 40,
   height: 40,
-  imageClass: 'attachment-full size-full wp-image-1805',
 };
 
 export { MEGA_MENU_WIDGET_SETTINGS } from './mega-menu-settings';
@@ -101,20 +99,14 @@ export const PRODUCT_MEGA_TILES = [
     src: '/wp-content/uploads/2023/12/Product2540宽，版心1200-08.png',
     width: 151,
     height: 151,
-    imageClass: 'attachment-full size-full wp-image-1173',
     caption: 'Disposable',
-    containerId: '8137448',
-    imageWidgetId: '76fef2c',
   },
   {
     href: '/all-products/?tab=pod-sys',
     src: '/wp-content/uploads/2023/12/Product2540宽，版心1200-13.png',
     width: 151,
     height: 151,
-    imageClass: 'attachment-full size-full wp-image-1178',
     caption: 'Closed Pod System',
-    containerId: '19fe63d',
-    imageWidgetId: '5edbb06',
   },
 ] as const;
 
