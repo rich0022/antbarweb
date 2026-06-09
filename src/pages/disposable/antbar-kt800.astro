@@ -123,26 +123,22 @@ const description = entry?.data.description ?? '';
 
     <section class="product-kt800__features scroll-reveal" aria-label="Product features" data-animate="fadeInUp">
       {
-        KT800_FEATURE_COLUMNS.map((column, columnIndex) => (
-          <div
+        KT800_FEATURE_COLUMNS.flat().map((card, cardIndex) => (
+          <article
             class:list={[
-              'product-kt800__feature-col',
-              columnIndex === 1 && 'product-kt800__feature-col--center',
+              'product-kt800__feature-card',
+              cardIndex === 2 && 'product-kt800__feature-card--center',
+              cardIndex < 2 && 'product-kt800__feature-card--col1',
+              cardIndex >= 3 && 'product-kt800__feature-card--col3',
             ]}
+            style={`background-image: url(${card.background})`}
           >
-            {column.map((card) => (
-              <article
-                class="product-kt800__feature-card"
-                style={`background-image: url(${card.background})`}
-              >
-                {card.headingHtml ? (
-                  <h2 class="product-kt800__feature-heading" set:html={card.headingHtml} />
-                ) : (
-                  <h2 class="product-kt800__feature-heading">{card.heading}</h2>
-                )}
-              </article>
-            ))}
-          </div>
+            {card.headingHtml ? (
+              <h2 class="product-kt800__feature-heading" set:html={card.headingHtml} />
+            ) : (
+              <h2 class="product-kt800__feature-heading">{card.heading}</h2>
+            )}
+          </article>
         ))
       }
     </section>

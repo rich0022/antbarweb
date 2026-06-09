@@ -100,7 +100,7 @@
   fill: currentColor;
 }
 
-/* 特性卡：三列（左右各两张，中间一张），桌面端等高 */
+/* 特性卡：5 张卡片平铺，桌面端 3 列等高，手机端 3 行（2列/1列/2列） */
 .product-kt800__features {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -111,16 +111,9 @@
   padding: clamp(20px, 4vw, 50px) 0;
 }
 
-.product-kt800__feature-col {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(10px, 2vw, 25px);
-  min-width: 0;
-}
-
-.product-kt800__feature-col--center {
+/* 桌面端：第1、3列各2张，中间列跨两行 */
+.product-kt800__feature-card--center {
   grid-row: 1 / -1;
-  justify-content: center;
 }
 
 .product-kt800__feature-card {
@@ -401,23 +394,19 @@
 
   .product-kt800__features {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: auto auto auto;
     gap: clamp(10px, 2vw, 24px);
   }
 
-  .product-kt800__feature-col {
-    display: contents;
+  .product-kt800__feature-card--center {
+    grid-row: auto;
   }
 
-  .product-kt800__feature-col--center {
-    display: contents;
-  }
-
-  .product-kt800__feature-col:nth-child(1) > .product-kt800__feature-card:nth-child(1) { order: 1; }
-  .product-kt800__feature-col:nth-child(1) > .product-kt800__feature-card:nth-child(2) { order: 2; }
-  .product-kt800__feature-col:nth-child(2) > .product-kt800__feature-card { order: 3; grid-column: 1 / -1; }
-  .product-kt800__feature-col:nth-child(3) > .product-kt800__feature-card:nth-child(1) { order: 4; }
-  .product-kt800__feature-col:nth-child(3) > .product-kt800__feature-card:nth-child(2) { order: 5; }
+  .product-kt800__feature-card:nth-child(1) { grid-column: 1; grid-row: 1; }
+  .product-kt800__feature-card:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .product-kt800__feature-card:nth-child(3) { grid-column: 1 / -1; grid-row: 2; }
+  .product-kt800__feature-card:nth-child(4) { grid-column: 1; grid-row: 3; }
+  .product-kt800__feature-card:nth-child(5) { grid-column: 2; grid-row: 3; }
 
   .product-kt800__flavors-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -451,22 +440,18 @@
 
   .product-kt800__features {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: auto auto auto;
   }
 
-  .product-kt800__feature-col {
-    display: contents;
+  .product-kt800__feature-card--center {
+    grid-row: auto;
   }
 
-  .product-kt800__feature-col--center {
-    display: contents;
-  }
-
-  .product-kt800__feature-col:nth-child(1) > .product-kt800__feature-card:nth-child(1) { order: 1; }
-  .product-kt800__feature-col:nth-child(1) > .product-kt800__feature-card:nth-child(2) { order: 2; }
-  .product-kt800__feature-col:nth-child(2) > .product-kt800__feature-card { order: 3; grid-column: 1 / -1; }
-  .product-kt800__feature-col:nth-child(3) > .product-kt800__feature-card:nth-child(1) { order: 4; }
-  .product-kt800__feature-col:nth-child(3) > .product-kt800__feature-card:nth-child(2) { order: 5; }
+  .product-kt800__feature-card:nth-child(1) { grid-column: 1; grid-row: 1; }
+  .product-kt800__feature-card:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .product-kt800__feature-card:nth-child(3) { grid-column: 1 / -1; grid-row: 2; }
+  .product-kt800__feature-card:nth-child(4) { grid-column: 1; grid-row: 3; }
+  .product-kt800__feature-card:nth-child(5) { grid-column: 2; grid-row: 3; }
 
   .product-kt800__flavors-grid,
   .product-kt800__flavors-grid--last {
