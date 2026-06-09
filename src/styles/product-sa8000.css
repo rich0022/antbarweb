@@ -90,9 +90,9 @@
   align-items: center;
   gap: 16px;
   padding: 13px 35px;
-  border: 1px solid #c8e600;
+  border: 1px solid var(--color-secondary);
   border-radius: 80px;
-  background: #c8e600;
+  background: var(--color-secondary);
   color: #000;
   font-family: 'Roboto', sans-serif;
   font-size: clamp(14px, 1.4vw, 20px);
@@ -106,8 +106,8 @@
 .product-sa8000__play-btn:hover,
 .product-sa8000__play-btn:focus-visible {
   background: transparent;
-  color: #c8e600;
-  border-color: #c8e600;
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
 }
 
 .product-sa8000__play-btn svg {
@@ -123,15 +123,15 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  width: 78%;
+  width: 79.85%;
   max-width: 1490px;
-  margin: -12vw auto 0;
+  margin: -10vw auto 0;
   padding: 0;
 }
 
 .product-sa8000__feature-row {
   display: grid;
-  gap: clamp(8px, 1.2vw, 20px);
+  gap: clamp(12px, 1.56vw, 24px);
 }
 
 .product-sa8000__feature-row--top {
@@ -152,14 +152,14 @@
 }
 
 .product-sa8000__feature-card--equal-height {
-  display: flex;
-  min-height: clamp(220px, 28vw, 410px);
+  display: block;
+  min-height: 0;
 }
 
 .product-sa8000__feature-card--equal-height .product-sa8000__feature-card-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: initial;
 }
 
 .product-sa8000__feature-card-image {
@@ -271,14 +271,20 @@
 
 .product-sa8000__flavors-badge {
   display: block;
-  width: min(480px, 90%);
+  width: min(285px, 90%);
   height: auto;
 }
 
 .product-sa8000__flavors-image {
   display: block;
-  width: 100%;
+  width: min(1116px, 100%);
   height: auto;
+  margin: 0 auto;
+}
+
+.product-sa8000__flavors--new .product-page__heading-section {
+  font-size: clamp(22px, 2.35vw, 30px);
+  line-height: 1;
 }
 
 /* Story 叠字：overlay 铺满背景，文案区用 inset 留白（对齐 mirror） */
@@ -357,62 +363,85 @@
   margin-top: clamp(8px, 1.5vw, 16px);
 }
 
+.product-sa8000__story-extra[src$='8-2.webp'] {
+  width: min(100%, 326px);
+}
+
+.product-sa8000__story-extra[src$='10-2.webp'] {
+  width: min(100%, 422px);
+}
+
 /* 规格区：四列，首列长图跨两行 */
 .product-sa8000__spec {
-  padding: clamp(24px, 5vw, 60px) clamp(16px, 4vw, 48px);
+  padding: clamp(24px, 5vw, 60px) 0 clamp(24px, 5vw, 60px);
 }
 
 .product-sa8000__spec-heading {
-  margin: 0 0 clamp(16px, 3vw, 32px);
-  font-size: clamp(18px, 4vw, 56px);
+  margin: 0 0 clamp(72px, 12.7vw, 164px);
+  font-size: clamp(24px, 3vw, 38px);
   font-weight: 600;
+  line-height: 1;
   text-align: center;
 }
 
 .product-sa8000__spec-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) repeat(3, minmax(0, 1fr));
-  gap: clamp(4px, 0.5vw, 8px);
-  align-items: stretch;
-  width: min(1600px, 100%);
+  grid-template-columns: minmax(0, 397fr) repeat(3, minmax(0, 236fr));
+  column-gap: clamp(18px, 2.34vw, 34px);
+  align-items: start;
+  width: min(1194px, 93.3%);
   margin: 0 auto;
 }
 
-/* 首列长图决定整行高度，其余三列拉伸至同高 */
 .product-sa8000__spec-product {
-  aspect-ratio: 699 / 950;
+  aspect-ratio: auto;
   min-width: 0;
-  overflow: hidden;
 }
 
 .product-sa8000__spec-product img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
 }
 
 .product-sa8000__spec-column {
-  display: grid;
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: clamp(4px, 0.5vw, 8px);
-  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.42vw, 34px);
   min-width: 0;
-  min-height: 0;
 }
 
 .product-sa8000__spec-column img {
   display: block;
   width: 100%;
-  height: 100%;
-  min-height: 0;
-  object-fit: contain;
+  height: auto;
+  object-fit: initial;
 }
 
 .product-sa8000__warning-image {
   display: block;
   width: 100%;
   height: auto;
+}
+
+@media (min-width: 1025px) {
+  .product-sa8000 > .product-sa8000__media:first-child {
+    min-height: 1200px;
+  }
+
+  .product-sa8000 > .product-sa8000__media:first-child > .product-sa8000__media-bg {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-sa8000__video {
+    height: 720px;
+  }
+
+  .product-sa8000__video-element {
+    height: 720px;
+    object-fit: cover;
+  }
 }
 
 @media (max-width: 1200px) {

@@ -145,8 +145,8 @@
 .about-feature__button:focus-visible,
 .about-section__button:hover,
 .about-section__button:focus-visible {
-  border-color: #841ee4;
-  background: #841ee4;
+  border-color: var(--color-primary);
+  background: var(--color-primary);
   color: #fff;
 }
 

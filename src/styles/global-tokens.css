@@ -1,0 +1,109 @@
+/* Global Design Tokens — single source of truth for the visual language */
+
+:root {
+  /* ── Brand ── */
+  --color-primary: #841EE4;
+  --color-primary-light: #9b4fed;
+  --color-primary-dark: #6e18c0;
+
+  --color-secondary: #BDF04C;
+  --color-secondary-light: #cdf570;
+  --color-secondary-dark: #a3d630;
+
+  /* ── Neutral palette ── */
+  --color-dark: #050505;
+  --color-ink: #000000;
+
+  --color-text: #111111;
+  --color-text-body: #333333;
+  --color-text-muted: #727272;
+  --color-text-subtle: #8a8a8a;
+
+  --color-surface: #ffffff;
+  --color-surface-warm: #f6f2e8;
+  --color-surface-neutral: #f4f4f4;
+  --color-surface-hover: #e5e5e5;
+
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-strong: rgba(0, 0, 0, 0.14);
+  --color-border-on-dark: rgba(255, 255, 255, 0.12);
+  --color-border-on-dark-strong: rgba(255, 255, 255, 0.22);
+
+  --color-text-on-dark: #ffffff;
+  --color-text-on-dark-muted: rgba(255, 255, 255, 0.72);
+  --color-text-on-dark-subtle: rgba(255, 255, 255, 0.62);
+
+  /* ── Semantic ── */
+  --color-success: #18d66d;
+  --color-error: #d9534f;
+  --color-warning: #f0ad4e;
+
+  /* ── Typography ── */
+  --font-sans: "Poppins", sans-serif;
+  --font-condensed: "Roboto", sans-serif;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  --text-scale-xs: clamp(0.74rem, 0.8vw, 0.96rem);
+  --text-scale-sm: clamp(0.88rem, 0.83vw, 0.96rem);
+  --text-scale-base: clamp(0.92rem, 0.86vw, 0.98rem);
+  --text-scale-md: clamp(0.94rem, 1vw, 1rem);
+  --text-scale-lg: clamp(1.1rem, 3vw, 1.35rem);
+  --text-scale-xl: clamp(1.25rem, 2vw, 1.75rem);
+  --text-scale-heading: clamp(34px, 3.1vw, 50px);
+
+  /* ── Spacing ── */
+  --space-gutter: clamp(18px, 3vw, 44px);
+  --space-gutter-sm: clamp(12px, 2vw, 24px);
+  --space-section: clamp(48px, 7vw, 104px);
+  --space-section-lg: clamp(72px, 10vw, 160px);
+
+  /* ── Layout — site-width is the single source of truth for all containment ── */
+  --site-width: min(90%, 1440px);
+  --site-width-mobile: min(calc(100% - 28px), 1440px);
+
+  /* Header */
+  --header-height: 80px;
+  --header-height-mobile: 64px;
+  --header-inner-padding: clamp(18px, 1.6vw, 30px);
+  --header-brand-width: clamp(140px, 11vw, 180px);
+
+  /* Footer */
+  --footer-padding-top: clamp(64px, 6vw, 88px);
+
+  /* Backward-compat: existing --site-shell-* and --content-* consumers */
+  --content-max: 1440px;
+  --content-width: var(--site-width);
+  --content-narrow: min(1320px, calc(100vw - 2 * var(--space-gutter)));
+
+  /* ── Border radius ── */
+  --radius-sm: 8px;
+  --radius-md: clamp(16px, 1vw, 22px);
+  --radius-lg: 24px;
+  --radius-full: 999px;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 0 7px rgba(0, 0, 0, 0.09);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.18);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.28);
+  --shadow-sticky: 0 16px 36px rgba(0, 0, 0, 0.22);
+
+  /* ── Transitions ── */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.35s ease;
+
+  /* ── Backward-compat aliases (existing --site-shell-* consumers) ── */
+  --site-shell-gutter: var(--space-gutter);
+  --site-shell-content-max: var(--content-max);
+  --site-shell-content-width: var(--content-width);
+  --site-shell-text: var(--color-text);
+  --site-shell-surface: var(--color-surface);
+  --site-shell-ink: var(--color-ink);
+  --site-shell-accent: var(--color-secondary);
+  --site-shell-dark: var(--color-dark);
+  --site-shell-muted: var(--color-text-on-dark-muted);
+}

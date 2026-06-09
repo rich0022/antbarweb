@@ -46,13 +46,13 @@
 
 .support-accordion__trigger.is-active {
   border-bottom: none;
-  color: #841ee4;
+  color: var(--color-primary);
 }
 
 .support-accordion__trigger.is-active .support-accordion__question,
 .support-accordion__trigger.is-active .support-accordion__icon svg {
-  color: #841ee4;
-  fill: #841ee4;
+  color: var(--color-primary);
+  fill: var(--color-primary);
 }
 
 .support-accordion__icon {

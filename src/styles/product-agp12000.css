@@ -1,6 +1,8 @@
 .product-agp12000__hero {
+  position: relative;
   display: grid;
   width: 100%;
+  min-height: min(81vw, 1200px);
   overflow: hidden;
 }
 
@@ -8,7 +10,8 @@
   grid-area: 1 / 1;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .product-agp12000__hero > .product-agp12000__hero-overlay {
@@ -74,9 +77,9 @@
   align-items: center;
   gap: 16px;
   padding: 13px 35px;
-  border: 1px solid #c8e600;
+  border: 1px solid var(--color-secondary);
   border-radius: 80px;
-  background: #c8e600;
+  background: var(--color-secondary);
   color: #000;
   font-family: 'Roboto', sans-serif;
   font-size: clamp(14px, 1.4vw, 20px);
@@ -90,8 +93,8 @@
 .product-agp12000__play-btn:hover,
 .product-agp12000__play-btn:focus-visible {
   background: transparent;
-  color: #c8e600;
-  border-color: #c8e600;
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
 }
 
 .product-agp12000__play-btn svg {
@@ -147,20 +150,42 @@
 
 /* 特性网格 */
 .product-agp12000__features {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 2vw, 24px);
-  width: min(1600px, 92%);
-  margin: 0 auto;
-  padding: clamp(24px, 5vw, 80px) clamp(16px, 3vw, 30px);
+  width: 100%;
+  padding: clamp(42px, 5.4vw, 80px) 0;
 }
 
-.product-agp12000__feature-row {
+.product-agp12000__feature-layout {
   display: flex;
-  flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
-  gap: clamp(8px, 1.5vw, 20px);
+  gap: clamp(12px, 2vw, 32px);
+  width: min(1600px, 80%);
+  margin: 0 auto;
+}
+
+.product-agp12000__feature-column {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.5vw, 20px);
+  min-width: 0;
+}
+
+.product-agp12000__feature-column--primary {
+  flex: 0 1 68%;
+}
+
+.product-agp12000__feature-column--secondary {
+  flex: 0 1 31%;
+}
+
+.product-agp12000__feature-column--secondary .product-agp12000__feature-card--liquid {
+  flex: 300 1 0;
+  aspect-ratio: auto;
+}
+
+.product-agp12000__feature-column--secondary .product-agp12000__feature-card--compact {
+  flex: 315 1 0;
+  aspect-ratio: auto;
 }
 
 .product-agp12000__feature-card {
@@ -169,38 +194,43 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: clamp(160px, 24vw, 420px);
-  padding: clamp(12px, 2vw, 24px);
-  border-radius: clamp(12px, 2vw, 20px);
+  width: 100%;
+  min-height: 0;
+  padding: clamp(10px, 1.8vw, 24px);
+  border-radius: 0;
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+  overflow: hidden;
 }
 
-.product-agp12000__feature-card--wide {
-  flex: 1 1 55%;
-  min-width: min(100%, 720px);
+.product-agp12000__feature-card--drip-tips {
+  aspect-ratio: 1380 / 640;
 }
 
-.product-agp12000__feature-card--narrow {
-  flex: 1 1 22%;
-  min-width: min(100%, 280px);
+.product-agp12000__feature-card--battery {
+  aspect-ratio: 1380 / 315;
 }
 
-.product-agp12000__feature-card--stack {
+.product-agp12000__feature-card--liquid {
+  aspect-ratio: 658 / 300;
+}
+
+.product-agp12000__feature-card--compact {
+  aspect-ratio: 658 / 315;
+}
+
+.product-agp12000__feature-mini-row {
   display: flex;
-  flex: 1 1 22%;
-  flex-direction: column;
-  gap: clamp(8px, 1.5vw, 20px);
-  min-width: min(100%, 280px);
-  padding: 0;
-  background: none;
+  flex: 300 1 0;
+  align-items: stretch;
+  gap: clamp(8px, 1vw, 14px);
+  min-height: 0;
 }
 
-.product-agp12000__feature-card--stack > .product-agp12000__feature-card {
-  flex: 1;
-  width: 100%;
-  min-width: 0;
+.product-agp12000__feature-card--mini {
+  flex: 1 1 0;
+  aspect-ratio: auto;
 }
 
 .product-agp12000__feature-heading {
@@ -214,10 +244,10 @@
 
 .product-agp12000__feature-tips {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: flex-end;
   justify-content: center;
-  gap: clamp(8px, 1.5vw, 20px);
+  gap: clamp(28px, 6vw, 92px);
   width: 100%;
   margin-top: auto;
 }
@@ -232,7 +262,7 @@
 
 .product-agp12000__feature-tip img {
   display: block;
-  width: min(100%, 206px);
+  width: clamp(58px, 6.3vw, 103px);
   height: auto;
 }
 
@@ -245,7 +275,7 @@
 
 .product-agp12000__feature-badge {
   display: block;
-  width: min(100%, 240px);
+  width: min(78%, 140px);
   height: auto;
   margin-top: auto;
 }
@@ -266,16 +296,17 @@
 /* 左右分栏 */
 .product-agp12000__split {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(16px, 3vw, 40px);
-  padding: clamp(24px, 5vw, 60px) clamp(16px, 4vw, 48px);
+  gap: clamp(18px, 3vw, 48px);
+  padding: clamp(48px, 5vw, 74px) clamp(10px, 1.5vw, 20px) clamp(36px, 4vw, 60px);
+  text-align: center;
 }
 
 .product-agp12000__split-copy {
-  flex: 1 1 320px;
-  max-width: 560px;
+  width: 100%;
+  max-width: 1455px;
 }
 
 .product-agp12000__split-heading {
@@ -292,9 +323,9 @@
 }
 
 .product-agp12000__split-figure {
-  flex: 1 1 320px;
   margin: 0;
-  max-width: min(100%, 900px);
+  width: 100%;
+  max-width: 1455px;
 }
 
 .product-agp12000__split-figure img {
@@ -305,8 +336,10 @@
 
 /* 背景图分栏 */
 .product-agp12000__panel {
+  position: relative;
   display: grid;
   width: 100%;
+  min-height: clamp(860px, 104vw, 1540px);
   overflow: hidden;
 }
 
@@ -314,21 +347,23 @@
   grid-area: 1 / 1;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .product-agp12000__panel > .product-agp12000__panel-overlay {
   grid-area: 1 / 1;
   z-index: 1;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: clamp(16px, 3vw, 40px);
+  justify-content: flex-start;
+  gap: clamp(28px, 5.5vw, 90px);
   box-sizing: border-box;
   width: 100%;
   min-height: 100%;
-  padding: clamp(24px, 6vw, 80px) clamp(16px, 5vw, 80px);
+  padding: clamp(96px, 12.5vw, 184px) clamp(20px, 1.5vw, 40px);
+  text-align: center;
   pointer-events: none;
 }
 
@@ -337,47 +372,54 @@
 }
 
 .product-agp12000__panel-copy {
-  flex: 1 1 300px;
-  max-width: 560px;
+  width: 100%;
+  max-width: 1455px;
+}
+
+.product-agp12000__panel .product-agp12000__split-figure {
+  max-width: min(77.5%, 1140px);
 }
 
 /* Mesh 区块 */
 .product-agp12000__mesh {
-  padding: clamp(24px, 4vw, 48px) clamp(16px, 4vw, 48px);
+  padding: clamp(40px, 5vw, 74px) clamp(16px, 4vw, 48px) clamp(28px, 4vw, 54px);
   text-align: center;
 }
 
 .product-agp12000__mesh-heading {
   margin: 0 0 clamp(16px, 3vw, 32px);
-  font-size: clamp(18px, 3.5vw, 48px);
+  font-size: clamp(24px, 4.1vw, 60px);
   font-weight: 600;
+  line-height: 1;
 }
 
 .product-agp12000__mesh-image {
   display: block;
-  width: 100%;
+  width: min(100%, 1148px);
   height: auto;
   margin-bottom: clamp(16px, 3vw, 32px);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .product-agp12000__mesh-footer {
   display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
+  flex-wrap: nowrap;
+  align-items: center;
   justify-content: center;
-  gap: clamp(12px, 2vw, 24px);
-  max-width: 1600px;
+  gap: clamp(28px, 2.7vw, 40px);
+  max-width: min(80%, 1130px);
   margin: 0 auto;
 }
 
 .product-agp12000__mesh-card {
   display: flex;
-  flex: 1 1 200px;
+  flex: 0 0 clamp(116px, 10vw, 150px);
   align-items: flex-end;
   justify-content: center;
-  min-height: clamp(140px, 20vw, 280px);
-  padding: clamp(12px, 2vw, 20px);
-  border-radius: clamp(12px, 2vw, 20px);
+  min-height: clamp(58px, 7.2vw, 105px);
+  padding: clamp(8px, 1vw, 14px);
+  border-radius: 0;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -385,16 +427,16 @@
 
 .product-agp12000__mesh-card-heading {
   margin: 0;
-  font-size: clamp(14px, 2vw, 32px);
+  font-size: clamp(12px, 1.4vw, 20px);
   font-weight: 600;
   line-height: 1.15;
 }
 
 .product-agp12000__mesh-text {
-  flex: 1 1 280px;
-  max-width: 560px;
+  flex: 1 1 auto;
+  max-width: 810px;
   margin: 0;
-  padding: clamp(12px, 2vw, 20px);
+  padding: 0;
   font-size: clamp(13px, 1.4vw, 22px);
   line-height: 1.35;
   text-align: left;
@@ -480,42 +522,42 @@
 
 /* 规格 */
 .product-agp12000__spec {
-  padding: clamp(32px, 5vw, 60px) clamp(16px, 4vw, 48px);
+  padding: clamp(42px, 5vw, 74px) 0 clamp(30px, 4vw, 54px);
 }
 
 .product-agp12000__spec-heading {
   margin: 0 0 clamp(16px, 3vw, 32px);
-  font-size: clamp(18px, 4vw, 56px);
+  font-size: clamp(24px, 4.5vw, 65px);
   font-weight: 600;
+  line-height: 1;
   text-align: center;
 }
 
 .product-agp12000__spec-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) repeat(3, minmax(0, 1fr));
-  gap: clamp(4px, 0.5vw, 8px);
+  grid-template-columns: minmax(0, 33%) repeat(3, minmax(0, 18%));
+  column-gap: clamp(28px, 3.4vw, 52px);
   align-items: stretch;
-  width: min(1600px, 100%);
+  width: 100%;
   margin: 0 auto;
 }
 
 .product-agp12000__spec-product {
   aspect-ratio: 694 / 943;
   min-width: 0;
-  overflow: hidden;
 }
 
 .product-agp12000__spec-product img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
 }
 
 .product-agp12000__spec-column {
   display: grid;
   grid-template-rows: repeat(3, minmax(0, 1fr));
-  gap: clamp(4px, 0.5vw, 8px);
+  row-gap: clamp(26px, 3.2vw, 50px);
   align-self: stretch;
   min-width: 0;
   min-height: 0;
@@ -562,6 +604,39 @@
   text-align: center;
 }
 
+@media (min-width: 1025px) {
+  .product-agp12000__hero {
+    min-height: 1200px;
+  }
+
+  .product-agp12000__video {
+    height: 532px;
+  }
+
+  .product-agp12000__video-element {
+    height: 720px;
+    object-fit: cover;
+  }
+
+  .product-agp12000__features {
+    display: flex;
+    align-items: center;
+    min-height: 924px;
+  }
+
+  .product-agp12000__split {
+    min-height: 1405px;
+  }
+
+  .product-agp12000__panel {
+    min-height: 1375px;
+  }
+
+  .product-agp12000__spec {
+    min-height: 981px;
+  }
+}
+
 @media (max-width: 1024px) {
   .product-agp12000__hero-copy {
     width: min(60%, 480px);
@@ -596,10 +671,19 @@
     text-align: center;
   }
 
-  .product-agp12000__feature-card--wide,
-  .product-agp12000__feature-card--narrow,
-  .product-agp12000__feature-card--stack {
-    flex: 1 1 100%;
+  .product-agp12000__feature-layout,
+  .product-agp12000__feature-column,
+  .product-agp12000__feature-mini-row {
+    flex-direction: column;
+  }
+
+  .product-agp12000__feature-column--primary,
+  .product-agp12000__feature-column--secondary,
+  .product-agp12000__feature-card--liquid,
+  .product-agp12000__feature-card--compact,
+  .product-agp12000__feature-card--mini,
+  .product-agp12000__feature-mini-row {
+    flex: 1 1 auto;
     min-width: 0;
   }
 

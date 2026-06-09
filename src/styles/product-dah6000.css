@@ -1,6 +1,6 @@
 .product-dah6000 {
-  font-family: 'Poppins', sans-serif;
-  color: #000;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
 }
 
 .product-dah6000__hero,
