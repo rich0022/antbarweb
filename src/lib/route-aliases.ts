@@ -17,7 +17,8 @@ export function disposableUrlSlugFromMirrorRoute(mirrorRoute: string): string {
 
 /** Disposable slugs with dedicated SubPageLayout routes — exclude from catch-all. */
 export const DEDICATED_DISPOSABLE_PAGE_SLUGS = new Set([
-  'ahp10000',
+  'antbar-3000-6000',
+  'v10000-puffs-disposable-vape',
   'agp12000-nicotine-disposable-vape',
   'antbar-ag600',
   'antbar-atb600',

@@ -1,28 +1,37 @@
 ---
-import SubPageLayout from '../../layouts/SubPageLayout.astro';
-import ContentBody from '../../components/ContentBody.astro';
-import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
-import { readMirrorBodyHtml } from '../../lib/mirror-assets';
-import { stripMainWrapper } from '../../lib/site-shell';
-import '../../styles/atb600-bundle.css';
+import { getEntry } from 'astro:content';
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import { ATB600_IMAGES } from '../../data/product-atb600';
+import '../../styles/product-atb600.css';
 
-const mirrorRoute = 'disposable/antbar-atb600';
-const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
-
-const postId = 1403;
-const title = 'ATB600 Disposable Vape-ANTBAR';
-const description = 'Adhering to the concept of user first, AntBar develops ATB600 disposable system for the best vaping experience.';
-const featuredImage = '/wp-content/uploads/2024/03/ATB600.png';
+const entry = await getEntry('products', 'disposable/antbar-atb600');
+const title = entry?.data.title ?? 'Antbar ATB600|The Best disposable vape Wholesale';
+const description = entry?.data.description ?? '';
 ---
 
-<SubPageLayout title={title} description={description} pageId={String(postId)}>
-  <main id="content">
-    <ContentBody html={bodyHtml} />
+<ProductLayout
+  title={title}
+  description={description}
+  bodyClass="product-page-body product-atb600-body"
+>
+  <main id="content" class="site-main product-atb600" aria-label="ATB600 product details">
+    {
+      ATB600_IMAGES.map((image, index) => (
+        <img
+          class:list={[
+            'product-atb600__image',
+            'scroll-reveal',
+            image.spacedTop && 'product-atb600__image--spaced',
+          ]}
+          src={image.src}
+          width={image.width}
+          height={image.height}
+          alt={image.alt}
+          loading={index === 0 ? 'eager' : 'lazy'}
+          decoding="async"
+          data-animate="fadeInUp"
+        />
+      ))
+    }
   </main>
-  <ProductShellRuntime
-    postId={postId}
-    title={title}
-    excerpt={description}
-    featuredImage={featuredImage}
-  />
-</SubPageLayout>
+</ProductLayout>

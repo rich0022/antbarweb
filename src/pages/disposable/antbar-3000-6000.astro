@@ -1,0 +1,68 @@
+---
+import { getEntry } from 'astro:content';
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import { DAH6000_HERO, DAH6000_SPECS } from '../../data/product-dah6000';
+import '../../styles/product-dah6000.css';
+
+const entry = await getEntry('products', 'disposable/antbar-3000-6000');
+const title = entry?.data.title ?? 'Antbar DAH3000|6000 - 6.5ml The Best Disposable Vapes online';
+const description = entry?.data.description ?? '';
+---
+
+<ProductLayout
+  title={title}
+  description={description}
+  bodyClass="product-page-body product-dah6000-body"
+>
+  <main id="content" class="site-main product-dah6000">
+    <section class="product-dah6000__hero" aria-labelledby="dah6000-hero-title">
+      <div class="product-dah6000__hero-inner">
+        <h1 id="dah6000-hero-title" class="product-dah6000__heading scroll-reveal" data-animate="fadeInUp">
+          {DAH6000_HERO.heading}
+        </h1>
+      </div>
+      <img
+        class="product-dah6000__image scroll-reveal"
+        src={DAH6000_HERO.image.src}
+        width={DAH6000_HERO.image.width}
+        height={DAH6000_HERO.image.height}
+        alt={DAH6000_HERO.image.alt}
+        loading="eager"
+        decoding="async"
+        data-animate="fadeInUp"
+      />
+    </section>
+
+    {
+      DAH6000_SPECS.map((spec, index) => (
+        <section
+          class="product-dah6000__spec"
+          aria-labelledby={`dah6000-spec-title-${index}`}
+        >
+          <div class="product-dah6000__spec-inner">
+            <h2
+              id={`dah6000-spec-title-${index}`}
+              class="product-dah6000__heading scroll-reveal"
+              data-animate="fadeInUp"
+            >
+              {spec.heading}
+            </h2>
+            <p class="product-dah6000__text scroll-reveal" data-animate="fadeInUp">
+              {spec.description}
+            </p>
+          </div>
+          <img
+            class="product-dah6000__image scroll-reveal"
+            src={spec.image.src}
+            width={spec.image.width}
+            height={spec.image.height}
+            alt={spec.image.alt}
+            loading="lazy"
+            decoding="async"
+            data-animate="fadeInUp"
+          />
+        </section>
+      ))
+    }
+  </main>
+</ProductLayout>

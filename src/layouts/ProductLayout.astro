@@ -1,15 +1,26 @@
 ---
-import BaseLayout from './BaseLayout.astro';
+import SiteShellLayout from './SiteShellLayout.astro';
+import { ANIMATION_INLINE_CSS } from '../data/site-assets';
+import '../styles/product-shared.css';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
-  mirrorRoute?: string;
+  bodyClass?: string;
 }
 
-const { title, description, mirrorRoute } = Astro.props;
+const {
+  title = 'ANTBAR',
+  description = '',
+  bodyClass = 'product-page-body',
+} = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} mirrorRoute={mirrorRoute}>
+<SiteShellLayout
+  title={title}
+  description={description}
+  bodyClass={bodyClass}
+  inlineStyles={[ANIMATION_INLINE_CSS]}
+>
   <slot />
-</BaseLayout>
+</SiteShellLayout>

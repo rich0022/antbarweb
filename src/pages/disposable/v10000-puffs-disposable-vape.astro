@@ -1,0 +1,249 @@
+---
+import { getEntry } from 'astro:content';
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import {
+  AHP10000_FLAVORS_IMAGE,
+  AHP10000_HERO,
+  AHP10000_PACKAGING_PANEL,
+  AHP10000_SHOWCASE_IMAGE,
+  AHP10000_SPEC_PANEL,
+  AHP10000_SPECS,
+  AHP10000_SPLIT_PANELS,
+  AHP10000_TEXT_PANELS,
+} from '../../data/product-ahp10000';
+import '../../styles/product-ahp10000.css';
+
+const entry = await getEntry('products', 'disposable/v10000-puffs-disposable-vape');
+const title = entry?.data.title ?? 'AHP10000 Puffs Disposable Vape 12ml-ANTBAR';
+const description = entry?.data.description ?? '';
+---
+
+<ProductLayout
+  title={title}
+  description={description}
+  bodyClass="product-page-body product-ahp10000-body"
+>
+  <main id="content" class="site-main product-page product-ahp10000">
+    <section class="product-ahp10000__media scroll-reveal" aria-labelledby="ahp10000-hero-title" data-animate="fadeInUp">
+      <img
+        class="product-ahp10000__media-bg"
+        src={AHP10000_HERO.backgroundImage}
+        width={2560}
+        height={1440}
+        alt=""
+        loading="eager"
+        decoding="async"
+      />
+      <div class="product-ahp10000__media-overlay product-ahp10000__hero-overlay">
+        <div class="product-ahp10000__hero-content">
+          <h1 id="ahp10000-hero-title" class="product-page__heading-hero">
+            {AHP10000_HERO.title}
+          </h1>
+          <p class="product-page__tagline">{AHP10000_HERO.tagline}</p>
+          <a class="product-ahp10000__spec-link" href={AHP10000_HERO.specHref}>
+            <img
+              src={AHP10000_HERO.specButton.src}
+              width={AHP10000_HERO.specButton.width}
+              height={AHP10000_HERO.specButton.height}
+              alt={AHP10000_HERO.specButton.alt}
+              loading="eager"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-ahp10000__showcase scroll-reveal" aria-hidden="true" data-animate="fadeInUp">
+      <img
+        class="product-ahp10000__showcase-image"
+        src={AHP10000_SHOWCASE_IMAGE.src}
+        width={AHP10000_SHOWCASE_IMAGE.width}
+        height={AHP10000_SHOWCASE_IMAGE.height}
+        alt={AHP10000_SHOWCASE_IMAGE.alt}
+        loading="eager"
+        decoding="async"
+      />
+    </section>
+
+    <section class="product-ahp10000__media scroll-reveal" data-animate="fadeInUp">
+      <img
+        class="product-ahp10000__media-bg"
+        src={AHP10000_TEXT_PANELS[0].backgroundImage}
+        width={2560}
+        height={1440}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="product-ahp10000__media-overlay product-ahp10000__panel-overlay product-ahp10000__panel-overlay--top product-ahp10000__panel-overlay--center">
+        <h2 class="product-page__heading-section">{AHP10000_TEXT_PANELS[0].heading}</h2>
+        {AHP10000_TEXT_PANELS[0].paragraphs.map((paragraph) => (
+          <p class="product-page__text">{paragraph}</p>
+        ))}
+      </div>
+    </section>
+
+    {
+      AHP10000_SPLIT_PANELS.slice(0, 2).map((panel, index) => (
+        <section
+          class:list={[
+            'product-ahp10000__media',
+            'scroll-reveal',
+            index === 1 && 'product-ahp10000__media--mesh',
+          ]}
+          data-animate="fadeInUp"
+        >
+          <img
+            class="product-ahp10000__media-bg"
+            src={panel.backgroundImage}
+            width={2560}
+            height={1440}
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="product-ahp10000__media-overlay product-ahp10000__split-overlay">
+            <div class="product-ahp10000__split-copy">
+              <h2 class="product-page__heading-section">
+                {panel.headingLines.map((line, index) => (
+                  <>
+                    {index > 0 && <br />}
+                    {line}
+                  </>
+                ))}
+              </h2>
+              <p class="product-page__text">{panel.description}</p>
+            </div>
+          </div>
+        </section>
+      ))
+    }
+
+    {
+      AHP10000_SPLIT_PANELS.slice(2).map((panel, index) => (
+        <section class="product-ahp10000__media scroll-reveal" data-animate="fadeInUp">
+          <img
+            class="product-ahp10000__media-bg"
+            src={panel.backgroundImage}
+            width={2560}
+            height={1440}
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+          <div
+            class:list={[
+              'product-ahp10000__media-overlay',
+              'product-ahp10000__split-overlay',
+              index === 0 && 'product-ahp10000__split-overlay--top',
+              panel.reverse && 'product-ahp10000__split-overlay--reverse',
+              panel.reverse && 'product-ahp10000__split-overlay--visual',
+            ]}
+          >
+            <div class="product-ahp10000__split-copy">
+              <h2 class="product-page__heading-section">
+                {panel.headingLines.map((line, lineIndex) => (
+                  <>
+                    {lineIndex > 0 && <br />}
+                    {line}
+                  </>
+                ))}
+              </h2>
+              <p class="product-page__text">{panel.description}</p>
+            </div>
+            {panel.image && (
+              <figure class="product-ahp10000__split-figure product-ahp10000__split-figure--visual">
+                <img
+                  src={panel.image.src}
+                  width={panel.image.width}
+                  height={panel.image.height}
+                  alt={panel.image.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            )}
+          </div>
+        </section>
+      ))
+    }
+
+    <section class="product-ahp10000__media scroll-reveal" data-animate="fadeInUp">
+      <img
+        class="product-ahp10000__media-bg"
+        src={AHP10000_TEXT_PANELS[1].backgroundImage}
+        width={2560}
+        height={1440}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="product-ahp10000__media-overlay product-ahp10000__panel-overlay product-ahp10000__panel-overlay--center">
+        <h2 class="product-page__heading-section product-ahp10000__heading--light">
+          {AHP10000_TEXT_PANELS[1].heading}
+        </h2>
+      </div>
+    </section>
+
+    <section class="product-ahp10000__flavors scroll-reveal" aria-hidden="true" data-animate="fadeInUp">
+      <img
+        class="product-page__image"
+        src={AHP10000_FLAVORS_IMAGE.src}
+        width={AHP10000_FLAVORS_IMAGE.width}
+        height={AHP10000_FLAVORS_IMAGE.height}
+        alt={AHP10000_FLAVORS_IMAGE.alt}
+        loading="lazy"
+        decoding="async"
+      />
+    </section>
+
+    <section
+      id="specfication"
+      class="product-ahp10000__media scroll-reveal"
+      aria-labelledby="ahp10000-spec-title"
+      data-animate="fadeInUp"
+    >
+      <img
+        class="product-ahp10000__media-bg"
+        src={AHP10000_SPEC_PANEL.backgroundImage}
+        width={2560}
+        height={1440}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="product-ahp10000__media-overlay product-ahp10000__spec-overlay">
+        <h2 id="ahp10000-spec-title" class="product-page__heading-section product-ahp10000__heading--light product-ahp10000__spec-heading">
+          {AHP10000_SPEC_PANEL.heading}
+        </h2>
+        <ul class="product-ahp10000__spec-list">
+          {
+            AHP10000_SPECS.map((spec) => (
+              <li class="product-ahp10000__spec-item">
+                <strong>{spec.label}</strong> {spec.value}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="product-ahp10000__media scroll-reveal" aria-labelledby="ahp10000-packaging-title" data-animate="fadeInUp">
+      <img
+        class="product-ahp10000__media-bg"
+        src={AHP10000_PACKAGING_PANEL.backgroundImage}
+        width={2560}
+        height={1440}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="product-ahp10000__media-overlay product-ahp10000__packaging-overlay product-ahp10000__packaging-overlay--top">
+        <h2 id="ahp10000-packaging-title" class="product-page__heading-section product-ahp10000__heading--light">
+          {AHP10000_PACKAGING_PANEL.heading}
+        </h2>
+      </div>
+    </section>
+  </main>
+</ProductLayout>

@@ -15,6 +15,7 @@ export default defineConfig({
     '/disposable/': '/all-products/',
     '/pod-sys/': '/all-products/',
     '/blog/2/': '/blog/',
+    '/disposable/ahp10000/': '/disposable/v10000-puffs-disposable-vape/',
   },
   build: {
     assets: 'assets',
