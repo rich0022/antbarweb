@@ -4,6 +4,7 @@ slug: "blog/what-is-pmta"
 description: "PMTA, or Premarket Tobacco Product Applications, is the cornerstone principle for new tobacco products to enter the U.S. market."
 excerpt: "ANTBAR is an atomization technology company with 10 years of professional experience, focusing on the production and sales of disposable vape, always adheres to the compliance of regulations and laws, and is committed to providing users with high-quality e-cigarette products. Now, we will provide you with a detailed explanation of the U.S. e-cigarettes on the market and sales of related regulations. Let’s take a deeper look at this field!"
 heroImage: "/wp-content/uploads/2024/07/whatispmta.png"
+publishedAt: "07 12, 2024"
 ---
 
 ![](/wp-content/uploads/2024/07/whatispmta.png)

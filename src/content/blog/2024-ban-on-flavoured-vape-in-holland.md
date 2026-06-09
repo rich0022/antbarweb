@@ -4,6 +4,7 @@ slug: "blog/2024-ban-on-flavoured-vape-in-holland"
 description: "The Dutch government insisted in enforcing this law in the face of strong opposition from e-cigarette users from the Netherlands and across Europe."
 excerpt: "In western Europe, the Netherlands is known for its prospered economy, open society and historic ports. When it comes to tobacco consumption, the Netherlands has a moderate smoking rate among European countries, with about 20% of Dutch people smoking daily and about 10% smoking occasionally. Data from the Dutch Public Health Authority shows that about 10% of Dutch people are using e-cigarettes, while this figure is higher among young people and men.The use of e-cigarettes in the Netherlands is a bit higher compared to other European countries."
 heroImage: "/wp-content/uploads/2024/07/flavor-vape-ban-in-Holland.png"
+publishedAt: "04 10, 2024"
 ---
 
 ![ANTBAR DISPOSABLE IN HOLLAND](/wp-content/uploads/2024/07/flavor-vape-ban-in-Holland.png)

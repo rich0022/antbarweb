@@ -1,0 +1,22 @@
+---
+import SiteShellLayout from './SiteShellLayout.astro';
+import { ANIMATION_INLINE_CSS } from '../data/site-assets';
+import '../styles/verification.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'ANTBAR', description = '' } = Astro.props;
+const bodyClass = 'verification-page-body';
+---
+
+<SiteShellLayout
+  title={title}
+  description={description}
+  bodyClass={bodyClass}
+  inlineStyles={[ANIMATION_INLINE_CSS]}
+>
+  <slot />
+</SiteShellLayout>

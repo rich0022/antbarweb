@@ -1,25 +1,22 @@
 ---
 import { getCollection, getEntry, render } from 'astro:content';
 import ArticlePage from '../../components/article/ArticlePage.astro';
-import ContentBody from '../../components/ContentBody.astro';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import { contentEntrySlug } from '../../lib/content-entry';
-import { resolveReviewUrlSlug, REVIEW_URL_ALIASES } from '../../lib/route-aliases';
+import { REVIEW_URL_ALIASES } from '../../lib/route-aliases';
 import {
   REVIEW_FEATURED_ITEMS,
   REVIEW_HOT_SALE_PRODUCTS,
   REVIEW_LATEST_ITEMS,
   REVIEW_RELATED_ITEMS,
   extractTocItems,
+  formatPublishedLabel,
   readMarkdownBody,
-  readMirrorArticlePage,
-  readMirrorPublishedLabel,
 } from '../../lib/article-page';
-import { collectReviewMirrorRoutes } from '../../lib/mirror-assets';
 
 export async function getStaticPaths() {
   const contentPosts = await getCollection('review');
-  const paths = new Map<string, Record<string, unknown>>();
+  const paths = new Map<string, { entryId: string }>();
 
   for (const entry of contentPosts) {
     if (entry.id === 'index' || entry.id === 'review' || entry.data.slug === 'review') continue;
@@ -31,61 +28,32 @@ export async function getStaticPaths() {
     if (targetProps) paths.set(alias, targetProps);
   }
 
-  for (const [slug, mirrorRoute] of await collectReviewMirrorRoutes()) {
-    if (paths.has(slug)) continue;
-    paths.set(slug, { mirrorRoute });
-  }
-
-  return [...paths.entries()].map(([slug, props]) => ({
+  return [...paths.entries()].map(([slug, routeProps]) => ({
     params: { slug },
-    props: { slug, ...props },
+    props: { slug, ...routeProps },
   }));
 }
 
 const props = Astro.props as {
   slug: string;
-  entryId?: string;
-  mirrorRoute?: string;
+  entryId: string;
 };
 
-const canonicalSlug = resolveReviewUrlSlug(props.slug);
-
-let title = '';
-let description = '';
-let publishedLabel = '';
-let tocItems: { id: string; text: string }[] = [];
-let EntryContent: Awaited<ReturnType<typeof render>>['Content'] | null = null;
-let legacyBodyHtml = '';
-
-if (props.entryId) {
-  const entry = await getEntry('review', props.entryId);
-  if (!entry) {
-    throw new Error(`Missing review entry for ${props.entryId}`);
-  }
-
-  title = entry.data.title;
-  description = entry.data.description ?? entry.data.excerpt ?? '';
-  const mirrorRoute = `review/${canonicalSlug}`;
-
-  const [{ Content }, markdownBody, mirrorPublishedLabel] = await Promise.all([
-    render(entry),
-    readMarkdownBody('review', props.entryId),
-    readMirrorPublishedLabel(mirrorRoute),
-  ]);
-
-  EntryContent = Content;
-  publishedLabel = mirrorPublishedLabel;
-  tocItems = extractTocItems(markdownBody);
-} else if (props.mirrorRoute) {
-  const legacyArticle = await readMirrorArticlePage(props.mirrorRoute);
-  title = legacyArticle.title;
-  description = legacyArticle.description;
-  publishedLabel = legacyArticle.publishedLabel;
-  legacyBodyHtml = legacyArticle.bodyHtml;
-  tocItems = legacyArticle.tocItems;
-} else {
-  throw new Error(`Missing review route data for ${props.slug}`);
+const entry = await getEntry('review', props.entryId);
+if (!entry) {
+  throw new Error(`Missing review entry for ${props.entryId}`);
 }
+
+const title = entry.data.title;
+const description = entry.data.description ?? entry.data.excerpt ?? '';
+const publishedLabel = formatPublishedLabel(entry.data.publishedAt);
+
+const [{ Content }, markdownBody] = await Promise.all([
+  render(entry),
+  readMarkdownBody('review', props.entryId),
+]);
+
+const tocItems = extractTocItems(markdownBody);
 ---
 
 <ArticleLayout
@@ -93,35 +61,17 @@ if (props.entryId) {
   description={description}
   bodyClass="article-page-body review-article-body"
 >
-  {
-    EntryContent ? (
-      <ArticlePage
-        title={title}
-        sectionLabel="Review"
-        publishedLabel={publishedLabel}
-        tocItems={tocItems}
-        latestItems={REVIEW_LATEST_ITEMS}
-        relatedTitle="Related Review"
-        relatedItems={REVIEW_RELATED_ITEMS}
-        featuredItems={REVIEW_FEATURED_ITEMS}
-        hotProducts={REVIEW_HOT_SALE_PRODUCTS}
-      >
-        <EntryContent />
-      </ArticlePage>
-    ) : (
-      <ArticlePage
-        title={title}
-        sectionLabel="Review"
-        publishedLabel={publishedLabel}
-        tocItems={tocItems}
-        latestItems={REVIEW_LATEST_ITEMS}
-        relatedTitle="Related Review"
-        relatedItems={REVIEW_RELATED_ITEMS}
-        featuredItems={REVIEW_FEATURED_ITEMS}
-        hotProducts={REVIEW_HOT_SALE_PRODUCTS}
-      >
-        <ContentBody html={legacyBodyHtml} />
-      </ArticlePage>
-    )
-  }
+  <ArticlePage
+    title={title}
+    sectionLabel="Review"
+    publishedLabel={publishedLabel}
+    tocItems={tocItems}
+    latestItems={REVIEW_LATEST_ITEMS}
+    relatedTitle="Related Review"
+    relatedItems={REVIEW_RELATED_ITEMS}
+    featuredItems={REVIEW_FEATURED_ITEMS}
+    hotProducts={REVIEW_HOT_SALE_PRODUCTS}
+  >
+    <Content />
+  </ArticlePage>
 </ArticleLayout>

@@ -4,6 +4,7 @@ slug: "blog/eu-ecigarette-regulation"
 description: "European Union e-cigarette testing & certification: TPD, REACH, CE, RoHS,and divided into mandatory and non-mandatory testing and certification."
 excerpt: "The European Union, with the longest history of development and the most mature market in the field of e-cigarettes, has always keep a tolerant and open attitude towards e-cigarettes. However, series of pollution problems created by e-cigarettes, the environment and potential threats to youth health being exposed that make the EU shifting its attitude."
 heroImage: "/wp-content/uploads/2024/07/QQ截图20240612104128.png"
+publishedAt: "06 12, 2024"
 ---
 
 ![](/wp-content/uploads/2024/07/QQ截图20240612104128.png)

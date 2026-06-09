@@ -4,6 +4,7 @@ slug: "review/antbar-sa8000-disposable-vape-review"
 description: "Let’s take on the journey and explore the magic of SA8000 Disposable Vape!"
 excerpt: "Antbar is one of the core e-cigarette brands of the Cloupor Group. We sell a variety of pod kits, pod mod kits and disposable kits. SA8000 Disposable is one of the hottest selling pod kits from ANTBAR in the world. What are the essential elements people fancy so much?"
 heroImage: "/wp-content/uploads/2024/07/06-288x300.png"
+publishedAt: "03 11, 2024"
 ---
 
 ![](/wp-content/uploads/2024/07/06-288x300.png)

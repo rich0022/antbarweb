@@ -4,6 +4,7 @@ slug: "blog/what-are-the-benefits-of-banning-disposable-and-flavored-vapes"
 description: "what should we do, is the electronic cigarette really as unbearable as some people say, these are questions worth pondering."
 excerpt: "Amidst an increasingly strengthen global anti-smoking atmosphere and a rising public health consciousness, the concept of Harm Reduction has gradually become a common aspiration in the international community and the tobacco industry. When we talk about “tobacco control,” essentially, we are struggling to reduce the dual burden that tobacco imposes on social health and the economy. By advocating and implementing tobacco control measures, we hope to reduce the health risks associated with tobacco and reduce the economic losses caused by smoking, promoting a healthier and more sustainable society."
 heroImage: "/wp-content/uploads/2024/05/11-jpg-768x941.webp"
+publishedAt: "08 23, 2024"
 ---
 
 ![vape flavor](/wp-content/uploads/2024/05/11-jpg-768x941.webp)

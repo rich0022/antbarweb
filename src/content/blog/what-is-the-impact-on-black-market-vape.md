@@ -4,6 +4,7 @@ slug: "blog/what-is-the-impact-on-black-market-vape"
 description: "To minimize the risk of purchasing black market electronic cigarettes, it is advisable to buy from SMOANT and ANTBAR!"
 excerpt: "With various governments worldwide issuing bans on disposable electronic cigarettes, the illicit e-cigarette market has increasingly thrived. This phenomenon has currently reached a critical juncture that demands strict regulation. Thus, what kind of impact of black market electronic cigarettes have on society and individuals? Take the situation of illegal e-cigarette sales in Italy as an example, let’s explore the severity of this global issue and its potential consequences."
 heroImage: "/wp-content/uploads/2024/07/blackmaket-vape.png"
+publishedAt: "05 15, 2024"
 ---
 
 ![](/wp-content/uploads/2024/07/blackmaket-vape.png)

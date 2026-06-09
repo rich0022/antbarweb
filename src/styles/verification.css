@@ -1,0 +1,34 @@
+.verification-page {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2vw 16px 4vw;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+}
+
+.verification-frame {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.verification-frame__iframe {
+  display: block;
+  width: 100%;
+  min-height: 500px;
+  border: 0;
+  background: transparent;
+}
+
+@media (max-width: 767px) {
+  .verification-page {
+    padding: 16px 12px 32px;
+  }
+
+  .verification-frame__iframe {
+    min-height: 420px;
+  }
+}

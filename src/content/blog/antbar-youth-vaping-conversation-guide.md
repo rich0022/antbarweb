@@ -4,6 +4,7 @@ slug: "blog/antbar-youth-vaping-conversation-guide"
 description: "In 2024, Antbar launched a new 800 puffs disposable kit-AT800, in order to better prevent the use of disposable e-cigarettes by teenagers, we have specially designed a one-touch child protection button."
 excerpt: "Although e-cigarettes are severely restricted in most countries in South America, these bans often appear to be poorly enforced in practice. In Brazil, for example, data from Ipec Intelligence shows that from 2018 to 2021, the number of Brazilian e-cigarette reviews has shown phenomenal growth, rapidly climbing from an initial number of about 500,000 adults to more than 2 million, a rise of more than 300%. This data highlights the huge growth potential of the South American e-cigarette market, which has already attracted the attention and investment of many international e-cigarette brands."
 heroImage: "/wp-content/uploads/2024/08/AT800-disposable-vape.png"
+publishedAt: "08 16, 2024"
 ---
 
 ![](/wp-content/uploads/2024/08/AT800-disposable-vape.png)

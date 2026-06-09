@@ -10,9 +10,11 @@ export default defineConfig({
   site: 'https://antbar.com',
   trailingSlash: 'always',
   redirects: {
-    '/antbar-3000-6000': '/pod-sys/antbar-3000-6000/',
+    '/antbar-3000-6000': '/disposable/antbar-3000-6000/',
+    '/pod-sys/antbar-3000-6000/': '/disposable/antbar-3000-6000/',
     '/disposable/': '/all-products/',
     '/pod-sys/': '/all-products/',
+    '/blog/2/': '/blog/',
   },
   build: {
     assets: 'assets',

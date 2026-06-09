@@ -120,7 +120,7 @@ export const PRODUCT_CATALOG_ITEMS: ProductCatalogItem[] = [
   },
   {
     title: 'DAH6000',
-    href: '/pod-sys/antbar-3000-6000/',
+    href: '/disposable/antbar-3000-6000/',
     family: 'pod-sys',
     image: {
       src: '/wp-content/uploads/2024/03/DAH6000.png',

@@ -4,6 +4,7 @@ slug: "blog/does-vaping-impact-iq"
 description: "E-cigarettes, as a form of nicotine delivery, are viewed as an advisable harm-reducing smoking cessation aid. This claim is well-recognized by many health organizations."
 excerpt: "The World Health Organization (WHO) did begin promoting “nicotine replacement therapy” globally in the 1990s to help people quit smoking. These therapies are designed to reduce withdrawal symptoms when quitting smoking by delivering nicotine but avoiding the harmful substances produced by burning tobacco. E-cigarettes, as a form of nicotine delivery, are viewed as an advisable harm-reducing smoking cessation aid. This claim is well-recognized by many health organizations. Compared to traditional cigarettes, e-cigarettes are usually considered less harmful. Most e-liquids usually contain ingredients such as nicotine, glycerin, and vegetable flavors, and these liquids are heated to produce vapor for users to inhale. The vapor produced usually does not contain harmful substances like tar and soot, which are found in traditional cigarettes and relatively harm to humans."
 heroImage: "/wp-content/uploads/2024/09/vapeimpactthebrain.png"
+publishedAt: "09 18, 2024"
 ---
 
 ![](/wp-content/uploads/2024/09/vapeimpactthebrain.png)

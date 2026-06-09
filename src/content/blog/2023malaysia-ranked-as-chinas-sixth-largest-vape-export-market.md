@@ -4,6 +4,7 @@ slug: "blog/2023malaysia-ranked-as-chinas-sixth-largest-vape-export-market"
 description: "In 2023, total China's e-cigarette exports to the United States reached 3.101 billion U.S. dollars, accounting for 27.98% of the total export value."
 excerpt: "In 2020, China’s famous Sina.com revealed a Global Male Smoking Prevalence Ranking, in which Malaysia ranked sixth with a significant figure of male smoking prevalence, while Indonesia topped the list with a high male smoking prevalence rate of 76%, followed by Russia with 58% male smoking prevalence rate. Egypt follows in third place with a smoking prevalence of 50%. Side by side, this reflects the dire smoking situation in Malaysia. Changes in Smoking Prevalence in Malaysia (2000-2020)"
 heroImage: "/wp-content/uploads/2024/09/Malaysia-vape-jpg.webp"
+publishedAt: "09 10, 2024"
 ---
 
 ![Malaysia vape](/wp-content/uploads/2024/09/Malaysia-vape-jpg.webp)

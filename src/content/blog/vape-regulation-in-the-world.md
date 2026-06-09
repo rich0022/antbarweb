@@ -4,6 +4,7 @@ slug: "blog/vape-regulation-in-the-world"
 description: "E-cigarettes regulation: Current And Future Laws & Bans In The World, 32 countries or regions have certain initiatives on the sale, use, promotion and taxation of vape!"
 excerpt: "ANTBAR is one of the core e-cigarette brands of the Cloupor Group.We sell a variety of disposable kits. Do you know what your local policy is on e-cigarettes? Search and read it!"
 heroImage: "/wp-content/uploads/2024/07/vaping-regulation.png"
+publishedAt: "06 04, 2024"
 ---
 
 ![](/wp-content/uploads/2024/07/vaping-regulation.png)

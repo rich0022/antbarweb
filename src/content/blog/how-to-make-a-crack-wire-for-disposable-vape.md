@@ -4,6 +4,7 @@ slug: "blog/how-to-make-a-crack-wire-for-disposable-vape"
 description: "Today we are thrilled to introduce you to make a crack wire for disposable vape!"
 excerpt: "Antbar, one of the sub e-cigarette brands of the Cloupor Group, which mainly produces a variety of rechargeable and refillable disposable e-cigarettes."
 heroImage: "/wp-content/uploads/2024/07/how-to-make-crack-wire-for-disposable.png"
+publishedAt: "04 03, 2024"
 ---
 
 ![how-to-make-crack-wire-for-disposable.png](/wp-content/uploads/2024/07/how-to-make-crack-wire-for-disposable.png)

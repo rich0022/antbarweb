@@ -4,6 +4,7 @@ slug: "blog/does-vape-flavor-cause-popcorn-lung"
 description: "People are concerned that using vape is pivotal leading to a high risk of lung disease or even cancer. Today we're going to talk about：Do vape flavors contain diacetyl? Can vaping cause a popped lung?"
 excerpt: "ANTBAR is one of the core e-cigarette brands of the Cloupor Group.We sell a variety of disposable kits. People are concerned that using e-cigarette is pivotal leading to a high risk of lung disease or even cancer. Today we’re going to talk about：Do vape flavors contain diacetyl? Can vaping cause a popped lung?"
 heroImage: "/wp-content/uploads/2024/07/Does-Vape-Flavor-Cause-Popcorn-Lung.png"
+publishedAt: "04 07, 2024"
 ---
 
 ![Does Vape Flavor Cause Popcorn Lung](/wp-content/uploads/2024/07/Does-Vape-Flavor-Cause-Popcorn-Lung.png)

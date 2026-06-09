@@ -15,10 +15,17 @@ export function disposableUrlSlugFromMirrorRoute(mirrorRoute: string): string {
   return normalized;
 }
 
-/** Pod-sys URLs that use disposable product content on disk. */
-export const POD_SYS_DISPOSABLE_ALIASES: Record<string, string> = {
-  'antbar-3000-6000': 'disposable/antbar-3000-6000',
-};
+/** Disposable slugs with dedicated SubPageLayout routes — exclude from catch-all. */
+export const DEDICATED_DISPOSABLE_PAGE_SLUGS = new Set([
+  'ahp10000',
+  'agp12000-nicotine-disposable-vape',
+  'antbar-ag600',
+  'antbar-atb600',
+  'antbar-kt800',
+  'antbar-rocket',
+  'antbar-sa8000',
+  'at800-puffs-disposable-vape',
+]);
 
 export function disposableUrlSlugFromEntryId(entryId: string): string {
   const path = entryId.replace(/^products\//, '').replace(/^disposable\//, '');

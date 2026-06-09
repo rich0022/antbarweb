@@ -1,10 +1,6 @@
 import type { CollectionEntry } from 'astro:content';
-import { readMirrorArticlePage, readMirrorPublishedLabel } from './article-page';
+import { formatPublishedLabel } from './article-page';
 import { contentEntrySlug } from './content-entry';
-import {
-  collectBlogMirrorSlugs,
-  collectReviewMirrorRoutes,
-} from './mirror-assets';
 
 export type ArchiveCollection = 'blog' | 'review';
 
@@ -22,6 +18,10 @@ function parseArchiveDate(value: string): number {
   const dotted = value.match(/(\d{4})\.(\d{1,2})\.(\d{1,2})/);
   if (dotted) {
     return Date.UTC(Number(dotted[1]), Number(dotted[2]) - 1, Number(dotted[3]));
+  }
+  const spaced = value.match(/^(\d{2})\s+(\d{1,2}),\s+(\d{4})$/);
+  if (spaced) {
+    return Date.UTC(Number(spaced[3]), Number(spaced[1]) - 1, Number(spaced[2]));
   }
   const parsed = Date.parse(value);
   return Number.isNaN(parsed) ? 0 : parsed;
@@ -44,15 +44,12 @@ function buildArchiveCard(params: {
   };
 }
 
-async function cardFromContentEntry(
+function cardFromContentEntry(
   entry: CollectionEntry<'blog'> | CollectionEntry<'review'>,
   collection: ArchiveCollection,
-): Promise<SortableArchiveGridCard> {
+): SortableArchiveGridCard {
   const slug = contentEntrySlug(entry.id, collection);
-  const mirrorRoute = `${collection}/${slug}`;
-  const dateText =
-    entry.data.publishedAt ??
-    (await readMirrorPublishedLabel(mirrorRoute));
+  const dateText = formatPublishedLabel(entry.data.publishedAt);
   const image =
     entry.data.heroImage ??
     entry.data.featuredImage ??
@@ -68,49 +65,13 @@ async function cardFromContentEntry(
   });
 }
 
-async function cardFromMirror(
-  collection: ArchiveCollection,
-  slug: string,
-): Promise<SortableArchiveGridCard> {
-  const mirrorRoute = `${collection}/${slug}`;
-  const article = await readMirrorArticlePage(mirrorRoute);
-  return buildArchiveCard({
-    collection,
-    slug,
-    title: article.title,
-    image: article.featuredImage,
-    dateText: article.publishedLabel,
-    sortKey: parseArchiveDate(article.publishedLabel),
-  });
-}
-
 export async function listArchivePosts(
   collection: ArchiveCollection,
   entries: CollectionEntry<'blog'>[] | CollectionEntry<'review'>[],
 ): Promise<ArchiveGridCard[]> {
-  const cards: SortableArchiveGridCard[] = [];
-  const seen = new Set<string>();
-
-  for (const entry of entries) {
-    if (entry.id === 'index' || entry.data.slug === collection) continue;
-    const slug = contentEntrySlug(entry.id, collection);
-    seen.add(slug);
-    cards.push(await cardFromContentEntry(entry, collection));
-  }
-
-  if (collection === 'blog') {
-    for (const slug of await collectBlogMirrorSlugs()) {
-      if (seen.has(slug)) continue;
-      seen.add(slug);
-      cards.push(await cardFromMirror(collection, slug));
-    }
-  } else {
-    for (const [slug] of await collectReviewMirrorRoutes()) {
-      if (slug === 'index' || seen.has(slug)) continue;
-      seen.add(slug);
-      cards.push(await cardFromMirror(collection, slug));
-    }
-  }
+  const cards = entries
+    .filter((entry) => entry.id !== 'index' && entry.data.slug !== collection)
+    .map((entry) => cardFromContentEntry(entry, collection));
 
   return cards
     .sort((left, right) => right.sortKey - left.sortKey)
@@ -130,25 +91,13 @@ export async function resolveFeaturedArchivePost(
   entries: CollectionEntry<'blog'>[] | CollectionEntry<'review'>[],
 ): Promise<FeaturedArchivePost | null> {
   const entry = entries.find((item) => contentEntrySlug(item.id, collection) === slug);
-  if (entry) {
-    const card = await cardFromContentEntry(entry, collection);
-    return {
-      title: entry.data.title,
-      href: card.href,
-      image: card.image,
-      dateText: card.dateText ?? '',
-    };
-  }
+  if (!entry) return null;
 
-  try {
-    const article = await readMirrorArticlePage(`${collection}/${slug}`);
-    return {
-      title: article.title,
-      href: `/${collection}/${slug}/`,
-      image: article.featuredImage,
-      dateText: article.publishedLabel,
-    };
-  } catch {
-    return null;
-  }
+  const card = cardFromContentEntry(entry, collection);
+  return {
+    title: entry.data.title,
+    href: card.href,
+    image: card.image,
+    dateText: card.dateText ?? '',
+  };
 }

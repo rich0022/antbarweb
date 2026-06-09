@@ -4,6 +4,7 @@ slug: "blog/latesd-potential-disposable-vape-trends-in-2024"
 description: "What is the new trend in disposable vapes in 2024? Some professionals have predicted development trends for disposable e-cigarettes in 2024."
 excerpt: "The popularity of e-cigarettes around the world is evident to all, but at the same time, some problems and controversies have arisen. As the old Chinese saying goes, “ a big tree will draw or catch lots of wind. “"
 heroImage: "/wp-content/uploads/2024/07/2024-disposable-vape-trend.png"
+publishedAt: "05 31, 2024"
 ---
 
 ![2024 disposable vape trend](/wp-content/uploads/2024/07/2024-disposable-vape-trend.png)

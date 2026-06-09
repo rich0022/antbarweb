@@ -4,6 +4,7 @@ slug: "blog/do-disposable-e-cigarettes-need-a-total-ban"
 description: "As the overwhelming popularity of disposable e-cigarettes is relatively engulfed worldwide, but with that comes a lot of naysayers, so do we need to go all out and ban the production, sale, and advertising of disposable puffs?"
 excerpt: "ANTBAR, one of the core e-cigarette brands of the Cloupor Group, specializes in a variety of disposable kits. As the overwhelming popularity of disposable e-cigarettes is relatively engulfed worldwide, but with that comes a lot of naysayers, so do we need to go all out and ban the production, sale, and advertising of disposable puffs?"
 heroImage: "/wp-content/uploads/2024/07/vape-ban.png"
+publishedAt: "04 02, 2024"
 ---
 
 ![disposable vape ban](/wp-content/uploads/2024/07/vape-ban.png)

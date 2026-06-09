@@ -4,6 +4,7 @@ slug: "review/antbar-rocket-disposable-vape-review"
 description: "Ant bar have a variety of disposable puffs. The pop disposable Rocket vape is one of the world's pop disposable vapes. So what is its charm that makes people love it so much?"
 excerpt: "Antbar is one of the sub e-cigarette brands of the Cloupor Group. We also have a variety of pod kits, pod mod kits and disposable puffs. The disposable Rocket is one of the world’s pop disposable vapes. So what is its charm that makes people love it so much?"
 heroImage: "/wp-content/uploads/2024/07/07.png"
+publishedAt: "03 11, 2024"
 ---
 
 ![antbar rocket disposable vape](/wp-content/uploads/2024/07/07.png)

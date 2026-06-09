@@ -4,6 +4,7 @@ slug: "blog/antbar-can-you-put-cannabis-oil-in-vape-juice"
 description: "antbar the vape near you,tell the ture for you,Is cannabis oil disposable vape legal?the cannabis-containing e-liquid that is mentioned in the public's mouth generally refers to THC."
 excerpt: "Is it safe to use cannabis oil in vape? QUORA Hot Topic of the Day: For those who add cannabis oil to the composition of the e-liquid, most of the atomizer cores used are ceramic heating cores;"
 heroImage: "/wp-content/uploads/elementor/thumbs/6-quo25uxet0dlovz456v54t4cps13k1l8xd43q6jbd8.png"
+publishedAt: "05 10, 2024"
 ---
 
 ![antbar strawbeery vape juice](/wp-content/uploads/elementor/thumbs/6-quo25uxet0dlovz456v54t4cps13k1l8xd43q6jbd8.png)

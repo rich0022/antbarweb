@@ -353,19 +353,6 @@ async function collectMirrorRoutes(
   return routes;
 }
 
-export async function collectBlogMirrorSlugs(): Promise<string[]> {
-  const routes = await collectMirrorRoutes('blog');
-  return [...routes.keys()].filter((slug) => slug !== 'index');
-}
-
-export async function collectReviewMirrorRoutes(): Promise<Map<string, string>> {
-  return collectMirrorRoutes('review');
-}
-
 export async function collectDisposableMirrorRoutes(): Promise<Map<string, string>> {
   return collectMirrorRoutes('disposable');
-}
-
-export async function collectPodSysMirrorRoutes(): Promise<Map<string, string>> {
-  return collectMirrorRoutes('pod-sys');
 }

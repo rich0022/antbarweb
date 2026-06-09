@@ -9,7 +9,10 @@ import {
   readMirrorBodyHtml,
   resolveMirrorRoute,
 } from '../../lib/mirror-assets';
-import { disposableUrlSlugFromEntryId } from '../../lib/route-aliases';
+import {
+  DEDICATED_DISPOSABLE_PAGE_SLUGS,
+  disposableUrlSlugFromEntryId,
+} from '../../lib/route-aliases';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
@@ -22,11 +25,12 @@ export async function getStaticPaths() {
     if (!entry.id.startsWith('disposable/')) continue;
     if (entry.id === 'disposable' || entry.id === 'disposable/index') continue;
     const urlSlug = disposableUrlSlugFromEntryId(entry.id);
+    if (DEDICATED_DISPOSABLE_PAGE_SLUGS.has(urlSlug)) continue;
     paths.set(urlSlug, { mode: 'content' as const, entry });
   }
 
   for (const [urlSlug, mirrorRoute] of mirrorRoutes) {
-    if (urlSlug === 'index') continue;
+    if (urlSlug === 'index' || DEDICATED_DISPOSABLE_PAGE_SLUGS.has(urlSlug)) continue;
     if (!paths.has(urlSlug)) {
       paths.set(urlSlug, { mode: 'mirror' as const, slug: urlSlug, mirrorRoute });
     }

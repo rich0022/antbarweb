@@ -4,6 +4,7 @@ slug: "review/2024-best-nicotine-containing-disposable-vapes-antbar-at800"
 description: "the AT800 e-cigarette is an e-cigarette product that has been carefully designed with the dragon in the traditional 12 Chinese zodiac signs as its inspiration."
 excerpt: "The year 2024 is the Year of the Dragon in the Chinese lunar calendar, and the AT800 e-cigarette is an e-cigarette product that has been carefully designed with the dragon in the traditional 12 Chinese zodiac signs as its inspiration. The design inspiration of this e-cigarette is deeply rooted in the mysterious, auspicious, and cultural connotations of the dragon, showing the unique charm of oriental culture through the sparkling artistic craftsmanship. It is wrapped in crystal clear casting, presenting a small and exquisite body and smooth profile lines, which makes it captivate people at first sight."
 heroImage: "/wp-content/uploads/2024/07/AT800-disposable-vape.png"
+publishedAt: "04 19, 2024"
 ---
 
 ![AT800 disposable vape](/wp-content/uploads/2024/07/AT800-disposable-vape.png)
