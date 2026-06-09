@@ -100,15 +100,15 @@
   fill: currentColor;
 }
 
-/* 特性卡：三列（左右各两张，中间一张） */
+/* 特性卡：三列（左右各两张，中间一张），桌面端等高 */
 .product-kt800__features {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
+  grid-template-rows: 1fr 1fr;
   gap: clamp(10px, 3vw, 60px);
-  width: min(1600px, 92%);
+  width: var(--site-width);
   margin: 0 auto;
-  padding: clamp(20px, 4vw, 50px) clamp(16px, 3vw, 30px);
+  padding: clamp(20px, 4vw, 50px) 0;
 }
 
 .product-kt800__feature-col {
@@ -119,6 +119,7 @@
 }
 
 .product-kt800__feature-col--center {
+  grid-row: 1 / -1;
   justify-content: center;
 }
 
@@ -400,14 +401,23 @@
 
   .product-kt800__features {
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
     gap: clamp(10px, 2vw, 24px);
   }
 
-  .product-kt800__feature-col--center {
-    grid-column: 1 / -1;
-    max-width: 50%;
-    justify-self: center;
+  .product-kt800__feature-col {
+    display: contents;
   }
+
+  .product-kt800__feature-col--center {
+    display: contents;
+  }
+
+  .product-kt800__feature-col:nth-child(1) > .product-kt800__feature-card:nth-child(1) { order: 1; }
+  .product-kt800__feature-col:nth-child(1) > .product-kt800__feature-card:nth-child(2) { order: 2; }
+  .product-kt800__feature-col:nth-child(2) > .product-kt800__feature-card { order: 3; grid-column: 1 / -1; }
+  .product-kt800__feature-col:nth-child(3) > .product-kt800__feature-card:nth-child(1) { order: 4; }
+  .product-kt800__feature-col:nth-child(3) > .product-kt800__feature-card:nth-child(2) { order: 5; }
 
   .product-kt800__flavors-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -440,18 +450,23 @@
   }
 
   .product-kt800__features {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .product-kt800__feature-col {
+    display: contents;
   }
 
   .product-kt800__feature-col--center {
-    max-width: 100%;
+    display: contents;
   }
 
-  .product-kt800__feature-col,
-  .product-kt800__feature-col--center {
-    flex: 1 1 auto;
-    width: 100%;
-  }
+  .product-kt800__feature-col:nth-child(1) > .product-kt800__feature-card:nth-child(1) { order: 1; }
+  .product-kt800__feature-col:nth-child(1) > .product-kt800__feature-card:nth-child(2) { order: 2; }
+  .product-kt800__feature-col:nth-child(2) > .product-kt800__feature-card { order: 3; grid-column: 1 / -1; }
+  .product-kt800__feature-col:nth-child(3) > .product-kt800__feature-card:nth-child(1) { order: 4; }
+  .product-kt800__feature-col:nth-child(3) > .product-kt800__feature-card:nth-child(2) { order: 5; }
 
   .product-kt800__flavors-grid,
   .product-kt800__flavors-grid--last {
