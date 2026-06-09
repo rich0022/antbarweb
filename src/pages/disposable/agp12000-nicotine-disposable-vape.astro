@@ -1,29 +1,425 @@
 ---
-import SubPageLayout from '../../layouts/SubPageLayout.astro';
-import ContentBody from '../../components/ContentBody.astro';
-import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
-import { readMirrorBodyHtml } from '../../lib/mirror-assets';
-import { stripMainWrapper } from '../../lib/site-shell';
-import '../../styles/agp12000-bundle.css';
+import { getEntry } from 'astro:content';
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import {
+  AGP12000_BATTERY_PANEL,
+  AGP12000_COMPACT_PANEL,
+  AGP12000_FEATURE_GRID,
+  AGP12000_FLAVORS,
+  AGP12000_HERO,
+  AGP12000_LIQUID_SPLIT,
+  AGP12000_MESH_SECTION,
+  AGP12000_PACKAGE,
+  AGP12000_SHOWCASE_VIDEOS,
+  AGP12000_SPEC,
+  AGP12000_VIDEO,
+} from '../../data/product-agp12000';
+import '../../styles/product-agp12000.css';
 
-const mirrorRoute = 'disposable/agp12000-nicotine-disposable-vape';
-const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
-
-const postId = 3489;
-const title = 'AGP12000 Disposable Vape 14ML/12000 Puffs-ANTBAR';
-const description =
-  'The AGP12000 Nicotine Disposable Vape offers A smart large display design allows you to view key information such as liquid and battery capacity at a glance.';
-const featuredImage = '/wp-content/uploads/2024/05/LOGO.png';
+const entry = await getEntry('products', 'disposable/agp12000-nicotine-disposable-vape');
+const title = entry?.data.title ?? 'AGP12000 Disposable Vape 14ML/12000 Puffs-ANTBAR';
+const description = entry?.data.description ?? '';
 ---
 
-<SubPageLayout title={title} description={description} pageId={String(postId)}>
-  <main id="content">
-    <ContentBody html={bodyHtml} />
+<ProductLayout
+  title={title}
+  description={description}
+  bodyClass="product-page-body product-agp12000-body"
+>
+  <main id="content" class="site-main product-page product-agp12000">
+    <section
+      class="product-agp12000__hero scroll-reveal"
+      aria-labelledby="agp12000-hero-title"
+      data-animate="fadeInUp"
+    >
+      <img
+        class="product-agp12000__hero-bg"
+        src={AGP12000_HERO.image}
+        width={AGP12000_HERO.width}
+        height={AGP12000_HERO.height}
+        alt=""
+        loading="eager"
+        decoding="async"
+      />
+      <div class="product-agp12000__hero-overlay">
+        <div class="product-agp12000__hero-copy">
+          <h1 id="agp12000-hero-title" class="product-page__heading-hero">
+            {AGP12000_HERO.title}
+          </h1>
+          <p class="product-page__tagline">{AGP12000_HERO.tagline}</p>
+          <a class="product-agp12000__spec-link" href={AGP12000_HERO.specHref}>
+            <img
+              src={AGP12000_HERO.specButton.src}
+              width={AGP12000_HERO.specButton.width}
+              height={AGP12000_HERO.specButton.height}
+              alt={AGP12000_HERO.specButton.alt}
+              loading="eager"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-agp12000__video scroll-reveal" aria-label="Product video preview" data-animate="fadeInUp">
+      <video
+        id="agp12000-video-bg"
+        class="product-agp12000__video-element"
+        src={AGP12000_VIDEO.background}
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      />
+      <div class="product-agp12000__video-mask" aria-hidden="true"></div>
+      <button
+        type="button"
+        class="product-agp12000__play-btn"
+        id="agp12000-play-btn"
+        aria-haspopup="dialog"
+        aria-controls="agp12000-video-modal"
+        aria-label="Play product video"
+      >
+        <svg viewBox="0 0 448 512" aria-hidden="true">
+          <path
+            d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"
+          ></path>
+        </svg>
+        PLAY
+      </button>
+    </section>
+
+    <div
+      id="agp12000-video-modal"
+      class="product-agp12000__modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Product video"
+      hidden
+    >
+      <button
+        type="button"
+        class="product-agp12000__modal-backdrop"
+        id="agp12000-modal-backdrop"
+        aria-label="Close video"
+      ></button>
+      <div class="product-agp12000__modal-dialog">
+        <button
+          type="button"
+          class="product-agp12000__modal-close"
+          id="agp12000-modal-close"
+          aria-label="Close video"
+        >
+          ×
+        </button>
+        <video
+          id="agp12000-video-player"
+          class="product-agp12000__modal-video"
+          src={AGP12000_VIDEO.modal}
+          controls
+          playsinline
+          preload="metadata"
+        />
+      </div>
+    </div>
+
+    <section class="product-agp12000__features scroll-reveal" aria-label="Product features" data-animate="fadeInUp">
+      <div class="product-agp12000__feature-row">
+        {
+          AGP12000_FEATURE_GRID.row1.map((card, index) => (
+            <article
+              class:list={[
+                'product-agp12000__feature-card',
+                index === 0 ? 'product-agp12000__feature-card--wide' : 'product-agp12000__feature-card--narrow',
+              ]}
+              style={`background-image: url(${card.background})`}
+            >
+              <h2 class="product-agp12000__feature-heading" set:html={card.headingHtml} />
+              {'tips' in card && card.tips && (
+                <div class="product-agp12000__feature-tips">
+                  {card.tips.map((tip) => (
+                    <div class="product-agp12000__feature-tip">
+                      <img
+                        src={tip.image}
+                        width={tip.width}
+                        height={tip.height}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <p class="product-agp12000__feature-tip-label" set:html={tip.labelHtml} />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+      <div class="product-agp12000__feature-row">
+        {
+          AGP12000_FEATURE_GRID.row2.map((item) =>
+            Array.isArray(item) ? (
+              <div class="product-agp12000__feature-card--stack">
+                {item.map((card) => (
+                  <article
+                    class="product-agp12000__feature-card product-agp12000__feature-card--narrow"
+                    style={`background-image: url(${card.background})`}
+                  >
+                    <h2 class="product-agp12000__feature-heading" set:html={card.headingHtml} />
+                    {'badge' in card && card.badge && (
+                      <img
+                        class="product-agp12000__feature-badge"
+                        src={card.badge.src}
+                        width={card.badge.width}
+                        height={card.badge.height}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    )}
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <article
+                class="product-agp12000__feature-card product-agp12000__feature-card--narrow"
+                style={`background-image: url(${item.background})`}
+              >
+                <h2 class="product-agp12000__feature-heading" set:html={item.headingHtml} />
+              </article>
+            ),
+          )
+        }
+      </div>
+    </section>
+
+    <section class="product-agp12000__showcase-videos scroll-reveal" aria-hidden="true" data-animate="fadeInUp">
+      {
+        AGP12000_SHOWCASE_VIDEOS.map((src) => (
+          <video
+            class="product-agp12000__showcase-video"
+            src={src}
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          />
+        ))
+      }
+    </section>
+
+    <section class="product-agp12000__split scroll-reveal" data-animate="fadeInUp">
+      <div class="product-agp12000__split-copy">
+        <h2 class="product-agp12000__split-heading">{AGP12000_LIQUID_SPLIT.heading}</h2>
+        <p class="product-agp12000__split-text">{AGP12000_LIQUID_SPLIT.description}</p>
+      </div>
+      <figure class="product-agp12000__split-figure">
+        <img
+          src={AGP12000_LIQUID_SPLIT.image.src}
+          width={AGP12000_LIQUID_SPLIT.image.width}
+          height={AGP12000_LIQUID_SPLIT.image.height}
+          alt={AGP12000_LIQUID_SPLIT.image.alt}
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    </section>
+
+    <section class="product-agp12000__panel scroll-reveal" data-animate="fadeInUp">
+      <img
+        class="product-agp12000__panel-bg"
+        src={AGP12000_COMPACT_PANEL.image}
+        width={AGP12000_COMPACT_PANEL.width}
+        height={AGP12000_COMPACT_PANEL.height}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="product-agp12000__panel-overlay">
+        <div class="product-agp12000__panel-copy">
+          <h2 class="product-agp12000__split-heading">{AGP12000_COMPACT_PANEL.heading}</h2>
+          <p class="product-agp12000__split-text">{AGP12000_COMPACT_PANEL.description}</p>
+        </div>
+        <figure class="product-agp12000__split-figure">
+          <img
+            src={AGP12000_COMPACT_PANEL.productImage.src}
+            width={AGP12000_COMPACT_PANEL.productImage.width}
+            height={AGP12000_COMPACT_PANEL.productImage.height}
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <section class="product-agp12000__mesh scroll-reveal" data-animate="fadeInUp">
+      <h2 class="product-agp12000__mesh-heading">{AGP12000_MESH_SECTION.heading}</h2>
+      <img
+        class="product-agp12000__mesh-image"
+        src={AGP12000_MESH_SECTION.image.src}
+        width={AGP12000_MESH_SECTION.image.width}
+        height={AGP12000_MESH_SECTION.image.height}
+        alt={AGP12000_MESH_SECTION.image.alt}
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="product-agp12000__mesh-footer">
+        {
+          AGP12000_MESH_SECTION.cards.map((card) => (
+            <article
+              class="product-agp12000__mesh-card"
+              style={`background-image: url(${card.background})`}
+            >
+              <h3 class="product-agp12000__mesh-card-heading" set:html={card.headingHtml} />
+            </article>
+          ))
+        }
+        <p class="product-agp12000__mesh-text">{AGP12000_MESH_SECTION.description}</p>
+      </div>
+    </section>
+
+    <section class="product-agp12000__battery scroll-reveal" data-animate="fadeInUp">
+      <img
+        class="product-agp12000__battery-bg"
+        src={AGP12000_BATTERY_PANEL.image}
+        width={AGP12000_BATTERY_PANEL.width}
+        height={AGP12000_BATTERY_PANEL.height}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="product-agp12000__battery-overlay">
+        <div class="product-agp12000__battery-copy">
+          <h2 class="product-agp12000__split-heading">{AGP12000_BATTERY_PANEL.heading}</h2>
+          <p class="product-agp12000__split-text" set:html={AGP12000_BATTERY_PANEL.descriptionHtml} />
+        </div>
+      </div>
+    </section>
+
+    <section class="product-agp12000__flavors scroll-reveal" data-animate="fadeInUp">
+      <h2 class="product-agp12000__flavors-heading">{AGP12000_FLAVORS.heading}</h2>
+      {
+        AGP12000_FLAVORS.rows.map((row) => (
+          <div class="product-agp12000__flavors-grid">
+            {row.map((card) => (
+              <article class="product-agp12000__flavor-card">
+                <img src={card.image} width={385} height={548} alt="" loading="lazy" decoding="async" />
+                <h3 class="product-agp12000__flavor-title">{card.title}</h3>
+              </article>
+            ))}
+          </div>
+        ))
+      }
+    </section>
+
+    <section
+      id="specification"
+      class="product-agp12000__spec scroll-reveal"
+      aria-labelledby="agp12000-spec-title"
+      data-animate="fadeInUp"
+    >
+      <h2 id="agp12000-spec-title" class="product-agp12000__spec-heading">
+        {AGP12000_SPEC.heading}
+      </h2>
+      <div class="product-agp12000__spec-grid">
+        <div class="product-agp12000__spec-product">
+          <img
+            src={AGP12000_SPEC.productImage.src}
+            width={AGP12000_SPEC.productImage.width}
+            height={AGP12000_SPEC.productImage.height}
+            alt={AGP12000_SPEC.productImage.alt}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        {
+          AGP12000_SPEC.columns.map((column) => (
+            <div class="product-agp12000__spec-column">
+              {column.map((image) => (
+                <img
+                  src={image.src}
+                  width={image.width}
+                  height={image.height}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              ))}
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="product-agp12000__package scroll-reveal" aria-labelledby="agp12000-package-title" data-animate="fadeInUp">
+      <img
+        class="product-agp12000__package-bg"
+        src={AGP12000_PACKAGE.image}
+        width={AGP12000_PACKAGE.width}
+        height={AGP12000_PACKAGE.height}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="product-agp12000__package-overlay">
+        <h2 id="agp12000-package-title" class="product-agp12000__package-heading">
+          {AGP12000_PACKAGE.heading}
+        </h2>
+      </div>
+    </section>
   </main>
-  <ProductShellRuntime
-    postId={postId}
-    title={title}
-    excerpt={description}
-    featuredImage={featuredImage}
-  />
-</SubPageLayout>
+
+  <script>
+    const bgVideo = document.getElementById('agp12000-video-bg');
+    const modal = document.getElementById('agp12000-video-modal');
+    const modalVideo = document.getElementById('agp12000-video-player');
+    const playBtn = document.getElementById('agp12000-play-btn');
+    const closeBtn = document.getElementById('agp12000-modal-close');
+    const backdrop = document.getElementById('agp12000-modal-backdrop');
+
+    function openModal() {
+      if (
+        !(modal instanceof HTMLDivElement) ||
+        !(modalVideo instanceof HTMLVideoElement) ||
+        !(bgVideo instanceof HTMLVideoElement)
+      ) {
+        return;
+      }
+
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      bgVideo.pause();
+      modalVideo.currentTime = 0;
+      void modalVideo.play();
+    }
+
+    function closeModal() {
+      if (
+        !(modal instanceof HTMLDivElement) ||
+        !(modalVideo instanceof HTMLVideoElement) ||
+        !(bgVideo instanceof HTMLVideoElement)
+      ) {
+        return;
+      }
+
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      modalVideo.pause();
+      void bgVideo.play();
+    }
+
+    playBtn?.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal instanceof HTMLDivElement && !modal.hidden) {
+        closeModal();
+      }
+    });
+  </script>
+</ProductLayout>

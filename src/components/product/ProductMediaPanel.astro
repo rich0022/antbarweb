@@ -1,0 +1,67 @@
+---
+interface Props {
+  image: string;
+  width: number;
+  height: number;
+  heading?: string;
+  description?: string;
+  position?: 'top-left' | 'bottom-left' | 'top-center' | 'split-left';
+  headingHtml?: string;
+  classPrefix?: string;
+  loading?: 'eager' | 'lazy';
+}
+
+const {
+  image,
+  width,
+  height,
+  heading,
+  headingHtml,
+  description,
+  position = 'bottom-left',
+  classPrefix = 'product-media',
+  loading = 'lazy',
+} = Astro.props;
+
+const hasCopy = Boolean(heading || headingHtml || description);
+---
+
+<section class={`${classPrefix}__panel scroll-reveal`} data-animate="fadeInUp">
+  <img
+    class={`${classPrefix}__panel-bg`}
+    src={image}
+    width={width}
+    height={height}
+    alt=""
+    loading={loading}
+    decoding="async"
+  />
+  {
+    hasCopy && (
+      <div
+        class:list={[
+          `${classPrefix}__panel-overlay`,
+          position === 'top-left' && `${classPrefix}__panel-overlay--top-left`,
+          position === 'bottom-left' && `${classPrefix}__panel-overlay--bottom-left`,
+          position === 'top-center' && `${classPrefix}__panel-overlay--top-center`,
+          position === 'split-left' && `${classPrefix}__panel-overlay--split-left`,
+        ]}
+      >
+        <div class={`${classPrefix}__panel-copy`}>
+          {headingHtml && (
+            <h2
+              class={`${classPrefix}__panel-heading`}
+              set:html={headingHtml}
+            />
+          )}
+          {!headingHtml && heading && (
+            <h2 class={`${classPrefix}__panel-heading`}>{heading}</h2>
+          )}
+          {description && (
+            <p class={`${classPrefix}__panel-text`} set:html={description} />
+          )}
+        </div>
+      </div>
+    )
+  }
+</section>

@@ -41,14 +41,6 @@ const LEGACY_SHELL_CSS = [
 ];
 
 const PAGE_CSS_MAP = {
-  disposable: [
-    'wp-content/uploads/elementor/css/post-1075.css',
-    'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css',
-  ],
-  'pod-sys': [
-    'wp-content/uploads/elementor/css/post-1077.css',
-    'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css',
-  ],
   verification: ['wp-content/uploads/elementor/css/post-950.css'],
   agp12000: [
     'wp-content/uploads/elementor/css/post-3489.css',
@@ -85,7 +77,6 @@ const PAGE_CSS_MAP = {
   ],
   ahp10000: ['wp-content/uploads/elementor/css/post-1436.css'],
   atb600: ['wp-content/uploads/elementor/css/post-1403.css'],
-  dah6000: ['wp-content/uploads/elementor/css/post-1441.css'],
 };
 
 const ARTICLE_CONTENT_CSS = [

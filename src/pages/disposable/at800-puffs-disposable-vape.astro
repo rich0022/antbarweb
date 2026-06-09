@@ -1,28 +1,352 @@
 ---
-import SubPageLayout from '../../layouts/SubPageLayout.astro';
-import ContentBody from '../../components/ContentBody.astro';
-import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
-import { readMirrorBodyHtml } from '../../lib/mirror-assets';
-import { stripMainWrapper } from '../../lib/site-shell';
-import '../../styles/at800-bundle.css';
+import { getEntry } from 'astro:content';
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import ProductMediaPanel from '../../components/product/ProductMediaPanel.astro';
+import {
+  AT800_BATTERY_PANEL,
+  AT800_CHILDPROOF_PANEL,
+  AT800_FEATURE_ROW_1,
+  AT800_FEATURE_ROW_2,
+  AT800_FLAVORS,
+  AT800_HERO,
+  AT800_PANELS,
+  AT800_PUFFS_PANEL,
+  AT800_SPEC,
+  AT800_VIDEO,
+} from '../../data/product-at800';
+import '../../styles/product-at800.css';
 
-const mirrorRoute = 'disposable/at800-puffs-disposable-vape';
-const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
-
-const postId = 1972;
-const title = 'AT800 Puffs Disposable Vape 2ml-ANTBAR';
-const description = 'ANTBAR AT800 can vaporize up to 800 puffs of continuous flavor for a pleasurable vaping experience. Find & buy your favorite disposable vape.';
-const featuredImage = '/wp-content/uploads/2024/03/AT800.png';
+const entry = await getEntry('products', 'disposable/at800-puffs-disposable-vape');
+const title = entry?.data.title ?? 'AT800 2ml/800 puffs Disposable Vapes | ANTBAR';
+const description = entry?.data.description ?? '';
 ---
 
-<SubPageLayout title={title} description={description} pageId={String(postId)}>
-  <main id="content">
-    <ContentBody html={bodyHtml} />
+<ProductLayout
+  title={title}
+  description={description}
+  bodyClass="product-page-body product-at800-body"
+>
+  <main id="content" class="site-main product-page product-at800">
+    <section
+      class="product-at800__hero scroll-reveal"
+      aria-labelledby="at800-hero-title"
+      data-animate="fadeInUp"
+    >
+      <img
+        class="product-at800__hero-bg"
+        src={AT800_HERO.image}
+        width={AT800_HERO.width}
+        height={AT800_HERO.height}
+        alt=""
+        loading="eager"
+        decoding="async"
+      />
+      <div class="product-at800__hero-overlay">
+        <div class="product-at800__hero-copy">
+          <h1 id="at800-hero-title" class="product-page__heading-hero">
+            {AT800_HERO.title}
+          </h1>
+          <p class="product-page__tagline">{AT800_HERO.tagline}</p>
+          <a class="product-at800__spec-link" href={AT800_HERO.specHref}>
+            <img
+              src={AT800_HERO.specButton.src}
+              width={AT800_HERO.specButton.width}
+              height={AT800_HERO.specButton.height}
+              alt={AT800_HERO.specButton.alt}
+              loading="eager"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-at800__video scroll-reveal" aria-label="Product video preview" data-animate="fadeInUp">
+      <video
+        id="at800-video-bg"
+        class="product-at800__video-element"
+        src={AT800_VIDEO.background}
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      />
+      <div class="product-at800__video-mask" aria-hidden="true"></div>
+      <button
+        type="button"
+        class="product-at800__play-btn"
+        id="at800-play-btn"
+        aria-haspopup="dialog"
+        aria-controls="at800-video-modal"
+        aria-label="Play product video"
+      >
+        <svg viewBox="0 0 448 512" aria-hidden="true">
+          <path
+            d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"
+          ></path>
+        </svg>
+        PLAY
+      </button>
+    </section>
+
+    <div
+      id="at800-video-modal"
+      class="product-at800__modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Product video"
+      hidden
+    >
+      <button
+        type="button"
+        class="product-at800__modal-backdrop"
+        id="at800-modal-backdrop"
+        aria-label="Close video"
+      ></button>
+      <div class="product-at800__modal-dialog">
+        <button
+          type="button"
+          class="product-at800__modal-close"
+          id="at800-modal-close"
+          aria-label="Close video"
+        >
+          ×
+        </button>
+        <video
+          id="at800-video-player"
+          class="product-at800__modal-video"
+          src={AT800_VIDEO.modal}
+          controls
+          playsinline
+          preload="metadata"
+        />
+      </div>
+    </div>
+
+    <section class="product-at800__features scroll-reveal" aria-label="Product features" data-animate="fadeInUp">
+      <div class="product-at800__feature-row product-at800__feature-row--top">
+        {
+          AT800_FEATURE_ROW_1.map((card) => (
+            <article
+              class="product-at800__feature-card"
+              style={`background-image: url(${card.background})`}
+            >
+              {card.headingHtml ? (
+                <h2 class="product-at800__feature-heading" set:html={card.headingHtml} />
+              ) : (
+                <h2 class="product-at800__feature-heading">{card.heading}</h2>
+              )}
+            </article>
+          ))
+        }
+      </div>
+      <div class="product-at800__feature-row product-at800__feature-row--bottom">
+        {
+          AT800_FEATURE_ROW_2.map((card) => (
+            <article
+              class="product-at800__feature-card"
+              style={`background-image: url(${card.background})`}
+            >
+              <h2 class="product-at800__feature-heading">{card.heading}</h2>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    {
+      AT800_PANELS.map((panel) => (
+        <ProductMediaPanel
+          classPrefix="product-at800"
+          image={panel.image}
+          width={panel.width}
+          height={panel.height}
+          heading={panel.heading}
+          headingHtml={panel.headingHtml}
+          description={panel.description}
+          position={panel.position}
+        />
+      ))
+    }
+
+    <section class="product-at800__puffs-panel scroll-reveal" data-animate="fadeInUp">
+      <img
+        class="product-at800__puffs-bg"
+        src={AT800_PUFFS_PANEL.image}
+        width={AT800_PUFFS_PANEL.width}
+        height={AT800_PUFFS_PANEL.height}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="product-at800__puffs-overlay">
+        <div class="product-at800__puffs-copy">
+          <h2 class="product-at800__panel-heading">{AT800_PUFFS_PANEL.heading}</h2>
+          <p class="product-at800__panel-text">{AT800_PUFFS_PANEL.description}</p>
+          <div class="product-at800__puffs-badges">
+            {
+              AT800_PUFFS_PANEL.badges.map((badge) => (
+                <img
+                  src={badge.src}
+                  width={badge.width}
+                  height={badge.height}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-at800__story-panel scroll-reveal" data-animate="fadeInUp">
+      <img
+        class="product-at800__story-bg"
+        src={AT800_BATTERY_PANEL.image}
+        width={AT800_BATTERY_PANEL.width}
+        height={AT800_BATTERY_PANEL.height}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="product-at800__story-overlay product-at800__story-overlay--battery">
+        <div class="product-at800__story-copy">
+          <h2 class="product-at800__story-heading">{AT800_BATTERY_PANEL.heading}</h2>
+          <p class="product-at800__story-text">{AT800_BATTERY_PANEL.description}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-at800__story-panel scroll-reveal" data-animate="fadeInUp">
+      <img
+        class="product-at800__story-bg"
+        src={AT800_CHILDPROOF_PANEL.image}
+        width={AT800_CHILDPROOF_PANEL.width}
+        height={AT800_CHILDPROOF_PANEL.height}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="product-at800__story-overlay product-at800__story-overlay--childproof-heading">
+        <h2 class="product-at800__story-heading">{AT800_CHILDPROOF_PANEL.heading}</h2>
+      </div>
+      <div class="product-at800__story-overlay product-at800__story-overlay--childproof-text">
+        <p class="product-at800__story-text" set:html={AT800_CHILDPROOF_PANEL.description} />
+      </div>
+    </section>
+
+    <section class="product-at800__flavors scroll-reveal" data-animate="fadeInUp">
+      <h2 class="product-at800__flavors-heading">{AT800_FLAVORS.heading}</h2>
+      {
+        AT800_FLAVORS.rows.map((row) => (
+          <div class="product-at800__flavors-grid">
+            {row.map((card) => (
+              <article
+                class="product-at800__flavor-card"
+                style={`background-image: url(${card.background})`}
+              >
+                {card.headingHtml ? (
+                  <h3 class="product-at800__flavor-heading" set:html={card.headingHtml} />
+                ) : (
+                  <h3 class="product-at800__flavor-heading">{card.heading}</h3>
+                )}
+              </article>
+            ))}
+          </div>
+        ))
+      }
+    </section>
+
+    <section
+      id="specification"
+      class="product-at800__spec scroll-reveal"
+      aria-labelledby="at800-spec-title"
+      data-animate="fadeInUp"
+    >
+      <h2 id="at800-spec-title" class="product-at800__spec-heading">
+        {AT800_SPEC.heading}
+      </h2>
+      <div class="product-at800__spec-grid">
+        <div class="product-at800__spec-product">
+          <img
+            src={AT800_SPEC.productImage.src}
+            width={AT800_SPEC.productImage.width}
+            height={AT800_SPEC.productImage.height}
+            alt={AT800_SPEC.productImage.alt}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        {
+          AT800_SPEC.columns.map((column) => (
+            <div class="product-at800__spec-column">
+              {column.map((image) => (
+                <img
+                  src={image.src}
+                  width={image.width}
+                  height={image.height}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              ))}
+            </div>
+          ))
+        }
+      </div>
+    </section>
   </main>
-  <ProductShellRuntime
-    postId={postId}
-    title={title}
-    excerpt={description}
-    featuredImage={featuredImage}
-  />
-</SubPageLayout>
+
+  <script>
+    const bgVideo = document.getElementById('at800-video-bg');
+    const modal = document.getElementById('at800-video-modal');
+    const modalVideo = document.getElementById('at800-video-player');
+    const playBtn = document.getElementById('at800-play-btn');
+    const closeBtn = document.getElementById('at800-modal-close');
+    const backdrop = document.getElementById('at800-modal-backdrop');
+
+    function openModal() {
+      if (
+        !(modal instanceof HTMLDivElement) ||
+        !(modalVideo instanceof HTMLVideoElement) ||
+        !(bgVideo instanceof HTMLVideoElement)
+      ) {
+        return;
+      }
+
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      bgVideo.pause();
+      modalVideo.currentTime = 0;
+      void modalVideo.play();
+    }
+
+    function closeModal() {
+      if (
+        !(modal instanceof HTMLDivElement) ||
+        !(modalVideo instanceof HTMLVideoElement) ||
+        !(bgVideo instanceof HTMLVideoElement)
+      ) {
+        return;
+      }
+
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      modalVideo.pause();
+      void bgVideo.play();
+    }
+
+    playBtn?.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal instanceof HTMLDivElement && !modal.hidden) {
+        closeModal();
+      }
+    });
+  </script>
+</ProductLayout>

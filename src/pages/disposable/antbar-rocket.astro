@@ -1,28 +1,136 @@
 ---
-import SubPageLayout from '../../layouts/SubPageLayout.astro';
-import ContentBody from '../../components/ContentBody.astro';
-import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
-import { readMirrorBodyHtml } from '../../lib/mirror-assets';
-import { stripMainWrapper } from '../../lib/site-shell';
-import '../../styles/rocket-bundle.css';
+import { getEntry } from 'astro:content';
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import ProductMediaPanel from '../../components/product/ProductMediaPanel.astro';
+import {
+  ROCKET_FLAVORS,
+  ROCKET_HERO,
+  ROCKET_HIGHLIGHTS,
+  ROCKET_PACKAGING,
+  ROCKET_SHOWCASE_IMAGE,
+  ROCKET_SPEC,
+  ROCKET_STORIES,
+} from '../../data/product-rocket';
+import '../../styles/product-rocket.css';
 
-const mirrorRoute = 'disposable/antbar-rocket';
-const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
-
-const postId = 1429;
-const title = 'ROCKET Disposable Vape-ANTBAR';
-const description = 'ANTBAR ROCKET small and lightweight, the best disposable vapes online wholesale.';
-const featuredImage = '/wp-content/uploads/2024/03/ROCKET-1.png';
+const entry = await getEntry('products', 'disposable/antbar-rocket');
+const title = entry?.data.title ?? 'ROCKET Disposable Vape-ANTBAR';
+const description = entry?.data.description ?? '';
 ---
 
-<SubPageLayout title={title} description={description} pageId={String(postId)}>
-  <main id="content">
-    <ContentBody html={bodyHtml} />
+<ProductLayout
+  title={title}
+  description={description}
+  bodyClass="product-page-body product-rocket-body"
+>
+  <main id="content" class="site-main product-page product-rocket">
+    <section
+      class="product-rocket__hero scroll-reveal"
+      aria-labelledby="rocket-hero-title"
+      data-animate="fadeInUp"
+    >
+      <img
+        class="product-rocket__hero-bg"
+        src={ROCKET_HERO.image}
+        width={ROCKET_HERO.width}
+        height={ROCKET_HERO.height}
+        alt=""
+        loading="eager"
+        decoding="async"
+      />
+      <div class="product-rocket__hero-overlay">
+        <div class="product-rocket__hero-copy">
+          <h1 id="rocket-hero-title" class="product-page__heading-hero">
+            {ROCKET_HERO.title}
+          </h1>
+          <p class="product-page__tagline">{ROCKET_HERO.subtitle}</p>
+        </div>
+        <a class="product-rocket__spec-link" href={ROCKET_HERO.specHref}>
+          <img
+            src={ROCKET_HERO.specButton.src}
+            width={ROCKET_HERO.specButton.width}
+            height={ROCKET_HERO.specButton.height}
+            alt={ROCKET_HERO.specButton.alt}
+            loading="eager"
+            decoding="async"
+          />
+        </a>
+      </div>
+    </section>
+
+    <section class="product-rocket__highlights scroll-reveal" data-animate="fadeInUp">
+      <h2 class="product-page__heading-section">{ROCKET_HIGHLIGHTS.heading}</h2>
+      <p class="product-page__text">{ROCKET_HIGHLIGHTS.description}</p>
+    </section>
+
+    <section class="scroll-reveal" aria-hidden="true" data-animate="fadeInUp">
+      <img
+        class="product-rocket__showcase-image"
+        src={ROCKET_SHOWCASE_IMAGE.src}
+        width={ROCKET_SHOWCASE_IMAGE.width}
+        height={ROCKET_SHOWCASE_IMAGE.height}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+    </section>
+
+    {
+      ROCKET_STORIES.map((story, index) => (
+        <ProductMediaPanel
+          classPrefix="product-rocket"
+          image={story.image}
+          width={story.width}
+          height={story.height}
+          heading={story.heading}
+          description={story.description}
+          position={story.position}
+          loading={index === 0 ? 'eager' : 'lazy'}
+        />
+      ))
+    }
+
+    <section class="product-rocket__flavors scroll-reveal" data-animate="fadeInUp">
+      <h2 class="product-page__heading-section">{ROCKET_FLAVORS.heading}</h2>
+      <p class="product-page__text" set:html={ROCKET_FLAVORS.description} />
+      <img
+        class="product-rocket__flavors-image"
+        src={ROCKET_FLAVORS.image.src}
+        width={ROCKET_FLAVORS.image.width}
+        height={ROCKET_FLAVORS.image.height}
+        alt={ROCKET_FLAVORS.image.alt}
+        loading="lazy"
+        decoding="async"
+      />
+    </section>
+
+    <h2
+      id="specfication"
+      class="product-rocket__spec-heading scroll-reveal"
+      data-animate="fadeInUp"
+    >
+      {ROCKET_SPEC.heading}
+    </h2>
+
+    <section class="scroll-reveal" aria-labelledby="specfication" data-animate="fadeInUp">
+      <img
+        class="product-rocket__spec-image"
+        src={ROCKET_SPEC.image.src}
+        width={ROCKET_SPEC.image.width}
+        height={ROCKET_SPEC.image.height}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+    </section>
+
+    <ProductMediaPanel
+      classPrefix="product-rocket"
+      image={ROCKET_PACKAGING.image}
+      width={ROCKET_PACKAGING.width}
+      height={ROCKET_PACKAGING.height}
+      heading={ROCKET_PACKAGING.heading}
+      position="top-left"
+    />
   </main>
-  <ProductShellRuntime
-    postId={postId}
-    title={title}
-    excerpt={description}
-    featuredImage={featuredImage}
-  />
-</SubPageLayout>
+</ProductLayout>

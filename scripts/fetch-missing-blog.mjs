@@ -52,28 +52,7 @@ async function fetchPage(slug) {
   return true;
 }
 
-const htmlChunks = [await readFile(BLOG_INDEX, 'utf8')];
-const page2Path = path.join(MIRROR_DIR, 'blog', '2', 'index.html');
-if (await exists(page2Path)) {
-  htmlChunks.push(await readFile(page2Path, 'utf8'));
-} else {
-  try {
-    const response = await fetch(`${ORIGIN}/blog/2/`, {
-      headers: { 'User-Agent': 'antbarweb-mirror-fetch/1.0' },
-    });
-    if (response.ok) {
-      const html = normalizeMirrorHtml(await response.text());
-      await mkdir(path.join(MIRROR_DIR, 'blog', '2'), { recursive: true });
-      await writeFile(page2Path, html, 'utf8');
-      htmlChunks.push(html);
-      console.log('Fetched blog/2/');
-    }
-  } catch (error) {
-    console.warn('Could not fetch blog/2/', error);
-  }
-}
-
-const slugs = [...new Set(htmlChunks.flatMap(extractBlogLinks))];
+const slugs = extractBlogLinks(await readFile(BLOG_INDEX, 'utf8'));
 let fetched = 0;
 let skipped = 0;
 

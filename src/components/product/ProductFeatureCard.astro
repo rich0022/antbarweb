@@ -1,0 +1,46 @@
+---
+interface Props {
+  image: string;
+  width: number;
+  height: number;
+  lines: string[];
+  labelPosition?: 'top' | 'bottom';
+  labelAlign?: 'left' | 'center' | 'right';
+  equalHeight?: boolean;
+}
+
+const {
+  image,
+  width,
+  height,
+  lines,
+  labelPosition = 'top',
+  labelAlign = 'center',
+  equalHeight = false,
+} = Astro.props;
+---
+
+<article
+  class:list={[
+    'product-sa8000__feature-card',
+    equalHeight && 'product-sa8000__feature-card--equal-height',
+    labelPosition === 'bottom' && 'product-sa8000__feature-card--label-bottom',
+    labelAlign === 'left' && 'product-sa8000__feature-card--label-left',
+    labelAlign === 'right' && 'product-sa8000__feature-card--label-right',
+  ]}
+>
+  <img
+    class="product-sa8000__feature-card-image"
+    src={image}
+    width={width}
+    height={height}
+    alt=""
+    loading="lazy"
+    decoding="async"
+  />
+  <div class="product-sa8000__feature-card-label">
+    {lines.map((line) => (
+      <p>{line}</p>
+    ))}
+  </div>
+</article>

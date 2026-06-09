@@ -1,28 +1,128 @@
 ---
-import SubPageLayout from '../../layouts/SubPageLayout.astro';
-import ContentBody from '../../components/ContentBody.astro';
-import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
-import { readMirrorBodyHtml } from '../../lib/mirror-assets';
-import { stripMainWrapper } from '../../lib/site-shell';
-import '../../styles/ag600-bundle.css';
+import { getEntry } from 'astro:content';
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import {
+  AG600_FOOTER_IMAGE,
+  AG600_HERO,
+  AG600_HIGHLIGHTS,
+  AG600_IMAGES,
+  AG600_SPEC,
+} from '../../data/product-ag600';
+import '../../styles/product-ag600.css';
 
-const mirrorRoute = 'disposable/disposable/antbar-ag600';
-const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
-
-const postId = 1435;
-const title = 'AG600 Disposable Vape 600 Puffs-ANTBAR';
-const description = 'AG600 only weight 31g, Mesh Coil, 3.6V Constant Voltage. The popular disposable vape in 2024!';
-const featuredImage = '/wp-content/uploads/2024/03/AG600.png';
+const entry = await getEntry('products', 'disposable/disposable/antbar-ag600');
+const title = entry?.data.title ?? 'AG600 Disposable Vape 600 Puffs-ANTBAR';
+const description = entry?.data.description ?? '';
 ---
 
-<SubPageLayout title={title} description={description} pageId={String(postId)}>
-  <main id="content">
-    <ContentBody html={bodyHtml} />
+<ProductLayout
+  title={title}
+  description={description}
+  bodyClass="product-page-body product-ag600-body"
+>
+  <main id="content" class="site-main product-page product-ag600">
+    <section
+      class="product-ag600__hero scroll-reveal"
+      aria-labelledby="ag600-hero-title"
+      data-animate="fadeInUp"
+    >
+      <img
+        class="product-ag600__hero-bg"
+        src={AG600_HERO.image}
+        width={AG600_HERO.width}
+        height={AG600_HERO.height}
+        alt=""
+        loading="eager"
+        decoding="async"
+      />
+      <div class="product-ag600__hero-overlay">
+        <div class="product-ag600__hero-copy">
+          <h1 id="ag600-hero-title" class="product-page__heading-hero">
+            {AG600_HERO.title}
+          </h1>
+          <p class="product-page__tagline">{AG600_HERO.tagline}</p>
+          <a class="product-ag600__spec-link" href={AG600_HERO.specHref}>
+            <img
+              src={AG600_HERO.specButton.src}
+              width={AG600_HERO.specButton.width}
+              height={AG600_HERO.specButton.height}
+              alt={AG600_HERO.specButton.alt}
+              loading="eager"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-ag600__highlights scroll-reveal" data-animate="fadeInUp">
+      <h2 class="product-page__heading-section">{AG600_HIGHLIGHTS.heading}</h2>
+      <p class="product-page__text" set:html={AG600_HIGHLIGHTS.description} />
+    </section>
+
+    {
+      AG600_IMAGES.map((image, index) => (
+        <img
+          class="product-ag600__image scroll-reveal"
+          src={image.src}
+          width={image.width}
+          height={image.height}
+          alt=""
+          loading={index === 0 ? 'eager' : 'lazy'}
+          decoding="async"
+          data-animate="fadeInUp"
+        />
+      ))
+    }
+
+    <section
+      id="specification"
+      class="product-ag600__spec scroll-reveal"
+      aria-labelledby="ag600-spec-title"
+      data-animate="fadeInUp"
+    >
+      <h2 id="ag600-spec-title" class="product-ag600__spec-heading">
+        {AG600_SPEC.heading}
+      </h2>
+      <div class="product-ag600__spec-grid">
+        <div class="product-ag600__spec-product">
+          <img
+            src={AG600_SPEC.productImage.src}
+            width={AG600_SPEC.productImage.width}
+            height={AG600_SPEC.productImage.height}
+            alt={AG600_SPEC.productImage.alt}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        {
+          AG600_SPEC.columns.map((column) => (
+            <div class="product-ag600__spec-column">
+              {column.map((image) => (
+                <img
+                  src={image.src}
+                  width={image.width}
+                  height={image.height}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              ))}
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <img
+      class="product-ag600__image scroll-reveal"
+      src={AG600_FOOTER_IMAGE.src}
+      width={AG600_FOOTER_IMAGE.width}
+      height={AG600_FOOTER_IMAGE.height}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      data-animate="fadeInUp"
+    />
   </main>
-  <ProductShellRuntime
-    postId={postId}
-    title={title}
-    excerpt={description}
-    featuredImage={featuredImage}
-  />
-</SubPageLayout>
+</ProductLayout>

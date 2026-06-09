@@ -11,8 +11,6 @@ const ROOT = join(import.meta.dirname, '..');
 const PUBLIC = join(ROOT, 'public');
 
 const PAGE_CSS_MAP = {
-  disposable: ['post-1075.css', 'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css'],
-  'pod-sys': ['post-1077.css', 'wp-content/plugins/elementor-pro/assets/css/widget-posts.min.css'],
   verification: ['post-950.css'],
   'agp12000': [
     'post-3489.css',
@@ -52,9 +50,6 @@ const PAGE_CSS_MAP = {
   ],
   atb600: [
     'post-1403.css',
-  ],
-  dah6000: [
-    'post-1441.css',
   ],
 };
 

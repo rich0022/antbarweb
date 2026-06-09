@@ -1,29 +1,283 @@
 ---
-import SubPageLayout from '../../layouts/SubPageLayout.astro';
-import ContentBody from '../../components/ContentBody.astro';
-import ProductShellRuntime from '../../components/article/ProductShellRuntime.astro';
-import { readMirrorBodyHtml } from '../../lib/mirror-assets';
-import { stripMainWrapper } from '../../lib/site-shell';
-import '../../styles/kt800-bundle.css';
+import { getEntry } from 'astro:content';
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import ProductMediaPanel from '../../components/product/ProductMediaPanel.astro';
+import {
+  KT800_FEATURE_COLUMNS,
+  KT800_FLAVORS,
+  KT800_FOOTER_IMAGE,
+  KT800_HERO,
+  KT800_PANELS,
+  KT800_SPEC,
+  KT800_VIDEO,
+} from '../../data/product-kt800';
+import '../../styles/product-kt800.css';
 
-const mirrorRoute = 'disposable/antbar-kt800';
-const bodyHtml = stripMainWrapper(await readMirrorBodyHtml(mirrorRoute));
-
-const postId = 2818;
-const title = 'KT800 Disposable Vape Kits Online Wholesale-ANTBAR';
-const description =
-  'Antbar The Disposable Vape Kits Online Sale, Large port, large capacity, small battery, can be filled with oil, type-C charging.';
-const featuredImage = '/wp-content/uploads/2024/05/KT800.jpg';
+const entry = await getEntry('products', 'disposable/antbar-kt800');
+const title = entry?.data.title ?? 'KT800 Disposable Vape Kits Online Wholesale-ANTBAR';
+const description = entry?.data.description ?? '';
 ---
 
-<SubPageLayout title={title} description={description} pageId={String(postId)}>
-  <main id="content">
-    <ContentBody html={bodyHtml} />
+<ProductLayout
+  title={title}
+  description={description}
+  bodyClass="product-page-body product-kt800-body"
+>
+  <main id="content" class="site-main product-page product-kt800">
+    <section
+      class="product-kt800__hero scroll-reveal"
+      aria-labelledby="kt800-hero-title"
+      data-animate="fadeInUp"
+    >
+      <img
+        class="product-kt800__hero-bg"
+        src={KT800_HERO.image}
+        width={KT800_HERO.width}
+        height={KT800_HERO.height}
+        alt=""
+        loading="eager"
+        decoding="async"
+      />
+      <div class="product-kt800__hero-overlay">
+        <div class="product-kt800__hero-copy">
+          <h1 id="kt800-hero-title" class="product-page__heading-hero">
+            {KT800_HERO.title}
+          </h1>
+          <p class="product-page__tagline">{KT800_HERO.tagline}</p>
+          <a class="product-kt800__spec-link" href={KT800_HERO.specHref}>
+            <img
+              src={KT800_HERO.specButton.src}
+              width={KT800_HERO.specButton.width}
+              height={KT800_HERO.specButton.height}
+              alt={KT800_HERO.specButton.alt}
+              loading="eager"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-kt800__video scroll-reveal" aria-label="Product video preview" data-animate="fadeInUp">
+      <video
+        id="kt800-video-bg"
+        class="product-kt800__video-element"
+        src={KT800_VIDEO.background}
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      />
+      <div class="product-kt800__video-mask" aria-hidden="true"></div>
+      <button
+        type="button"
+        class="product-kt800__play-btn"
+        id="kt800-play-btn"
+        aria-haspopup="dialog"
+        aria-controls="kt800-video-modal"
+        aria-label="Play product video"
+      >
+        <svg viewBox="0 0 448 512" aria-hidden="true">
+          <path
+            d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"
+          ></path>
+        </svg>
+        PLAY
+      </button>
+    </section>
+
+    <div
+      id="kt800-video-modal"
+      class="product-kt800__modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Product video"
+      hidden
+    >
+      <button
+        type="button"
+        class="product-kt800__modal-backdrop"
+        id="kt800-modal-backdrop"
+        aria-label="Close video"
+      ></button>
+      <div class="product-kt800__modal-dialog">
+        <button
+          type="button"
+          class="product-kt800__modal-close"
+          id="kt800-modal-close"
+          aria-label="Close video"
+        >
+          ×
+        </button>
+        <video
+          id="kt800-video-player"
+          class="product-kt800__modal-video"
+          src={KT800_VIDEO.modal}
+          controls
+          playsinline
+          preload="metadata"
+        />
+      </div>
+    </div>
+
+    <section class="product-kt800__features scroll-reveal" aria-label="Product features" data-animate="fadeInUp">
+      {
+        KT800_FEATURE_COLUMNS.map((column, columnIndex) => (
+          <div
+            class:list={[
+              'product-kt800__feature-col',
+              columnIndex === 1 && 'product-kt800__feature-col--center',
+            ]}
+          >
+            {column.map((card) => (
+              <article
+                class="product-kt800__feature-card"
+                style={`background-image: url(${card.background})`}
+              >
+                {card.headingHtml ? (
+                  <h2 class="product-kt800__feature-heading" set:html={card.headingHtml} />
+                ) : (
+                  <h2 class="product-kt800__feature-heading">{card.heading}</h2>
+                )}
+              </article>
+            ))}
+          </div>
+        ))
+      }
+    </section>
+
+    {
+      KT800_PANELS.map((panel) => (
+        <ProductMediaPanel
+          classPrefix="product-kt800"
+          image={panel.image}
+          width={panel.width}
+          height={panel.height}
+          headingHtml={panel.headingHtml}
+          description={panel.description}
+          position={panel.position}
+        />
+      ))
+    }
+
+    <section class="product-kt800__flavors scroll-reveal" data-animate="fadeInUp">
+      <h2 class="product-kt800__flavors-heading">{KT800_FLAVORS.heading}</h2>
+      {
+        KT800_FLAVORS.rows.map((row, rowIndex) => (
+          <div
+            class:list={[
+              'product-kt800__flavors-grid',
+              rowIndex === KT800_FLAVORS.rows.length - 1 && 'product-kt800__flavors-grid--last',
+            ]}
+          >
+            {row.map((card) => (
+              <article
+                class="product-kt800__flavor-card"
+                style={`background-image: url(${card.background})`}
+              >
+                {card.headingHtml ? (
+                  <h3 class="product-kt800__flavor-heading" set:html={card.headingHtml} />
+                ) : (
+                  <h3 class="product-kt800__flavor-heading">{card.heading}</h3>
+                )}
+              </article>
+            ))}
+          </div>
+        ))
+      }
+    </section>
+
+    <section
+      id="specification"
+      class="product-kt800__spec scroll-reveal"
+      aria-labelledby="kt800-spec-title"
+      data-animate="fadeInUp"
+    >
+      <img
+        class="product-kt800__spec-bg"
+        src={KT800_SPEC.image}
+        width={KT800_SPEC.width}
+        height={KT800_SPEC.height}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="product-kt800__spec-overlay">
+        <h2 id="kt800-spec-title" class="product-kt800__spec-heading">
+          {KT800_SPEC.heading}
+        </h2>
+        <ul class="product-kt800__spec-list">
+          {
+            KT800_SPEC.items.map((item) => (
+              <li class="product-kt800__spec-item">
+                <b>{item.label}:</b> {item.value}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <img
+      class="product-kt800__footer-image scroll-reveal"
+      src={KT800_FOOTER_IMAGE.src}
+      width={KT800_FOOTER_IMAGE.width}
+      height={KT800_FOOTER_IMAGE.height}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      data-animate="fadeInUp"
+    />
   </main>
-  <ProductShellRuntime
-    postId={postId}
-    title={title}
-    excerpt={description}
-    featuredImage={featuredImage}
-  />
-</SubPageLayout>
+
+  <script>
+    const bgVideo = document.getElementById('kt800-video-bg');
+    const modal = document.getElementById('kt800-video-modal');
+    const modalVideo = document.getElementById('kt800-video-player');
+    const playBtn = document.getElementById('kt800-play-btn');
+    const closeBtn = document.getElementById('kt800-modal-close');
+    const backdrop = document.getElementById('kt800-modal-backdrop');
+
+    function openModal() {
+      if (
+        !(modal instanceof HTMLDivElement) ||
+        !(modalVideo instanceof HTMLVideoElement) ||
+        !(bgVideo instanceof HTMLVideoElement)
+      ) {
+        return;
+      }
+
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      bgVideo.pause();
+      modalVideo.currentTime = 0;
+      void modalVideo.play();
+    }
+
+    function closeModal() {
+      if (
+        !(modal instanceof HTMLDivElement) ||
+        !(modalVideo instanceof HTMLVideoElement) ||
+        !(bgVideo instanceof HTMLVideoElement)
+      ) {
+        return;
+      }
+
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      modalVideo.pause();
+      void bgVideo.play();
+    }
+
+    playBtn?.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal instanceof HTMLDivElement && !modal.hidden) {
+        closeModal();
+      }
+    });
+  </script>
+</ProductLayout>

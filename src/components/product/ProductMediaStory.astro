@@ -1,0 +1,70 @@
+---
+interface ExtraImage {
+  src: string;
+  width: number;
+  height: number;
+  alt?: string;
+}
+
+interface Props {
+  image: string;
+  width: number;
+  height: number;
+  heading: string;
+  description: string;
+  align?: 'center' | 'left' | 'right';
+  lightText?: boolean;
+  extraImage?: ExtraImage;
+}
+
+const {
+  image,
+  width,
+  height,
+  heading,
+  description,
+  align = 'left',
+  lightText = false,
+  extraImage,
+} = Astro.props;
+---
+
+<section class="product-sa8000__media scroll-reveal" data-animate="fadeInUp">
+  <img
+    class="product-sa8000__media-bg"
+    src={image}
+    width={width}
+    height={height}
+    alt=""
+    loading="lazy"
+    decoding="async"
+  />
+  <div
+    class:list={[
+      'product-sa8000__media-overlay',
+      'product-sa8000__story-overlay',
+      align === 'center' && 'product-sa8000__story-overlay--center',
+      align === 'left' && 'product-sa8000__story-overlay--left',
+      align === 'right' && 'product-sa8000__story-overlay--right',
+      lightText && 'product-sa8000__story-overlay--light',
+    ]}
+  >
+    <div class="product-sa8000__story-copy">
+      <h2 class="product-sa8000__story-heading">{heading}</h2>
+      <p class="product-sa8000__story-text" set:html={description} />
+      {
+        extraImage && (
+          <img
+            class="product-sa8000__story-extra"
+            src={extraImage.src}
+            width={extraImage.width}
+            height={extraImage.height}
+            alt={extraImage.alt ?? ''}
+            loading="lazy"
+            decoding="async"
+          />
+        )
+      }
+    </div>
+  </div>
+</section>
