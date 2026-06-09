@@ -211,7 +211,8 @@ const description = entry?.data.description ?? '';
           {
             KT800_SPEC.items.map((item) => (
               <li class="product-kt800__spec-item">
-                <b>{item.label}:</b> {item.value}
+                <b>{item.label}</b>
+                <span>{item.value}</span>
               </li>
             ))
           }
