@@ -169,17 +169,17 @@ export const AGP12000_SPEC = {
   columns: [
     [
       { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_05-jpg.webp', width: 408, height: 287 },
-      { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_07-jpg.webp', width: 408, height: 287 },
-      { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_09-jpg.webp', width: 408, height: 287 },
-    ],
-    [
       { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_14-jpg.webp', width: 408, height: 288 },
-      { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_15-jpg.webp', width: 408, height: 288 },
-      { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_16-jpg.webp', width: 408, height: 288 },
+      { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_20-jpg.webp', width: 408, height: 288 },
     ],
     [
-      { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_20-jpg.webp', width: 408, height: 288 },
+      { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_07-jpg.webp', width: 408, height: 287 },
+      { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_15-jpg.webp', width: 408, height: 288 },
       { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_21-jpg.webp', width: 408, height: 288 },
+    ],
+    [
+      { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_09-jpg.webp', width: 408, height: 287 },
+      { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_16-jpg.webp', width: 408, height: 288 },
       { src: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11-7_22-jpg.webp', width: 408, height: 288 },
     ],
   ],

@@ -19,6 +19,11 @@ import '../../styles/product-agp12000.css';
 const entry = await getEntry('products', 'disposable/agp12000-nicotine-disposable-vape');
 const title = entry?.data.title ?? 'AGP12000 Disposable Vape 14ML/12000 Puffs-ANTBAR';
 const description = entry?.data.description ?? '';
+const dripTipsFeature = AGP12000_FEATURE_GRID.row1[0];
+const batteryFeature = AGP12000_FEATURE_GRID.row1[1];
+const liquidFeature = AGP12000_FEATURE_GRID.row2[0];
+const ledMeshFeatures = Array.isArray(AGP12000_FEATURE_GRID.row2[1]) ? AGP12000_FEATURE_GRID.row2[1] : [];
+const compactFeature = AGP12000_FEATURE_GRID.row2[2];
 ---
 
 <ProductLayout
@@ -125,73 +130,77 @@ const description = entry?.data.description ?? '';
     </div>
 
     <section class="product-agp12000__features scroll-reveal" aria-label="Product features" data-animate="fadeInUp">
-      <div class="product-agp12000__feature-row">
-        {
-          AGP12000_FEATURE_GRID.row1.map((card, index) => (
-            <article
-              class:list={[
-                'product-agp12000__feature-card',
-                index === 0 ? 'product-agp12000__feature-card--wide' : 'product-agp12000__feature-card--narrow',
-              ]}
-              style={`background-image: url(${card.background})`}
-            >
-              <h2 class="product-agp12000__feature-heading" set:html={card.headingHtml} />
-              {'tips' in card && card.tips && (
-                <div class="product-agp12000__feature-tips">
-                  {card.tips.map((tip) => (
-                    <div class="product-agp12000__feature-tip">
-                      <img
-                        src={tip.image}
-                        width={tip.width}
-                        height={tip.height}
-                        alt=""
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <p class="product-agp12000__feature-tip-label" set:html={tip.labelHtml} />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </article>
-          ))
-        }
-      </div>
-      <div class="product-agp12000__feature-row">
-        {
-          AGP12000_FEATURE_GRID.row2.map((item) =>
-            Array.isArray(item) ? (
-              <div class="product-agp12000__feature-card--stack">
-                {item.map((card) => (
-                  <article
-                    class="product-agp12000__feature-card product-agp12000__feature-card--narrow"
-                    style={`background-image: url(${card.background})`}
-                  >
-                    <h2 class="product-agp12000__feature-heading" set:html={card.headingHtml} />
-                    {'badge' in card && card.badge && (
-                      <img
-                        class="product-agp12000__feature-badge"
-                        src={card.badge.src}
-                        width={card.badge.width}
-                        height={card.badge.height}
-                        alt=""
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    )}
-                  </article>
+      <div class="product-agp12000__feature-layout">
+        <div class="product-agp12000__feature-column product-agp12000__feature-column--primary">
+          <article
+            class="product-agp12000__feature-card product-agp12000__feature-card--drip-tips"
+            style={`background-image: url(${dripTipsFeature.background})`}
+          >
+            <h2 class="product-agp12000__feature-heading" set:html={dripTipsFeature.headingHtml} />
+            {'tips' in dripTipsFeature && dripTipsFeature.tips && (
+              <div class="product-agp12000__feature-tips">
+                {dripTipsFeature.tips.map((tip) => (
+                  <div class="product-agp12000__feature-tip">
+                    <img
+                      src={tip.image}
+                      width={tip.width}
+                      height={tip.height}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <p class="product-agp12000__feature-tip-label" set:html={tip.labelHtml} />
+                  </div>
                 ))}
               </div>
-            ) : (
+            )}
+          </article>
+
+          <article
+            class="product-agp12000__feature-card product-agp12000__feature-card--battery"
+            style={`background-image: url(${batteryFeature.background})`}
+          >
+            <h2 class="product-agp12000__feature-heading" set:html={batteryFeature.headingHtml} />
+          </article>
+        </div>
+
+        <div class="product-agp12000__feature-column product-agp12000__feature-column--secondary">
+          <article
+            class="product-agp12000__feature-card product-agp12000__feature-card--liquid"
+            style={`background-image: url(${liquidFeature.background})`}
+          >
+            <h2 class="product-agp12000__feature-heading" set:html={liquidFeature.headingHtml} />
+          </article>
+
+          <div class="product-agp12000__feature-mini-row">
+            {ledMeshFeatures.map((card) => (
               <article
-                class="product-agp12000__feature-card product-agp12000__feature-card--narrow"
-                style={`background-image: url(${item.background})`}
+                class="product-agp12000__feature-card product-agp12000__feature-card--mini"
+                style={`background-image: url(${card.background})`}
               >
-                <h2 class="product-agp12000__feature-heading" set:html={item.headingHtml} />
+                <h2 class="product-agp12000__feature-heading" set:html={card.headingHtml} />
+                {'badge' in card && card.badge && (
+                  <img
+                    class="product-agp12000__feature-badge"
+                    src={card.badge.src}
+                    width={card.badge.width}
+                    height={card.badge.height}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
               </article>
-            ),
-          )
-        }
+            ))}
+          </div>
+
+          <article
+            class="product-agp12000__feature-card product-agp12000__feature-card--compact"
+            style={`background-image: url(${compactFeature.background})`}
+          >
+            <h2 class="product-agp12000__feature-heading" set:html={compactFeature.headingHtml} />
+          </article>
+        </div>
       </div>
     </section>
 
