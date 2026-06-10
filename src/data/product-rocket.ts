@@ -33,13 +33,13 @@ export const ROCKET_STORIES = [
     heading: 'SMALLER THAN YOUR PALM',
     description:
       'Only for 30g . Pocketable size and lightweight<br />is convenient to carry<br />when you plan to go somewhere.',
-    position: 'bottom-left' as const,
+    position: 'bottom-right' as const,
   },
   {
     image: '/wp-content/uploads/2024/03/C448-4.webp',
     width: 2540,
     height: 1440,
-    heading: 'CORLORFUL<br />FLUORESCENT TONE',
+    headingHtml: 'CORLORFUL<br />FLUORESCENT TONE',
     description:
       'Fluorescent color collocates with transparent<br />housing to create a<br />crystal exquisite building.',
     position: 'bottom-left' as const,
@@ -48,16 +48,16 @@ export const ROCKET_STORIES = [
     image: '/wp-content/uploads/2024/03/C448-5.webp',
     width: 2540,
     height: 1440,
-    heading: 'UPGRADED<br />MESH COIL',
+    headingHtml: 'UPGRADED<br />MESH COIL',
     description:
       '1.5Ω mesh coil provides a smoother,more delicate<br />taste through accelerating<br />vapor time and extending lifespan.',
-    position: 'bottom-left' as const,
+    position: 'bottom-right' as const,
   },
   {
     image: '/wp-content/uploads/2024/03/C448-6.webp',
     width: 2549,
     height: 1444,
-    heading: 'FAVORABLE<br />TASTE',
+    headingHtml: 'FAVORABLE<br />TASTE',
     description:
       'Fresh and sweet taste lingers in mouth for<br />a long time<br />offering a fulfilling vaping time.',
     position: 'bottom-left' as const,

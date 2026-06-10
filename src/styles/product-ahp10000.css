@@ -37,40 +37,56 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: clamp(16px, 4vw, 48px) clamp(20px, 5vw, 80px);
+  padding: clamp(16px, 4vw, 48px) calc((100% - var(--site-width)) / 2);
 }
 
 .product-ahp10000__hero-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: min(41%, 520px);
-  gap: 0;
+  gap: clamp(4px, 0.8vw, 12px);
+  width: auto;
+  max-width: min(45%, 560px);
 }
 
 .product-ahp10000__spec-link {
-  display: inline-block;
-  margin-top: 5%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border: 1px solid #000;
+  border-radius: 80px;
+  background: transparent;
+  color: #000;
+  font-family: var(--font-sans);
+  font-size: clamp(12px, 3vw, 22px);
+  font-weight: 400;
+  line-height: 1.2;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
-.product-ahp10000__spec-link img {
-  display: block;
-  width: 80%;
-  max-width: 270px;
-  height: auto;
+.product-ahp10000__spec-link:hover,
+.product-ahp10000__spec-link:focus-visible {
+  background: #000;
+  color: #fff;
+  border-color: #000;
 }
 
 .product-ahp10000__showcase {
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
+  width: var(--site-width);
+  margin: 0 auto;
+  padding: 0;
 }
 
 .product-ahp10000__showcase-image {
   display: block;
-  width: 80%;
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  margin: -10px;
 }
 
 /* 文案面板：默认底栏；--top 时靠上 */
@@ -79,12 +95,12 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: clamp(24px, 10vw, 150px) clamp(16px, 4vw, 40px) clamp(16px, 4vw, 40px);
+  padding: clamp(24px, 10vw, 150px) calc((100% - var(--site-width)) / 2);
 }
 
 .product-ahp10000__panel-overlay--top {
   justify-content: flex-start;
-  padding: clamp(24px, 8vw, 100px) clamp(16px, 4vw, 40px) clamp(16px, 4vw, 40px);
+  padding: clamp(24px, 8vw, 100px) calc((100% - var(--site-width)) / 2);
 }
 
 .product-ahp10000__panel-overlay--center {
@@ -98,7 +114,7 @@
   align-items: center;
   justify-content: flex-start;
   gap: clamp(12px, 2vw, 32px);
-  padding: clamp(16px, 5vw, 48px) clamp(20px, 6vw, 100px);
+  padding: clamp(16px, 5vw, 48px) calc((100% - var(--site-width)) / 2);
 }
 
 .product-ahp10000__split-overlay--top {
@@ -122,10 +138,10 @@
 }
 
 .product-ahp10000__split-overlay--visual .product-ahp10000__split-copy {
-  flex: 0 1 42%;
-  max-width: 42%;
+  flex: 0 1 55%;
+  max-width: 55%;
   align-self: center;
-  padding: clamp(16px, 5vw, 48px) clamp(20px, 4vw, 80px);
+  padding: clamp(16px, 5vw, 48px) calc((100% - var(--site-width)) / 2 + 30px) clamp(16px, 5vw, 48px) calc((100% - var(--site-width)) / 2);
 }
 
 .product-ahp10000__split-figure--visual {
@@ -181,7 +197,6 @@
   display: block;
   width: 100%;
   height: auto;
-  margin: -10px;
 }
 
 /* 规格屏：标题在上，参数单列靠左 */
@@ -191,7 +206,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: clamp(12px, 2vw, 28px);
-  padding: clamp(24px, 8vw, 100px) clamp(20px, 5vw, 80px);
+  padding: clamp(24px, 8vw, 100px) calc((100% - var(--site-width)) / 2);
   min-height: 100%;
 }
 
@@ -223,21 +238,17 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: clamp(24px, 8vw, 100px) clamp(16px, 4vw, 40px) clamp(16px, 4vw, 40px);
+  padding: clamp(24px, 8vw, 100px) calc((100% - var(--site-width)) / 2);
 }
 
 .product-ahp10000__packaging-overlay--top {
   justify-content: flex-start;
-  padding: clamp(24px, 8vw, 100px) clamp(16px, 4vw, 40px) clamp(16px, 4vw, 40px);
+  padding: clamp(24px, 8vw, 100px) calc((100% - var(--site-width)) / 2);
 }
 
 @media (max-width: 1024px) {
   .product-ahp10000__hero-content {
-    width: min(48%, 420px);
-  }
-
-  .product-ahp10000__spec-link img {
-    width: 50%;
+    max-width: min(55%, 480px);
   }
 
   .product-ahp10000__split-copy {
@@ -252,27 +263,33 @@
 
 @media (max-width: 767px) {
   .product-ahp10000__hero-overlay {
+    align-items: flex-end;
     justify-content: flex-end;
-    padding: 12px 16px;
+    padding: 10% calc((100% - var(--site-width)) / 2);
   }
 
   .product-ahp10000__hero-content {
-    width: min(62%, 250px);
-    gap: 5px;
+    width: auto;
+    max-width: 280px;
   }
 
   .product-ahp10000__spec-link {
-    margin-top: 0;
-  }
-
-  .product-ahp10000__spec-link img {
-    width: 50%;
+    padding: 8px 22px;
+    font-size: clamp(11px, 3.5vw, 14px);
+    border-radius: 40px;
   }
 
   .product-ahp10000__split-overlay {
-    flex-direction: column;
+    min-height: auto;
     align-items: flex-start;
-    padding: 16px 20px;
+    justify-content: flex-start;
+    padding: clamp(20px, 6vw, 40px) calc((100% - var(--site-width)) / 2);
+  }
+
+  .product-ahp10000__split-overlay--visual .product-ahp10000__split-copy {
+    flex: 0 1 auto;
+    max-width: 100%;
+    padding: 0;
   }
 
   .product-ahp10000__split-overlay--reverse {
@@ -280,23 +297,36 @@
   }
 
   .product-ahp10000__split-overlay--visual {
-    flex-wrap: wrap;
-  }
-
-  .product-ahp10000__split-overlay--visual .product-ahp10000__split-copy {
-    flex: 1 1 100%;
-    max-width: 100%;
-    padding: 16px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
   }
 
   .product-ahp10000__split-figure--visual {
-    flex: 1 1 100%;
+    flex: 1 1 auto;
     margin-left: 0;
+    display: flex;
   }
 
   .product-ahp10000__split-figure--visual img {
-    width: 110%;
-    height: auto;
+    width: auto;
+    height: 200px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  /* 所有 split-overlay 的面板背景图铺满整个区块 */
+  .product-ahp10000__media:has(.product-ahp10000__split-overlay) > .product-ahp10000__media-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-ahp10000__media:has(.product-ahp10000__split-overlay) {
+    position: relative;
+    min-height: 30vh;
   }
 
   .product-ahp10000__split-copy {

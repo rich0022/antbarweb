@@ -48,14 +48,7 @@ const description = entry?.data.description ?? '';
           </h1>
           <p class="product-page__tagline">{SA8000_HERO.subtitle}</p>
           <a class="product-sa8000__spec-link" href={SA8000_HERO.specHref}>
-            <img
-              src={SA8000_HERO.specButton.src}
-              width={SA8000_HERO.specButton.width}
-              height={SA8000_HERO.specButton.height}
-              alt={SA8000_HERO.specButton.alt}
-              loading="eager"
-              decoding="async"
-            />
+            Specifications &gt;
           </a>
         </div>
       </div>
@@ -145,15 +138,7 @@ const description = entry?.data.description ?? '';
     >
       <div class="product-sa8000__flavors-header">
         <h2 class="product-page__heading-section">{SA8000_FLAVORS_PRIMARY.heading}</h2>
-        <img
-          class="product-sa8000__flavors-badge"
-          src={SA8000_FLAVORS_PRIMARY.badge}
-          width={SA8000_FLAVORS_PRIMARY.badgeWidth}
-          height={SA8000_FLAVORS_PRIMARY.badgeHeight}
-          alt=""
-          loading="lazy"
-          decoding="async"
-        />
+        <span class="product-sa8000__nicotine-badge">NICOTINE: 2%</span>
       </div>
       <img
         class="product-sa8000__flavors-image"
@@ -171,15 +156,7 @@ const description = entry?.data.description ?? '';
       data-animate="fadeInUp"
     >
       <div class="product-sa8000__flavors-header">
-        <img
-          class="product-sa8000__flavors-badge"
-          src={SA8000_FLAVORS_NEW.badge}
-          width={SA8000_FLAVORS_NEW.badgeWidth}
-          height={SA8000_FLAVORS_NEW.badgeHeight}
-          alt=""
-          loading="lazy"
-          decoding="async"
-        />
+        <span class="product-sa8000__nicotine-badge product-sa8000__nicotine-badge--yellow">NICOTINE: 3%</span>
         <h2 class="product-page__heading-section">{SA8000_FLAVORS_NEW.heading}</h2>
       </div>
       {

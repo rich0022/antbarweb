@@ -41,14 +41,7 @@ const description = entry?.data.description ?? '';
           </h1>
           <p class="product-page__tagline">{AHP10000_HERO.tagline}</p>
           <a class="product-ahp10000__spec-link" href={AHP10000_HERO.specHref}>
-            <img
-              src={AHP10000_HERO.specButton.src}
-              width={AHP10000_HERO.specButton.width}
-              height={AHP10000_HERO.specButton.height}
-              alt={AHP10000_HERO.specButton.alt}
-              loading="eager"
-              decoding="async"
-            />
+            Specifications &gt;
           </a>
         </div>
       </div>
@@ -179,7 +172,7 @@ const description = entry?.data.description ?? '';
         loading="lazy"
         decoding="async"
       />
-      <div class="product-ahp10000__media-overlay product-ahp10000__panel-overlay product-ahp10000__panel-overlay--center">
+      <div class="product-ahp10000__media-overlay product-ahp10000__panel-overlay product-ahp10000__panel-overlay--top product-ahp10000__panel-overlay--center">
         <h2 class="product-page__heading-section product-ahp10000__heading--light">
           {AHP10000_TEXT_PANELS[1].heading}
         </h2>

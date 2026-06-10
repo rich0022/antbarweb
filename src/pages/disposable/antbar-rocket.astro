@@ -44,17 +44,10 @@ const description = entry?.data.description ?? '';
             {ROCKET_HERO.title}
           </h1>
           <p class="product-page__tagline">{ROCKET_HERO.subtitle}</p>
+          <a class="product-rocket__spec-link" href={ROCKET_HERO.specHref}>
+            Specifications &gt;
+          </a>
         </div>
-        <a class="product-rocket__spec-link" href={ROCKET_HERO.specHref}>
-          <img
-            src={ROCKET_HERO.specButton.src}
-            width={ROCKET_HERO.specButton.width}
-            height={ROCKET_HERO.specButton.height}
-            alt={ROCKET_HERO.specButton.alt}
-            loading="eager"
-            decoding="async"
-          />
-        </a>
       </div>
     </section>
 
@@ -83,6 +76,7 @@ const description = entry?.data.description ?? '';
           width={story.width}
           height={story.height}
           heading={story.heading}
+          headingHtml={story.headingHtml}
           description={story.description}
           position={story.position}
           loading={index === 0 ? 'eager' : 'lazy'}

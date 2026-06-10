@@ -5,7 +5,7 @@ interface Props {
   height: number;
   heading?: string;
   description?: string;
-  position?: 'top-left' | 'bottom-left' | 'top-center' | 'split-left';
+  position?: 'top-left' | 'bottom-left' | 'bottom-right' | 'top-center' | 'split-left';
   headingHtml?: string;
   classPrefix?: string;
   loading?: 'eager' | 'lazy';
@@ -43,6 +43,7 @@ const hasCopy = Boolean(heading || headingHtml || description);
           `${classPrefix}__panel-overlay`,
           position === 'top-left' && `${classPrefix}__panel-overlay--top-left`,
           position === 'bottom-left' && `${classPrefix}__panel-overlay--bottom-left`,
+          position === 'bottom-right' && `${classPrefix}__panel-overlay--bottom-right`,
           position === 'top-center' && `${classPrefix}__panel-overlay--top-center`,
           position === 'split-left' && `${classPrefix}__panel-overlay--split-left`,
         ]}
