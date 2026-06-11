@@ -16,6 +16,13 @@ async function removeBlockedMedia() {
   }
 }
 
+// Remove auto-generated wrangler.json — its Worker-specific fields
+// ("assets", "images", "previews") break `wrangler pages deploy`.
+async function removeGeneratedWranglerConfig() {
+  const configPath = path.join(DIST_DIR, 'client', 'wrangler.json');
+  await rm(configPath, { force: true });
+}
+
 async function listHtmlFiles(dirPath) {
   const entries = await readdir(dirPath, { withFileTypes: true });
   const files = [];
@@ -58,6 +65,7 @@ async function verifyNoBlockedMediaReferences() {
 }
 
 await removeBlockedMedia();
+await removeGeneratedWranglerConfig();
 await verifyNoBlockedMediaReferences();
 
-console.log('Cloudflare static bundle prepared: blocked videos removed and references verified.');
+console.log('Cloudflare static bundle prepared: blocked videos removed, wrangler config cleaned, and references verified.');
