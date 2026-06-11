@@ -13,6 +13,7 @@
 }
 
 .rd-hero {
+  position: relative;
   overflow: hidden;
   background: #f2f2f2;
 }
@@ -30,9 +31,22 @@
 
 .rd-intro__inner {
   display: grid;
-  grid-template-columns: 87% 13%;
+  grid-template-columns: auto 1fr;
   width: 72%;
   margin: 0 auto;
+}
+
+.rd-intro__heading {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: left;
+  padding-right: 3vw;
+  align-self: flex-start;
+}
+
+.rd-intro__content {
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .rd-intro__image {
@@ -78,7 +92,7 @@
 .rd-universities__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0;
+  gap: 20px;
   width: 77%;
   margin: 0 auto;
 }
@@ -175,7 +189,7 @@
 
 .rd-property__heading {
   grid-area: text;
-  align-self: end;
+  align-self: flex-start;
 }
 
 .rd-property__heading h2,
@@ -206,6 +220,7 @@
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
+  text-align: center;
   color: #fff;
 }
 
@@ -247,7 +262,7 @@
 @media (max-width: 1024px) {
   .rd-intro__inner {
     width: 88%;
-    grid-template-columns: 82% 18%;
+    grid-template-columns: auto 1fr;
   }
 
   .rd-intro__text {
@@ -314,7 +329,7 @@
 
 @media (max-width: 767px) {
   .rd-hero__picture img {
-    height: auto;
+    height: 50vh;
   }
 
   .rd-intro {
@@ -350,12 +365,12 @@
 
   .rd-universities__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
     width: 100%;
-    padding: 0 5px;
+    padding: 0 15px;
   }
 
   .rd-university-card {
-    margin: 5px;
     border-radius: 8px;
     padding: 20px 10px 10px;
   }

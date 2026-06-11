@@ -145,11 +145,11 @@
 
 .brand-story-final__inner {
   display: grid;
-  grid-template-columns: 25% 76%;
+  grid-template-columns: 29% 70%;
   grid-template-areas: "text image";
   align-items: start;
   justify-content: space-between;
-  width: 72%;
+  width: var(--site-width);
   margin: 0 auto;
 }
 
@@ -169,7 +169,7 @@
 }
 
 .brand-story-final__text p {
-  margin: 0 -15vw 0 0;
+  margin: 0;
   color: #000;
   font-size: 1.1vw;
   font-weight: 400;
@@ -186,8 +186,7 @@
     font-size: 6vw;
   }
 
-  .brand-story-intro__inner,
-  .brand-story-final__inner {
+  .brand-story-intro__inner {
     width: 88%;
   }
 
@@ -211,6 +210,10 @@
 }
 
 @media (max-width: 767px) {
+  .brand-story__title-break {
+    display: block;
+  }
+
   .brand-story-hero__picture img {
     height: auto;
   }
@@ -278,7 +281,6 @@
   .brand-story-final__inner {
     display: flex;
     flex-direction: column-reverse;
-    width: 90%;
   }
 
   .brand-story-final__text {

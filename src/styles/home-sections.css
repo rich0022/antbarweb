@@ -305,12 +305,41 @@
   }
 
   .home-product-grid__layout {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px;
   }
 
-  .home-product-grid__column--stack {
-    gap: 20px;
+  /* ROCKET column — left, spans 2 rows */
+  .home-product-grid__column--feature {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+
+  .home-product-grid__column--feature .home-product-card__link,
+  .home-product-grid__column--feature img {
+    height: 100%;
+  }
+
+  .home-product-grid__column--feature img {
+    object-fit: cover;
+  }
+
+  /* AT800, AG600 column — right side */
+  .home-product-grid__column--stack:first-of-type {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-content: start;
+    gap: 12px;
+  }
+
+  /* AGP12000, KT800 column — bottom row, 2-col inner grid */
+  .home-product-grid__column--stack:last-of-type {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
   }
 
   .home-product-card h3,

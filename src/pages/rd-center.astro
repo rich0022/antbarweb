@@ -103,7 +103,7 @@ const patents = [
           </p>
         </div>
         <div class="rd-intro__heading">
-          <h1 id="rd-center-title" class="scroll-reveal" data-animate="fadeInUp">R&D Center</h1>
+          <h1 id="rd-center-title" class="scroll-reveal" data-animate="fadeInUp">R&amp;D<br>Center</h1>
           <img
             class="scroll-reveal"
             data-animate="fadeInUp"
@@ -156,7 +156,7 @@ const patents = [
         {counters.map((counter) => (
           <div class="rd-counter scroll-reveal" data-animate="fadeInUp">
             <p>{counter.title}</p>
-            <strong>{counter.value}</strong>
+            <strong data-count={counter.value}>0</strong>
           </div>
         ))}
       </div>
@@ -171,3 +171,41 @@ const patents = [
     </section>
   </main>
 </SiteShellLayout>
+
+<script is:inline>
+  (() => {
+    const counters = document.querySelectorAll('.rd-counter strong[data-count]');
+    if (!counters.length) return;
+
+    const animate = (el) => {
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      if (isNaN(target)) return;
+      const duration = 2000;
+      const start = performance.now();
+
+      const tick = (now) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+
+      requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animate(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    counters.forEach((el) => observer.observe(el));
+  })();
+</script>

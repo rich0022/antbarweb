@@ -250,7 +250,7 @@
 
 @media (max-width: 767px) {
   .about-hero__picture img {
-    height: auto;
+    height: 30vh;
   }
 
   .about-hero__copy {

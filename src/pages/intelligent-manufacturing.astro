@@ -87,7 +87,7 @@ const highlights = [
       </div>
       <p class="manufacturing-label">ARTIFICIAL INTELLIGENCE</p>
       <div class="manufacturing-highlights__body">
-        <div class="manufacturing-highlight-tabs" data-manufacturing-tabs aria-hidden="true">
+        <div class="manufacturing-highlight-tabs" data-manufacturing-tabs>
           {highlights.map((item) => <span class:list={['manufacturing-highlight-tab', item.num === '01' && 'is-active']}>{item.num}</span>)}
         </div>
         <div class="manufacturing-highlight-list">
@@ -137,34 +137,89 @@ const highlights = [
     (() => {
       const root = document.querySelector('[data-manufacturing-highlights]');
       if (!root) return;
+
+      const body = root.querySelector('.manufacturing-highlights__body');
+      const tabsContainer = root.querySelector('[data-manufacturing-tabs]');
       const tabs = [...root.querySelectorAll('.manufacturing-highlight-tab')];
       const sections = [...root.querySelectorAll('[data-manufacturing-highlight]')];
-      if (!tabs.length || !sections.length) return;
+      if (!body || !tabsContainer || !tabs.length || !sections.length) return;
+
+      const header =
+        document.querySelector('[data-site-shell-header-bar]') ?? document.querySelector('header');
 
       const activate = (index) => {
         tabs.forEach((tab, tabIndex) => tab.classList.toggle('is-active', tabIndex === index));
-        sections.forEach((section, sectionIndex) => section.classList.toggle('is-active', sectionIndex === index));
+        sections.forEach((section, sectionIndex) =>
+          section.classList.toggle('is-active', sectionIndex === index),
+        );
       };
+
+      let scrollEnabled = true;
 
       tabs.forEach((tab, index) => {
         tab.addEventListener('click', () => {
+          if (!scrollEnabled) return;
+          scrollEnabled = false;
           activate(index);
-          sections[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          const top = sections[index].getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top, behavior: 'smooth' });
+          window.setTimeout(() => {
+            scrollEnabled = true;
+          }, 310);
         });
       });
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-          if (!visible) return;
-          const index = sections.indexOf(visible.target);
-          if (index >= 0) activate(index);
-        },
-        { threshold: [0.25, 0.5, 0.75] },
-      );
-      sections.forEach((section) => observer.observe(section));
+      const syncActiveSection = () => {
+        if (!scrollEnabled) return;
+
+        const midpoint = window.scrollY + window.innerHeight / 2;
+        let closestDistance = Infinity;
+        let activeIndex = -1;
+
+        sections.forEach((section, index) => {
+          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+          const distance = Math.abs(sectionTop - midpoint);
+          if (distance < closestDistance && sectionTop < midpoint) {
+            closestDistance = distance;
+            activeIndex = index;
+          }
+        });
+
+        if (activeIndex >= 0) activate(activeIndex);
+      };
+
+      const syncTabsPosition = () => {
+        const bodyTop = body.getBoundingClientRect().top + window.scrollY;
+        const headerHeight = header?.offsetHeight ?? 0;
+        const scrollY = window.scrollY;
+        const activeTab = tabsContainer.querySelector('.manufacturing-highlight-tab.is-active');
+        const tabHeight = activeTab?.offsetHeight ?? tabsContainer.offsetHeight;
+
+        tabsContainer.classList.remove('is-fixed', 'is-bottom');
+        tabsContainer.style.top = '';
+
+        if (scrollY + headerHeight >= bodyTop) {
+          tabsContainer.classList.add('is-fixed');
+          tabsContainer.style.top = `${headerHeight}px`;
+        }
+
+        if (bodyTop + body.offsetHeight < headerHeight + scrollY + tabHeight) {
+          tabsContainer.classList.add('is-bottom');
+          tabsContainer.classList.remove('is-fixed');
+          tabsContainer.style.top = 'auto';
+        } else if (tabsContainer.classList.contains('is-fixed')) {
+          tabsContainer.style.top = `${headerHeight}px`;
+        }
+      };
+
+      const onScroll = () => {
+        syncActiveSection();
+        syncTabsPosition();
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      onScroll();
     })();
   </script>
 </SiteShellLayout>

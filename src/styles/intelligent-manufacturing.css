@@ -121,8 +121,8 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   width: 50%;
-  pointer-events: none;
 }
 
 .manufacturing-highlight-tab {
@@ -134,12 +134,27 @@
   font-weight: 300;
   line-height: 1;
   opacity: 0;
+  cursor: pointer;
   transition: opacity 0.3s ease;
+  user-select: none;
 }
 
 .manufacturing-highlight-tab.is-active {
   position: relative;
   opacity: 1;
+}
+
+.manufacturing-highlight-tabs.is-fixed {
+  position: fixed;
+  left: 14%;
+  top: 0;
+}
+
+.manufacturing-highlight-tabs.is-bottom {
+  position: absolute;
+  left: 0;
+  top: auto !important;
+  bottom: 0;
 }
 
 .manufacturing-highlight-list {
@@ -165,7 +180,7 @@
 }
 
 .manufacturing-highlight__copy {
-  padding-top: 3vw;
+  padding-top: 0;
 }
 
 .manufacturing-highlight__bar {
@@ -181,7 +196,7 @@
   height: 4px;
   margin-top: -2px;
   background: #000;
-  transition: width 1s ease;
+  transition: all 1s ease;
 }
 
 .manufacturing-highlight.is-active .manufacturing-highlight__bar span {
@@ -216,6 +231,10 @@
 }
 
 @media (max-width: 1024px) {
+  .manufacturing-highlight-tabs.is-fixed {
+    left: calc(6% + 10px);
+  }
+
   .manufacturing-overview,
   .manufacturing-highlights {
     padding: 30px 10px;
