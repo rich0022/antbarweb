@@ -257,7 +257,8 @@ npm i -D sharp
 
 ## 8. 下一步（建议立刻开工）
 
-- [ ] 阶段 A：删除/迁出 `public` 下 2 个 `.orig.mp4`，提交 `.gitignore`
+- [x] 阶段 A：删除/迁出 `public` 下 2 个 `.orig.mp4`，提交 `.gitignore`
+- [x] 阶段 A：`地球-GIF.gif` → `地球.mp4` + poster，`npm run audit:media`
 - [ ] 新增 `scripts/audit-media.mjs` 并在 README/docs 链接本计划
 - [ ] 阶段 C P0：转码 `SA8000-2023x264-x264-1.mp4` 与 `C486-ok-2k.mp4`，更新 `homepage.ts` / `product-at800.ts`
 - [ ] 阶段 B3：扫描并批量改 `src/data` 中 png → webp

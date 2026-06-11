@@ -180,7 +180,8 @@
   text-align: center;
 }
 
-.rd-property__visual img {
+.rd-property__visual img,
+.rd-property__visual video {
   display: block;
   width: 80%;
   height: auto;
@@ -381,7 +382,8 @@
     width: 95%;
   }
 
-  .rd-property__visual img {
+  .rd-property__visual img,
+  .rd-property__visual video {
     width: 90%;
   }
 

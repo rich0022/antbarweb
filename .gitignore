@@ -38,6 +38,9 @@ npm-debug.log*
 # Local tooling
 .codegraph/
 
-# Original oversized sources (compressed versions are tracked for deploy)
-public/wp-content/uploads/2024/07/AGP12000-479-.orig.mp4
-public/wp-content/uploads/2024/07/C486-ok-2k.orig.mp4
+# Local media masters (see assets-source/README.md)
+assets-source/*
+!assets-source/README.md
+
+# Safety net: never commit deploy-excluded masters under public/
+public/**/*.orig.mp4
