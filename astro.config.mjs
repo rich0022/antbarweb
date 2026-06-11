@@ -1,5 +1,12 @@
 import cloudflare from '@astrojs/cloudflare';
 import { defineConfig, sessionDrivers } from 'astro/config';
+import { readWranglerVars } from './scripts/read-wrangler-vars.mjs';
+
+const wranglerVars = readWranglerVars();
+const turnstileSiteKey =
+  process.env.PUBLIC_TURNSTILE_SITE_KEY || wranglerVars.PUBLIC_TURNSTILE_SITE_KEY || '';
+const contactEndpoint =
+  process.env.PUBLIC_CONTACT_ENDPOINT || wranglerVars.PUBLIC_CONTACT_ENDPOINT || '/api/contact/';
 
 export default defineConfig({
   output: 'static',
@@ -31,6 +38,10 @@ export default defineConfig({
       alias: {
         '@': '/src',
       },
+    },
+    define: {
+      'import.meta.env.PUBLIC_TURNSTILE_SITE_KEY': JSON.stringify(turnstileSiteKey),
+      'import.meta.env.PUBLIC_CONTACT_ENDPOINT': JSON.stringify(contactEndpoint),
     },
   },
 });

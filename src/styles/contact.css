@@ -50,6 +50,31 @@
   line-height: 1.4;
 }
 
+.contact-form__status[data-ok='true'] {
+  color: #008000;
+}
+
+.contact-form__status[data-ok='false'] {
+  color: #cc0000;
+}
+
+.contact-form__config-warning {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #fff4e5;
+  color: #8a4b00;
+  font-size: 14px;
+  text-align: center;
+}
+
+.contact-form__hp-field {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .contact-form__label--sr-only {
   position: absolute;
   width: 1px;

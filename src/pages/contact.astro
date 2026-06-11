@@ -1,10 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
 import ContactLayout from '../layouts/ContactLayout.astro';
-import { CONTACT_TURNSTILE_SITE_KEY } from '../data/contact';
 
 const pages = await getCollection('pages');
 const entry = pages.find((p) => p.id === 'contact');
+
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
+const contactEndpoint = import.meta.env.PUBLIC_CONTACT_ENDPOINT || '/api/contact/';
+const missingSiteKey = !turnstileSiteKey;
 ---
 
 <ContactLayout
@@ -21,14 +24,24 @@ const entry = pages.find((p) => p.id === 'contact');
         Contact Us
       </h1>
 
+      {
+        missingSiteKey && import.meta.env.PROD && (
+          <p class="contact-form__config-warning">
+            Contact form security is not configured. Set PUBLIC_TURNSTILE_SITE_KEY in wrangler.jsonc,
+            then rebuild and redeploy.
+          </p>
+        )
+      }
+
       <form
         class="contact-form scroll-reveal"
         id="contact-form"
         method="post"
-        action="/contact"
+        action={contactEndpoint}
         name="Contact form"
         aria-label="Contact form"
         data-animate="fadeInUp"
+        data-contact-form
       >
         <div class="contact-form__fields">
           <div class="contact-form__field">
@@ -64,15 +77,79 @@ const entry = pages.find((p) => p.id === 'contact');
               id="contact-message"
               rows="4"
               placeholder="Your Message"
+              required
             ></textarea>
           </div>
 
-          <div class="contact-form__field contact-form__field--turnstile">
-            <div class="cf-turnstile" data-sitekey={CONTACT_TURNSTILE_SITE_KEY} data-theme="light"></div>
-          </div>
+          <input
+            class="contact-form__hp-field"
+            type="text"
+            name="website"
+            autocomplete="off"
+            tabindex="-1"
+            aria-hidden="true"
+          />
+
+          {
+            turnstileSiteKey && (
+              <>
+                <script is:inline>
+                  window.__turnstileOnSuccess = function (token) {
+                    document.querySelectorAll('[data-contact-form]').forEach((form) => {
+                      const field = form.querySelector('[data-turnstile-token]');
+                      if (field instanceof HTMLInputElement) field.value = token;
+                      const btn = form.querySelector("button[type='submit']");
+                      if (btn instanceof HTMLButtonElement) btn.disabled = false;
+                    });
+                  };
+                  window.__turnstileOnExpire = function () {
+                    document.querySelectorAll('[data-contact-form]').forEach((form) => {
+                      const field = form.querySelector('[data-turnstile-token]');
+                      if (field instanceof HTMLInputElement) field.value = '';
+                      const btn = form.querySelector("button[type='submit']");
+                      if (btn instanceof HTMLButtonElement) btn.disabled = true;
+                    });
+                  };
+                  window.__turnstileOnError = function () {
+                    document.querySelectorAll('[data-contact-form]').forEach((form) => {
+                      const status = form.querySelector('[data-contact-status]');
+                      if (status instanceof HTMLElement) {
+                        status.textContent =
+                          'Security check failed to load. Refresh the page or email sales@antbar.com directly.';
+                        status.hidden = false;
+                        status.dataset.ok = 'false';
+                      }
+                    });
+                  };
+                </script>
+                <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+                <div class="contact-form__field contact-form__field--turnstile" data-turnstile-wrap>
+                  <div
+                    class="cf-turnstile"
+                    data-sitekey={turnstileSiteKey}
+                    data-callback="__turnstileOnSuccess"
+                    data-expired-callback="__turnstileOnExpire"
+                    data-error-callback="__turnstileOnError"
+                    data-refresh-expired="auto"
+                    data-retry="auto"
+                    data-theme="light"
+                  />
+                </div>
+                <input type="hidden" name="cf-turnstile-response" data-turnstile-token value="" />
+              </>
+            )
+          }
+
+          <input type="hidden" name="source_path" value={Astro.url.pathname} />
 
           <div class="contact-form__actions">
-            <button class="contact-form__submit" type="submit">Submit</button>
+            <button
+              class="contact-form__submit"
+              type="submit"
+              disabled={turnstileSiteKey ? true : undefined}
+            >
+              Submit
+            </button>
           </div>
           <p class="contact-form__status" data-contact-status hidden></p>
         </div>
@@ -81,51 +158,88 @@ const entry = pages.find((p) => p.id === 'contact');
   </main>
 </ContactLayout>
 
-<script is:inline>
-  (() => {
-    const script = document.createElement('script');
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
+<script>
+  const isWorkersDev = window.location.hostname.endsWith('.workers.dev');
 
-    const form = document.getElementById('contact-form');
-    const statusEl = document.querySelector('[data-contact-status]');
-    if (!form || !statusEl) return;
+  const getTurnstileToken = (form: HTMLFormElement) => {
+    const field = form.querySelector('[data-turnstile-token]');
+    if (field instanceof HTMLInputElement && field.value) {
+      return field.value;
+    }
+    const value = new FormData(form).get('cf-turnstile-response');
+    return typeof value === 'string' && value.length > 0 ? value : '';
+  };
 
-    const setStatus = (msg, ok) => {
+  const resetTurnstile = (form: HTMLFormElement) => {
+    const widget = form.querySelector('.cf-turnstile');
+    const field = form.querySelector('[data-turnstile-token]');
+    if (field instanceof HTMLInputElement) field.value = '';
+    if (typeof window.turnstile?.reset === 'function' && widget instanceof HTMLElement) {
+      window.turnstile.reset(widget);
+    }
+  };
+
+  if (isWorkersDev) {
+    document.querySelectorAll('[data-turnstile-wrap]').forEach((element) => {
+      element.setAttribute('hidden', '');
+    });
+    document.querySelectorAll("[data-contact-form] button[type='submit']").forEach((button) => {
+      if (button instanceof HTMLButtonElement) button.disabled = false;
+    });
+  }
+
+  document.querySelectorAll('[data-contact-form]').forEach((form) => {
+    if (!(form instanceof HTMLFormElement)) return;
+
+    const statusEl = form.querySelector('[data-contact-status]');
+    const submitBtn = form.querySelector("[type='submit']");
+    const requiresTurnstile = !isWorkersDev && Boolean(form.querySelector('.cf-turnstile'));
+
+    const setStatus = (msg: string, ok: boolean) => {
+      if (!(statusEl instanceof HTMLElement)) return;
       statusEl.textContent = msg;
       statusEl.hidden = false;
-      statusEl.style.color = ok ? '#008000' : '#cc0000';
+      statusEl.dataset.ok = ok ? 'true' : 'false';
     };
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const submitBtn = form.querySelector('[type="submit"]');
-      if (submitBtn) submitBtn.disabled = true;
+      if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = true;
       setStatus('Sending...', true);
 
       try {
-        const data = new URLSearchParams(new FormData(form));
-        const resp = await fetch('/contact', { method: 'POST', body: data });
-        const result = await resp.json();
-
-        if (resp.ok && result.success) {
-          setStatus('Thank you! Your message has been sent.', true);
-          form.reset();
-          // Reset Turnstile widget
-          const turnstileWidget = form.querySelector('.cf-turnstile');
-          if (turnstileWidget && window.turnstile) {
-            window.turnstile.reset(turnstileWidget);
-          }
-        } else {
-          setStatus(result.error || 'Failed to send. Please try again.', false);
+        if (requiresTurnstile && !getTurnstileToken(form)) {
+          throw new Error('Please complete the security check, then send the message again.');
         }
-      } catch {
-        setStatus('Network error. Please check your connection.', false);
+
+        const resp = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const contentType = resp.headers.get('content-type') || '';
+        const result = contentType.includes('application/json') ? await resp.json() : null;
+
+        if (!resp.ok || !result?.ok) {
+          const fallback =
+            resp.status === 405
+              ? 'The contact form endpoint is not available on this deployment. Please email sales@antbar.com directly.'
+              : 'Failed to send. Please try again.';
+          throw new Error(result?.error || fallback);
+        }
+
+        setStatus('Thank you! Your message has been sent.', true);
+        form.reset();
+        resetTurnstile(form);
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Network error. Please check your connection.';
+        setStatus(message, false);
+        if (requiresTurnstile) resetTurnstile(form);
       } finally {
-        if (submitBtn) submitBtn.disabled = false;
+        if (submitBtn instanceof HTMLButtonElement) {
+          submitBtn.disabled = requiresTurnstile && !getTurnstileToken(form);
+        }
       }
     });
-  })();
+  });
 </script>

@@ -747,9 +747,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  width: 92vw;
-  padding: 8vw 3vw;
+  gap: 1.25rem;
+  width: min(92vw, 36rem);
+  max-width: 36rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2rem);
   border: 1px solid #fff;
   border-radius: 0;
   background: #000;
@@ -759,12 +760,12 @@ body {
 }
 
 .site-shell-dialog__panel--age h2 {
-  margin: 2vw 0 1vw;
+  margin: 0;
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 6.2vw;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.3;
 }
 
 .site-shell-menu-shell {
@@ -1016,21 +1017,24 @@ body {
 
 .site-shell-age-gate__button {
   display: inline-flex;
-  flex: 1 1 0;
+  flex: 1 1 calc(50% - 0.5rem);
   align-items: center;
   justify-content: center;
-  min-width: 0;
-  min-height: 0;
-  padding: 0.3em 0.3em;
+  box-sizing: border-box;
+  min-width: 9.5rem;
+  max-width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
   border: 1px solid #fff;
   border-radius: 0;
   background: transparent;
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 4.5vw;
+  font-size: clamp(0.875rem, 2.2vw, 1rem);
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.25;
   text-decoration: none;
+  white-space: nowrap;
   cursor: pointer;
 }
 
@@ -1104,19 +1108,19 @@ body {
 
 .site-shell-dialog__panel--age p {
   margin: 0;
-  padding-inline: 3vw;
-  max-width: 34em;
+  max-width: 28rem;
   color: #dbdbdb;
-  font-size: 3.4vw;
-  line-height: 1.8;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  line-height: 1.7;
 }
 
 .site-shell-age-gate__actions {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1rem;
   width: 100%;
+  max-width: 28rem;
   margin: 0;
 }
 
@@ -1126,7 +1130,6 @@ body {
 }
 
 .site-shell-age-gate__button--accept {
-  padding: 0.3em 1em;
   background: #fff;
   color: #000;
 }
@@ -1139,81 +1142,14 @@ body {
 }
 
 @media (min-width: 768px) {
-  .site-shell-dialog__panel--age {
-    gap: 10px;
-    width: 45%;
-    max-width: 36rem;
-    padding: 3vw;
-  }
-
-  .site-shell-dialog__panel--age h2 {
-    margin: 0;
-    font-size: 2.6vw;
-  }
-
-  .site-shell-dialog__panel--age p {
-    padding-inline: 0;
-    font-size: 1vw;
-  }
-
-  .site-shell-age-gate__brand {
-    width: auto;
-    max-width: 168px;
-  }
-
   .site-shell-age-gate__actions {
+    flex-wrap: nowrap;
     justify-content: space-between;
-    width: 80%;
-  }
-
-  .site-shell-age-gate__button {
-    flex: 0 1 260px;
-    width: 260px;
-    max-width: calc(50% - 5px);
-    padding: 0.6em 1em;
-    font-size: 1.3vw;
-    line-height: 36px;
-  }
-
-  .site-shell-age-gate__button--accept {
-    padding: 0.6em 2em;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .site-shell-dialog__panel--age h2 {
-    margin-top: 3vw;
-    font-size: 6vw;
-  }
-
-  .site-shell-dialog__panel--age p {
-    font-size: 2vw;
-  }
-
-  .site-shell-age-gate__brand {
-    width: 40%;
-    max-width: none;
   }
 
   .site-shell-age-gate__button {
     flex: 1 1 0;
-    width: auto;
-    max-width: none;
-    font-size: 2.2vw;
-  }
-}
-
-@media (min-width: 1025px) {
-  .site-shell-dialog__panel--age h2 {
-    font-size: max(2rem, 2.6vw);
-  }
-
-  .site-shell-dialog__panel--age p {
-    font-size: max(0.875rem, 1vw);
-  }
-
-  .site-shell-age-gate__button {
-    font-size: max(0.95rem, 1.3vw);
+    min-width: 0;
   }
 }
 

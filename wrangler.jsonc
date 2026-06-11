@@ -7,6 +7,24 @@
   "assets": {
     "directory": "./dist/client",
     "not_found_handling": "404-page",
-    "run_worker_first": ["/contact", "/contact/"]
-  }
+    "run_worker_first": ["/api/contact", "/api/contact/"]
+  },
+  "vars": {
+    "SITE_URL": "https://antbar.com",
+    "CONTACT_TO": "sales@antbar.com",
+    "CONTACT_FROM": "ANTBAR Contact Form <noreply@antbar.com>",
+    "CONTACT_LEADS_TABLE": "antbar_contact",
+    "PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAADibKOfGTH_RL5KK",
+    "PUBLIC_CONTACT_ENDPOINT": "/api/contact/"
+    // Secrets (Turnstile secret, email API token, account ID): Cloudflare Dashboard -> Workers -> Variables and Secrets.
+    // keep_vars above keeps dashboard-only keys across wrangler deploy.
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "antbar_leads",
+      "database_id": "7272752a-a393-4e5f-ada0-059af3770f57",
+      "migrations_dir": "migrations"
+    }
+  ]
 }
