@@ -117,7 +117,7 @@ export const PRODUCT_HIGHLIGHT = {
 
 export const PRODUCT_INTRO = {
   heading: 'PRODUCT',
-  buttonText: 'Learn More',
+  buttonText: 'Browse all ANTBAR products',
   buttonHref: '/all-products/',
 } as const;
 

@@ -192,8 +192,8 @@ const newsletterFormId = isReview ? 'article-newsletter-review' : 'article-newsl
                     <h3 class="article-hot-card__title">
                       <a href={item.href}>{item.title}</a>
                     </h3>
-                    <a class="article-hot-card__cta" href={item.href} aria-label={`Read more about ${item.title}`}>
-                      {item.cta}
+                    <a class="article-hot-card__cta" href={item.href}>
+                      View {item.title}
                     </a>
                   </article>
                 </li>
@@ -201,7 +201,7 @@ const newsletterFormId = isReview ? 'article-newsletter-review' : 'article-newsl
             }
           </ul>
           <p class="article-hot-products__more">
-            <a class="article-hot-products__more-link hover-grow" href="/all-products/">More products</a>
+            <a class="article-hot-products__more-link hover-grow" href="/all-products/">Browse all ANTBAR products</a>
           </p>
         </div>
       </section>

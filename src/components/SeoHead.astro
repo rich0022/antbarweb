@@ -35,6 +35,8 @@ const fullCanonical = canonical
 const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 ---
 
+<title>{title}</title>
+
 {/* ── Meta ── */}
 {description && <meta name="description" content={description} />}
 {noindex && <meta name="robots" content="noindex" />}
