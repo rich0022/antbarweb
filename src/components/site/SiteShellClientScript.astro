@@ -335,7 +335,11 @@
       next?.addEventListener('click', () => go(1));
       root.addEventListener('mouseenter', stopAutoplay);
       root.addEventListener('mouseleave', startAutoplay);
-      window.addEventListener('resize', render);
+      let resizeTimer = null;
+      window.addEventListener('resize', () => {
+        if (resizeTimer) window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(render, 150);
+      });
 
       render();
       startAutoplay();
@@ -368,12 +372,16 @@
       );
       observer.observe(hTop);
 
+      let headerResizeTimer = null;
       window.addEventListener('resize', () => {
-        if (hNav.classList.contains('is-sticky')) {
-          hHeader.style.minHeight = '';
-          originalHeaderHeight = null;
-          lockNav();
-        }
+        if (headerResizeTimer) window.clearTimeout(headerResizeTimer);
+        headerResizeTimer = window.setTimeout(() => {
+          if (hNav.classList.contains('is-sticky')) {
+            hHeader.style.minHeight = '';
+            originalHeaderHeight = null;
+            lockNav();
+          }
+        }, 150);
       });
     }
 

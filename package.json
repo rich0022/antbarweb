@@ -18,6 +18,7 @@
     "generate:site-shell": "node scripts/generate-site-shell-data.mjs",
     "rebuild:phase1-shell-css": "node scripts/rebuild-phase1-shell-css.mjs",
     "verify:phase1-shell": "node scripts/verify-phase1-shell.mjs",
+    "index:search": "npx pagefind --site dist/client",
     "preview": "astro preview",
     "astro": "astro"
   },

@@ -1,5 +1,6 @@
 import cloudflare from '@astrojs/cloudflare';
 import { defineConfig, sessionDrivers } from 'astro/config';
+import { pagefindDevPlugin } from './scripts/pagefind-dev-plugin.mjs';
 import { readWranglerVars } from './scripts/read-wrangler-vars.mjs';
 
 const wranglerVars = readWranglerVars();
@@ -32,8 +33,10 @@ export default defineConfig({
   },
   build: {
     assets: 'assets',
+    inlineStylesheets: 'always',
   },
   vite: {
+    plugins: [pagefindDevPlugin()],
     resolve: {
       alias: {
         '@': '/src',

@@ -7,14 +7,15 @@ const slides = GALLERY_SLIDES;
 <section class="home-gallery" id="home-gallery" aria-labelledby="home-gallery-title">
   <div class="home-gallery__header">
     <div class="home-gallery__title scroll-reveal" data-animate="fadeInUp">
+      <h2 id="home-gallery-title" class="home-gallery__title-text">{GALLERY_SECTION.title}</h2>
       <img
-        id="home-gallery-title"
         loading="lazy"
         decoding="async"
         width={GALLERY_SECTION.titleImage.width}
         height={GALLERY_SECTION.titleImage.height}
         src={GALLERY_SECTION.titleImage.src}
-        alt={GALLERY_SECTION.titleImage.alt}
+        alt=""
+        aria-hidden="true"
         srcset={GALLERY_SECTION.titleImage.srcset}
         sizes={GALLERY_SECTION.titleImage.sizes}
       />

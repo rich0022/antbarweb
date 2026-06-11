@@ -38,7 +38,11 @@ const slides = HERO_CAROUSEL_SLIDES;
               aria-label={`${index + 1} of ${slides.length}`}
             >
               <div class="home-hero__media">
-                <a href={slide.link} class="home-hero__image home-hero__image--desktop">
+                <a
+                  href={slide.link}
+                  class="home-hero__image home-hero__image--desktop"
+                  aria-label={slide.titleImage?.alt || slide.headingTag || slide.heading}
+                >
                   <img
                     loading="eager"
                     decoding="async"
@@ -51,7 +55,11 @@ const slides = HERO_CAROUSEL_SLIDES;
                     fetchpriority={index === 0 ? 'high' : 'auto'}
                   />
                 </a>
-                <a href={slide.link} class="home-hero__image home-hero__image--mobile">
+                <a
+                  href={slide.link}
+                  class="home-hero__image home-hero__image--mobile"
+                  aria-label={slide.titleImage?.alt || slide.headingTag || slide.heading}
+                >
                   <img
                     loading="eager"
                     decoding="async"
@@ -61,6 +69,7 @@ const slides = HERO_CAROUSEL_SLIDES;
                     alt=""
                     srcset={slide.mobileImage.srcset}
                     sizes={slide.mobileImage.sizes}
+                    fetchpriority={index === 0 ? 'high' : 'auto'}
                   />
                 </a>
               </div>

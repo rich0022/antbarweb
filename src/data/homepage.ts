@@ -289,6 +289,7 @@ export const GALLERY_SLIDES: GallerySlide[] = [
 ] as const;
 
 export const GALLERY_SECTION = {
+  title: 'Gallery',
   titleImage: {
     src: '/wp-content/uploads/2024/03/图层-1421.png',
     srcset:

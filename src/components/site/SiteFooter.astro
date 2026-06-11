@@ -44,9 +44,9 @@ const socialIconPaths: Record<string, { viewBox: string; path: string }> = {
 
       <div class="site-footer__grid">
         <div class="site-footer__mobile-nav">
-          <h4 class="site-footer__section-title">
+          <h3 class="site-footer__section-title">
             <a href="/all-products/">Product</a>
-          </h4>
+          </h3>
           <details class="site-footer__accordion">
             <summary>About</summary>
             <ul class="site-footer__accordion-links">
@@ -70,7 +70,7 @@ const socialIconPaths: Record<string, { viewBox: string; path: string }> = {
         {
           FOOTER_DESKTOP_COLUMNS.map((column) => (
             <section class="site-footer__column">
-              <h4 class="site-footer__section-title">{column.title}</h4>
+              <h3 class="site-footer__section-title">{column.title}</h3>
               <ul class="site-footer__link-list">
                 {column.links.map((link) => (
                   <li>
@@ -83,7 +83,7 @@ const socialIconPaths: Record<string, { viewBox: string; path: string }> = {
         }
 
         <section class="site-footer__column site-footer__column--contact">
-          <h4 class="site-footer__section-title">Contact</h4>
+          <h3 class="site-footer__section-title">Contact</h3>
           <div class="site-footer__contact-text">
             <p>
               E-mail: <a href={`mailto:${FOOTER_CONTACT.email}`}>{FOOTER_CONTACT.email}</a>
@@ -94,7 +94,7 @@ const socialIconPaths: Record<string, { viewBox: string; path: string }> = {
         </section>
 
         <section class="site-footer__column site-footer__column--social">
-          <h4 class="site-footer__section-title">Follow us</h4>
+          <h3 class="site-footer__section-title">Follow us</h3>
           <p class="site-footer__social-copy">Have Fun With ANTBAR on social medias:</p>
           <div class="site-footer__social-list" role="list">
             {

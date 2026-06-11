@@ -9,7 +9,7 @@ import GalleryCarousel from './GalleryCarousel.astro';
   <HeroCarousel />
 
   <section class="home-highlight" id="home-product-highlight" aria-label="Featured product">
-    <a class="home-highlight__link" href={PRODUCT_HIGHLIGHT.link}>
+    <a class="home-highlight__link" href={PRODUCT_HIGHLIGHT.link} aria-label="View featured product">
       <img
         loading="lazy"
         decoding="async"
@@ -50,9 +50,44 @@ import GalleryCarousel from './GalleryCarousel.astro';
     data-animate="fadeInUp"
   >
     <div class="home-video__frame">
-      <video class="home-video__media" src={PRODUCT_VIDEO.src} autoplay loop muted playsinline controlsList="nodownload"></video>
+      <video
+        class="home-video__media"
+        data-lazy-video={PRODUCT_VIDEO.src}
+        preload="none"
+        loop
+        muted
+        playsinline
+        controlsList="nodownload"
+      ></video>
     </div>
   </section>
 
   <GalleryCarousel />
 </main>
+
+<script>
+  const video = document.querySelector('[data-lazy-video]');
+  if (video instanceof HTMLVideoElement) {
+    const source = video.dataset.lazyVideo;
+    const loadVideo = () => {
+      if (!source || video.src) return;
+      video.src = source;
+      video.autoplay = true;
+      void video.play().catch(() => {});
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          loadVideo();
+          observer.disconnect();
+        },
+        { rootMargin: '200px' },
+      );
+      observer.observe(video);
+    } else {
+      loadVideo();
+    }
+  }
+</script>
