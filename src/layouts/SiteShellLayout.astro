@@ -12,6 +12,7 @@ interface Props {
   title?: string;
   description?: string;
   bodyClass?: string;
+  noindex?: boolean;
   stylesheets?: string[];
   inlineStyles?: string[];
   headScripts?: MirrorScript[];
@@ -22,6 +23,7 @@ const {
   title = 'ANTBAR',
   description = '',
   bodyClass = '',
+  noindex = false,
   stylesheets = [],
   inlineStyles = [],
   headScripts = [],
@@ -38,6 +40,7 @@ const mergedBodyClass = [SITE_SHELL_BODY_CLASS, bodyClass].filter(Boolean).join(
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-32x32.png" sizes="32x32" />
     <link rel="icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-192x192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-180x180.png" />

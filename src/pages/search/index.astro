@@ -1,0 +1,246 @@
+---
+import SiteShellLayout from '../../layouts/SiteShellLayout.astro';
+import '../../styles/search.css';
+
+const labels = {
+  title: 'Search | ANTBAR',
+  description: 'Search products, blog posts, and pages on the ANTBAR website.',
+  heading: 'Search',
+  placeholder: 'Search products, blog, pages...',
+  button: 'Search',
+  initialHint: 'Type a keyword to search the site.',
+  searching: 'Searching...',
+  noResults: 'No results found.',
+  notReady: 'Search index is not ready yet. Please try again in a moment.',
+  found: 'Found',
+  products: 'Products',
+  blog: 'Blog',
+  pages: 'Pages',
+  all: 'All',
+  loadMore: 'Load more',
+  remaining: 'remaining',
+};
+---
+
+<SiteShellLayout title={labels.title} description={labels.description} noindex bodyClass="search-page-body">
+  <main id="content" class="site-main search-page">
+    <div class="search-page__inner" data-search-labels={JSON.stringify(labels)}>
+      <h1 class="search-page__title">{labels.heading}</h1>
+      <div class="search-page__input-row">
+        <input
+          id="search-page-input"
+          type="search"
+          placeholder={labels.placeholder}
+          autocomplete="off"
+          aria-label={labels.heading}
+        />
+        <button id="search-page-button" type="button">{labels.button}</button>
+      </div>
+      <p id="search-page-hint" class="search-page__hint">{labels.initialHint}</p>
+
+      <div class="search-page__filters" id="search-page-filters" hidden>
+        <button type="button" class="search-page__filter is-active" data-filter="all">{labels.all}</button>
+        <button type="button" class="search-page__filter" data-filter="product">{labels.products}</button>
+        <button type="button" class="search-page__filter" data-filter="blog">{labels.blog}</button>
+        <button type="button" class="search-page__filter" data-filter="page">{labels.pages}</button>
+      </div>
+
+      <div id="search-page-output" class="search-page__output"></div>
+      <button type="button" id="search-page-more" class="search-page__more" hidden>{labels.loadMore}</button>
+    </div>
+  </main>
+</SiteShellLayout>
+
+<script>
+  import {
+    SEARCH_PAGE_SIZE,
+    escapeHtml,
+    filterByType,
+    formatResultPath,
+    groupByType,
+    loadPagefind,
+    enrichResults,
+    truncateExcerpt,
+    type EnrichedSearchResult,
+    type SearchResultType,
+  } from '@/lib/pagefind-search';
+
+  const input = document.getElementById('search-page-input');
+  const button = document.getElementById('search-page-button');
+  const hint = document.getElementById('search-page-hint');
+  const filters = document.getElementById('search-page-filters');
+  const output = document.getElementById('search-page-output');
+  const moreButton = document.getElementById('search-page-more');
+  const labelSource = document.querySelector('[data-search-labels]');
+  const labels = labelSource instanceof HTMLElement
+    ? JSON.parse(labelSource.dataset.searchLabels || '{}')
+    : {};
+  const typeLabels = {
+    product: labels.products || 'Products',
+    blog: labels.blog || 'Blog',
+    page: labels.pages || 'Pages',
+  };
+
+  let allResults: EnrichedSearchResult[] = [];
+  let activeFilter: SearchResultType | 'all' = 'all';
+  let visibleCount = SEARCH_PAGE_SIZE;
+
+  const getKeyword = () => new URLSearchParams(window.location.search).get('q')?.trim() || '';
+
+  const setKeyword = (keyword: string) => {
+    const url = new URL(window.location.href);
+    if (keyword) url.searchParams.set('q', keyword);
+    else url.searchParams.delete('q');
+    window.history.replaceState({}, '', url.toString());
+  };
+
+  const setActiveFilterButton = () => {
+    filters?.querySelectorAll('[data-filter]').forEach((node) => {
+      if (!(node instanceof HTMLButtonElement)) return;
+      node.classList.toggle('is-active', node.dataset.filter === activeFilter);
+    });
+  };
+
+  const renderCard = (item: EnrichedSearchResult) => `
+    <li class="search-card-item">
+      <a class="search-card" href="${escapeHtml(item.url)}">
+        <div class="search-card-head">
+          <span class="search-badge search-badge--${item.resultType}">${escapeHtml(item.typeLabel)}</span>
+          <h3 class="search-card-title">${escapeHtml(item.meta.title || 'Untitled')}</h3>
+        </div>
+        <p class="search-card-excerpt">${escapeHtml(truncateExcerpt(item.excerpt, 140, true))}</p>
+        <span class="search-card-url">${escapeHtml(formatResultPath(item.url))}</span>
+      </a>
+    </li>
+  `;
+
+  const renderList = (items: EnrichedSearchResult[]) => `
+    <ul class="search-page-results">
+      ${items.map(renderCard).join('')}
+    </ul>
+  `;
+
+  const renderGrouped = (items: EnrichedSearchResult[]) => {
+    const groups = groupByType(items);
+    const sections = [
+      { key: 'product' as const, title: labels.products || 'Products' },
+      { key: 'blog' as const, title: labels.blog || 'Blog' },
+      { key: 'page' as const, title: labels.pages || 'Pages' },
+    ];
+
+    const html = sections
+      .map(({ key, title }) => {
+        const groupItems = groups[key];
+        if (!groupItems.length) return '';
+        return `
+          <section class="search-group">
+            <h2>${title} <span>${groupItems.length}</span></h2>
+            <ul class="search-page-results">
+              ${groupItems.map(renderCard).join('')}
+            </ul>
+          </section>
+        `;
+      })
+      .join('');
+
+    return `<div class="search-groups">${html}</div>`;
+  };
+
+  const updateMoreButton = (filteredCount: number) => {
+    if (!(moreButton instanceof HTMLButtonElement)) return;
+    const hasMore = filteredCount > visibleCount;
+    moreButton.hidden = !hasMore;
+    if (hasMore) {
+      moreButton.textContent = `${labels.loadMore || 'Load more'} (${filteredCount - visibleCount} ${labels.remaining || 'remaining'})`;
+    }
+  };
+
+  const render = () => {
+    if (!output || !hint) return;
+
+    const filtered = filterByType(allResults, activeFilter);
+    const visible = filtered.slice(0, visibleCount);
+
+    if (!allResults.length) {
+      output.innerHTML = '';
+      hint.textContent = getKeyword()
+        ? labels.noResults || 'No results found.'
+        : labels.initialHint || 'Type a keyword to search the site.';
+      if (filters) filters.hidden = true;
+      updateMoreButton(0);
+      return;
+    }
+
+    const typeCounts = groupByType(allResults);
+    hint.textContent = `${labels.found || 'Found'} ${filtered.length} result(s) · ${typeCounts.product.length} ${labels.products || 'products'} · ${typeCounts.blog.length} ${labels.blog || 'blog'} · ${typeCounts.page.length} ${labels.pages || 'pages'}`;
+
+    output.innerHTML = activeFilter === 'all' ? renderGrouped(visible) : renderList(visible);
+    if (filters) filters.hidden = false;
+    updateMoreButton(filtered.length);
+  };
+
+  const runSearch = async () => {
+    if (!(input instanceof HTMLInputElement) || !hint) return;
+
+    const keyword = input.value.trim();
+    setKeyword(keyword);
+    visibleCount = SEARCH_PAGE_SIZE;
+
+    if (!keyword) {
+      allResults = [];
+      activeFilter = 'all';
+      setActiveFilterButton();
+      render();
+      return;
+    }
+
+    hint.textContent = labels.searching || 'Searching...';
+    if (output) output.innerHTML = '';
+
+    const pf = await loadPagefind(24);
+    if (!pf) {
+      hint.textContent = labels.notReady || 'Search index is not ready yet. Please try again in a moment.';
+      return;
+    }
+
+    const response = await pf.search(keyword);
+    const data = await Promise.all(response.results.map((item) => item.data()));
+    allResults = enrichResults(data, typeLabels);
+    render();
+  };
+
+  filters?.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLButtonElement)) return;
+    const next = target.dataset.filter;
+    if (!next || (next !== 'all' && next !== 'product' && next !== 'blog' && next !== 'page')) return;
+
+    activeFilter = next;
+    visibleCount = SEARCH_PAGE_SIZE;
+    setActiveFilterButton();
+    render();
+  });
+
+  moreButton?.addEventListener('click', () => {
+    visibleCount += SEARCH_PAGE_SIZE;
+    render();
+  });
+
+  if (input instanceof HTMLInputElement) {
+    const q = getKeyword();
+    if (q) {
+      input.value = q;
+      runSearch();
+    }
+
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        runSearch();
+      }
+    });
+  }
+
+  button?.addEventListener('click', runSearch);
+  setActiveFilterButton();
+</script>
