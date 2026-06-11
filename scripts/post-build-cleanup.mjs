@@ -9,7 +9,7 @@ import { existsSync, readdirSync, statSync, rmSync, unlinkSync } from 'node:fs';
 import { join } from 'node:path';
 
 const ROOT = join(import.meta.dirname, '..');
-const DIST = join(ROOT, 'dist', 'wp-content');
+const DIST_ROOT = join(ROOT, 'dist');
 const PUBLIC_UPLOADS = join(ROOT, 'public', 'wp-content', 'uploads');
 
 const EXT_RE = /\.(png|jpe?g)$/i;
@@ -26,9 +26,9 @@ function* walk(dir) {
   } catch {}
 }
 
-function webpExistsInPublic(originalPath) {
+function webpExistsInPublic(originalPath, wpContentRoot) {
   // Given a path in dist/, check if the corresponding file in public/ has a .webp version
-  const relative = originalPath.replace(DIST, '');
+  const relative = originalPath.replace(wpContentRoot, '');
   const publicPath = join(ROOT, 'public', 'wp-content', relative);
   // Check webp at the same directory level
   const webpPath = publicPath.replace(EXT_RE, '.webp');
@@ -42,21 +42,24 @@ function filesize(p) {
 let sizeRemoved = 0;
 let fileCount = 0;
 
-// Remove original PNG/JPEG when WebP exists
-for (const filePath of walk(DIST)) {
-  if (!EXT_RE.test(filePath)) continue;
-  if (!webpExistsInPublic(filePath)) continue;
-  const sz = filesize(filePath);
-  unlinkSync(filePath);
-  sizeRemoved += sz;
-  fileCount++;
+// Remove original PNG/JPEG when WebP exists (dist/ and dist/client/)
+for (const base of ['', 'client']) {
+  const wpContent = join(DIST_ROOT, base, 'wp-content');
+  if (!existsSync(wpContent)) continue;
+  for (const filePath of walk(wpContent)) {
+    if (!EXT_RE.test(filePath)) continue;
+    if (!webpExistsInPublic(filePath, wpContent)) continue;
+    const sz = filesize(filePath);
+    unlinkSync(filePath);
+    sizeRemoved += sz;
+    fileCount++;
+  }
 }
 
 console.log(`Removed ${fileCount} original images: ${(sizeRemoved/1024/1024).toFixed(1)}MB`);
 
-const distRoot = join(ROOT, 'dist');
 for (const base of ['', 'client']) {
-  const wpContent = join(distRoot, base, 'wp-content');
+  const wpContent = join(DIST_ROOT, base, 'wp-content');
   if (!existsSync(wpContent)) continue;
   for (const filePath of walk(wpContent)) {
     if (!DEPLOY_EXCLUDED_RE.test(filePath)) continue;

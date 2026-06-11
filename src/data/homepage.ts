@@ -37,9 +37,9 @@ export const HERO_CAROUSEL_SLIDES: HeroSlide[] = [
     },
     link: '/disposable/antbar-sa8000/',
     titleImage: {
-      src: '/wp-content/uploads/2024/03/HOME-SA800-TITLE.png',
+      src: '/wp-content/uploads/2024/03/HOME-SA800-TITLE.avif',
       srcset:
-        '/wp-content/uploads/2024/03/HOME-SA800-TITLE.png 679w, /wp-content/uploads/2024/03/HOME-SA800-TITLE-300x40.png 300w',
+        '/wp-content/uploads/2024/03/HOME-SA800-TITLE.avif 679w, /wp-content/uploads/2024/03/HOME-SA800-TITLE-300x40.webp 300w',
       sizes: '(max-width: 679px) 100vw, 679px',
       width: 679,
       height: 90,
@@ -67,9 +67,9 @@ export const HERO_CAROUSEL_SLIDES: HeroSlide[] = [
     },
     link: '/disposable/antbar-rocket/',
     titleImage: {
-      src: '/wp-content/uploads/2024/03/HOME-ROCKET-TITLE.png',
+      src: '/wp-content/uploads/2024/03/HOME-ROCKET-TITLE.avif',
       srcset:
-        '/wp-content/uploads/2024/03/HOME-ROCKET-TITLE.png 749w, /wp-content/uploads/2024/03/HOME-ROCKET-TITLE-300x36.png 300w',
+        '/wp-content/uploads/2024/03/HOME-ROCKET-TITLE.avif 749w, /wp-content/uploads/2024/03/HOME-ROCKET-TITLE-300x36.webp 300w',
       sizes: '(max-width: 749px) 100vw, 749px',
       width: 749,
       height: 90,
@@ -291,9 +291,9 @@ export const GALLERY_SLIDES: GallerySlide[] = [
 export const GALLERY_SECTION = {
   title: 'Gallery',
   titleImage: {
-    src: '/wp-content/uploads/2024/03/图层-1421.png',
+    src: '/wp-content/uploads/2024/03/图层-1421.avif',
     srcset:
-      '/wp-content/uploads/2024/03/图层-1421.png 608w, /wp-content/uploads/2024/03/图层-1421-300x53.png 300w',
+      '/wp-content/uploads/2024/03/图层-1421.avif 608w, /wp-content/uploads/2024/03/图层-1421-300x53.webp 300w',
     sizes: '(max-width: 608px) 100vw, 608px',
     width: 608,
     height: 107,

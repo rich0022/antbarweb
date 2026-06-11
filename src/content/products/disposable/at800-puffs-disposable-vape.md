@@ -2,7 +2,7 @@
 title: "AT800 2ml/800 puffs Disposable Vapes | ANTBAR"
 slug: "disposable/at800-puffs-disposable-vape"
 description: "ANTBAR AT800 can vaporize up to 800 puffs of continuous flavor for a pleasurable vaping experience. Find & buy your favorite disposable vape."
-heroImage: "/wp-content/uploads/2024/03/AT800.png"
+heroImage: "/wp-content/uploads/2024/03/AT800.avif"
 family: "disposable"
 kind: "detail"
 productName: "AT800"

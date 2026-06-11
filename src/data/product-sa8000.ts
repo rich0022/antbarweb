@@ -1,5 +1,5 @@
 export const SA8000_HERO = {
-  background: '/wp-content/uploads/2024/06/SA8000-2-jpg.webp',
+  background: '/wp-content/uploads/2024/06/SA8000-2-jpg.avif',
   width: 1920,
   height: 1040,
   title: 'SA8000',
@@ -20,7 +20,7 @@ export const SA8000_VIDEO = {
 
 export const SA8000_FEATURE_ROW_1 = [
   {
-    image: '/wp-content/uploads/2024/03/2-1.webp',
+    image: '/wp-content/uploads/2024/03/2-1.avif',
     width: 342,
     height: 410,
     lines: ['1.1±0.1Ω', 'Mesh Coil'],
@@ -28,7 +28,7 @@ export const SA8000_FEATURE_ROW_1 = [
     labelAlign: 'left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/2-2.webp',
+    image: '/wp-content/uploads/2024/03/2-2.avif',
     width: 587,
     height: 410,
     lines: ['Aluminum Alloy', 'Material'],
@@ -36,7 +36,7 @@ export const SA8000_FEATURE_ROW_1 = [
     labelAlign: 'left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/2-3.webp',
+    image: '/wp-content/uploads/2024/03/2-3.avif',
     width: 342,
     height: 410,
     lines: ['Visual', 'Screen'],
@@ -47,7 +47,7 @@ export const SA8000_FEATURE_ROW_1 = [
 
 export const SA8000_FEATURE_ROW_2 = [
   {
-    image: '/wp-content/uploads/2024/03/2-4.webp',
+    image: '/wp-content/uploads/2024/03/2-4.avif',
     width: 422,
     height: 253,
     lines: ['Rechargeable'],
@@ -63,7 +63,7 @@ export const SA8000_FEATURE_ROW_2 = [
     labelAlign: 'left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/2-6.webp',
+    image: '/wp-content/uploads/2024/03/2-6.avif',
     width: 422,
     height: 253,
     lines: ['Liquid Capacity 12ml'],
@@ -77,7 +77,7 @@ export const SA8000_FLAVORS_PRIMARY = {
   badge: '/wp-content/uploads/2024/06/C449详情-2024.05.2_03-jpg.webp',
   badgeWidth: 480,
   badgeHeight: 80,
-  image: '/wp-content/uploads/2024/06/449-俄罗斯口味.webp',
+  image: '/wp-content/uploads/2024/06/449-俄罗斯口味.avif',
   imageWidth: 2094,
   imageHeight: 361,
 };
@@ -89,12 +89,12 @@ export const SA8000_FLAVORS_NEW = {
   heading: '7 NEW FLAVOR',
   images: [
     {
-      src: '/wp-content/uploads/2024/06/449-马来新口味-jpg.webp',
+      src: '/wp-content/uploads/2024/06/449-马来新口味-jpg.avif',
       width: 2094,
       height: 391,
     },
     {
-      src: '/wp-content/uploads/2024/06/449-马来口味-jpg.webp',
+      src: '/wp-content/uploads/2024/06/449-马来口味-jpg.avif',
       width: 2094,
       height: 364,
     },
@@ -103,7 +103,7 @@ export const SA8000_FLAVORS_NEW = {
 
 export const SA8000_STORIES = [
   {
-    image: '/wp-content/uploads/2024/03/4.webp',
+    image: '/wp-content/uploads/2024/03/4.avif',
     width: 1920,
     height: 1040,
     heading: 'Sleek Cutting-edge for Comfortable Grip',
@@ -112,7 +112,7 @@ export const SA8000_STORIES = [
     align: 'center' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/5.webp',
+    image: '/wp-content/uploads/2024/03/5.avif',
     width: 1920,
     height: 1040,
     heading: 'Premium Technology Ensure Satisfied Experience',
@@ -121,7 +121,7 @@ export const SA8000_STORIES = [
     align: 'left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/6.webp',
+    image: '/wp-content/uploads/2024/03/6.avif',
     width: 1920,
     height: 1040,
     heading: 'Sensitive Auto draw Activation',
@@ -130,7 +130,7 @@ export const SA8000_STORIES = [
     align: 'left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/7.webp',
+    image: '/wp-content/uploads/2024/03/7.avif',
     width: 1920,
     height: 1040,
     heading: 'Come with Rechargeable Feature',
@@ -139,7 +139,7 @@ export const SA8000_STORIES = [
     align: 'right' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/8.webp',
+    image: '/wp-content/uploads/2024/03/8.avif',
     width: 1920,
     height: 1040,
     heading: 'Instant Check on Remaining Liquid',
@@ -153,7 +153,7 @@ export const SA8000_STORIES = [
     },
   },
   {
-    image: '/wp-content/uploads/2024/03/9.webp',
+    image: '/wp-content/uploads/2024/03/9.avif',
     width: 1919,
     height: 1042,
     heading: 'Shinning Hues with Stylish Structure',
@@ -162,7 +162,7 @@ export const SA8000_STORIES = [
     align: 'left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/10-1.webp',
+    image: '/wp-content/uploads/2024/03/10-1.avif',
     width: 1920,
     height: 1040,
     heading: 'Delicious Flavor till the Last',
@@ -176,7 +176,7 @@ export const SA8000_STORIES = [
     },
   },
   {
-    image: '/wp-content/uploads/2024/03/11-.webp',
+    image: '/wp-content/uploads/2024/03/11-.avif',
     width: 1920,
     height: 1040,
     heading: 'Safeguard Setting Guarantees Vaping Safety',
@@ -185,7 +185,7 @@ export const SA8000_STORIES = [
     align: 'center' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/12.webp',
+    image: '/wp-content/uploads/2024/03/12.avif',
     width: 1920,
     height: 1040,
     heading: 'Most Puffs for Maximum Enjoyment',
@@ -221,7 +221,7 @@ export const SA8000_SPEC = {
 };
 
 export const SA8000_WARNING = {
-  image: '/wp-content/uploads/2024/03/14.webp',
+  image: '/wp-content/uploads/2024/03/14.avif',
   width: 1920,
   height: 1040,
 };

@@ -1,7 +1,7 @@
 # ANTBAR 全站图片 / 视频压缩计划
 
 > 审计日期：2026-06-11  
-> 资源目录：`public/wp-content/uploads/`（约 **416 MB**）
+> 资源目录：`public/wp-content/uploads/`（阶段 A 后约 **202 MB**；阶段 B 后 AVIF **603** 张）
 
 ## 1. 现状审计
 
@@ -259,8 +259,7 @@ npm i -D sharp
 
 - [x] 阶段 A：删除/迁出 `public` 下 2 个 `.orig.mp4`，提交 `.gitignore`
 - [x] 阶段 A：`地球-GIF.gif` → `地球.mp4` + poster，`npm run audit:media`
-- [ ] 新增 `scripts/audit-media.mjs` 并在 README/docs 链接本计划
+- [x] 阶段 B：`optimize:images:force` + `optimize:images:avif` + `optimize:refs`（74 文件 / 416+ 引用）
+- [x] 阶段 B：`post-build-cleanup.mjs` 修复 `dist/client/wp-content` 路径
+- [x] `scripts/audit-media.mjs` + `npm run optimize:media`
 - [ ] 阶段 C P0：转码 `SA8000-2023x264-x264-1.mp4` 与 `C486-ok-2k.mp4`，更新 `homepage.ts` / `product-at800.ts`
-- [ ] 阶段 B3：扫描并批量改 `src/data` 中 png → webp
-
-如需，我可以按本计划从 **阶段 A + P0 视频转码脚本** 开始直接落地实现。

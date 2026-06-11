@@ -3,11 +3,11 @@ title: "The Future Of Disposable Vape? Youth Vaping Conversation Guide"
 slug: "blog/antbar-youth-vaping-conversation-guide"
 description: "In 2024, Antbar launched a new 800 puffs disposable kit-AT800, in order to better prevent the use of disposable e-cigarettes by teenagers, we have specially designed a one-touch child protection button."
 excerpt: "Although e-cigarettes are severely restricted in most countries in South America, these bans often appear to be poorly enforced in practice. In Brazil, for example, data from Ipec Intelligence shows that from 2018 to 2021, the number of Brazilian e-cigarette reviews has shown phenomenal growth, rapidly climbing from an initial number of about 500,000 adults to more than 2 million, a rise of more than 300%. This data highlights the huge growth potential of the South American e-cigarette market, which has already attracted the attention and investment of many international e-cigarette brands."
-heroImage: "/wp-content/uploads/2024/08/AT800-disposable-vape.png"
+heroImage: "/wp-content/uploads/2024/08/AT800-disposable-vape.avif"
 publishedAt: "08 16, 2024"
 ---
 
-![](/wp-content/uploads/2024/08/AT800-disposable-vape.png)
+![](/wp-content/uploads/2024/08/AT800-disposable-vape.avif)
 
 ## The rising popularity of disposable e-cigarettes: Looking towards the future
 
@@ -23,11 +23,11 @@ When it comes to the reasons for the ban on disposable e-cigarettes, one of the 
 
 **Similarly, Chinese brand ANYX has designed a rainbow version of its product, ANYX MX PLUS – LGBT**, specifically for the LGBT community in the South American market, with LGBT rights and interests protected by law, The Paraguay E-Cigarette Expo was a great opportunity to value the development of disposable e-cigarettes in 2024 and following trend, preparing to make changes to get ahead of the increasingly strict e-cigarette market.
 
-![](/wp-content/uploads/2024/08/8000vape.png)
+![](/wp-content/uploads/2024/08/8000vape.webp)
 
 In addition, another important element for the disposable e-cigarette ban is to prevent teens from being exposed to and smoking e-cigarettes. In an effort to reduce youth access to e-cigarettes, the ban has taken a variety of measures, including prohibiting vendors such as stores from selling e-cigarettes to minors, and even banning the production and importation of disposable e-cigarettes nationwide, and further restricting their distribution by raising taxes on e-cigarettes. However, despite these measures, the existence of the black market allows youth to easily access disposable e-cigarettes. Therefore, family education plays a crucial role in preventing youth from taking up e-cigarettes. Parental education should strengthen and guidance to help them recognize the dangers of e-cigarettes and consciously resist the temptation. In 2024, Antbar launched a new 800 puffs disposable e-cigarette device – AT800, in order to better prevent the use of disposable e-cigarettes by teenagers, we have specially designed a one-touch child protection button. The button is cleverly placed on the bottom of the device so that it doesn’t take up too much space and can’t be easily detected by minors. This design aims to make it more difficult for teenagers to use e-cigarettes, preventing them from accidentally touching and abusing them. Besides, we know that the need of parents’ careful education and guidance, as well as strict enforcement of the e-cigarette policy can make a real difference apart from our product design. Only by working together can we better protect the health and growth of young people.
 
-![antbar at800 puffs mini disposable kit](/wp-content/uploads/2024/07/486详情_20.png)
+![antbar at800 puffs mini disposable kit](/wp-content/uploads/2024/07/486详情_20.avif)
 
 ## What should I do if I find out my child is vaping?
 
@@ -99,4 +99,4 @@ Therefore, we need to clearly communicate to children that while e-cigarettes ma
 
 While caring about our own health, we should also take care of and respect the others around us. In addition, we should introduce children to the dangers of second-hand smoke – especially electronic aerosols. These aerosols may contain a variety of potentially harmful substances such as nicotine, formaldehyde, and metals, some of which may even induce cancer and other serious health problems. You can refer to authoritative websites such as **https://www.epa.gov/indoor-air-quality-iaq/secondhand-electronic-cigarette-aerosol-and-indoor-air-quality** for specific sites to get a more comprehensive understanding of the dangers of secondhand smoke.
 
-![](/wp-content/uploads/2024/08/2024-best、.png)
+![](/wp-content/uploads/2024/08/2024-best、.webp)

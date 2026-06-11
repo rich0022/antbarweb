@@ -11,7 +11,7 @@ publishedAt: "08 23, 2024"
 
 Amidst an increasingly strengthen global anti-smoking atmosphere and a rising public health consciousness, the concept of *** Harm Reduction *** has gradually become a common aspiration in the international community and the tobacco industry. When we talk about “tobacco control,” essentially, we are struggling to reduce the dual burden that tobacco imposes on social health and the economy. By advocating and implementing tobacco control measures, we hope to reduce the health risks associated with tobacco and reduce the economic losses caused by smoking, promoting a healthier and more sustainable society.
 
-![the reason of Banning Disposable And Flavor Vape](/wp-content/uploads/2024/09/thereasonofBanningDisposableAndFlavorVape.png)
+![the reason of Banning Disposable And Flavor Vape](/wp-content/uploads/2024/09/thereasonofBanningDisposableAndFlavorVape.avif)
 
 The enactment of bans on disposable electronic cigarettes appears to be on the rise, However, these countries seemingly are not conducting comprehensive and precise risk assessments on the bans. **Taking the UK as an example, its most proud smoking cessation strategies have been hastily abandoned after the imposition of bans on disposable electronic cigarettes and flavor bans.** According to a recent survey by Evapo (a leading online electronic cigarette retailer in the UK), as the bans are gradually implemented, there is a high potential that former electronic cigarette users will revert to traditional tobacco products. Additionally, the World Vapers’ Alliance (WVA) out that electronic cigarettes reduce harm by up to 95% compared to traditional tobacco and are far more effective than traditional methods in helping people quit smoking. Moreover, WVA Director Michael Landl emphasizes that such restrictions overlook the scientific evidence of electronic cigarettes in assisting smoking cessation, and flavored electronic cigarettes can increase the success rate of quitting smoking by an astonishing 230%.
 
@@ -19,7 +19,7 @@ In the United States, Governor Ron DeSantis of Florida also opposed the ban. He 
 
 As individuals who smoke, we may all feel confused and concerned: **is it really appropriate for the government to push forward with the implementation of bans without clear results?** Shouldn’t local authorities conduct a rigorous risk assessment before making decisions? Especially in discussions about further restrictions on electronic cigarettes (such as flavor bans), should we not be more cautions about evaluating the potential impact of these policies on public health? After all, the adoption of any policy should be based on thoughtful consideration and broad deliberation of the public interest, rather than blindly forging ahead.
 
-![](/wp-content/uploads/2024/09/vape-ban.png)
+![](/wp-content/uploads/2024/09/vape-ban.avif)
 
 ## Is the ban on disposable electronic cigarettes/flavors really a wrong decision?
 

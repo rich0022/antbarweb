@@ -3,11 +3,11 @@ title: "What Happens If You Vape While Pregnant？"
 slug: "blog/what-happens-if-you-vape-while-pregnant"
 description: "Can you vape while pregnant?women who are planning to become pregnant, as well as pregnant women, should strive to avoid both traditional cigarette smoking and the use of electronic cigarettes."
 excerpt: "Smoking is not as common in the UK as it used to be. In 2022, only 11% of adults say they smoke, compared to 40% in the 1970s. However, smoking remains a public health issue that cannot be ignored. To address this challenge, government policy documents recommend supporting adults to quit smoking using alternatives such as e-cigarettes, while making them less attractive, accessible, and affordable for children. For smokers, switching to e-cigarettes is an accessible option. But for non-smokers, the most important thing is to avoid e-cigarettes. So can you still vape if you’re pregnant? Can someone who uses e-cigarettes get pregnant or have a baby?"
-heroImage: "/wp-content/uploads/2024/07/Is-it-okay-to-vape-a-little-while-pregnant.png"
+heroImage: "/wp-content/uploads/2024/07/Is-it-okay-to-vape-a-little-while-pregnant.avif"
 publishedAt: "04 28, 2024"
 ---
 
-![Is it okay to vape a little while pregnant](/wp-content/uploads/2024/07/Is-it-okay-to-vape-a-little-while-pregnant.png)
+![Is it okay to vape a little while pregnant](/wp-content/uploads/2024/07/Is-it-okay-to-vape-a-little-while-pregnant.avif)
 
 Smoking is not as common in the UK as it used to be. In 2022, only 11% of adults say they smoke, compared to 40% in the 1970s. However, smoking remains a public health issue that cannot be ignored. To address this challenge, government policy documents recommend supporting adults to quit smoking using alternatives such as e-cigarettes, while making them less attractive, accessible, and affordable for children. For smokers, switching to e-cigarettes is an accessible option. But for non-smokers, the most important thing is to avoid e-cigarettes. **So can you still vape if you’re pregnant?** Can someone who uses e-cigarettes get pregnant or have a baby?
 

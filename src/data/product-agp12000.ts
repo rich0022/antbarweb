@@ -1,5 +1,5 @@
 export const AGP12000_HERO = {
-  image: '/wp-content/uploads/2024/06/C479-AGP12000详情-1-5切片_01-jpg.webp',
+  image: '/wp-content/uploads/2024/06/C479-AGP12000详情-1-5切片_01-jpg.avif',
   width: 2540,
   height: 1200,
   title: 'AGP12000',
@@ -25,7 +25,7 @@ export const AGP12000_FEATURE_GRID = {
       headingHtml: '3 DETACHABLE<br>DRIP TIPS',
       tips: [
         {
-          image: '/wp-content/uploads/2024/06/C479-AGP12000详情-1-5_08.webp',
+          image: '/wp-content/uploads/2024/06/C479-AGP12000详情-1-5_08.avif',
           width: 206,
           height: 232,
           labelHtml: 'POM<br>DIP TIP',
@@ -86,7 +86,7 @@ export const AGP12000_LIQUID_SPLIT = {
   description:
     'THE DEVICE COMES WITH 14 ML E-JUICE, HOLDING 12000 PUFFS AND RESTORING THE PUREST TASTE OF EVERY DROP OF LIQUID ESSENCE, MAKING YOU INDULGE IN LASTING AND PEACEFUL VAPING HOURS.',
   image: {
-    src: '/wp-content/uploads/2024/06/C479-AGP12000详情-1-5切片_12-jpg.webp',
+    src: '/wp-content/uploads/2024/06/C479-AGP12000详情-1-5切片_12-jpg.avif',
     width: 1577,
     height: 1166,
     alt: 'antbar 12000 puff vape 14ml capacity',
@@ -101,7 +101,7 @@ export const AGP12000_COMPACT_PANEL = {
   description:
     'THE SIMPLE EXTERIOR AND SLEEK PROFILE EXUDES A SENSE OF MODEST LUXURY. THE DEVICE ALSO EMITS A MELLOW FRAGRANCE WITH A LIGHTWEIGHT AND PORTABLE DESIGN, MAKING IT A CONVENIENT AND HANDY DEVICE TO CARRY AROUND.',
   productImage: {
-    src: '/wp-content/uploads/2024/06/C479-AGP12000详情-6-9_03-2.webp',
+    src: '/wp-content/uploads/2024/06/C479-AGP12000详情-6-9_03-2.avif',
     width: 1282,
     height: 845,
   },
@@ -110,7 +110,7 @@ export const AGP12000_COMPACT_PANEL = {
 export const AGP12000_MESH_SECTION = {
   heading: 'MESH COIL WITH REMARKABLE PERFORMANCE',
   image: {
-    src: '/wp-content/uploads/2024/06/C479-AGP12000详情-6-9_07-jpg.webp',
+    src: '/wp-content/uploads/2024/06/C479-AGP12000详情-6-9_07-jpg.avif',
     width: 1906,
     height: 850,
     alt: 'antbar 12000 puffvape with mesh coil',
@@ -130,7 +130,7 @@ export const AGP12000_MESH_SECTION = {
 };
 
 export const AGP12000_BATTERY_PANEL = {
-  image: '/wp-content/uploads/2024/06/C479-AGP12000详情-6-9_16-jpg.webp',
+  image: '/wp-content/uploads/2024/06/C479-AGP12000详情-6-9_16-jpg.avif',
   width: 2540,
   height: 1374,
   heading: 'LONG-LASTING  600MAH BATTERY',
@@ -187,7 +187,7 @@ export const AGP12000_SPEC = {
 
 export const AGP12000_PACKAGE = {
   heading: 'PACKAGE CONTENT',
-  image: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11_28-jpg.webp',
+  image: '/wp-content/uploads/2024/06/C479-AGP12000详情-10-11_28-jpg.avif',
   width: 2540,
   height: 1374,
 };

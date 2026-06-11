@@ -3,15 +3,15 @@ title: "Malaysia ranked as China's sixth-largest e-cigarettes export market"
 slug: "blog/2023malaysia-ranked-as-chinas-sixth-largest-vape-export-market"
 description: "In 2023, total China's e-cigarette exports to the United States reached 3.101 billion U.S. dollars, accounting for 27.98% of the total export value."
 excerpt: "In 2020, China’s famous Sina.com revealed a Global Male Smoking Prevalence Ranking, in which Malaysia ranked sixth with a significant figure of male smoking prevalence, while Indonesia topped the list with a high male smoking prevalence rate of 76%, followed by Russia with 58% male smoking prevalence rate. Egypt follows in third place with a smoking prevalence of 50%. Side by side, this reflects the dire smoking situation in Malaysia. Changes in Smoking Prevalence in Malaysia (2000-2020)"
-heroImage: "/wp-content/uploads/2024/09/Malaysia-vape-jpg.webp"
+heroImage: "/wp-content/uploads/2024/09/Malaysia-vape-jpg.avif"
 publishedAt: "09 10, 2024"
 ---
 
-![Malaysia vape](/wp-content/uploads/2024/09/Malaysia-vape-jpg.webp)
+![Malaysia vape](/wp-content/uploads/2024/09/Malaysia-vape-jpg.avif)
 
 In 2020, China’s famous Sina.com revealed a Global Male Smoking Prevalence Ranking, in which Malaysia ranked sixth with a significant figure of male smoking prevalence, while Indonesia topped the list with a high male smoking prevalence rate of 76%, followed by Russia with 58% male smoking prevalence rate. Egypt follows in third place with a smoking prevalence of 50%. Side by side, this reflects the dire smoking situation in Malaysia. Changes in Smoking Prevalence in Malaysia (2000-2020)
 
-![2000~2020 malaysia smoking rate](/wp-content/uploads/2024/09/malaysia-smoking-rate.png)
+![2000~2020 malaysia smoking rate](/wp-content/uploads/2024/09/malaysia-smoking-rate.avif)
 
 Chart data source: [macrotrends](https://www.macrotrends.net/countries/MYS/malaysia/smoking-rate-statistics)
 
@@ -29,6 +29,6 @@ With only 32 million Malaysia’s population, its e-cigarette market scope is th
 
 Let’s take a brief look at the policy situation in other Southeast Asian countries (e-cigarette regulations in Southeast Asian countries/regions as of June 2020)
 
-![south country vape regulation](/wp-content/uploads/2024/09/south-country-vape-regulation.png)
+![south country vape regulation](/wp-content/uploads/2024/09/south-country-vape-regulation.avif)
 
 Edited by antbar

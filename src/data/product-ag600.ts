@@ -1,5 +1,5 @@
 export const AG600_HERO = {
-  image: '/wp-content/uploads/2024/03/AG600.webp',
+  image: '/wp-content/uploads/2024/03/AG600.avif',
   width: 2560,
   height: 1200,
   title: 'AG600',
@@ -20,15 +20,15 @@ export const AG600_HIGHLIGHTS = {
 };
 
 export const AG600_IMAGES = [
-  { src: '/wp-content/uploads/2024/03/C478-02.webp', width: 2560, height: 1030 },
-  { src: '/wp-content/uploads/2024/03/C478-03.webp', width: 2560, height: 1031 },
-  { src: '/wp-content/uploads/2024/03/C478-04.webp', width: 2560, height: 1030 },
-  { src: '/wp-content/uploads/2024/03/C478-05.webp', width: 2560, height: 1029 },
-  { src: '/wp-content/uploads/2024/03/C478-06.webp', width: 2560, height: 1030 },
-  { src: '/wp-content/uploads/2024/03/C478-07.webp', width: 2560, height: 1030 },
-  { src: '/wp-content/uploads/2024/03/C478-08.webp', width: 2560, height: 1030 },
-  { src: '/wp-content/uploads/2024/03/C478-09.webp', width: 2560, height: 1030 },
-  { src: '/wp-content/uploads/2024/03/C478-10.webp', width: 2560, height: 1620 },
+  { src: '/wp-content/uploads/2024/03/C478-02.avif', width: 2560, height: 1030 },
+  { src: '/wp-content/uploads/2024/03/C478-03.avif', width: 2560, height: 1031 },
+  { src: '/wp-content/uploads/2024/03/C478-04.avif', width: 2560, height: 1030 },
+  { src: '/wp-content/uploads/2024/03/C478-05.avif', width: 2560, height: 1029 },
+  { src: '/wp-content/uploads/2024/03/C478-06.avif', width: 2560, height: 1030 },
+  { src: '/wp-content/uploads/2024/03/C478-07.avif', width: 2560, height: 1030 },
+  { src: '/wp-content/uploads/2024/03/C478-08.avif', width: 2560, height: 1030 },
+  { src: '/wp-content/uploads/2024/03/C478-09.avif', width: 2560, height: 1030 },
+  { src: '/wp-content/uploads/2024/03/C478-10.avif', width: 2560, height: 1620 },
 ];
 
 export const AG600_SPEC = {
@@ -56,7 +56,7 @@ export const AG600_SPEC = {
 };
 
 export const AG600_FOOTER_IMAGE = {
-  src: '/wp-content/uploads/2024/03/C478-12.webp',
+  src: '/wp-content/uploads/2024/03/C478-12.avif',
   width: 2560,
   height: 1030,
 };

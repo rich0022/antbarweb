@@ -2,7 +2,7 @@
 title: "The Disposable Vape Kits Online Wholesale|Antbar"
 slug: "disposable/antbar-kt800"
 description: "Antbar The Disposable Vape Kits Online Sale,Large port, large capacity, small battery, can be filled with oil, type-C charging, there is always something for you!"
-heroImage: "/wp-content/uploads/2024/05/KT800.jpg"
+heroImage: "/wp-content/uploads/2024/05/KT800.avif"
 family: "disposable"
 kind: "detail"
 productName: "KT800"

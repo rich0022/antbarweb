@@ -1,5 +1,5 @@
 export const ROCKET_HERO = {
-  image: '/wp-content/uploads/2024/03/C448-1.webp',
+  image: '/wp-content/uploads/2024/03/C448-1.avif',
   width: 2540,
   height: 1440,
   title: 'ROCKET',
@@ -20,14 +20,14 @@ export const ROCKET_HIGHLIGHTS = {
 };
 
 export const ROCKET_SHOWCASE_IMAGE = {
-  src: '/wp-content/uploads/2024/03/C448-2.webp',
+  src: '/wp-content/uploads/2024/03/C448-2.avif',
   width: 2540,
   height: 1440,
 };
 
 export const ROCKET_STORIES = [
   {
-    image: '/wp-content/uploads/2024/03/C448-3.webp',
+    image: '/wp-content/uploads/2024/03/C448-3.avif',
     width: 2540,
     height: 1440,
     heading: 'SMALLER THAN YOUR PALM',
@@ -36,7 +36,7 @@ export const ROCKET_STORIES = [
     position: 'bottom-right' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/C448-4.webp',
+    image: '/wp-content/uploads/2024/03/C448-4.avif',
     width: 2540,
     height: 1440,
     headingHtml: 'CORLORFUL<br />FLUORESCENT TONE',
@@ -45,7 +45,7 @@ export const ROCKET_STORIES = [
     position: 'bottom-left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/C448-5.webp',
+    image: '/wp-content/uploads/2024/03/C448-5.avif',
     width: 2540,
     height: 1440,
     headingHtml: 'UPGRADED<br />MESH COIL',
@@ -54,7 +54,7 @@ export const ROCKET_STORIES = [
     position: 'bottom-right' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/C448-6.webp',
+    image: '/wp-content/uploads/2024/03/C448-6.avif',
     width: 2549,
     height: 1444,
     headingHtml: 'FAVORABLE<br />TASTE',
@@ -63,12 +63,12 @@ export const ROCKET_STORIES = [
     position: 'bottom-left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/03/C448-7.webp',
+    image: '/wp-content/uploads/2024/03/C448-7.avif',
     width: 2540,
     height: 1440,
   },
   {
-    image: '/wp-content/uploads/2024/03/C448-8.webp',
+    image: '/wp-content/uploads/2024/03/C448-8.avif',
     width: 2540,
     height: 1440,
     heading: 'CONSTANT VOLTAGE OUTPUT',
@@ -83,7 +83,7 @@ export const ROCKET_FLAVORS = {
   description:
     'Provided outstanding color scheme with juicy flavor to<br />meet your unique requirements.',
   image: {
-    src: '/wp-content/uploads/2024/03/C448-9.webp',
+    src: '/wp-content/uploads/2024/03/C448-9.avif',
     width: 1920,
     height: 1535,
     alt: 'C448-9',
@@ -93,14 +93,14 @@ export const ROCKET_FLAVORS = {
 export const ROCKET_SPEC = {
   heading: 'Antbar Rocket PARAMETERS',
   image: {
-    src: '/wp-content/uploads/2024/03/Rocket-scaled.webp',
+    src: '/wp-content/uploads/2024/03/Rocket-scaled.avif',
     width: 2560,
     height: 1440,
   },
 };
 
 export const ROCKET_PACKAGING = {
-  image: '/wp-content/uploads/2024/03/C448-11.webp',
+  image: '/wp-content/uploads/2024/03/C448-11.avif',
   width: 2540,
   height: 1249,
   heading: 'PACKAGING',

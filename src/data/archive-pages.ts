@@ -10,8 +10,8 @@ export type ArchivePageConfig = {
 
 export const BLOG_ARCHIVE_PAGE: ArchivePageConfig = {
   hero: {
-    desktopImage: '/wp-content/uploads/2024/05/blog-1.webp',
-    mobileImage: '/wp-content/uploads/2024/05/blog-2.webp',
+    desktopImage: '/wp-content/uploads/2024/05/blog-1.avif',
+    mobileImage: '/wp-content/uploads/2024/05/blog-2.avif',
     heading: 'BLOG',
     tagline: 'Learn more about the brand',
   },
@@ -20,8 +20,8 @@ export const BLOG_ARCHIVE_PAGE: ArchivePageConfig = {
 
 export const REVIEW_ARCHIVE_PAGE: ArchivePageConfig = {
   hero: {
-    desktopImage: '/wp-content/uploads/2024/05/review-1.webp',
-    mobileImage: '/wp-content/uploads/2024/05/REVIEW-2.webp',
+    desktopImage: '/wp-content/uploads/2024/05/review-1.avif',
+    mobileImage: '/wp-content/uploads/2024/05/REVIEW-2.avif',
     heading: 'REVIEW',
     tagline: 'Learn more about the brand',
   },

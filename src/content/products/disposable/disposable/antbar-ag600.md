@@ -2,7 +2,7 @@
 title: "Antbar AG600 - 20mg/600puff The Best prefilled Disposable Vapes"
 slug: "disposable/disposable/antbar-ag600"
 description: "Antbar The Disposable Vape Kits Online Sale,AG600 only weight 31g,Mesh Coil,3.6V Constant Voltage.AG600 The Popular disposable vape in 2024!"
-heroImage: "/wp-content/uploads/2024/03/AG600.png"
+heroImage: "/wp-content/uploads/2024/03/AG600.avif"
 family: "disposable"
 kind: "detail"
 productName: "AG600"

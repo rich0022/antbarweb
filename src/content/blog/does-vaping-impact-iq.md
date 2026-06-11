@@ -3,11 +3,11 @@ title: "Does Vaping Impact IQ - ANTBAR VAPE GUIEDE FOR BEGINNER"
 slug: "blog/does-vaping-impact-iq"
 description: "E-cigarettes, as a form of nicotine delivery, are viewed as an advisable harm-reducing smoking cessation aid. This claim is well-recognized by many health organizations."
 excerpt: "The World Health Organization (WHO) did begin promoting “nicotine replacement therapy” globally in the 1990s to help people quit smoking. These therapies are designed to reduce withdrawal symptoms when quitting smoking by delivering nicotine but avoiding the harmful substances produced by burning tobacco. E-cigarettes, as a form of nicotine delivery, are viewed as an advisable harm-reducing smoking cessation aid. This claim is well-recognized by many health organizations. Compared to traditional cigarettes, e-cigarettes are usually considered less harmful. Most e-liquids usually contain ingredients such as nicotine, glycerin, and vegetable flavors, and these liquids are heated to produce vapor for users to inhale. The vapor produced usually does not contain harmful substances like tar and soot, which are found in traditional cigarettes and relatively harm to humans."
-heroImage: "/wp-content/uploads/2024/09/vapeimpactthebrain.png"
+heroImage: "/wp-content/uploads/2024/09/vapeimpactthebrain.avif"
 publishedAt: "09 18, 2024"
 ---
 
-![](/wp-content/uploads/2024/09/vapeimpactthebrain.png)
+![](/wp-content/uploads/2024/09/vapeimpactthebrain.avif)
 
 The World Health Organization (WHO) did begin promoting “nicotine replacement therapy” globally in the 1990s to help people quit smoking. These therapies are designed to reduce withdrawal symptoms when quitting smoking by delivering nicotine but avoiding the harmful substances produced by burning tobacco. E-cigarettes, as a form of nicotine delivery, are viewed as an advisable harm-reducing smoking cessation aid. This claim is well-recognized by many health organizations. Compared to traditional cigarettes, e-cigarettes are usually considered less harmful. Most e-liquids usually contain ingredients such as nicotine, glycerin, and vegetable flavors, and these liquids are heated to produce vapor for users to inhale. The vapor produced usually does not contain harmful substances like tar and soot, which are found in traditional cigarettes and relatively harm to humans.
 
@@ -26,7 +26,7 @@ However, it is not difficult to see that the main culprits that affect intellige
 
 ## Why does nicotine have such a strong effect on the human brain and intelligence?
 
-![](/wp-content/uploads/2024/09/Nicotine-impact.png)
+![](/wp-content/uploads/2024/09/Nicotine-impact.webp)
 
 Nicotine, a name derived from the scientific name of the tobacco plant “Nicotiana tabacum”, is also an organic compound known as nicotine. Its chemical formula is C10H14N2, containing highly toxic. This substance can be widely found in tobacco plants or plants in the Solanaceae family (e.g. tomatoes, goji berries, etc.).
 
@@ -38,7 +38,7 @@ In the brain, this mechanism of action of nicotine can lead to a number of physi
 
 ## Furthermore, why does carbon monoxide have such a significant influence on the human brain and intelligence?
 
-![](/wp-content/uploads/2024/09/vape-impact-you-smart-level.png)
+![](/wp-content/uploads/2024/09/vape-impact-you-smart-level.avif)
 
 Carbon monoxide is a carbon-oxygen compound, chemical formula CO, colorless and odorless gas, insoluble in water, molecular weight of 28.0101, which is not easy to liquefy and solidify. As for toxicity, higher concentrated CO can make people suffer from different degrees of poisoning symptoms. If humans inhale higher concentrations that will be combined with hemoglobin, resulting in hypoxia and poisoning symptoms. At the same time, long-term exposure to low concentrations of carbon monoxide also has a bad influence on intelligence, leading to neuronal damage in the brain and mental retardation, memory loss, concentration and reaction ability decrease, and affecting learning and work performance. In addition, the sequelae of carbon monoxide poisoning include but are not limited to mental retardation, behavioral problems, and mood disorders, and these effects may be related to nerve cells damaged in the brain and destruction of myelin.
 

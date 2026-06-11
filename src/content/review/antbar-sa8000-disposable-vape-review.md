@@ -3,11 +3,11 @@ title: "Antbar SA8000 Disposable Vape Review：POP Vape"
 slug: "review/antbar-sa8000-disposable-vape-review"
 description: "Let’s take on the journey and explore the magic of SA8000 Disposable Vape!"
 excerpt: "Antbar is one of the core e-cigarette brands of the Cloupor Group. We sell a variety of pod kits, pod mod kits and disposable kits. SA8000 Disposable is one of the hottest selling pod kits from ANTBAR in the world. What are the essential elements people fancy so much?"
-heroImage: "/wp-content/uploads/2024/07/06-288x300.png"
+heroImage: "/wp-content/uploads/2024/07/06-288x300.avif"
 publishedAt: "03 11, 2024"
 ---
 
-![](/wp-content/uploads/2024/07/06-288x300.png)
+![](/wp-content/uploads/2024/07/06-288x300.avif)
 
 Antbar is one of the core e-cigarette brands of the Cloupor Group. We sell a variety of pod kits, pod mod kits and disposable kits. SA8000 Disposable is one of the hottest selling pod kits from ANTBAR in the world. What are the essential elements people fancy so much?
 
@@ -50,6 +50,6 @@ Working Principle: The built-in sensor detects the user’s inhalation movement 
 
 **The components that make up the SA8000 auto draw function include: **** Microphone case: **The external structure of the microphone head, usually made of metal or plastic to protect the internal components. ** Sound sensor: **The core component inside the microphone head, it can convert the sound or airflow into electrical signals, so as to achieve the detection of sound or airflow. ** Microphone pole piece: **The sensing part of the microphone, usually made of conductive material, capable of sensing changes in external sound or airflow. ** Signal processing circuit: **To process the electrical signals detected by the pole piece of the microphone head, such as amplification, filtering and other operations, in order to output more accurate sound or airflow signals. ** Dust net: **Set in the front of the microphone head pole piece, it was used to prevent dust or other impurities into the microphone head internal, affecting its normal operation. ** Other accessories:** Such as wires, fixings, etc., they are used to connect the microphone head and external equipment, as well as to fix the position of the microphone head.
 
-![](/wp-content/uploads/2024/06/SA8000-PACKLIST-768x400.png)
+![](/wp-content/uploads/2024/06/SA8000-PACKLIST-768x400.avif)
 
 We look forward to getting in touch with you to offer you a discounted price. Please contact us for a competitive price and we will be happy to assist you. Wish you all the best!

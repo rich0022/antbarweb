@@ -3,7 +3,7 @@ title: "How about Vaping Prescription In Australia"
 slug: "blog/how-about-vaping-prescription-in-australia"
 description: "The law in Australia is that people under 18 will still need a prescription to access vapes, where state and territory laws allow it."
 excerpt: "The law in Australia is that people under 18 will still need a prescription to access vapes, where state and territory laws allow it."
-heroImage: "/wp-content/uploads/2024/10/aodaliya.png"
+heroImage: "/wp-content/uploads/2024/10/aodaliya.avif"
 publishedAt: "10 29, 2024"
 ---
 

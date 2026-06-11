@@ -3,11 +3,11 @@ title: "How to make a crack wire for disposable vape-ANTBAR VAPE"
 slug: "blog/how-to-make-a-crack-wire-for-disposable-vape"
 description: "Today we are thrilled to introduce you to make a crack wire for disposable vape!"
 excerpt: "Antbar, one of the sub e-cigarette brands of the Cloupor Group, which mainly produces a variety of rechargeable and refillable disposable e-cigarettes."
-heroImage: "/wp-content/uploads/2024/07/how-to-make-crack-wire-for-disposable.png"
+heroImage: "/wp-content/uploads/2024/07/how-to-make-crack-wire-for-disposable.avif"
 publishedAt: "04 03, 2024"
 ---
 
-![how-to-make-crack-wire-for-disposable.png](/wp-content/uploads/2024/07/how-to-make-crack-wire-for-disposable.png)
+![how-to-make-crack-wire-for-disposable.png](/wp-content/uploads/2024/07/how-to-make-crack-wire-for-disposable.avif)
 
 Antbar, one of the sub e-cigarette brands of the Cloupor Group, which mainly produces a variety of rechargeable and refillable disposable e-cigarettes.
 
@@ -27,7 +27,7 @@ It is important to realize that electronic cigarettes can be recharged in a vari
 
 In addition, disassembling the e-cigarette is also a risky operation. Improper operation may result in permanent damage to the e-cigarette, and the disassembly process also comes into contact with internal components such as wires and batteries, which will increase the risk of electric shock. Therefore, be sure whether you can undertake the risks or not and take the necessary safety measures before attempting these operations.
 
-![what is crack wire](/wp-content/uploads/2024/07/what-is-crack-wire.png)
+![what is crack wire](/wp-content/uploads/2024/07/what-is-crack-wire.avif)
 
 What wires do you use for a crack wire?
 
@@ -35,7 +35,7 @@ The electrically conductive substances generally used to charge batteries are ma
 
 **The following is a detailed description of common conductive materials and resistance parameters:**
 
-![](/wp-content/uploads/2024/07/common-conductive-materials-and-resistance-parameters.png)
+![](/wp-content/uploads/2024/07/common-conductive-materials-and-resistance-parameters.webp)
 
 ## How to make a crack wire for a disposable vape
 

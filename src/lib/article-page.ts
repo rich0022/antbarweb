@@ -65,25 +65,25 @@ export const HOT_SALE_PRODUCTS: HotProductCard[] = [
   {
     title: 'KT800',
     href: '/disposable/antbar-kt800/',
-    image: '/wp-content/uploads/2024/05/KT800.jpg',
+    image: '/wp-content/uploads/2024/05/KT800.avif',
     cta: 'Learn More »',
   },
   {
     title: 'DAH6000',
     href: '/disposable/antbar-3000-6000/',
-    image: '/wp-content/uploads/2024/03/DAH6000.png',
+    image: '/wp-content/uploads/2024/03/DAH6000.avif',
     cta: 'Learn More »',
   },
   {
     title: 'AGP12000',
     href: '/disposable/agp12000-nicotine-disposable-vape/',
-    image: '/wp-content/uploads/2024/06/AGP12000-NEW.png',
+    image: '/wp-content/uploads/2024/06/AGP12000-NEW.webp',
     cta: 'Learn More »',
   },
   {
     title: 'ROCKET',
     href: '/disposable/antbar-rocket/',
-    image: '/wp-content/uploads/2024/03/ROCKET-1.png',
+    image: '/wp-content/uploads/2024/03/ROCKET-1.avif',
     cta: 'Learn More »',
   },
 ];
@@ -92,17 +92,17 @@ export const BLOG_LATEST_ITEMS: ArticleCard[] = [
   {
     title: 'How about Vaping Prescription In Australia',
     href: '/blog/how-about-vaping-prescription-in-australia/',
-    image: '/wp-content/uploads/2024/10/aodaliya.png',
+    image: '/wp-content/uploads/2024/10/aodaliya.avif',
   },
   {
     title: 'Global Vape Regulations Update In 2024: 8 Countries or Territories',
     href: '/blog/global-vape-regulations-update-in-2024-8-countries-or-territories/',
-    image: '/wp-content/uploads/2024/10/golbal-Vape-Regulations.png',
+    image: '/wp-content/uploads/2024/10/golbal-Vape-Regulations.avif',
   },
   {
     title: 'What Are The Top 10 Popular And Least Harmful Disposable Vapes?',
     href: '/blog/what-are-the-top-10-popular-and-least-harmful-disposable-vapes/',
-    image: '/wp-content/uploads/2024/04/9.png',
+    image: '/wp-content/uploads/2024/04/9.avif',
   },
 ];
 
@@ -110,17 +110,17 @@ export const BLOG_RELATED_ITEMS: ArticleCard[] = [
   {
     title: 'Does Vaping make you less smart',
     href: '/blog/does-vaping-impact-iq/',
-    image: '/wp-content/uploads/2024/09/2.jpg',
+    image: '/wp-content/uploads/2024/09/2.avif',
   },
   {
     title: '2024: Ban on flavoured e-cigarettes in Holland',
     href: '/blog/2024-ban-on-flavoured-vape-in-holland/',
-    image: '/wp-content/uploads/2024/07/flavor-vape-ban-in-Holland.png',
+    image: '/wp-content/uploads/2024/07/flavor-vape-ban-in-Holland.avif',
   },
   {
     title: 'VAPE Design:Looking ahead to vape trends from the Spain Vape Expo',
     href: '/blog/future-trends-in-vape-design-2024/',
-    image: '/wp-content/uploads/2024/09/1.jpg',
+    image: '/wp-content/uploads/2024/09/1.webp',
   },
 ];
 
@@ -128,7 +128,7 @@ export const BLOG_FEATURED_ITEMS: ArticleCard[] = [
   {
     title: 'Antbar ROCKET Disposable Vape Review：POP Vape',
     href: '/review/antbar-rocket-disposable-vape-review/',
-    image: '/wp-content/uploads/2024/03/3T5A7879.png',
+    image: '/wp-content/uploads/2024/03/3T5A7879.avif',
   },
 ];
 
@@ -136,25 +136,25 @@ export const BLOG_HOT_SALE_PRODUCTS: HotProductCard[] = [
   {
     title: 'KT800',
     href: '/disposable/antbar-kt800/',
-    image: '/wp-content/uploads/2024/05/KT800.jpg',
+    image: '/wp-content/uploads/2024/05/KT800.avif',
     cta: 'Learn More »',
   },
   {
     title: 'DAH6000',
     href: '/disposable/antbar-3000-6000/',
-    image: '/wp-content/uploads/2024/03/DAH6000.png',
+    image: '/wp-content/uploads/2024/03/DAH6000.avif',
     cta: 'Learn More »',
   },
   {
     title: 'AGP12000',
     href: '/disposable/agp12000-nicotine-disposable-vape/',
-    image: '/wp-content/uploads/2024/06/AGP12000-NEW.png',
+    image: '/wp-content/uploads/2024/06/AGP12000-NEW.webp',
     cta: 'Learn More »',
   },
   {
     title: 'ROCKET',
     href: '/disposable/antbar-rocket/',
-    image: '/wp-content/uploads/2024/03/ROCKET-1.png',
+    image: '/wp-content/uploads/2024/03/ROCKET-1.avif',
     cta: 'Learn More »',
   },
 ];
@@ -163,17 +163,17 @@ export const REVIEW_LATEST_ITEMS: ArticleCard[] = [
   {
     title: 'How about Vaping Prescription In Australia',
     href: '/blog/how-about-vaping-prescription-in-australia/',
-    image: '/wp-content/uploads/2024/10/aodaliya.png',
+    image: '/wp-content/uploads/2024/10/aodaliya.avif',
   },
   {
     title: 'ANTBAR The Pop Disposable Vape Review: KT800',
     href: '/review/antbar-the-pop-disposable-vape-review-kt800/',
-    image: '/wp-content/uploads/2024/10/2024-best-Pop-Disposable-Vape.png',
+    image: '/wp-content/uploads/2024/10/2024-best-Pop-Disposable-Vape.avif',
   },
   {
     title: 'Global Vape Regulations Update In 2024: 8 Countries or Territories',
     href: '/blog/global-vape-regulations-update-in-2024-8-countries-or-territories/',
-    image: '/wp-content/uploads/2024/10/golbal-Vape-Regulations.png',
+    image: '/wp-content/uploads/2024/10/golbal-Vape-Regulations.avif',
   },
 ];
 
@@ -181,17 +181,17 @@ export const REVIEW_RELATED_ITEMS: ArticleCard[] = [
   {
     title: 'The 2024 Best Nicotine Disposable Vapes: Antbar AT800',
     href: '/review/2024-best-nicotine-containing-disposable-vapes-antbar-at800/',
-    image: '/wp-content/uploads/2024/09/3.jpg',
+    image: '/wp-content/uploads/2024/09/3.webp',
   },
   {
     title: 'Antbar SA8000 Disposable Vape Review：POP Vape',
     href: '/review/antbar-sa8000-disposable-vape-reviewpop-vape/',
-    image: '/wp-content/uploads/2024/09/1.jpg',
+    image: '/wp-content/uploads/2024/09/1.webp',
   },
   {
     title: 'What to expect from Disposable Vapes Pen Antbar AG600',
     href: '/review/disposable-nicotine-vapes-antbar-ag600-reviews/',
-    image: '/wp-content/uploads/2024/09/2.jpg',
+    image: '/wp-content/uploads/2024/09/2.avif',
   },
 ];
 
@@ -199,7 +199,7 @@ export const REVIEW_FEATURED_ITEMS: ArticleCard[] = [
   {
     title: 'What Are The Top 10 Popular And Least Harmful Disposable Vapes?',
     href: '/blog/what-are-the-top-10-popular-and-least-harmful-disposable-vapes/',
-    image: '/wp-content/uploads/2024/04/9.png',
+    image: '/wp-content/uploads/2024/04/9.avif',
   },
 ];
 
@@ -207,25 +207,25 @@ export const REVIEW_HOT_SALE_PRODUCTS: HotProductCard[] = [
   {
     title: 'DAH6000',
     href: '/disposable/antbar-3000-6000/',
-    image: '/wp-content/uploads/2024/03/DAH6000.png',
+    image: '/wp-content/uploads/2024/03/DAH6000.avif',
     cta: 'Learn More »',
   },
   {
     title: 'AHP10000',
     href: '/disposable/v10000-puffs-disposable-vape/',
-    image: '/wp-content/uploads/2024/05/ahp10000.png',
+    image: '/wp-content/uploads/2024/05/ahp10000.avif',
     cta: 'Learn More »',
   },
   {
     title: 'AG600',
     href: '/disposable/antbar-ag600/',
-    image: '/wp-content/uploads/2024/03/AG600.png',
+    image: '/wp-content/uploads/2024/03/AG600.avif',
     cta: 'Learn More »',
   },
   {
     title: 'AT800',
     href: '/disposable/at800-puffs-disposable-vape/',
-    image: '/wp-content/uploads/2024/03/AT800.png',
+    image: '/wp-content/uploads/2024/03/AT800.avif',
     cta: 'Learn More »',
   },
 ];
@@ -276,7 +276,7 @@ export function buildArticleCard(entry: ArticleEntry, collection: ArticleCollect
   return {
     title: entry.data.title,
     href: `/${collection}/${slug}/`,
-    image: entry.data.heroImage ?? entry.data.featuredImage ?? '/wp-content/uploads/2024/05/LOGO.png',
+    image: entry.data.heroImage ?? entry.data.featuredImage ?? '/wp-content/uploads/2024/05/LOGO.webp',
   };
 }
 

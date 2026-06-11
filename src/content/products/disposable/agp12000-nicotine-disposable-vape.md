@@ -2,7 +2,7 @@
 title: "AGP12000 Disposable Vape 14ML/12000 Puffs-ANTBAR"
 slug: "disposable/agp12000-nicotine-disposable-vape"
 description: "The AGP12000 Nicotine Disposable Vape offers A smart large display design allows you to view key information such as liquid and battery capacity at a glance."
-heroImage: "/wp-content/uploads/2024/05/LOGO.png"
+heroImage: "/wp-content/uploads/2024/05/LOGO.webp"
 family: "disposable"
 kind: "detail"
 productName: "AGP12000"

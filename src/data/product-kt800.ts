@@ -1,5 +1,5 @@
 export const KT800_HERO = {
-  image: '/wp-content/uploads/2024/05/KT800-DISPOSABLE-VAPE-banner-jpg.webp',
+  image: '/wp-content/uploads/2024/05/KT800-DISPOSABLE-VAPE-banner-jpg.avif',
   width: 2540,
   height: 1200,
   title: 'KT800',
@@ -21,27 +21,27 @@ export const KT800_VIDEO = {
 export const KT800_FEATURE_COLUMNS = [
   [
     {
-      background: '/wp-content/uploads/2024/05/485-2-1.webp',
+      background: '/wp-content/uploads/2024/05/485-2-1.avif',
       headingHtml: 'Soft TPU<br>Mouthpiece',
     },
     {
-      background: '/wp-content/uploads/2024/05/485-2-2.webp',
+      background: '/wp-content/uploads/2024/05/485-2-2.avif',
       headingHtml: 'Carry on<br>Lanyard',
     },
   ],
   [
     {
-      background: '/wp-content/uploads/2024/05/485-2-3.webp',
+      background: '/wp-content/uploads/2024/05/485-2-3.avif',
       heading: 'Palm-size  Constructure',
     },
   ],
   [
     {
-      background: '/wp-content/uploads/2024/05/485-2-4.webp',
+      background: '/wp-content/uploads/2024/05/485-2-4.avif',
       headingHtml: 'Outstanding<br>Mesh Coil',
     },
     {
-      background: '/wp-content/uploads/2024/05/485-2-5.webp',
+      background: '/wp-content/uploads/2024/05/485-2-5.avif',
       headingHtml: '2ml Liquid<br>Capacity',
     },
   ],
@@ -58,7 +58,7 @@ export const KT800_PANELS = [
     position: 'split-left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/05/4屏-scaled-1.webp',
+    image: '/wp-content/uploads/2024/05/4屏-scaled-1.avif',
     width: 2560,
     height: 1320,
     headingHtml: '800 Puffs<br>Optimize Choice',
@@ -67,7 +67,7 @@ export const KT800_PANELS = [
     position: 'split-left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/05/5屏-scaled-1.webp',
+    image: '/wp-content/uploads/2024/05/5屏-scaled-1.avif',
     width: 2560,
     height: 1140,
     headingHtml: 'Superb Mesh Coil Burns<br>Out Superior Taste',
@@ -76,7 +76,7 @@ export const KT800_PANELS = [
     position: 'split-left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/05/6屏-scaled-1.webp',
+    image: '/wp-content/uploads/2024/05/6屏-scaled-1.avif',
     width: 2560,
     height: 1140,
     headingHtml: 'Long Endurance<br>500mAh Battery',
@@ -85,7 +85,7 @@ export const KT800_PANELS = [
     position: 'split-left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/05/7屏-scaled-1.webp',
+    image: '/wp-content/uploads/2024/05/7屏-scaled-1.avif',
     width: 2560,
     height: 1140,
     headingHtml: 'Extreme Comfortable<br>TPU Mouthpiece',
@@ -94,7 +94,7 @@ export const KT800_PANELS = [
     position: 'split-left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/05/8屏-scaled-1.webp',
+    image: '/wp-content/uploads/2024/05/8屏-scaled-1.avif',
     width: 2560,
     height: 1140,
     headingHtml: 'Captivating and<br>Convenient Lanyard',
@@ -108,20 +108,20 @@ export const KT800_FLAVORS = {
   heading: 'Lively Bright Colors 10 Tasty Flavors',
   rows: [
     [
-      { background: '/wp-content/uploads/2024/05/485-9-1-jpg.webp', heading: 'SANDIA KIWI FRESA ICE' },
+      { background: '/wp-content/uploads/2024/05/485-9-1-jpg.avif', heading: 'SANDIA KIWI FRESA ICE' },
       { background: '/wp-content/uploads/2024/05/485-9-2-jpg.webp', heading: 'JUICY MELOCOTON' },
-      { background: '/wp-content/uploads/2024/05/485-9-3-jpg.webp', heading: 'ARANDANOS ICE' },
-      { background: '/wp-content/uploads/2024/05/485-9-4-jpg.webp', heading: 'TRIPLE MELON' },
+      { background: '/wp-content/uploads/2024/05/485-9-3-jpg.avif', heading: 'ARANDANOS ICE' },
+      { background: '/wp-content/uploads/2024/05/485-9-4-jpg.avif', heading: 'TRIPLE MELON' },
     ],
     [
-      { background: '/wp-content/uploads/2024/05/485-9-5-jpg.webp', heading: 'SANDIA ICE' },
-      { background: '/wp-content/uploads/2024/05/485-9-6-jpg.webp', heading: 'TROPICAL MIX' },
-      { background: '/wp-content/uploads/2024/05/485-9-7-jpg.webp', heading: 'FRESA' },
-      { background: '/wp-content/uploads/2024/05/11-jpg.webp', heading: 'FRAMBUESA AZUL ICE' },
+      { background: '/wp-content/uploads/2024/05/485-9-5-jpg.avif', heading: 'SANDIA ICE' },
+      { background: '/wp-content/uploads/2024/05/485-9-6-jpg.avif', heading: 'TROPICAL MIX' },
+      { background: '/wp-content/uploads/2024/05/485-9-7-jpg.avif', heading: 'FRESA' },
+      { background: '/wp-content/uploads/2024/05/11-jpg.avif', heading: 'FRAMBUESA AZUL ICE' },
     ],
     [
-      { background: '/wp-content/uploads/2024/05/485-9-9-jpg.webp', heading: 'TRIPLE MANGO' },
-      { background: '/wp-content/uploads/2024/05/485-9-10-jpg.webp', heading: 'UVA' },
+      { background: '/wp-content/uploads/2024/05/485-9-9-jpg.avif', heading: 'TRIPLE MANGO' },
+      { background: '/wp-content/uploads/2024/05/485-9-10-jpg.avif', heading: 'UVA' },
       {
         background: '/wp-content/uploads/2024/05/485-9-11-jpg.webp',
         headingHtml: 'MORE FLAVORS<br>Coming Soon<br>...',
@@ -132,7 +132,7 @@ export const KT800_FLAVORS = {
 
 export const KT800_SPEC = {
   heading: 'SPECIFICATIONS',
-  image: '/wp-content/uploads/2024/05/10屏-scaled-1.webp',
+  image: '/wp-content/uploads/2024/05/10屏-scaled-1.avif',
   width: 2560,
   height: 1280,
   items: [
@@ -146,7 +146,7 @@ export const KT800_SPEC = {
 };
 
 export const KT800_FOOTER_IMAGE = {
-  src: '/wp-content/uploads/2024/05/11屏-scaled-1.webp',
+  src: '/wp-content/uploads/2024/05/11屏-scaled-1.avif',
   width: 2560,
   height: 1564,
 };

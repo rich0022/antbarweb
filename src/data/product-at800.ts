@@ -1,5 +1,5 @@
 export const AT800_HERO = {
-  image: '/wp-content/uploads/2024/05/486详情素材_01-jpg.webp',
+  image: '/wp-content/uploads/2024/05/486详情素材_01-jpg.avif',
   width: 1920,
   height: 1040,
   title: 'AT800',
@@ -20,7 +20,7 @@ export const AT800_VIDEO = {
 
 export const AT800_FEATURE_ROW_1 = [
   {
-    background: '/wp-content/uploads/2024/05/AT800详情（源文件）_04-jpg.webp',
+    background: '/wp-content/uploads/2024/05/AT800详情（源文件）_04-jpg.avif',
     headingHtml: 'CUSTOMIZED CHINESE<br>ZODIAC DESIGN',
   },
   {
@@ -46,7 +46,7 @@ export const AT800_FEATURE_ROW_2 = [
 
 export const AT800_PANELS = [
   {
-    image: '/wp-content/uploads/2024/05/486详情素材_18-jpg.webp',
+    image: '/wp-content/uploads/2024/05/486详情素材_18-jpg.avif',
     width: 1920,
     height: 1039,
     heading: 'CUSTOMIZED CHINESE ZODIAC PATTERN',
@@ -55,7 +55,7 @@ export const AT800_PANELS = [
     position: 'split-left' as const,
   },
   {
-    image: '/wp-content/uploads/2024/05/AT800详情（源文件）_19-jpg.webp',
+    image: '/wp-content/uploads/2024/05/AT800详情（源文件）_19-jpg.avif',
     width: 1920,
     height: 1040,
     headingHtml: 'COMPACT AND CONCISE<br>SLEEK AND SMOOTH',
@@ -75,7 +75,7 @@ export const AT800_PANELS = [
 ];
 
 export const AT800_PUFFS_PANEL = {
-  image: '/wp-content/uploads/2024/05/AT800详情（源文件）_21-jpg.webp',
+  image: '/wp-content/uploads/2024/05/AT800详情（源文件）_21-jpg.avif',
   width: 1920,
   height: 1040,
   heading: '800 PUFFS IS THE OPTIMAL CHOICE',
@@ -96,7 +96,7 @@ export const AT800_PUFFS_PANEL = {
 };
 
 export const AT800_BATTERY_PANEL = {
-  image: '/wp-content/uploads/2024/05/AT800详情（源文件）_22-jpg.webp',
+  image: '/wp-content/uploads/2024/05/AT800详情（源文件）_22-jpg.avif',
   width: 1920,
   height: 1040,
   heading: '450mAh BATTERY FOR DURABLE SERVICE LIFE',
@@ -105,7 +105,7 @@ export const AT800_BATTERY_PANEL = {
 };
 
 export const AT800_CHILDPROOF_PANEL = {
-  image: '/wp-content/uploads/2024/05/AT800详情（源文件）_23-jpg.webp',
+  image: '/wp-content/uploads/2024/05/AT800详情（源文件）_23-jpg.avif',
   width: 1920,
   height: 1040,
   heading: 'CHILDPROOF LOCK DESIGN GUARD YOUR SAFETY',

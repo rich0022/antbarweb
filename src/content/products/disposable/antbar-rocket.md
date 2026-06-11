@@ -2,7 +2,7 @@
 title: "ANTBAR|ROCKET The Best Disposable Vapes Online Sale"
 slug: "disposable/antbar-rocket"
 description: "ANTBAR one of the famous disposable vape brand in the word. ROCKET Small and lightweight,The Best Disposable Vapes Online Wholesale."
-heroImage: "/wp-content/uploads/2024/03/ROCKET-1.png"
+heroImage: "/wp-content/uploads/2024/03/ROCKET-1.avif"
 family: "disposable"
 kind: "detail"
 productName: "ROCKET"

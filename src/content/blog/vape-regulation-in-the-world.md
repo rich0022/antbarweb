@@ -3,11 +3,11 @@ title: "E-cigarettes regulation: Current And Future Laws & Bans"
 slug: "blog/vape-regulation-in-the-world"
 description: "E-cigarettes regulation: Current And Future Laws & Bans In The World, 32 countries or regions have certain initiatives on the sale, use, promotion and taxation of vape!"
 excerpt: "ANTBAR is one of the core e-cigarette brands of the Cloupor Group.We sell a variety of disposable kits. Do you know what your local policy is on e-cigarettes? Search and read it!"
-heroImage: "/wp-content/uploads/2024/07/vaping-regulation.png"
+heroImage: "/wp-content/uploads/2024/07/vaping-regulation.avif"
 publishedAt: "06 04, 2024"
 ---
 
-![](/wp-content/uploads/2024/07/vaping-regulation.png)
+![](/wp-content/uploads/2024/07/vaping-regulation.avif)
 
 ANTBAR is one of the core e-cigarette brands of the Cloupor Group.We sell a variety of disposable kits. Do you know what your local policy is on e-cigarettes? Search and read it!
 
@@ -26,13 +26,13 @@ Moreover, **some initiatives such as banning the sale of e-cigarettes, and taxin
 
 For this reason, we examined and counted the e-cigarette policies of 75 countries, of which 43 countries have a vague stance on e-cigarettes, making it impossible to determine whether their use is legal or not. There are also 32 countries that have made clear instructions on the use and sale of e-cigarettes!
 
-![](/wp-content/uploads/2024/07/QQ截图20240604102637.png)
+![](/wp-content/uploads/2024/07/QQ截图20240604102637.avif)
 
 ## Regulation of e-cigarettes in 43 countries: Uncertainty about legality
 
 The following 43 countries cannot confirm the legal use of e-cigarette products: Seychelles, Antigua and Barbuda, Panama, Mauritius, Argentina, Suriname, Uruguay, Sri Lanka, Venezuela, Gambia, Nicaragua, Ireland, Poland, Lithuania, Luxembourg, Slovakia, Slovenia, Algeria, Libya, Morocco, Sudan, Tunisia, Somalia, Mauritania, Yemen, Paraguay, Bolivia, Ecuador, Guyana, Peru, Maldives, Afghanistan, Kazakhstan, Kyrgyzstan, Mauritania, Peru, Maldives, Afghanistan, Kuwait, Kyrgyzstan, Latvia, Lithuania, Lithuania, Luxembourg, Slovenia, Slovakia, Slovenia, Slovenia, Slovenia, Spain, Sweden, Switzerland, the United Arab Emirates and the United Kingdom. Tunisia, Somalia, Mauritania, Yemen, Paraguay, Bolivia, Ecuador, Guyana, Peru, Maldives, Afghanistan, Kazakhstan, Kyrgyzstan, Faroe Islands (Dan), Belarus, Ukraine, Moldova, Liechtenstein, Monaco, Macedonia, San Marino, Andorra. Of these, Seychelles announced its intention to legalise and regulate e-cigarettes in 2019, with implementation in 2023.
 
-![](/wp-content/uploads/2024/07/QQ截图20240604102809.png)
+![](/wp-content/uploads/2024/07/QQ截图20240604102809.avif)
 
 ## The regulation of e-cigarettes in 32 countries:
 

@@ -2,7 +2,7 @@
 title: "ANTBAR|SA8000 12ml/8000puff-Best Rechargeable Disposable Vape"
 slug: "disposable/antbar-sa8000"
 description: "ANTBAR one of the famous disposable vape brand in the word. SA8000 12ml/8000puff The Best Big/High Puffs Disposable Vapes Online Wholesale."
-heroImage: "/wp-content/uploads/2024/03/SA8000.png"
+heroImage: "/wp-content/uploads/2024/03/SA8000.avif"
 family: "disposable"
 kind: "detail"
 productName: "SA8000"

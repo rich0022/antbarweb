@@ -3,11 +3,11 @@ title: "Does Vape Flavor Cause Popcorn Lung"
 slug: "blog/does-vape-flavor-cause-popcorn-lung"
 description: "People are concerned that using vape is pivotal leading to a high risk of lung disease or even cancer. Today we're going to talk about：Do vape flavors contain diacetyl? Can vaping cause a popped lung?"
 excerpt: "ANTBAR is one of the core e-cigarette brands of the Cloupor Group.We sell a variety of disposable kits. People are concerned that using e-cigarette is pivotal leading to a high risk of lung disease or even cancer. Today we’re going to talk about：Do vape flavors contain diacetyl? Can vaping cause a popped lung?"
-heroImage: "/wp-content/uploads/2024/07/Does-Vape-Flavor-Cause-Popcorn-Lung.png"
+heroImage: "/wp-content/uploads/2024/07/Does-Vape-Flavor-Cause-Popcorn-Lung.avif"
 publishedAt: "04 07, 2024"
 ---
 
-![Does Vape Flavor Cause Popcorn Lung](/wp-content/uploads/2024/07/Does-Vape-Flavor-Cause-Popcorn-Lung.png)
+![Does Vape Flavor Cause Popcorn Lung](/wp-content/uploads/2024/07/Does-Vape-Flavor-Cause-Popcorn-Lung.avif)
 
 ANTBAR is one of the core e-cigarette brands of the Cloupor Group.We sell a variety of disposable kits. People are concerned that using e-cigarette is pivotal leading to a high risk of lung disease or even cancer. Today we’re going to talk about：Do vape flavors contain diacetyl? Can vaping cause a popped lung?
 
@@ -45,7 +45,7 @@ Technical Design Restrictions and Requirements set out the design drawings and s
 
 Instructions, Packaging and Warning Regulations require e-cigarette instructions to include clear information such as product descriptions, instructions for use and warning text drawings. This information is intended to provide consumers with accurate product information and alert them to potential risks.
 
-![EUROPE TPD REGULATION](/wp-content/uploads/2024/07/Europe-vape-tpd-Regulations.png)
+![EUROPE TPD REGULATION](/wp-content/uploads/2024/07/Europe-vape-tpd-Regulations.avif)
 
 ## Now let’s find out how e-cigarette e-juice flavors are created?
 

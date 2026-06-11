@@ -22,7 +22,7 @@ export type ProductSplitPanel = {
 };
 
 export const AHP10000_HERO = {
-  backgroundImage: '/wp-content/uploads/2024/05/AHP10000puffs-disposable-jpg.webp',
+  backgroundImage: '/wp-content/uploads/2024/05/AHP10000puffs-disposable-jpg.avif',
   title: 'AHP 10000',
   tagline: 'RELISH PUREST MOMENT',
   specHref: '#specfication',
@@ -35,7 +35,7 @@ export const AHP10000_HERO = {
 } as const;
 
 export const AHP10000_SHOWCASE_IMAGE: ProductImage = {
-  src: '/wp-content/uploads/2024/05/jpg.webp',
+  src: '/wp-content/uploads/2024/05/jpg.avif',
   width: 2540,
   height: 1476,
   alt: 'AHP10000 disposable vape showcase',
@@ -43,7 +43,7 @@ export const AHP10000_SHOWCASE_IMAGE: ProductImage = {
 
 export const AHP10000_TEXT_PANELS: ProductTextPanel[] = [
   {
-    backgroundImage: '/wp-content/uploads/2024/05/10000PUFFSa-scaled-1.webp',
+    backgroundImage: '/wp-content/uploads/2024/05/10000PUFFSa-scaled-1.avif',
     heading: 'UNBEATABLE PUFFS BRING TREASURABLE FUN',
     paragraphs: [
       'The device is reserved bulk of liquid to withold',
@@ -52,7 +52,7 @@ export const AHP10000_TEXT_PANELS: ProductTextPanel[] = [
     centered: true,
   },
   {
-    backgroundImage: '/wp-content/uploads/2024/05/10种颜色A-scaled-1.webp',
+    backgroundImage: '/wp-content/uploads/2024/05/10种颜色A-scaled-1.avif',
     heading: '10 COLORS AVAILABLE',
     paragraphs: [],
     centered: true,
@@ -62,13 +62,13 @@ export const AHP10000_TEXT_PANELS: ProductTextPanel[] = [
 
 export const AHP10000_SPLIT_PANELS: ProductSplitPanel[] = [
   {
-    backgroundImage: '/wp-content/uploads/2024/05/a-scaled-1.webp',
+    backgroundImage: '/wp-content/uploads/2024/05/a-scaled-1.avif',
     headingLines: ['ESSENTIAL INFORMATION', 'PRESENTED ON SCREEN'],
     description:
       'The functional screen illustrates the remaining liquid and battery level to avoid a "run out of" warning.',
   },
   {
-    backgroundImage: '/wp-content/uploads/2024/05/A-1-jpg.webp',
+    backgroundImage: '/wp-content/uploads/2024/05/A-1-jpg.avif',
     headingLines: ['MESH COIL FEATURES', 'HIGH ENERGY EFFICIENCY'],
     description:
       'Equipped with 1.1Ω coil features the high vapor conversion ratio to deliver full clouds and pure flavor.',
@@ -79,7 +79,7 @@ export const AHP10000_SPLIT_PANELS: ProductSplitPanel[] = [
     description:
       'Powered by a 600 mAh battery, and only 50 min to get full power, it is always a travel companion on the go.',
     image: {
-      src: '/wp-content/uploads/2024/05/2-3.webp',
+      src: '/wp-content/uploads/2024/05/2-3.avif',
       width: 2326,
       height: 2115,
       alt: 'How to charge the AHP10000 disposable vape',
@@ -92,7 +92,7 @@ export const AHP10000_SPLIT_PANELS: ProductSplitPanel[] = [
       'Add an ancient Roman Doric column design into cutting-edge, the third-dimension curve sparkling with compact size makes it incredibly stylish.',
     reverse: true,
     image: {
-      src: '/wp-content/uploads/2024/05/AHP10000-puffs-disposable-compact-and-exquisite.webp',
+      src: '/wp-content/uploads/2024/05/AHP10000-puffs-disposable-compact-and-exquisite.avif',
       width: 1425,
       height: 1052,
       alt: 'AHP10000 compact and exquisite disposable vape',
@@ -101,7 +101,7 @@ export const AHP10000_SPLIT_PANELS: ProductSplitPanel[] = [
 ];
 
 export const AHP10000_FLAVORS_IMAGE: ProductImage = {
-  src: '/wp-content/uploads/2024/05/AHP-1000-DISPOSABLE-VAPE-20-flavors-scaled-1.webp',
+  src: '/wp-content/uploads/2024/05/AHP-1000-DISPOSABLE-VAPE-20-flavors-scaled-1.avif',
   width: 2560,
   height: 2253,
   alt: 'AHP10000 disposable vape 20 flavors',
@@ -118,11 +118,11 @@ export const AHP10000_SPECS = [
 ] as const;
 
 export const AHP10000_SPEC_PANEL = {
-  backgroundImage: '/wp-content/uploads/2024/05/1-scaled-1.webp',
+  backgroundImage: '/wp-content/uploads/2024/05/1-scaled-1.avif',
   heading: 'SPECIFICATIONS',
 } as const;
 
 export const AHP10000_PACKAGING_PANEL = {
-  backgroundImage: '/wp-content/uploads/2024/05/a-scaled-2.webp',
+  backgroundImage: '/wp-content/uploads/2024/05/a-scaled-2.avif',
   heading: 'PACKAGING',
 } as const;

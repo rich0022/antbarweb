@@ -13,17 +13,17 @@ export const PRIVACY_POLICY_HREF = '/privacy-policy/';
 
 export const SITE_LOGO = {
   href: '/',
-  src: '/wp-content/uploads/2024/05/LOGO.png',
+  src: '/wp-content/uploads/2024/05/LOGO.webp',
   width: 307,
   height: 78,
   alt: 'best disposable vape brand near you',
-  srcset: '/wp-content/uploads/2024/05/LOGO.png 307w, /wp-content/uploads/2024/05/LOGO-300x76.png 300w',
+  srcset: '/wp-content/uploads/2024/05/LOGO.webp 307w, /wp-content/uploads/2024/05/LOGO-300x76.webp 300w',
   sizes: '(max-width: 307px) 100vw, 307px',
 };
 
 export const HEADER_SEARCH_ICON = {
   href: ELEMENTOR_POPUP_SEARCH,
-  src: '/wp-content/uploads/2023/12/1-2.png',
+  src: '/wp-content/uploads/2023/12/1-2.webp',
   width: 40,
   height: 40,
 };
@@ -98,14 +98,14 @@ export const PRIMARY_NAV: MegaMenuItem[] = [
 export const PRODUCT_MEGA_TILES = [
   {
     href: '/all-products/?tab=disposable',
-    src: '/wp-content/uploads/2023/12/Product2540宽，版心1200-08.png',
+    src: '/wp-content/uploads/2023/12/Product2540宽，版心1200-08.webp',
     width: 151,
     height: 151,
     caption: 'Disposable',
   },
   {
     href: '/all-products/?tab=pod-sys',
-    src: '/wp-content/uploads/2023/12/Product2540宽，版心1200-13.png',
+    src: '/wp-content/uploads/2023/12/Product2540宽，版心1200-13.webp',
     width: 151,
     height: 151,
     caption: 'Closed Pod System',

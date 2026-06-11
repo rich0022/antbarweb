@@ -53,7 +53,7 @@ function cardFromContentEntry(
   const image =
     entry.data.heroImage ??
     entry.data.featuredImage ??
-    '/wp-content/uploads/2024/05/LOGO.png';
+    '/wp-content/uploads/2024/05/LOGO.webp';
 
   return buildArchiveCard({
     collection,

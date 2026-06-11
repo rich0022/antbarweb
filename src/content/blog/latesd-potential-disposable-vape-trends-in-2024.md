@@ -3,11 +3,11 @@ title: "Latesd Potential Disposable Vape Trends In 2024-ANTBAR"
 slug: "blog/latesd-potential-disposable-vape-trends-in-2024"
 description: "What is the new trend in disposable vapes in 2024? Some professionals have predicted development trends for disposable e-cigarettes in 2024."
 excerpt: "The popularity of e-cigarettes around the world is evident to all, but at the same time, some problems and controversies have arisen. As the old Chinese saying goes, “ a big tree will draw or catch lots of wind. “"
-heroImage: "/wp-content/uploads/2024/07/2024-disposable-vape-trend.png"
+heroImage: "/wp-content/uploads/2024/07/2024-disposable-vape-trend.avif"
 publishedAt: "05 31, 2024"
 ---
 
-![2024 disposable vape trend](/wp-content/uploads/2024/07/2024-disposable-vape-trend.png)
+![2024 disposable vape trend](/wp-content/uploads/2024/07/2024-disposable-vape-trend.avif)
 
 The popularity of e-cigarettes around the world is evident to all, but at the same time, some problems and controversies have arisen. As the old Chinese saying goes, “**a big tree will draw or catch lots of wind.**“
 
@@ -53,4 +53,4 @@ Both PLA and PBAT are biodegradable and environmentally friendly materials; PLA 
 
 As a disposable e-cigarette brand, ANTBAR, and an open pod and pod mod type e-cigarette brand, SMOANT, we have decided to adjust our product design and use more environmentally friendly materials for the casing aimed at protecting the environment. Through these initiatives, we hope to meet the needs of our consumers in a sustainable way while minimizing our negative impact on the environment. We firmly believe that only by working together can we create a better, greener future.
 
-![](/wp-content/uploads/2024/07/1-1024x576.png)
+![](/wp-content/uploads/2024/07/1-1024x576.avif)

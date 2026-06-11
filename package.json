@@ -9,6 +9,10 @@
     "build": "astro build && node scripts/purge-build-css.mjs && node scripts/post-build-cleanup.mjs && npx wrangler pages functions build --outdir=./dist/worker && node scripts/prepare-workers-deploy.mjs && npx pagefind --site dist/client",
     "audit:media": "node scripts/audit-media.mjs",
     "optimize:images": "node scripts/optimize-images.mjs && node scripts/update-mirror-webp-refs.mjs",
+    "optimize:images:force": "node scripts/optimize-images.mjs --force-large && node scripts/update-mirror-webp-refs.mjs",
+    "optimize:images:avif": "node scripts/optimize-images-avif.mjs",
+    "optimize:refs": "node scripts/update-code-image-refs.mjs",
+    "optimize:media": "npm run optimize:images:force && npm run optimize:images:avif && npm run optimize:refs",
     "bundle:page": "node scripts/bundle-page.mjs",
     "extract:content": "node scripts/extract-content.mjs",
     "fetch:missing-blog": "node scripts/fetch-missing-blog.mjs",
@@ -30,6 +34,7 @@
     "@astrojs/cloudflare": "^13.6.1",
     "pagefind": "^1.5.2",
     "purgecss": "^8.0.0",
+    "sharp": "^0.35.0",
     "typescript": "^5.8.0",
     "wrangler": "^4.98.0"
   }

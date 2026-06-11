@@ -3,11 +3,11 @@ title: "EU Vape Import Policy|Testing|Certification Requirements-ANTBAR"
 slug: "blog/eu-ecigarette-regulation"
 description: "European Union e-cigarette testing & certification: TPD, REACH, CE, RoHS,and divided into mandatory and non-mandatory testing and certification."
 excerpt: "The European Union, with the longest history of development and the most mature market in the field of e-cigarettes, has always keep a tolerant and open attitude towards e-cigarettes. However, series of pollution problems created by e-cigarettes, the environment and potential threats to youth health being exposed that make the EU shifting its attitude."
-heroImage: "/wp-content/uploads/2024/07/QQ截图20240612104128.png"
+heroImage: "/wp-content/uploads/2024/07/QQ截图20240612104128.avif"
 publishedAt: "06 12, 2024"
 ---
 
-![](/wp-content/uploads/2024/07/QQ截图20240612104128.png)
+![](/wp-content/uploads/2024/07/QQ截图20240612104128.avif)
 
 The European Union, with the longest history of development and the most mature market in the field of e-cigarettes, has always keep a tolerant and open attitude towards e-cigarettes. However, series of pollution problems created by e-cigarettes, the environment and potential threats to youth health being exposed that make the EU shifting its attitude.
 
@@ -21,7 +21,7 @@ Belgium received the approval of disposable ban from the European Commission as 
 
 In light of the current changes in e-cigarette policy in EU member states, you may wonder the specific policy and regulations for tobacco products and related products (e-cigarettes) are among EU member states. In fact, the EU’s policies and regulations on e-cigarettes and other tobacco products are constantly evolving and improving. Take a look!
 
-![](/wp-content/uploads/2024/07/Belgium.png)
+![](/wp-content/uploads/2024/07/Belgium.avif)
 
 ## Requirements of European Union’s policies and regulations on e-cigarettes
 
@@ -59,7 +59,7 @@ This mechanism was set up for companies taking responsible for the safety and co
 
 **Note: REACH emphasizes the use of safe methods that do not harm animals and the environment in the substance hazard assessment process.**
 
-![](/wp-content/uploads/2024/07/ANTBAR-ROCKET-PRODUCT-CERTIFICATION.png)
+![](/wp-content/uploads/2024/07/ANTBAR-ROCKET-PRODUCT-CERTIFICATION.avif)
 
 ## 2. Mandatory standards
 
@@ -111,7 +111,7 @@ Mode H:Full Quality Assurance
 
 **(3)Selection of Laboratory or Organization: ** Identify whether need an authorised third party for product assessments based on the selected certification model. As EU Directive specifies the scope of products required to a third party Inspection Agency for the CE certificate. These Notified Bodies are duly authorized by the European Commission and their details can be found in the NANDO (New Approach Directive Notified Bodies and Notified Organizations) archives. **Therefore, it is key to ensure that selects a certification route that meets the requirements of the Directive and choose an authorized laboratory that has successful CE marking. ****(3)Product testing and review: ** Conduct the necessary tests on the product in compliance with EU regulations and standards. At the same time, establish a conformity assessment system for proof of the, including risk assessment, is established to demonstrate that the product meets the essential requirements. **(4)Preparation of technical documents: ** Manufacturers need to prepare and keep the technical documents of the products if file according to the requirements of the Directive, which are the important basis for proving the conformity of the products. **(5)Affix CE marking and declaration:** Apply CE marking on the product and sign the EC Declaration of Conformity to prove that the product has met the requirements for CE marking. If the notified body is involved in the certification, the CE marking should contain its notification number.
 
-![](/wp-content/uploads/2024/07/Europe-TPD-Directive.png)
+![](/wp-content/uploads/2024/07/Europe-TPD-Directive.avif)
 
 ### What is the TPD Directive?
 

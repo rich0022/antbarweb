@@ -65,15 +65,15 @@ export const BRAND_STORY_FINAL = {
 export const ANTBAR_LAB_HERO: SubpageHero = {
   heroClass: 'scroll-bn',
   desktopImage: {
-    src: '/wp-content/uploads/2024/04/ANTBAR-LAB-1.jpg',
-    srcset: '/wp-content/uploads/2024/04/ANTBAR-LAB-1.jpg 1920w, /wp-content/uploads/2024/04/ANTBAR-LAB-1-300x146.jpg 300w, /wp-content/uploads/2024/04/ANTBAR-LAB-1-1024x499.jpg 1024w, /wp-content/uploads/2024/04/ANTBAR-LAB-1-768x374.jpg 768w, /wp-content/uploads/2024/04/ANTBAR-LAB-1-1536x749.jpg 1536w',
+    src: '/wp-content/uploads/2024/04/ANTBAR-LAB-1.avif',
+    srcset: '/wp-content/uploads/2024/04/ANTBAR-LAB-1.avif 1920w, /wp-content/uploads/2024/04/ANTBAR-LAB-1-300x146.webp 300w, /wp-content/uploads/2024/04/ANTBAR-LAB-1-1024x499.avif 1024w, /wp-content/uploads/2024/04/ANTBAR-LAB-1-768x374.webp 768w, /wp-content/uploads/2024/04/ANTBAR-LAB-1-1536x749.avif 1536w',
     sizes: '(max-width: 1920px) 100vw, 1920px',
     width: 1920,
     height: 936,
   },
   mobileImage: {
-    src: '/wp-content/uploads/2024/05/antbar-lab.jpg',
-    srcset: '/wp-content/uploads/2024/05/antbar-lab.jpg 1170w, /wp-content/uploads/2024/05/antbar-lab-182x300.jpg 182w, /wp-content/uploads/2024/05/antbar-lab-620x1024.jpg 620w, /wp-content/uploads/2024/05/antbar-lab-768x1268.jpg 768w, /wp-content/uploads/2024/05/antbar-lab-931x1536.jpg 931w',
+    src: '/wp-content/uploads/2024/05/antbar-lab.avif',
+    srcset: '/wp-content/uploads/2024/05/antbar-lab.avif 1170w, /wp-content/uploads/2024/05/antbar-lab-182x300.webp 182w, /wp-content/uploads/2024/05/antbar-lab-620x1024.avif 620w, /wp-content/uploads/2024/05/antbar-lab-768x1268.avif 768w, /wp-content/uploads/2024/05/antbar-lab-931x1536.avif 931w',
     sizes: '(max-width: 1170px) 100vw, 1170px',
     width: 1170,
     height: 1931,
@@ -84,15 +84,15 @@ export const ANTBAR_LAB_INTRO = {
   iconWidth: 91,
   iconHeight: 30,
   leftImage: {
-    src: '/wp-content/uploads/2024/04/ANTBAR-LAB-2.jpg',
-    srcset: '/wp-content/uploads/2024/04/ANTBAR-LAB-2.jpg 1426w, /wp-content/uploads/2024/04/ANTBAR-LAB-2-300x218.jpg 300w, /wp-content/uploads/2024/04/ANTBAR-LAB-2-1024x743.jpg 1024w, /wp-content/uploads/2024/04/ANTBAR-LAB-2-768x557.jpg 768w',
+    src: '/wp-content/uploads/2024/04/ANTBAR-LAB-2.avif',
+    srcset: '/wp-content/uploads/2024/04/ANTBAR-LAB-2.avif 1426w, /wp-content/uploads/2024/04/ANTBAR-LAB-2-300x218.webp 300w, /wp-content/uploads/2024/04/ANTBAR-LAB-2-1024x743.avif 1024w, /wp-content/uploads/2024/04/ANTBAR-LAB-2-768x557.avif 768w',
     sizes: '(max-width: 1426px) 100vw, 1426px',
     width: 1426,
     height: 1034,
   },
   rightImage: {
-    src: '/wp-content/uploads/2024/04/ANTBAR-LAB-3.jpg',
-    srcset: '/wp-content/uploads/2024/04/ANTBAR-LAB-3.jpg 709w, /wp-content/uploads/2024/04/ANTBAR-LAB-3-237x300.jpg 237w',
+    src: '/wp-content/uploads/2024/04/ANTBAR-LAB-3.avif',
+    srcset: '/wp-content/uploads/2024/04/ANTBAR-LAB-3.avif 709w, /wp-content/uploads/2024/04/ANTBAR-LAB-3-237x300.webp 237w',
     sizes: '(max-width: 709px) 100vw, 709px',
     width: 709,
     height: 897,
@@ -106,8 +106,8 @@ export const ANTBAR_LAB_CERTS = {
   heading: 'Authentication<br>\nCertificate',
   text: "Antbar's products are manufactured in Class 100,000 cleanrooms in line with FDA standards, 7S workplace standard and GMP standard. The products are strictly checked by QC, FQC, PQC, QA, SQE, QE and other quality inspection before formal pro- duction, ensuring only 100% qualified products entering the market.",
   certs: [
-    { src: '/wp-content/uploads/2024/04/ANTBAR-LAB-4.jpg', srcset: '/wp-content/uploads/2024/04/ANTBAR-LAB-4.jpg 549w, /wp-content/uploads/2024/04/ANTBAR-LAB-4-228x300.jpg 228w', width: 549, height: 723 },
-    { src: '/wp-content/uploads/2024/04/ANTBAR-LAB-5.jpg', srcset: '/wp-content/uploads/2024/04/ANTBAR-LAB-5.jpg 549w, /wp-content/uploads/2024/04/ANTBAR-LAB-5-228x300.jpg 228w', width: 549, height: 723 },
-    { src: '/wp-content/uploads/2024/04/ANTBAR-LAB-6.jpg', srcset: '/wp-content/uploads/2024/04/ANTBAR-LAB-6.jpg 549w, /wp-content/uploads/2024/04/ANTBAR-LAB-6-228x300.jpg 228w', width: 549, height: 723 },
+    { src: '/wp-content/uploads/2024/04/ANTBAR-LAB-4.avif', srcset: '/wp-content/uploads/2024/04/ANTBAR-LAB-4.avif 549w, /wp-content/uploads/2024/04/ANTBAR-LAB-4-228x300.webp 228w', width: 549, height: 723 },
+    { src: '/wp-content/uploads/2024/04/ANTBAR-LAB-5.avif', srcset: '/wp-content/uploads/2024/04/ANTBAR-LAB-5.avif 549w, /wp-content/uploads/2024/04/ANTBAR-LAB-5-228x300.webp 228w', width: 549, height: 723 },
+    { src: '/wp-content/uploads/2024/04/ANTBAR-LAB-6.avif', srcset: '/wp-content/uploads/2024/04/ANTBAR-LAB-6.avif 549w, /wp-content/uploads/2024/04/ANTBAR-LAB-6-228x300.webp 228w', width: 549, height: 723 },
   ],
 } as const;

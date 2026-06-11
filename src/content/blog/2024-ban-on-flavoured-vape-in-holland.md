@@ -3,11 +3,11 @@ title: "2024: Ban on flavoured e-cigarettes in Holland-ANTBAR"
 slug: "blog/2024-ban-on-flavoured-vape-in-holland"
 description: "The Dutch government insisted in enforcing this law in the face of strong opposition from e-cigarette users from the Netherlands and across Europe."
 excerpt: "In western Europe, the Netherlands is known for its prospered economy, open society and historic ports. When it comes to tobacco consumption, the Netherlands has a moderate smoking rate among European countries, with about 20% of Dutch people smoking daily and about 10% smoking occasionally. Data from the Dutch Public Health Authority shows that about 10% of Dutch people are using e-cigarettes, while this figure is higher among young people and men.The use of e-cigarettes in the Netherlands is a bit higher compared to other European countries."
-heroImage: "/wp-content/uploads/2024/07/flavor-vape-ban-in-Holland.png"
+heroImage: "/wp-content/uploads/2024/07/flavor-vape-ban-in-Holland.avif"
 publishedAt: "04 10, 2024"
 ---
 
-![ANTBAR DISPOSABLE IN HOLLAND](/wp-content/uploads/2024/07/flavor-vape-ban-in-Holland.png)
+![ANTBAR DISPOSABLE IN HOLLAND](/wp-content/uploads/2024/07/flavor-vape-ban-in-Holland.avif)
 
 ## Where is holland?
 
@@ -51,4 +51,4 @@ The main points of the flavored e-cigarette ban gag order are as follows:
 
 Globally, the ban on flavored e-cigarettes in various countries is mainly due to public health concerns and the protection of the rights and interests of young people. As an e-cigarette company, we must assume certain social responsibility and strictly comply with all laws and regulations. Our two **e-cigarette brands**, ANTBAR and [SMOANT](https://smoant.com), have always insisted on taking the standard and right path in the design of their devices, not pursuing exotic shapes, and have always adhered to the bottom line of laws and regulations.
 
-![what disposable vape you should choose-ANTBAR](/wp-content/uploads/2024/07/teen-vape-protection.png)
+![what disposable vape you should choose-ANTBAR](/wp-content/uploads/2024/07/teen-vape-protection.avif)

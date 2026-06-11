@@ -3,11 +3,11 @@ title: "The 2024 Best Nicotine-containing Disposable Vapes: AT800"
 slug: "review/2024-best-nicotine-containing-disposable-vapes-antbar-at800"
 description: "the AT800 e-cigarette is an e-cigarette product that has been carefully designed with the dragon in the traditional 12 Chinese zodiac signs as its inspiration."
 excerpt: "The year 2024 is the Year of the Dragon in the Chinese lunar calendar, and the AT800 e-cigarette is an e-cigarette product that has been carefully designed with the dragon in the traditional 12 Chinese zodiac signs as its inspiration. The design inspiration of this e-cigarette is deeply rooted in the mysterious, auspicious, and cultural connotations of the dragon, showing the unique charm of oriental culture through the sparkling artistic craftsmanship. It is wrapped in crystal clear casting, presenting a small and exquisite body and smooth profile lines, which makes it captivate people at first sight."
-heroImage: "/wp-content/uploads/2024/07/AT800-disposable-vape.png"
+heroImage: "/wp-content/uploads/2024/07/AT800-disposable-vape.avif"
 publishedAt: "04 19, 2024"
 ---
 
-![AT800 disposable vape](/wp-content/uploads/2024/07/AT800-disposable-vape.png)
+![AT800 disposable vape](/wp-content/uploads/2024/07/AT800-disposable-vape.avif)
 
 The year 2024 is the Year of the Dragon in the Chinese lunar calendar, and **the [AT800 e-cigarette](/at800-puffs-disposable-vape/) is an e-cigarette product that has been carefully designed with the dragon in the traditional 12 Chinese zodiac signs as its inspiration.** The design inspiration of this e-cigarette is deeply rooted in the mysterious, auspicious, and cultural connotations of the dragon, showing the unique charm of oriental culture through the sparkling artistic craftsmanship. It is wrapped in crystal clear casting, presenting a small and exquisite body and smooth profile lines, which makes it captivate people at first sight.
 
@@ -19,13 +19,13 @@ The AT800 features the innovative **mesh coil technology **, which evenly accele
 
 Whether it’s a short break from work or a relaxing moment of entertainment, the AT800 can be your faithful companion.
 
-![antbar at800 puffs mini disposable kit](/wp-content/uploads/2024/07/486详情_20-1024x709.png)
+![antbar at800 puffs mini disposable kit](/wp-content/uploads/2024/07/486详情_20-1024x709.avif)
 
-![at800 fruit e-juice](/wp-content/uploads/2024/07/at800-fruit-e-juice.png)
+![at800 fruit e-juice](/wp-content/uploads/2024/07/at800-fruit-e-juice.avif)
 
 **One of the distinguishing features of the AT800 is the innovative one-touch child safety lock function.** The safety lock is considerably integrated into the bottom of the device, and simple operation activates the child protection function. The advantages of this function are easy to use and protect your children from accidentally touching and inhaling the e-cigarette when you’re not using it. This unique design of the AT800 boasts user-friendly and under-age protection, which makes it a deal disposable e-cigarette for new vapers or experienced vapers.
 
-![](/wp-content/uploads/2024/07/at800-ariflow-contrl-structure.png)
+![](/wp-content/uploads/2024/07/at800-ariflow-contrl-structure.avif)
 
 Overall, AT800 will undoubtedly become a new trendy disposable puff in the e-cigarette market that stands out with its unique design, stable performance and humanized one-touch child safety lock function. Whether you are a first-time user of electronic cigarettes or a veteran player, **AT800 can provide you with a safety and ultimate experience.**
 
@@ -105,4 +105,4 @@ Antbar reserves the right of final decision in all warranty cases. Antbar may in
 
 **Warranty: ** Only for products purchased from authorized dealers and product problems caused by human error is not included. **Product Certification**
 
-![at800 profile](/wp-content/uploads/2024/07/at800-profile.png)
+![at800 profile](/wp-content/uploads/2024/07/at800-profile.webp)

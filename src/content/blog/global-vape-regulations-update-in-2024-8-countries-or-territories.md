@@ -3,7 +3,7 @@ title: "Global Vape Regulations Update In 2024: 8 Countries or Territories"
 slug: "blog/global-vape-regulations-update-in-2024-8-countries-or-territories"
 description: "we will delve into several main countries and regions that have undergone significant adjustments in e-cigarette policies in 2024."
 excerpt: "we will delve into several main countries and regions that have undergone significant adjustments in e-cigarette policies in 2024."
-heroImage: "/wp-content/uploads/2024/10/golbal-Vape-Regulations.png"
+heroImage: "/wp-content/uploads/2024/10/golbal-Vape-Regulations.avif"
 publishedAt: "10 17, 2024"
 ---
 
