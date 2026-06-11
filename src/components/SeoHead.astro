@@ -1,0 +1,66 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  /** Override og/twitter image (defaults to site logo). */
+  image?: string;
+  ogType?: 'website' | 'article' | 'product';
+  noindex?: boolean;
+  /** Article-specific meta */
+  article?: {
+    publishedAt?: string;
+    updatedAt?: string;
+    author?: string;
+    tags?: string[];
+  };
+}
+
+const siteUrl = 'https://antbar.com';
+
+const {
+  title,
+  description,
+  canonical,
+  image = '/wp-content/uploads/2023/12/cropped-cropped-pic-192x192.png',
+  ogType = 'website',
+  noindex = false,
+  article,
+} = Astro.props;
+
+const fullCanonical = canonical
+  ? canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`
+  : undefined;
+
+const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
+---
+
+{/* ── Meta ── */}
+{description && <meta name="description" content={description} />}
+{noindex && <meta name="robots" content="noindex" />}
+
+{/* ── Canonical ── */}
+{fullCanonical && <link rel="canonical" href={fullCanonical} />}
+
+{/* ── Open Graph ── */}
+<meta property="og:title" content={title} />
+<meta property="og:url" content={fullCanonical ?? siteUrl} />
+<meta property="og:type" content={ogType} />
+<meta property="og:image" content={fullImage} />
+<meta property="og:image:width" content="192" />
+<meta property="og:image:height" content="192" />
+{description && <meta property="og:description" content={description} />}
+<meta property="og:site_name" content="ANTBAR" />
+<meta property="og:locale" content="en_US" />
+
+{/* ── Twitter Card ── */}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+{description && <meta name="twitter:description" content={description} />}
+<meta name="twitter:image" content={fullImage} />
+
+{/* ── Article meta ── */}
+{article?.publishedAt && <meta property="article:published_time" content={article.publishedAt} />}
+{article?.updatedAt && <meta property="article:modified_time" content={article.updatedAt} />}
+{article?.author && <meta property="article:author" content={article.author} />}
+{article?.tags?.map((tag) => <meta property="article:tag" content={tag} />)}

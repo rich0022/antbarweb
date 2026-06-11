@@ -23,6 +23,8 @@ const bodyClass =
   title={entry?.data.title ?? 'Brand Story'}
   description={entry?.data.description ?? ''}
   bodyClass={bodyClass}
+  canonical="/brand-story/"
+  breadcrumbs={[{ name: 'Home', item: '/' }, { name: 'Brand Story', item: '/brand-story/' }]}
   inlineStyles={[ANIMATION_INLINE_CSS]}
 >
   <main id="content" class="site-main brand-story-page">

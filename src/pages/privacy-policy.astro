@@ -9,6 +9,8 @@ const entry = pages.find((p) => p.id === 'privacy-policy');
 <LegalLayout
   title={entry?.data.title ?? 'Privacy Policy | ANTBAR'}
   description={entry?.data.description ?? ''}
+  canonical="/privacy-policy/"
+  breadcrumbs={[{ name: 'Home', item: '/' }, { name: 'Privacy Policy', item: '/privacy-policy/' }]}
 >
   <main id="content" class="site-main legal-page">
     <div class="legal-page__inner">

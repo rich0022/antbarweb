@@ -3,13 +3,23 @@ import LegacyShellLayout from './LegacyShellLayout.astro';
 import { mergeMirrorHeadAssets } from '../lib/mirror-assets';
 import { ANIMATION_INLINE_CSS, ELEMENTOR_LAZY_CSS, MEGA_MENU_STYLE_CSS, SITE_OVERFLOW_GUARD_CSS } from '../data/site-assets';
 
+import type { BreadcrumbItem, ProductData, ArticleData, FaqData } from '../components/seo/JsonLd.astro';
+
 interface Props {
   title?: string;
   description?: string;
   mirrorRoute?: string;
+  canonical?: string;
+  image?: string;
+  ogType?: 'website' | 'article' | 'product';
+  article?: { publishedAt?: string; updatedAt?: string; author?: string; tags?: string[] };
+  breadcrumbs?: BreadcrumbItem[];
+  jsonProduct?: ProductData;
+  jsonArticle?: ArticleData;
+  jsonFaq?: FaqData;
 }
 
-const { title = 'ANTBAR', description = '', mirrorRoute = '' } = Astro.props;
+const { title = 'ANTBAR', description = '', mirrorRoute = '', canonical, image, ogType, article, breadcrumbs, jsonProduct, jsonArticle, jsonFaq } = Astro.props;
 const assets = await mergeMirrorHeadAssets(mirrorRoute);
 ---
 
@@ -21,6 +31,14 @@ const assets = await mergeMirrorHeadAssets(mirrorRoute);
   inlineStyles={[...assets.inlineStyles, ANIMATION_INLINE_CSS, ELEMENTOR_LAZY_CSS, SITE_OVERFLOW_GUARD_CSS, MEGA_MENU_STYLE_CSS]}
   headScripts={assets.headScripts}
   footerScripts={assets.footerScripts}
+  {canonical}
+  {image}
+  {ogType}
+  {article}
+  {breadcrumbs}
+  {jsonProduct}
+  {jsonArticle}
+  {jsonFaq}
 >
   <slot />
 </LegacyShellLayout>

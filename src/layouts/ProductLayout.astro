@@ -3,16 +3,26 @@ import SiteShellLayout from './SiteShellLayout.astro';
 import { ANIMATION_INLINE_CSS } from '../data/site-assets';
 import '../styles/product-shared.css';
 
+import type { BreadcrumbItem, ProductData } from '../components/seo/JsonLd.astro';
+
 interface Props {
   title?: string;
   description?: string;
   bodyClass?: string;
+  canonical?: string;
+  image?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  jsonProduct?: ProductData;
 }
 
 const {
   title = 'ANTBAR',
   description = '',
   bodyClass = 'product-page-body',
+  canonical,
+  image,
+  breadcrumbs,
+  jsonProduct,
 } = Astro.props;
 ---
 
@@ -20,6 +30,11 @@ const {
   title={title}
   description={description}
   bodyClass={bodyClass}
+  canonical={canonical}
+  image={image}
+  ogType="product"
+  breadcrumbs={breadcrumbs}
+  jsonProduct={jsonProduct}
   inlineStyles={[ANIMATION_INLINE_CSS]}
 >
   <slot />

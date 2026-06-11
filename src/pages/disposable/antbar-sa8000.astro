@@ -18,14 +18,26 @@ import {
 import '../../styles/product-sa8000.css';
 
 const entry = await getEntry('products', 'disposable/antbar-sa8000');
-const title = entry?.data.title ?? 'SA8000 Rechargeable Disposable Vape 8000 Puffs-ANTBAR';
-const description = entry?.data.description ?? '';
+const title = entry?.data.seo?.title ?? entry?.data.title ?? 'SA8000 Rechargeable Disposable Vape 8000 Puffs-ANTBAR';
+const description = entry?.data.seo?.description ?? entry?.data.description ?? '';
+const canonicalOverride = entry?.data.seo?.canonical;
 ---
 
 <ProductLayout
   title={title}
   description={description}
   bodyClass="product-page-body product-sa8000-body"
+  canonical={canonicalOverride ?? "/disposable/antbar-sa8000/"}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Products', item: '/all-products/' },
+    { name: 'SA8000', item: '/disposable/antbar-sa8000/' },
+  ]}
+  jsonProduct={{
+    name: 'SA8000',
+    description: description,
+    brand: 'ANTBAR',
+  }}
 >
   <main id="content" class="site-main product-page product-sa8000">
     <section

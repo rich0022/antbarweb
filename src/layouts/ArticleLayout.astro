@@ -3,16 +3,28 @@ import SiteShellLayout from './SiteShellLayout.astro';
 import { ANIMATION_INLINE_CSS } from '../data/site-assets';
 import '../styles/article-page.css';
 
+import type { BreadcrumbItem, ArticleData } from '../components/seo/JsonLd.astro';
+
 interface Props {
   title: string;
   description?: string;
   bodyClass?: string;
+  canonical?: string;
+  image?: string;
+  article?: { publishedAt?: string; updatedAt?: string; author?: string; tags?: string[] };
+  breadcrumbs?: BreadcrumbItem[];
+  jsonArticle?: ArticleData;
 }
 
 const {
   title,
   description = '',
   bodyClass = 'article-page-body',
+  canonical,
+  image,
+  article,
+  breadcrumbs,
+  jsonArticle,
 } = Astro.props;
 ---
 
@@ -20,6 +32,12 @@ const {
   title={title}
   description={description}
   bodyClass={bodyClass}
+  canonical={canonical}
+  image={image}
+  ogType="article"
+  article={article}
+  breadcrumbs={breadcrumbs}
+  jsonArticle={jsonArticle}
   inlineStyles={[ANIMATION_INLINE_CSS]}
 >
   <slot />

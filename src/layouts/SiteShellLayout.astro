@@ -3,6 +3,9 @@ import SiteFooter from '../components/site/SiteFooter.astro';
 import SiteHeader from '../components/site/SiteHeader.astro';
 import SiteShellClientScript from '../components/site/SiteShellClientScript.astro';
 import SiteShellPopups from '../components/site/SiteShellPopups.astro';
+import SeoHead from '../components/SeoHead.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+import type { BreadcrumbItem, ProductData, ArticleData, FaqData } from '../components/seo/JsonLd.astro';
 import '../styles/fonts-local-critical.css';
 import '../styles/global-tokens.css';
 import '../styles/site-shell-local.css';
@@ -18,6 +21,21 @@ interface Props {
   inlineStyles?: string[];
   headScripts?: MirrorScript[];
   footerScripts?: MirrorScript[];
+  /** SEO overrides */
+  canonical?: string;
+  image?: string;
+  ogType?: 'website' | 'article' | 'product';
+  article?: {
+    publishedAt?: string;
+    updatedAt?: string;
+    author?: string;
+    tags?: string[];
+  };
+  /** JSON-LD structured data */
+  breadcrumbs?: BreadcrumbItem[];
+  jsonProduct?: ProductData;
+  jsonArticle?: ArticleData;
+  jsonFaq?: FaqData;
 }
 
 const {
@@ -29,6 +47,14 @@ const {
   inlineStyles = [],
   headScripts = [],
   footerScripts = [],
+  canonical,
+  image,
+  ogType,
+  article,
+  breadcrumbs,
+  jsonProduct,
+  jsonArticle,
+  jsonFaq,
 } = Astro.props;
 
 const mergedBodyClass = [SITE_SHELL_BODY_CLASS, bodyClass].filter(Boolean).join(' ');
@@ -39,9 +65,20 @@ const mergedBodyClass = [SITE_SHELL_BODY_CLASS, bodyClass].filter(Boolean).join(
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    {description && <meta name="description" content={description} />}
-    {noindex && <meta name="robots" content="noindex" />}
+    <SeoHead
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      ogType={ogType}
+      noindex={noindex}
+      article={article}
+    />
+    <JsonLd type="Organization" />
+    {breadcrumbs && <JsonLd type="BreadcrumbList" breadcrumbs={breadcrumbs} />}
+    {jsonProduct && <JsonLd type="Product" product={jsonProduct} />}
+    {jsonArticle && <JsonLd type="Article" article={jsonArticle} />}
+    {jsonFaq && <JsonLd type="FAQPage" faq={jsonFaq} />}
     <link rel="icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-32x32.png" sizes="32x32" />
     <link rel="icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-192x192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/wp-content/uploads/2023/12/cropped-cropped-pic-180x180.png" />

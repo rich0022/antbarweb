@@ -11,7 +11,7 @@ const productTabs = getProductCatalogTabs();
 const bodyClass = 'product-catalog-body';
 ---
 
-<SiteShellLayout title={allEntry?.data.title ?? 'All Products'} description={allEntry?.data.description ?? ''} bodyClass={bodyClass}>
+<SiteShellLayout title={allEntry?.data.title ?? 'All Products'} description={allEntry?.data.description ?? ''} bodyClass={bodyClass} canonical="/all-products/" breadcrumbs={[{ name: 'Home', item: '/' }, { name: 'All Products', item: '/all-products/' }]}>
   <main id="content" class="site-main product-catalog-page">
     <section class="product-catalog" aria-labelledby="product-catalog-title">
       <header class="product-catalog__header scroll-reveal" data-animate="fadeInUp">

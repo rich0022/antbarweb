@@ -11,6 +11,8 @@ const entry = pages.find((p) => p.id === 'verification');
 <VerificationLayout
   title={entry?.data.title ?? 'ANTBAR-Authenticity Verification:Start your certification now!'}
   description={entry?.data.description ?? 'ANTBAR Authenticity Verification, Start your certification now! Free use!'}
+  canonical="/verification/"
+  breadcrumbs={[{ name: 'Home', item: '/' }, { name: 'Verification', item: '/verification/' }]}
 >
   <main id="content" class="site-main verification-page">
     <section class="verification-frame" aria-label="Authenticity verification">

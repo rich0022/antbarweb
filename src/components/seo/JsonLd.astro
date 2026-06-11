@@ -1,0 +1,144 @@
+---
+export interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
+export interface ProductData {
+  name: string;
+  description?: string;
+  image?: string;
+  sku?: string;
+  brand: string;
+  offers?: {
+    priceCurrency?: string;
+    price?: number;
+    availability?: string;
+  };
+}
+
+export interface ArticleData {
+  headline: string;
+  description?: string;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
+  author?: string;
+  publisher: string;
+}
+
+export interface FaqData {
+  questions: Array<{ question: string; answer: string }>;
+}
+
+interface Props {
+  type: 'Organization' | 'Product' | 'Article' | 'FAQPage' | 'BreadcrumbList';
+  breadcrumbs?: BreadcrumbItem[];
+  product?: ProductData;
+  article?: ArticleData;
+  faq?: FaqData;
+}
+
+const siteUrl = 'https://antbar.com';
+
+function buildSchema(): Record<string, unknown> {
+  switch (Astro.props.type) {
+    case 'Organization':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'ANTBAR',
+        url: siteUrl,
+        logo: `${siteUrl}/wp-content/uploads/2023/12/cropped-cropped-pic-192x192.png`,
+        description: 'ANTBAR is an e-cigarette wholesaler that sells disposable vape and closed pod system vape products.',
+        contactPoint: {
+          '@type': 'ContactPoint',
+          email: 'sales@antbar.com',
+          contactType: 'sales',
+        },
+      };
+
+    case 'BreadcrumbList': {
+      const items = Astro.props.breadcrumbs ?? [];
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: items.map((item, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: item.name,
+          item: item.item.startsWith('http') ? item.item : `${siteUrl}${item.item}`,
+        })),
+      };
+    }
+
+    case 'Product': {
+      const p = Astro.props.product;
+      if (!p) return {};
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: p.name,
+        description: p.description,
+        image: p.image?.startsWith('http') ? p.image : p.image ? `${siteUrl}${p.image}` : undefined,
+        brand: { '@type': 'Brand', name: p.brand },
+        sku: p.sku,
+        offers: p.offers ? {
+          '@type': 'Offer',
+          priceCurrency: p.offers.priceCurrency ?? 'USD',
+          price: p.offers.price ?? 0,
+          availability: p.offers.availability ?? 'https://schema.org/InStock',
+        } : undefined,
+      };
+    }
+
+    case 'Article': {
+      const a = Astro.props.article;
+      if (!a) return {};
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: a.headline,
+        description: a.description,
+        image: a.image?.startsWith('http') ? a.image : a.image ? `${siteUrl}${a.image}` : undefined,
+        datePublished: a.datePublished,
+        dateModified: a.dateModified ?? a.datePublished,
+        author: a.author ? {
+          '@type': 'Person',
+          name: a.author,
+        } : undefined,
+        publisher: {
+          '@type': 'Organization',
+          name: a.publisher,
+          logo: `${siteUrl}/wp-content/uploads/2023/12/cropped-cropped-pic-192x192.png`,
+        },
+      };
+    }
+
+    case 'FAQPage': {
+      const f = Astro.props.faq;
+      if (!f) return {};
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: f.questions.map((q) => ({
+          '@type': 'Question',
+          name: q.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: q.answer,
+          },
+        })),
+      };
+    }
+
+    default:
+      return {};
+  }
+}
+
+const schema = buildSchema();
+const isEmpty = Object.keys(schema).length === 0;
+---
+
+{!isEmpty && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

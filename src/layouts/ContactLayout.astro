@@ -3,12 +3,17 @@ import SiteShellLayout from './SiteShellLayout.astro';
 import { ANIMATION_INLINE_CSS } from '../data/site-assets';
 import '../styles/contact.css';
 
+import type { BreadcrumbItem } from '../components/seo/JsonLd.astro';
+
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  image?: string;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
-const { title = 'ANTBAR', description = '' } = Astro.props;
+const { title = 'ANTBAR', description = '', canonical, image, breadcrumbs } = Astro.props;
 const bodyClass = 'contact-page-body';
 ---
 
@@ -16,6 +21,9 @@ const bodyClass = 'contact-page-body';
   title={title}
   description={description}
   bodyClass={bodyClass}
+  canonical={canonical}
+  image={image}
+  breadcrumbs={breadcrumbs}
   inlineStyles={[ANIMATION_INLINE_CSS]}
 >
   <slot />

@@ -19,6 +19,8 @@ export function swapRasterExt(path, ext) {
 export function resolveModernPath(urlPath, rootDir, preferAvif = true) {
   if (!urlPath.startsWith(UPLOADS_PREFIX)) return urlPath;
   if (/cropped-cropped-pic/i.test(urlPath)) return urlPath;
+  // Catalog card only — AG600.avif is the wide hero banner, not this file.
+  if (/\/2024\/03\/AG600\.png$/i.test(urlPath)) return urlPath;
 
   const rel = publicPathFromUploadUrl(urlPath);
   if (!rel) return urlPath;

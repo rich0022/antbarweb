@@ -219,7 +219,7 @@ export const REVIEW_HOT_SALE_PRODUCTS: HotProductCard[] = [
   {
     title: 'AG600',
     href: '/disposable/antbar-ag600/',
-    image: '/wp-content/uploads/2024/03/AG600.avif',
+    image: '/wp-content/uploads/2024/03/AG600.png',
     cta: 'Learn More »',
   },
   {

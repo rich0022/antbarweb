@@ -152,7 +152,7 @@
   transform: translateX(-50%);
 }
 
-.home-hero__pagination .swiper-pagination-bullet {
+.home-hero__widget[data-local-carousel] .home-hero__pagination .swiper-pagination-bullet {
   display: block;
   flex: 0 0 44px;
   width: 6px;
@@ -164,7 +164,7 @@
   border: 0;
   border-radius: 50%;
   appearance: none;
-  background: rgb(0 0 0 / 18%);
+  background-color: rgb(0 0 0 / 18%);
   background-clip: content-box;
   box-sizing: border-box;
   line-height: 0;
@@ -172,8 +172,9 @@
   cursor: pointer;
 }
 
-.home-hero__pagination .swiper-pagination-bullet-active {
-  background: #000;
+.home-hero__widget[data-local-carousel] .home-hero__pagination .swiper-pagination-bullet-active {
+  background-color: #000;
+  background-clip: content-box;
 }
 
 @media (max-width: 1024px) {

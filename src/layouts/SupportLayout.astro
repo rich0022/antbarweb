@@ -3,12 +3,18 @@ import SiteShellLayout from './SiteShellLayout.astro';
 import { ANIMATION_INLINE_CSS } from '../data/site-assets';
 import '../styles/support.css';
 
+import type { BreadcrumbItem, FaqData } from '../components/seo/JsonLd.astro';
+
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  image?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  jsonFaq?: FaqData;
 }
 
-const { title = 'ANTBAR', description = '' } = Astro.props;
+const { title = 'ANTBAR', description = '', canonical, image, breadcrumbs, jsonFaq } = Astro.props;
 const bodyClass = 'support-page-body';
 ---
 
@@ -16,6 +22,10 @@ const bodyClass = 'support-page-body';
   title={title}
   description={description}
   bodyClass={bodyClass}
+  canonical={canonical}
+  image={image}
+  breadcrumbs={breadcrumbs}
+  jsonFaq={jsonFaq}
   inlineStyles={[ANIMATION_INLINE_CSS]}
 >
   <slot />

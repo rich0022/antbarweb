@@ -60,6 +60,8 @@ const patents = [
   title={entry?.data.title ?? 'R&D Center'}
   description={entry?.data.description ?? ''}
   bodyClass={bodyClass}
+  canonical="/rd-center/"
+  breadcrumbs={[{ name: 'Home', item: '/' }, { name: 'R&D Center', item: '/rd-center/' }]}
   inlineStyles={[ANIMATION_INLINE_CSS]}
 >
   <main id="content" class="site-main rd-center-page">
@@ -122,7 +124,7 @@ const patents = [
       <div class="rd-universities__grid">
         {universities.map((university) => (
           <article class="rd-university-card" style={`--rd-card-bg: url("${university.bg}")`}>
-            <img loading="lazy" decoding="async" width={university.w} height={university.h} src={university.img} alt="" />
+            <img loading="lazy" decoding="async" width={university.w} height={university.h} src={university.img} alt={university.name} />
             <p>{university.name}</p>
           </article>
         ))}
@@ -178,7 +180,7 @@ const patents = [
       <div class="rd-patents">
         {patents.map((patent) => (
           <figure class="rd-patent scroll-reveal" data-animate="fadeInUp">
-            <img loading="lazy" decoding="async" width={patent.w} height={patent.h} src={patent.src} alt="" />
+            <img loading="lazy" decoding="async" width={patent.w} height={patent.h} src={patent.src} alt="ANTBAR patent certificate" />
           </figure>
         ))}
       </div>

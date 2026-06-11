@@ -30,9 +30,13 @@ function* walk(dir) {
   }
 }
 
+// AG600.png is the catalog card (563×697); AG600.jpg/.avif is the product hero — do not merge basenames.
+const SKIP_WEBP_SOURCES = /\/2024\/03\/AG600\.png$/i;
+
 for (const filePath of walk(UPLOADS)) {
   const ext = filePath.slice(filePath.lastIndexOf('.')).toLowerCase();
   if (!EXTENSIONS.has(ext)) continue;
+  if (SKIP_WEBP_SOURCES.test(filePath)) continue;
 
   const webpPath = filePath.slice(0, filePath.lastIndexOf('.')) + '.webp';
   const inputSize = statSync(filePath).size;

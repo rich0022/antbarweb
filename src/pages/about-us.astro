@@ -12,6 +12,8 @@ const detailSections = ABOUT_SECTIONS.slice(1);
 <AboutLayout
   title={entry?.data.title ?? 'About Antbar | The Best disposable vape Wholesale'}
   description={entry?.data.description ?? ''}
+  canonical="/about-us/"
+  breadcrumbs={[{ name: 'Home', item: '/' }, { name: 'About Us', item: '/about-us/' }]}
 >
   <main id="content" class="site-main about-page">
     <section class="about-hero scroll-bn" aria-label="About Antbar hero">

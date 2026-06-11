@@ -19,6 +19,7 @@ const gridCards = allCards.filter((card) => !card.href.endsWith(`/${pageConfig.f
 <ArchiveLayout
   title={indexEntry?.data.title ?? 'ANTBAR Reviews'}
   description={indexEntry?.data.description ?? ''}
+  canonical="/review/"
 >
   <main id="content" class="site-main archive-page">
     <ArchivePageHero {...pageConfig.hero} />

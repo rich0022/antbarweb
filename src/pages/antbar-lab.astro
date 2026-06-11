@@ -18,6 +18,8 @@ const bodyClass =
   title={entry?.data.title ?? 'Antbar Lab'}
   description={entry?.data.description ?? ''}
   bodyClass={bodyClass}
+  canonical="/antbar-lab/"
+  breadcrumbs={[{ name: 'Home', item: '/' }, { name: 'Antbar Lab', item: '/antbar-lab/' }]}
   inlineStyles={[ANIMATION_INLINE_CSS]}
 >
   <main id="content" class="site-main lab-page">
@@ -32,7 +34,7 @@ const bodyClass =
           src={hero.desktopImage.src}
           srcset={hero.desktopImage.srcset}
           sizes={hero.desktopImage.sizes}
-          alt=""
+          alt="Antbar Lab hero background"
         />
       </picture>
     </section>
@@ -45,7 +47,7 @@ const bodyClass =
               <p>TO EXPLORE</p>
               <p><strong>TO EXPERIENCE</strong></p>
             </div>
-            <img loading="lazy" decoding="async" width={intro.iconWidth} height={intro.iconHeight} src="/wp-content/uploads/2024/04/图标.webp" alt="" />
+            <img loading="lazy" decoding="async" width={intro.iconWidth} height={intro.iconHeight} src="/wp-content/uploads/2024/04/图标.webp" alt="" aria-hidden="true" />
           </div>
           <img
             class="lab-intro__wide-image"

@@ -20,8 +20,12 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const bodyHtml = await readContentBody('pages', contentEntryFileName(entry.id, 'pages'));
 const mirrorRoute = resolveMirrorRoute('pages', contentEntryFileName(entry.id, 'pages'));
+
+const title = entry.data.seo?.title ?? entry.data.title;
+const description = entry.data.seo?.description ?? entry.data.description ?? '';
+const canonicalOverride = entry.data.seo?.canonical;
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description} mirrorRoute={mirrorRoute}>
+<BaseLayout title={title} description={description} mirrorRoute={mirrorRoute} canonical={canonicalOverride}>
   <ContentBody html={bodyHtml} />
 </BaseLayout>

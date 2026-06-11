@@ -13,6 +13,17 @@ const TAB_ID_BASE = 3630;
 <SupportLayout
   title={entry?.data.title ?? 'Frequently FAQS(Support) | ANTBAR Disposable Vapes Brand'}
   description={entry?.data.description ?? ''}
+  canonical="/support/"
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Support', item: '/support/' },
+  ]}
+  jsonFaq={{
+    questions: SUPPORT_FAQS.map((faq) => ({
+      question: faq.question,
+      answer: faq.answer,
+    })),
+  }}
 >
   <main id="content" class="site-main support-page">
     <section class="support-faq" aria-labelledby="support-faq-title">

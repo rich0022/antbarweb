@@ -5,14 +5,26 @@ import { DAH6000_HERO, DAH6000_SPECS } from '../../data/product-dah6000';
 import '../../styles/product-dah6000.css';
 
 const entry = await getEntry('products', 'disposable/antbar-3000-6000');
-const title = entry?.data.title ?? 'Antbar DAH3000|6000 - 6.5ml The Best Disposable Vapes online';
-const description = entry?.data.description ?? '';
+const title = entry?.data.seo?.title ?? entry?.data.title ?? 'Antbar DAH3000|6000 - 6.5ml The Best Disposable Vapes online';
+const description = entry?.data.seo?.description ?? entry?.data.description ?? '';
+const canonicalOverride = entry?.data.seo?.canonical;
 ---
 
 <ProductLayout
   title={title}
   description={description}
   bodyClass="product-page-body product-dah6000-body"
+  canonical={canonicalOverride ?? "/disposable/antbar-3000-6000/"}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Products', item: '/all-products/' },
+    { name: 'DAH3000/6000', item: '/disposable/antbar-3000-6000/' },
+  ]}
+  jsonProduct={{
+    name: 'DAH3000/6000',
+    description: description,
+    brand: 'ANTBAR',
+  }}
 >
   <main id="content" class="site-main product-dah6000">
     <section class="product-dah6000__hero" aria-labelledby="dah6000-hero-title">

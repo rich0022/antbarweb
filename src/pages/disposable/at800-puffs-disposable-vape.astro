@@ -18,14 +18,28 @@ import {
 import '../../styles/product-at800.css';
 
 const entry = await getEntry('products', 'disposable/at800-puffs-disposable-vape');
-const title = entry?.data.title ?? 'AT800 2ml/800 puffs Disposable Vapes | ANTBAR';
-const description = entry?.data.description ?? '';
+const title = entry?.data.seo?.title ?? entry?.data.title ?? 'AT800 2ml/800 puffs Disposable Vapes | ANTBAR';
+const description = entry?.data.seo?.description ?? entry?.data.description ?? '';
+const canonicalOverride = entry?.data.seo?.canonical;
 ---
 
 <ProductLayout
   title={title}
   description={description}
   bodyClass="product-page-body product-at800-body"
+  canonical={canonicalOverride ?? "/disposable/at800-puffs-disposable-vape/"}
+  image="/wp-content/uploads/2024/03/AT800.avif"
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Products', item: '/all-products/' },
+    { name: 'AT800', item: '/disposable/at800-puffs-disposable-vape/' },
+  ]}
+  jsonProduct={{
+    name: 'AT800',
+    description: description,
+    image: '/wp-content/uploads/2024/03/AT800.avif',
+    brand: 'ANTBAR',
+  }}
 >
   <main id="content" class="site-main product-page product-at800">
     <section

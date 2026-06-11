@@ -2,6 +2,7 @@
 import SiteShellLayout from './SiteShellLayout.astro';
 import '../styles/site-shell-legacy.css';
 import type { MirrorScript } from '../lib/mirror-assets';
+import type { BreadcrumbItem, ProductData, ArticleData, FaqData } from '../components/seo/JsonLd.astro';
 
 interface Props {
   title?: string;
@@ -11,6 +12,14 @@ interface Props {
   inlineStyles?: string[];
   headScripts?: MirrorScript[];
   footerScripts?: MirrorScript[];
+  canonical?: string;
+  image?: string;
+  ogType?: 'website' | 'article' | 'product';
+  article?: { publishedAt?: string; updatedAt?: string; author?: string; tags?: string[] };
+  breadcrumbs?: BreadcrumbItem[];
+  jsonProduct?: ProductData;
+  jsonArticle?: ArticleData;
+  jsonFaq?: FaqData;
 }
 
 const {
@@ -21,6 +30,14 @@ const {
   inlineStyles = [],
   headScripts = [],
   footerScripts = [],
+  canonical,
+  image,
+  ogType,
+  article,
+  breadcrumbs,
+  jsonProduct,
+  jsonArticle,
+  jsonFaq,
 } = Astro.props;
 ---
 
@@ -32,6 +49,14 @@ const {
   inlineStyles={inlineStyles}
   headScripts={headScripts}
   footerScripts={footerScripts}
+  canonical={canonical}
+  image={image}
+  ogType={ogType}
+  article={article}
+  breadcrumbs={breadcrumbs}
+  jsonProduct={jsonProduct}
+  jsonArticle={jsonArticle}
+  jsonFaq={jsonFaq}
 >
   <slot />
 </SiteShellLayout>

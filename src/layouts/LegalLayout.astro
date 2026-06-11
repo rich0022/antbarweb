@@ -2,14 +2,19 @@
 import SiteShellLayout from './SiteShellLayout.astro';
 import '../styles/legal.css';
 
+import type { BreadcrumbItem } from '../components/seo/JsonLd.astro';
+
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  image?: string;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
-const { title = 'ANTBAR', description = '' } = Astro.props;
+const { title = 'ANTBAR', description = '', canonical, image, breadcrumbs } = Astro.props;
 ---
 
-<SiteShellLayout title={title} description={description} bodyClass="legal-page-body">
+<SiteShellLayout title={title} description={description} bodyClass="legal-page-body" {canonical} {image} {breadcrumbs}>
   <slot />
 </SiteShellLayout>

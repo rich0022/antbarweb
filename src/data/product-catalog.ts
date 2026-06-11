@@ -61,11 +61,13 @@ export const PRODUCT_CATALOG_ITEMS: ProductCatalogItem[] = [
     href: '/disposable/antbar-ag600/',
     family: 'disposable',
     image: {
-      src: '/wp-content/uploads/2024/03/AG600.avif',
-      srcset: '/wp-content/uploads/2024/03/AG600.avif 563w, /wp-content/uploads/2024/03/AG600-242x300.webp 242w',
+      src: '/wp-content/uploads/2024/03/AG600.png',
+      srcset:
+        '/wp-content/uploads/2024/03/AG600.png 563w, /wp-content/uploads/2024/03/AG600-242x300.webp 242w',
       sizes: '(max-width: 563px) 100vw, 563px',
       width: 563,
       height: 697,
+      alt: 'AG600',
     },
   },
   {

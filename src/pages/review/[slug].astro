@@ -44,8 +44,9 @@ if (!entry) {
   throw new Error(`Missing review entry for ${props.entryId}`);
 }
 
-const title = entry.data.title;
-const description = entry.data.description ?? entry.data.excerpt ?? '';
+const title = entry.data.seo?.title ?? entry.data.title;
+const description = entry.data.seo?.description ?? entry.data.description ?? entry.data.excerpt ?? '';
+const canonicalOverride = entry.data.seo?.canonical;
 const publishedLabel = formatPublishedLabel(entry.data.publishedAt);
 
 const [{ Content }, markdownBody] = await Promise.all([
@@ -60,6 +61,26 @@ const tocItems = extractTocItems(markdownBody);
   title={title}
   description={description}
   bodyClass="article-page-body review-article-body"
+  canonical={canonicalOverride ?? `/review/${props.slug}/`}
+  image={entry.data.heroImage}
+  article={{
+    publishedAt: entry.data.publishedAt,
+    updatedAt: entry.data.updatedAt,
+    tags: entry.data.tags,
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Reviews', item: '/review/' },
+    { name: entry.data.title, item: `/review/${props.slug}/` },
+  ]}
+  jsonArticle={{
+    headline: entry.data.title,
+    description: description,
+    image: entry.data.heroImage,
+    datePublished: entry.data.publishedAt,
+    dateModified: entry.data.updatedAt,
+    publisher: 'ANTBAR',
+  }}
 >
   <ArticlePage
     title={title}

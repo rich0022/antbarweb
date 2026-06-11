@@ -13,6 +13,8 @@ const missingSiteKey = !turnstileSiteKey;
 <ContactLayout
   title={entry?.data.title ?? 'Contact To E-Cigarette Wholesale Company |ANTBAR'}
   description={entry?.data.description ?? ''}
+  canonical="/contact/"
+  breadcrumbs={[{ name: 'Home', item: '/' }, { name: 'Contact', item: '/contact/' }]}
 >
   <main id="content" class="site-main contact-page">
     <section class="contact-form-section" aria-labelledby="contact-form-title">

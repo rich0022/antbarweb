@@ -15,14 +15,26 @@ import {
 import '../../styles/product-kt800.css';
 
 const entry = await getEntry('products', 'disposable/antbar-kt800');
-const title = entry?.data.title ?? 'KT800 Disposable Vape Kits Online Wholesale-ANTBAR';
-const description = entry?.data.description ?? '';
+const title = entry?.data.seo?.title ?? entry?.data.title ?? 'KT800 Disposable Vape Kits Online Wholesale-ANTBAR';
+const description = entry?.data.seo?.description ?? entry?.data.description ?? '';
+const canonicalOverride = entry?.data.seo?.canonical;
 ---
 
 <ProductLayout
   title={title}
   description={description}
   bodyClass="product-page-body product-kt800-body"
+  canonical={canonicalOverride ?? "/disposable/antbar-kt800/"}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Products', item: '/all-products/' },
+    { name: 'KT800', item: '/disposable/antbar-kt800/' },
+  ]}
+  jsonProduct={{
+    name: 'KT800',
+    description: description,
+    brand: 'ANTBAR',
+  }}
 >
   <main id="content" class="site-main product-page product-kt800">
     <section

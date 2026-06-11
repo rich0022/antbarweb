@@ -6,9 +6,11 @@ interface Props {
   title?: string;
   description?: string;
   pageId: string;
+  canonical?: string;
+  image?: string;
 }
 
-const { title = 'ANTBAR', description = '', pageId } = Astro.props;
+const { title = 'ANTBAR', description = '', pageId, canonical, image } = Astro.props;
 const bodyClass = `wp-singular page-template-default wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-305 elementor-page elementor-page-${pageId}`;
 ---
 
@@ -17,6 +19,8 @@ const bodyClass = `wp-singular page-template-default wp-custom-logo wp-embed-res
   description={description}
   bodyClass={bodyClass}
   inlineStyles={[ANIMATION_INLINE_CSS, SITE_OVERFLOW_GUARD_CSS, MEGA_MENU_STYLE_CSS]}
+  {canonical}
+  {image}
 >
   <slot />
 </LegacyShellLayout>
