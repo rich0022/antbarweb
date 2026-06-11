@@ -2,5 +2,11 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "antbarweb",
   "compatibility_date": "2026-06-01",
-  "pages_build_output_dir": "./dist/client"
+  "keep_vars": true,
+  "main": "./dist/worker/index.js",
+  "assets": {
+    "directory": "./dist/client",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/contact", "/contact/"]
+  }
 }

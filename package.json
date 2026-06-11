@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev --host",
-    "build": "astro build && node scripts/purge-build-css.mjs && node scripts/post-build-cleanup.mjs && npx pagefind --site dist/client",
-    "build:cf": "astro build && node scripts/purge-build-css.mjs && node scripts/post-build-cleanup.mjs && node scripts/prepare-cloudflare-static.mjs && npx pagefind --site dist/client",
+    "build": "astro build && node scripts/purge-build-css.mjs && node scripts/post-build-cleanup.mjs && npx wrangler pages functions build --outdir=./dist/worker && node scripts/prepare-workers-deploy.mjs && npx pagefind --site dist/client",
     "optimize:images": "node scripts/optimize-images.mjs && node scripts/update-mirror-webp-refs.mjs",
     "bundle:page": "node scripts/bundle-page.mjs",
     "extract:content": "node scripts/extract-content.mjs",

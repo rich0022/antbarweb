@@ -1,8 +1,8 @@
+# Disabled: production deploys use Cloudflare Workers Builds (native Git integration).
+# Re-enable only if you need a manual GitHub Actions fallback.
 name: Deploy to Cloudflare Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -21,21 +21,13 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build:cf
+      - run: npm run build
         env:
           NODE_ENV: production
 
-      - name: Create Pages project (if needed)
-        uses: cloudflare/wrangler-action@v3
-        continue-on-error: true
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages project create antbarweb --production-branch main
-
-      - name: Deploy to Cloudflare Pages
+      - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist/client --project-name=antbarweb --branch main
+          command: wrangler deploy --keep-vars

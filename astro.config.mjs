@@ -1,9 +1,15 @@
 import cloudflare from '@astrojs/cloudflare';
-import { defineConfig } from 'astro/config';
+import { defineConfig, sessionDrivers } from 'astro/config';
 
 export default defineConfig({
   output: 'static',
+  // Static site has no server sessions; avoid auto-provisioning SESSION KV on deploy.
+  session: {
+    driver: sessionDrivers.memory(),
+  },
   adapter: cloudflare({
+    // Astro build reads wrangler.astro.jsonc; production deploy uses wrangler.jsonc.
+    configPath: './wrangler.astro.jsonc',
     // Build-time prerender uses Node so mirror/content fs reads work locally and in CI.
     prerenderEnvironment: 'node',
   }),
