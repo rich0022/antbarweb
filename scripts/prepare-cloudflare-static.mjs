@@ -16,11 +16,14 @@ async function removeBlockedMedia() {
   }
 }
 
-// Remove auto-generated wrangler.json — its Worker-specific fields
+// Remove auto-generated wrangler configs — their Worker-specific fields
 // ("assets", "images", "previews") break `wrangler pages deploy`.
 async function removeGeneratedWranglerConfig() {
-  const configPath = path.join(DIST_DIR, 'client', 'wrangler.json');
-  await rm(configPath, { force: true });
+  const generatedConfig = path.join(DIST_DIR, 'client', 'wrangler.json');
+  await rm(generatedConfig, { force: true });
+  // .wrangler/deploy/config.json caches a reference to the generated file
+  const wranglerState = path.join(ROOT, '.wrangler');
+  await rm(wranglerState, { force: true, recursive: true });
 }
 
 async function listHtmlFiles(dirPath) {
