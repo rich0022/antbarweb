@@ -92,7 +92,7 @@ const mobileProductTiles = [
       <h2 id="site-shell-search-title" class="site-shell-search-shell__title">Search</h2>
       <form class="site-shell-search-form" data-site-shell-search-form>
         <div class="site-shell-search-form__row">
-          <input id="site-shell-search-input" class="site-shell-search-form__input" type="search" name="q" placeholder="Search..." />
+          <input id="site-shell-search-input" class="site-shell-search-form__input" type="search" name="q" placeholder="Search..." autocomplete="off" />
           <button class="site-shell-search-form__submit" type="submit" aria-label="Submit search">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2" />
@@ -101,9 +101,89 @@ const mobileProductTiles = [
           </button>
         </div>
       </form>
+      <div class="site-shell-search-results" data-site-shell-search-results hidden></div>
     </div>
   </div>
 </div>
+
+<script is:inline>
+  (() => {
+    const dialog = document.getElementById('site-shell-search-dialog');
+    const form = dialog?.querySelector('[data-site-shell-search-form]');
+    const input = document.getElementById('site-shell-search-input');
+    const resultsEl = dialog?.querySelector('[data-site-shell-search-results]');
+    if (!dialog || !form || !input || !resultsEl) return;
+
+    let pagefind = null;
+    let loadPromise = null;
+
+    const loadPagefind = () => {
+      if (loadPromise) return loadPromise;
+      loadPromise = import('/pagefind/pagefind.js')
+        .then((mod) => { pagefind = mod; })
+        .catch(() => {
+          resultsEl.innerHTML = '<p class="site-shell-search-results__error">Search is not available.</p>';
+          resultsEl.hidden = false;
+        });
+      return loadPromise;
+    };
+
+    const renderResults = (results) => {
+      if (!results || results.length === 0) {
+        resultsEl.innerHTML = '<p class="site-shell-search-results__empty">No results found.</p>';
+        resultsEl.hidden = false;
+        return;
+      }
+
+      let html = '';
+      const limit = Math.min(results.length, 20);
+      for (let i = 0; i < limit; i++) {
+        const data = results[i].data();
+        html += '<article class="site-shell-search-result">';
+        html += `<a href="${data.url}">`;
+        html += `<h3 class="site-shell-search-result__title">${data.meta?.title || ''}</h3>`;
+        if (data.excerpt) {
+          html += `<p class="site-shell-search-result__excerpt">${data.excerpt}</p>`;
+        }
+        html += '</a></article>';
+      }
+      resultsEl.innerHTML = html;
+      resultsEl.hidden = false;
+    };
+
+    const doSearch = async (term) => {
+      term = term.trim();
+      if (!term) { resultsEl.hidden = true; return; }
+
+      await loadPagefind();
+      if (!pagefind) return;
+
+      const search = await pagefind.search(term);
+      renderResults(search?.results ?? []);
+    };
+
+    let debounceTimer = null;
+    input.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => doSearch(input.value), 300);
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearTimeout(debounceTimer);
+      doSearch(input.value);
+    });
+
+    const searchDialogObserver = new MutationObserver(() => {
+      if (!dialog.hidden && !dialog.hasAttribute('aria-hidden')) {
+        loadPagefind();
+        setTimeout(() => input?.focus(), 200);
+        if (input.value.trim()) doSearch(input.value);
+      }
+    });
+    searchDialogObserver.observe(dialog, { attributes: true, attributeFilter: ['hidden', 'aria-hidden'] });
+  })();
+</script>
 
 <div
   id="site-shell-age-dialog"

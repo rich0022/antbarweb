@@ -12,6 +12,7 @@ scrape/
 .env
 .env.local
 .env.production
+.dev.vars
 
 # OS files
 .DS_Store

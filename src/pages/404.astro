@@ -1,0 +1,17 @@
+---
+import SiteShellLayout from '../layouts/SiteShellLayout.astro';
+
+const title = 'Page Not Found | ANTBAR';
+const description = 'The page you are looking for does not exist.';
+---
+
+<SiteShellLayout title={title} description={description}>
+  <main id="content" class="site-main" style="display:flex;align-items:center;justify-content:center;min-height:60vh;padding:clamp(40px,8vw,100px);text-align:center;background:#fff;color:#000;font-family:var(--font-sans)">
+    <div>
+      <h1 style="margin:0 0 1em;font-size:clamp(80px,15vw,180px);font-weight:700;line-height:1;color:var(--color-primary)">404</h1>
+      <p style="margin:0 0 0.5em;font-size:clamp(20px,3vw,36px);font-weight:600">Page Not Found</p>
+      <p style="margin:0 0 2em;font-size:clamp(14px,1.2vw,18px);color:#666">The page you are looking for doesn't exist or has been moved.</p>
+      <a href="/" style="display:inline-flex;align-items:center;padding:0.8em 2.5em;border:2px solid #000;border-radius:2em;background:transparent;color:#000;font-size:clamp(14px,1.1vw,18px);font-weight:500;text-decoration:none;transition:background 0.2s,color 0.2s">Back to Home</a>
+    </div>
+  </main>
+</SiteShellLayout>

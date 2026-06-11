@@ -1046,6 +1046,54 @@ body {
   box-shadow: none;
 }
 
+.site-shell-search-results {
+  margin-top: 20px;
+  overflow-y: auto;
+  max-height: calc(100vh - 280px);
+}
+
+.site-shell-search-result {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.site-shell-search-result:last-child {
+  border-bottom: 0;
+}
+
+.site-shell-search-result a {
+  display: block;
+  color: var(--color-text-on-dark);
+  text-decoration: none;
+}
+
+.site-shell-search-result__title {
+  margin: 0 0 4px;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.site-shell-search-result__excerpt {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+  line-height: 1.5;
+}
+
+.site-shell-search-result mark {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.site-shell-search-results__empty,
+.site-shell-search-results__error {
+  padding: 32px 0;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
 .site-shell-age-gate__brand {
   display: block;
   width: 100%;
