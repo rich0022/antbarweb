@@ -2,6 +2,7 @@
 import { getEntry } from 'astro:content';
 import ProductLayout from '../../layouts/ProductLayout.astro';
 import ProductMediaPanel from '../../components/product/ProductMediaPanel.astro';
+import BackgroundVideo from '../../components/media/BackgroundVideo.astro';
 import {
   AT800_BATTERY_PANEL,
   AT800_CHILDPROOF_PANEL,
@@ -55,15 +56,10 @@ const description = entry?.data.description ?? '';
     </section>
 
     <section class="product-at800__video scroll-reveal" aria-label="Product video preview" data-animate="fadeInUp">
-      <video
+      <BackgroundVideo
         id="at800-video-bg"
         class="product-at800__video-element"
-        src={AT800_VIDEO.background}
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
+        sources={AT800_VIDEO.background}
       />
       <div class="product-at800__video-mask" aria-hidden="true"></div>
       <button

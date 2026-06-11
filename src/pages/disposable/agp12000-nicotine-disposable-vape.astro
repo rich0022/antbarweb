@@ -1,6 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import ProductLayout from '../../layouts/ProductLayout.astro';
+import BackgroundVideo from '../../components/media/BackgroundVideo.astro';
 import {
   AGP12000_BATTERY_PANEL,
   AGP12000_COMPACT_PANEL,
@@ -67,15 +68,10 @@ const compactFeature = AGP12000_FEATURE_GRID.row2[2];
     </section>
 
     <section class="product-agp12000__video scroll-reveal" aria-label="Product video preview" data-animate="fadeInUp">
-      <video
+      <BackgroundVideo
         id="agp12000-video-bg"
         class="product-agp12000__video-element"
-        src={AGP12000_VIDEO.background}
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
+        sources={AGP12000_VIDEO.background}
       />
       <div class="product-agp12000__video-mask" aria-hidden="true"></div>
       <button
@@ -206,16 +202,8 @@ const compactFeature = AGP12000_FEATURE_GRID.row2[2];
 
     <section class="product-agp12000__showcase-videos scroll-reveal" aria-hidden="true" data-animate="fadeInUp">
       {
-        AGP12000_SHOWCASE_VIDEOS.map((src) => (
-          <video
-            class="product-agp12000__showcase-video"
-            src={src}
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-          />
+        AGP12000_SHOWCASE_VIDEOS.map((sources) => (
+          <BackgroundVideo class="product-agp12000__showcase-video" sources={sources} />
         ))
       }
     </section>

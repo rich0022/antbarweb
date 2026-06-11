@@ -1,3 +1,5 @@
+import { backgroundVideoFromMp4 } from '../lib/video-asset';
+
 export const AT800_HERO = {
   image: '/wp-content/uploads/2024/05/486详情素材_01-jpg.avif',
   width: 1920,
@@ -14,7 +16,7 @@ export const AT800_HERO = {
 };
 
 export const AT800_VIDEO = {
-  background: '/wp-content/uploads/2024/07/C486-ok-2k.mp4',
+  background: backgroundVideoFromMp4('/wp-content/uploads/2024/07/C486-ok-2k.mp4'),
   modal: '/wp-content/uploads/2024/05/C485.mp4',
 };
 

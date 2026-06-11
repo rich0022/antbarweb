@@ -13,6 +13,8 @@
     "optimize:images:avif": "node scripts/optimize-images-avif.mjs",
     "optimize:refs": "node scripts/update-code-image-refs.mjs",
     "optimize:media": "npm run optimize:images:force && npm run optimize:images:avif && npm run optimize:refs",
+    "optimize:videos": "node scripts/optimize-videos.mjs",
+    "prune:media": "node scripts/prune-unreferenced-media.mjs",
     "bundle:page": "node scripts/bundle-page.mjs",
     "extract:content": "node scripts/extract-content.mjs",
     "fetch:missing-blog": "node scripts/fetch-missing-blog.mjs",

@@ -1,3 +1,5 @@
+import { backgroundVideoFromMp4 } from '../lib/video-asset';
+
 export const SA8000_HERO = {
   background: '/wp-content/uploads/2024/06/SA8000-2-jpg.avif',
   width: 1920,
@@ -14,7 +16,7 @@ export const SA8000_HERO = {
 };
 
 export const SA8000_VIDEO = {
-  background: '/wp-content/uploads/2024/03/449_1-2540_x264_x264.mp4',
+  background: backgroundVideoFromMp4('/wp-content/uploads/2024/03/449_1-2540_x264_x264.mp4'),
   modal: '/wp-content/uploads/2023/12/SA8000-2023x264-x264-1.mp4',
 };
 

@@ -3,6 +3,7 @@ import { getEntry } from 'astro:content';
 import ProductLayout from '../../layouts/ProductLayout.astro';
 import ProductFeatureCard from '../../components/product/ProductFeatureCard.astro';
 import ProductMediaStory from '../../components/product/ProductMediaStory.astro';
+import BackgroundVideo from '../../components/media/BackgroundVideo.astro';
 import {
   SA8000_FEATURE_ROW_1,
   SA8000_FEATURE_ROW_2,
@@ -56,15 +57,10 @@ const description = entry?.data.description ?? '';
 
     <div class="product-sa8000__showcase scroll-reveal" data-animate="fadeInUp">
       <section class="product-sa8000__video" aria-label="Product video preview">
-        <video
+        <BackgroundVideo
           id="sa8000-video-bg"
           class="product-sa8000__video-element"
-          src={SA8000_VIDEO.background}
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
+          sources={SA8000_VIDEO.background}
         />
         <div class="product-sa8000__video-mask" aria-hidden="true"></div>
         <button

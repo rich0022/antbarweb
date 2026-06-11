@@ -262,4 +262,4 @@ npm i -D sharp
 - [x] 阶段 B：`optimize:images:force` + `optimize:images:avif` + `optimize:refs`（74 文件 / 416+ 引用）
 - [x] 阶段 B：`post-build-cleanup.mjs` 修复 `dist/client/wp-content` 路径
 - [x] `scripts/audit-media.mjs` + `npm run optimize:media`
-- [ ] 阶段 C P0：转码 `SA8000-2023x264-x264-1.mp4` 与 `C486-ok-2k.mp4`，更新 `homepage.ts` / `product-at800.ts`
+- [x] 阶段 C：MP4 压缩 + WebM 背景轨、`BackgroundVideo` 懒加载、`prune:media` 清理无引用资源（uploads **207→34 MB**）

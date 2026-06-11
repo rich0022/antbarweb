@@ -1,3 +1,5 @@
+import { backgroundVideoFromMp4 } from '../lib/video-asset';
+
 export const KT800_HERO = {
   image: '/wp-content/uploads/2024/05/KT800-DISPOSABLE-VAPE-banner-jpg.avif',
   width: 2540,
@@ -14,7 +16,7 @@ export const KT800_HERO = {
 };
 
 export const KT800_VIDEO = {
-  background: '/wp-content/uploads/2024/05/C485.mp4',
+  background: backgroundVideoFromMp4('/wp-content/uploads/2024/05/C485.mp4'),
   modal: '/wp-content/uploads/2024/05/C485.mp4',
 };
 

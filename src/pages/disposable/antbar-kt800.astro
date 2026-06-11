@@ -2,6 +2,7 @@
 import { getEntry } from 'astro:content';
 import ProductLayout from '../../layouts/ProductLayout.astro';
 import ProductMediaPanel from '../../components/product/ProductMediaPanel.astro';
+import BackgroundVideo from '../../components/media/BackgroundVideo.astro';
 import {
   KT800_FEATURE_COLUMNS,
   KT800_FLAVORS,
@@ -59,15 +60,10 @@ const description = entry?.data.description ?? '';
     </section>
 
     <section class="product-kt800__video scroll-reveal" aria-label="Product video preview" data-animate="fadeInUp">
-      <video
+      <BackgroundVideo
         id="kt800-video-bg"
         class="product-kt800__video-element"
-        src={KT800_VIDEO.background}
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
+        sources={KT800_VIDEO.background}
       />
       <div class="product-kt800__video-mask" aria-hidden="true"></div>
       <button

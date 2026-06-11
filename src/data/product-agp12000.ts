@@ -1,3 +1,5 @@
+import { backgroundVideoFromMp4 } from '../lib/video-asset';
+
 export const AGP12000_HERO = {
   image: '/wp-content/uploads/2024/06/C479-AGP12000详情-1-5切片_01-jpg.avif',
   width: 2540,
@@ -14,7 +16,7 @@ export const AGP12000_HERO = {
 };
 
 export const AGP12000_VIDEO = {
-  background: '/wp-content/uploads/2024/07/AGP12000-479-.mp4',
+  background: backgroundVideoFromMp4('/wp-content/uploads/2024/07/AGP12000-479-.mp4'),
   modal: '/wp-content/uploads/2024/07/AGP12000-479-.mp4',
 };
 
@@ -77,8 +79,8 @@ export const AGP12000_FEATURE_GRID = {
 };
 
 export const AGP12000_SHOWCASE_VIDEOS = [
-  '/wp-content/uploads/2024/06/479-3屏-2.mp4',
-  '/wp-content/uploads/2024/06/479-详情-4屏.mp4',
+  backgroundVideoFromMp4('/wp-content/uploads/2024/06/479-3屏-2.mp4'),
+  backgroundVideoFromMp4('/wp-content/uploads/2024/06/479-详情-4屏.mp4'),
 ];
 
 export const AGP12000_LIQUID_SPLIT = {

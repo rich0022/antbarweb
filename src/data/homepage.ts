@@ -1,3 +1,5 @@
+import { backgroundVideoFromMp4 } from '../lib/video-asset';
+
 export interface ResponsiveImage {
   src: string;
   srcset: string;
@@ -206,9 +208,9 @@ export const PRODUCT_GRID_ITEMS: ProductGridItem[] = [
   },
 ] as const;
 
-export const PRODUCT_VIDEO = {
-  src: '/wp-content/uploads/2023/12/SA8000-2023x264-x264-1.mp4',
-} as const;
+export const PRODUCT_VIDEO = backgroundVideoFromMp4(
+  '/wp-content/uploads/2023/12/SA8000-2023x264-x264-1.mp4',
+);
 
 export interface GallerySlide {
   id: string;

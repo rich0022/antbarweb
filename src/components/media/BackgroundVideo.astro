@@ -1,0 +1,71 @@
+---
+import type { BackgroundVideoSources } from '../../lib/video-asset';
+
+interface Props {
+  sources: BackgroundVideoSources;
+  class?: string;
+  id?: string;
+}
+
+const { sources, class: className, id } = Astro.props;
+---
+
+<video
+  class={className}
+  id={id}
+  preload="none"
+  muted
+  loop
+  playsinline
+  data-bg-webm={sources.webm}
+  data-bg-mp4={sources.mp4}
+>
+</video>
+
+<script>
+  function loadBackgroundVideo(video: HTMLVideoElement) {
+    if (video.dataset.loaded === 'true') return;
+    const webm = video.dataset.bgWebm;
+    const mp4 = video.dataset.bgMp4;
+    if (!webm && !mp4) return;
+
+    video.replaceChildren();
+    if (webm) {
+      const source = document.createElement('source');
+      source.src = webm;
+      source.type = 'video/webm';
+      video.append(source);
+    }
+    if (mp4) {
+      const source = document.createElement('source');
+      source.src = mp4;
+      source.type = 'video/mp4';
+      video.append(source);
+    }
+
+    video.dataset.loaded = 'true';
+    video.autoplay = true;
+    void video.load();
+    void video.play().catch(() => {});
+  }
+
+  for (const video of document.querySelectorAll('video[data-bg-webm], video[data-bg-mp4]')) {
+    if (!(video instanceof HTMLVideoElement)) continue;
+
+    const start = () => loadBackgroundVideo(video);
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          start();
+          observer.disconnect();
+        },
+        { rootMargin: '200px' },
+      );
+      observer.observe(video);
+    } else {
+      start();
+    }
+  }
+</script>
