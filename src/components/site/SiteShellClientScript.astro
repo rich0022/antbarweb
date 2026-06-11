@@ -120,6 +120,24 @@
     if (ageDialog && !window.localStorage.getItem(ageAcceptedKey)) {
       window.setTimeout(() => openDialog('age'), 120);
     }
+    const ageVerifyStep = ageDialog?.querySelector('[data-age-step="verify"]');
+    const ageDeniedStep = ageDialog?.querySelector('[data-age-step="denied"]');
+
+    const showAgeStep = (step) => {
+      if (!(ageVerifyStep instanceof HTMLElement) || !(ageDeniedStep instanceof HTMLElement)) return;
+      const isVerify = step === 'verify';
+      ageVerifyStep.hidden = !isVerify;
+      ageDeniedStep.hidden = isVerify;
+    };
+
+    document.querySelector('[data-age-decline]')?.addEventListener('click', () => {
+      showAgeStep('denied');
+    });
+
+    document.querySelector('[data-age-back]')?.addEventListener('click', () => {
+      showAgeStep('verify');
+    });
+
     document.querySelector('[data-age-accept]')?.addEventListener('click', () => {
       window.localStorage.setItem(ageAcceptedKey, 'yes');
       closeDialog(ageDialog);

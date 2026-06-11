@@ -9,6 +9,8 @@ export const ELEMENTOR_POPUP_SEARCH =
 export const HEADER_WARNING_TEXT =
   'WARNING: This product contains nicotine. Nicotine is an addictive chemical. For ADULT use only.';
 
+export const PRIVACY_POLICY_HREF = '/privacy-policy/';
+
 export const SITE_LOGO = {
   href: '/',
   src: '/wp-content/uploads/2024/05/LOGO.png',

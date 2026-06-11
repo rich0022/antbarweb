@@ -5,6 +5,7 @@ import {
   FOOTER_DESKTOP_COLUMNS,
   FOOTER_MOBILE_ACCORDION,
   FOOTER_SOCIAL,
+  PRIVACY_POLICY_HREF,
   SITE_LOGO,
 } from '../../data/site-navigation';
 
@@ -121,7 +122,7 @@ const socialIconPaths: Record<string, { viewBox: string; path: string }> = {
   <div class="site-footer__meta">
     <div class="site-shell-frame site-footer__meta-inner">
       <div>{FOOTER_COPYRIGHT}</div>
-      <div>Privacy Policy</div>
+      <a href={PRIVACY_POLICY_HREF}>Privacy Policy</a>
     </div>
   </div>
 </footer>

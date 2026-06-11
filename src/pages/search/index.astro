@@ -25,28 +25,54 @@ const labels = {
 <SiteShellLayout title={labels.title} description={labels.description} noindex bodyClass="search-page-body">
   <main id="content" class="site-main search-page">
     <div class="search-page__inner" data-search-labels={JSON.stringify(labels)}>
-      <h1 class="search-page__title">{labels.heading}</h1>
-      <div class="search-page__input-row">
-        <input
-          id="search-page-input"
-          type="search"
-          placeholder={labels.placeholder}
-          autocomplete="off"
-          aria-label={labels.heading}
-        />
-        <button id="search-page-button" type="button">{labels.button}</button>
-      </div>
-      <p id="search-page-hint" class="search-page__hint">{labels.initialHint}</p>
+      <header class="search-page__hero">
+        <h1 class="search-page__title">{labels.heading}</h1>
+        <p class="search-page__lede">Find products, blog articles, and site pages across ANTBAR.</p>
+        <form class="search-page__form" id="search-page-form" role="search">
+          <label class="search-page__field">
+            <span class="search-page__field-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                <path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              </svg>
+            </span>
+            <input
+              id="search-page-input"
+              type="search"
+              placeholder={labels.placeholder}
+              autocomplete="off"
+              aria-label={labels.heading}
+            />
+          </label>
+          <button id="search-page-button" class="search-page__submit" type="submit">{labels.button}</button>
+        </form>
+      </header>
 
-      <div class="search-page__filters" id="search-page-filters" hidden>
-        <button type="button" class="search-page__filter is-active" data-filter="all">{labels.all}</button>
-        <button type="button" class="search-page__filter" data-filter="product">{labels.products}</button>
-        <button type="button" class="search-page__filter" data-filter="blog">{labels.blog}</button>
-        <button type="button" class="search-page__filter" data-filter="page">{labels.pages}</button>
-      </div>
+      <div class="search-page__body">
+        <p id="search-page-hint" class="search-page__hint">{labels.initialHint}</p>
 
-      <div id="search-page-output" class="search-page__output"></div>
-      <button type="button" id="search-page-more" class="search-page__more" hidden>{labels.loadMore}</button>
+        <div class="search-page__filters" id="search-page-filters" hidden>
+          <button type="button" class="search-page__filter is-active" data-filter="all" data-label={labels.all}>
+            {labels.all}
+            <span class="search-page__filter-count" data-filter-count="all"></span>
+          </button>
+          <button type="button" class="search-page__filter" data-filter="product" data-label={labels.products}>
+            {labels.products}
+            <span class="search-page__filter-count" data-filter-count="product"></span>
+          </button>
+          <button type="button" class="search-page__filter" data-filter="blog" data-label={labels.blog}>
+            {labels.blog}
+            <span class="search-page__filter-count" data-filter-count="blog"></span>
+          </button>
+          <button type="button" class="search-page__filter" data-filter="page" data-label={labels.pages}>
+            {labels.pages}
+            <span class="search-page__filter-count" data-filter-count="page"></span>
+          </button>
+        </div>
+
+        <div id="search-page-output" class="search-page__output"></div>
+        <button type="button" id="search-page-more" class="search-page__more" hidden>{labels.loadMore}</button>
+      </div>
     </div>
   </main>
 </SiteShellLayout>
@@ -65,6 +91,7 @@ const labels = {
     type SearchResultType,
   } from '@/lib/pagefind-search';
 
+  const form = document.getElementById('search-page-form');
   const input = document.getElementById('search-page-input');
   const button = document.getElementById('search-page-button');
   const hint = document.getElementById('search-page-hint');
@@ -101,22 +128,33 @@ const labels = {
     });
   };
 
-  const renderCard = (item: EnrichedSearchResult) => `
+  const renderCard = (item: EnrichedSearchResult, showBadge = true) => `
     <li class="search-card-item">
-      <a class="search-card" href="${escapeHtml(item.url)}">
-        <div class="search-card-head">
-          <span class="search-badge search-badge--${item.resultType}">${escapeHtml(item.typeLabel)}</span>
+      <a class="search-card search-card--${item.resultType}" href="${escapeHtml(item.url)}">
+        <div class="search-card-main">
+          ${
+            showBadge
+              ? `<span class="search-badge search-badge--${item.resultType}">${escapeHtml(item.typeLabel)}</span>`
+              : ''
+          }
           <h3 class="search-card-title">${escapeHtml(item.meta.title || 'Untitled')}</h3>
+          <p class="search-card-excerpt">${escapeHtml(truncateExcerpt(item.excerpt, 180, true))}</p>
         </div>
-        <p class="search-card-excerpt">${escapeHtml(truncateExcerpt(item.excerpt, 140, true))}</p>
-        <span class="search-card-url">${escapeHtml(formatResultPath(item.url))}</span>
+        <div class="search-card-foot">
+          <span class="search-card-url">${escapeHtml(formatResultPath(item.url))}</span>
+          <span class="search-card-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+        </div>
       </a>
     </li>
   `;
 
   const renderList = (items: EnrichedSearchResult[]) => `
-    <ul class="search-page-results">
-      ${items.map(renderCard).join('')}
+    <ul class="search-page-results search-page-results--flat">
+      ${items.map((item) => renderCard(item, true)).join('')}
     </ul>
   `;
 
@@ -133,10 +171,13 @@ const labels = {
         const groupItems = groups[key];
         if (!groupItems.length) return '';
         return `
-          <section class="search-group">
-            <h2>${title} <span>${groupItems.length}</span></h2>
-            <ul class="search-page-results">
-              ${groupItems.map(renderCard).join('')}
+          <section class="search-group search-group--${key}">
+            <div class="search-group__head">
+              <h2 class="search-group__title">${title}</h2>
+              <span class="search-group__count">${groupItems.length}</span>
+            </div>
+            <ul class="search-page-results search-page-results--grouped">
+              ${groupItems.map((item) => renderCard(item, false)).join('')}
             </ul>
           </section>
         `;
@@ -145,6 +186,31 @@ const labels = {
 
     return `<div class="search-groups">${html}</div>`;
   };
+
+  const updateFilterCounts = () => {
+    const typeCounts = groupByType(allResults);
+    filters?.querySelectorAll('[data-filter-count]').forEach((node) => {
+      if (!(node instanceof HTMLElement)) return;
+      const key = node.dataset.filterCount;
+      const count = key === 'all' ? allResults.length : typeCounts[key as SearchResultType]?.length ?? 0;
+      node.textContent = String(count);
+      node.hidden = !allResults.length;
+    });
+  };
+
+  const renderEmptyState = (keyword: string) => `
+    <div class="search-empty">
+      <div class="search-empty__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="40" height="40">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.75"></circle>
+          <path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <h2 class="search-empty__title">No results found</h2>
+      <p class="search-empty__copy">We could not find anything for <strong>${escapeHtml(keyword)}</strong>. Try another keyword or browse our catalog.</p>
+      <a class="search-empty__cta" href="/all-products/">Browse all products</a>
+    </div>
+  `;
 
   const updateMoreButton = (filteredCount: number) => {
     if (!(moreButton instanceof HTMLButtonElement)) return;
@@ -162,17 +228,27 @@ const labels = {
     const visible = filtered.slice(0, visibleCount);
 
     if (!allResults.length) {
-      output.innerHTML = '';
-      hint.textContent = getKeyword()
+      const keyword = getKeyword();
+      output.innerHTML = keyword ? renderEmptyState(keyword) : '';
+      hint.textContent = keyword
         ? labels.noResults || 'No results found.'
         : labels.initialHint || 'Type a keyword to search the site.';
+      hint.classList.toggle('search-page__hint--muted', !keyword);
       if (filters) filters.hidden = true;
+      updateFilterCounts();
       updateMoreButton(0);
       return;
     }
 
     const typeCounts = groupByType(allResults);
-    hint.textContent = `${labels.found || 'Found'} ${filtered.length} result(s) · ${typeCounts.product.length} ${labels.products || 'products'} · ${typeCounts.blog.length} ${labels.blog || 'blog'} · ${typeCounts.page.length} ${labels.pages || 'pages'}`;
+    hint.classList.remove('search-page__hint--muted');
+    hint.innerHTML = `
+      <span class="search-page__stat"><strong>${filtered.length}</strong> result${filtered.length === 1 ? '' : 's'}</span>
+      <span class="search-page__stat">${typeCounts.product.length} ${labels.products || 'products'}</span>
+      <span class="search-page__stat">${typeCounts.blog.length} ${labels.blog || 'blog'}</span>
+      <span class="search-page__stat">${typeCounts.page.length} ${labels.pages || 'pages'}</span>
+    `;
+    updateFilterCounts();
 
     output.innerHTML = activeFilter === 'all' ? renderGrouped(visible) : renderList(visible);
     if (filters) filters.hidden = false;
@@ -195,7 +271,8 @@ const labels = {
     }
 
     hint.textContent = labels.searching || 'Searching...';
-    if (output) output.innerHTML = '';
+    hint.classList.add('search-page__hint--muted');
+    if (output) output.innerHTML = '<div class="search-page__loading" aria-hidden="true"></div>';
 
     const pf = await loadPagefind(24);
     if (!pf) {
@@ -241,6 +318,10 @@ const labels = {
     });
   }
 
-  button?.addEventListener('click', runSearch);
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    runSearch();
+  });
+
   setActiveFilterButton();
 </script>

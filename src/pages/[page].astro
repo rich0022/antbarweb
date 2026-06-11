@@ -8,7 +8,7 @@ import { resolveMirrorRoute } from '../lib/mirror-assets';
 
 export async function getStaticPaths() {
   const staticPages = await getCollection('pages');
-  const excluded = ['home','pod-sys','about-us','brand-story','rd-center','antbar-lab','intelligent-manufacturing','contact','support','verification','all-products'];
+  const excluded = ['home','pod-sys','about-us','brand-story','rd-center','antbar-lab','intelligent-manufacturing','contact','support','verification','all-products','privacy-policy'];
   return staticPages
     .filter((entry) => !excluded.includes(entry.id))
     .map((entry) => ({

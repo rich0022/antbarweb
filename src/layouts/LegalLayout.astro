@@ -1,0 +1,15 @@
+---
+import SiteShellLayout from './SiteShellLayout.astro';
+import '../styles/legal.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'ANTBAR', description = '' } = Astro.props;
+---
+
+<SiteShellLayout title={title} description={description} bodyClass="legal-page-body">
+  <slot />
+</SiteShellLayout>

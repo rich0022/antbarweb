@@ -1,5 +1,12 @@
 ---
-import { PRODUCT_MEGA_TILES, PRIMARY_NAV } from '../../data/site-navigation';
+import {
+  HEADER_WARNING_TEXT,
+  PRODUCT_MEGA_TILES,
+  PRIMARY_NAV,
+  SITE_LOGO,
+} from '../../data/site-navigation';
+
+const ageGateLogoHeight = Math.round((SITE_LOGO.height / SITE_LOGO.width) * 168);
 
 const homeLink = PRIMARY_NAV.find((item) => item.label === 'Home');
 const contactLink = PRIMARY_NAV.find((item) => item.label === 'Contact');
@@ -47,7 +54,7 @@ const mobileProductTiles = [
             ))}
           </div>
           <a class="site-shell-menu__cta" href="/all-products/">
-            Learn more
+            View all ANTBAR products
           </a>
         </details>
 
@@ -109,14 +116,7 @@ const mobileProductTiles = [
 </div>
 
 <script>
-  import {
-    SEARCH_DROPDOWN_LIMIT,
-    escapeHtml,
-    loadPagefind,
-    enrichResults,
-    truncateExcerpt,
-    type EnrichedSearchResult,
-  } from '@/lib/pagefind-search';
+  import type { EnrichedSearchResult } from '@/lib/pagefind-search';
 
   const dialog = document.getElementById('site-shell-search-dialog');
   const form = dialog?.querySelector('[data-site-shell-search-form]');
@@ -130,8 +130,18 @@ const mobileProductTiles = [
   } else {
     const typeLabels = { product: 'Product', blog: 'Blog', page: 'Page' };
     let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+    let searchModule: typeof import('@/lib/pagefind-search') | undefined;
 
-    const renderResults = (items: EnrichedSearchResult[], keyword: string) => {
+    const getSearchModule = async () => {
+      if (!searchModule) {
+        searchModule = await import('@/lib/pagefind-search');
+      }
+      return searchModule;
+    };
+
+    const renderResults = async (items: EnrichedSearchResult[], keyword: string) => {
+      const { escapeHtml, truncateExcerpt } = await getSearchModule();
+
       if (!items.length) {
         resultsEl.innerHTML = '';
         hint.textContent = 'No results found.';
@@ -179,6 +189,7 @@ const mobileProductTiles = [
       hint.textContent = 'Searching...';
       resultsEl.innerHTML = '';
 
+      const { SEARCH_DROPDOWN_LIMIT, loadPagefind, enrichResults } = await getSearchModule();
       const pf = await loadPagefind(20);
       if (!pf) {
         hint.textContent = 'Search is not available.';
@@ -189,7 +200,7 @@ const mobileProductTiles = [
       const data = await Promise.all(
         search.results.slice(0, SEARCH_DROPDOWN_LIMIT).map((item) => item.data()),
       );
-      renderResults(enrichResults(data, typeLabels), keyword);
+      await renderResults(enrichResults(data, typeLabels), keyword);
     };
 
     input.addEventListener('input', () => {
@@ -210,8 +221,9 @@ const mobileProductTiles = [
 
     const searchDialogObserver = new MutationObserver(() => {
       if (!dialog.hidden && dialog.getAttribute('aria-hidden') !== 'true') {
+        void getSearchModule();
         setTimeout(() => input instanceof HTMLInputElement && input.focus(), 200);
-        if (input instanceof HTMLInputElement && input.value.trim()) doSearch();
+        if (input instanceof HTMLInputElement && input.value.trim()) void doSearch();
       }
     });
     searchDialogObserver.observe(dialog, { attributes: true, attributeFilter: ['hidden', 'aria-hidden'] });
@@ -227,25 +239,60 @@ const mobileProductTiles = [
 >
   <div class="site-shell-dialog__backdrop site-shell-dialog__backdrop--locked"></div>
   <div class="site-shell-dialog__panel site-shell-dialog__panel--age" role="dialog" aria-modal="true" aria-labelledby="site-shell-age-title">
-    <img
-      class="site-shell-age-gate__brand"
-      src="/wp-content/uploads/2023/12/15.png"
-      width="168"
-      height="45"
-      alt="Antbar"
-    />
-    <h2 id="site-shell-age-title">AGE VERIFICATION</h2>
-    <p>
-      To access antbar website, you must be aged 21 years or over, please verify your age before
-      entering the site.
-    </p>
-    <div class="site-shell-age-gate__actions">
-      <a class="site-shell-age-gate__button site-shell-age-gate__button--ghost" href="https://www.google.com/" rel="nofollow">
-        I am not 21+
-      </a>
-      <button class="site-shell-age-gate__button site-shell-age-gate__button--accept" type="button" data-age-accept>
-        I am 21+
-      </button>
+    <div class="site-shell-age-gate__step" data-age-step="verify">
+      <img
+        class="site-shell-age-gate__brand"
+        src={SITE_LOGO.src}
+        width={168}
+        height={ageGateLogoHeight}
+        alt="Antbar"
+        srcset={SITE_LOGO.srcset}
+        sizes="168px"
+      />
+      <h2 id="site-shell-age-title">AGE VERIFICATION</h2>
+      <p>
+        To access the ANTBAR website, you must be aged 21 years or over. Please verify your age
+        before entering the site.
+      </p>
+      <div class="site-shell-age-gate__actions">
+        <button class="site-shell-age-gate__button site-shell-age-gate__button--ghost" type="button" data-age-decline>
+          I am not 21+
+        </button>
+        <button class="site-shell-age-gate__button site-shell-age-gate__button--accept" type="button" data-age-accept>
+          I am 21+
+        </button>
+      </div>
+    </div>
+
+    <div class="site-shell-age-gate__step" data-age-step="denied" hidden>
+      <img
+        class="site-shell-age-gate__brand"
+        src={SITE_LOGO.src}
+        width={168}
+        height={ageGateLogoHeight}
+        alt="Antbar"
+        srcset={SITE_LOGO.srcset}
+        sizes="168px"
+        aria-hidden="true"
+      />
+      <h2 id="site-shell-age-denied-title">Access restricted</h2>
+      <p class="site-shell-age-gate__warning">{HEADER_WARNING_TEXT}</p>
+      <p>
+        You must be 21 years or older to view this website. This site contains information about
+        nicotine products intended for adult use only.
+      </p>
+      <div class="site-shell-age-gate__actions">
+        <button class="site-shell-age-gate__button site-shell-age-gate__button--ghost" type="button" data-age-back>
+          Go back
+        </button>
+        <a
+          class="site-shell-age-gate__button site-shell-age-gate__button--accept"
+          href="https://www.google.com/"
+          rel="nofollow"
+        >
+          Leave site
+        </a>
+      </div>
     </div>
   </div>
 </div>

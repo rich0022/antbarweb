@@ -149,7 +149,8 @@ body {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: clamp(24px, 2vw, 42px);
+  box-sizing: border-box;
+  gap: clamp(20px, 1.8vw, 36px);
   min-height: var(--header-height);
   padding-block: var(--header-inner-padding);
 }
@@ -210,8 +211,8 @@ body {
 .site-header__nav-link {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
-  padding: 8px 2px;
+  min-height: 36px;
+  padding: 6px 2px;
   font-size: clamp(0.92rem, 0.86vw, 0.98rem);
   font-weight: 400;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -639,6 +640,16 @@ body {
   color: var(--color-text-on-dark-subtle);
   font-family: var(--font-sans);
   font-size: clamp(0.78rem, 0.72vw, 0.86rem);
+}
+
+.site-footer__meta-inner a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-footer__meta-inner a:hover,
+.site-footer__meta-inner a:focus {
+  text-decoration: underline;
 }
 
 /* Dialog / Popup */
@@ -1174,6 +1185,19 @@ body {
   margin: 0 auto;
 }
 
+.site-shell-age-gate__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.site-shell-age-gate__warning {
+  color: #fff;
+  font-weight: 600;
+}
+
 .site-shell-dialog__panel--age p {
   margin: 0;
   max-width: 28rem;
@@ -1375,9 +1399,9 @@ body {
   }
 
   .site-header__inner {
-    min-height: 68px;
-    gap: 14px;
-    padding-block: 10px;
+    min-height: var(--header-height-mobile);
+    gap: 12px;
+    padding-block: 8px;
   }
 
   .site-header__actions {

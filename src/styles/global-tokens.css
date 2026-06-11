@@ -66,10 +66,10 @@
   --site-width-mobile: min(calc(100% - 28px), 1440px);
 
   /* Header */
-  --header-height: 80px;
-  --header-height-mobile: 64px;
-  --header-inner-padding: clamp(18px, 1.6vw, 30px);
-  --header-brand-width: clamp(140px, 11vw, 180px);
+  --header-height: 64px;
+  --header-height-mobile: 56px;
+  --header-inner-padding: clamp(10px, 0.85vw, 14px);
+  --header-brand-width: clamp(104px, 8.2vw, 132px);
 
   /* Footer */
   --footer-padding-top: clamp(64px, 6vw, 88px);
